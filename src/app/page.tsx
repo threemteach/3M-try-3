@@ -34,7 +34,7 @@ export default function Home() {
           alt=""
           width={850}
           height={600}
-          className="absolute right-0 top-4 z-0 h-auto w-[440px] opacity-60 transition-all duration-500 ease-in-out -translate-x-4 md:w-[500px] md:top-0 md:-translate-x-4 md:opacity-100 xl:mt-12 xl:w-[850px] xl:-translate-x-2"
+          className="absolute right-0 top-4 z-0 h-auto w-[440px] opacity-60 transition-all duration-500 ease-in-out -translate-x-4 md:w-[500px] md:top-0 md:-translate-x-4 md:opacity-100 lg:w-[800px] lg:-translate-x-8 xl:mt-12 xl:w-[850px] xl:-translate-x-2"
           priority
         />
         <Image
