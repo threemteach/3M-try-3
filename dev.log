@@ -7,27 +7,95 @@
    - Network:      http://192.168.1.9:3000
 
  ✓ Starting...
- ✓ Ready in 1903ms
+ ✓ Ready in 1829ms
  ○ Compiling / ...
- ✓ Compiled / in 1839ms (640 modules)
- GET / 200 in 2350ms
- ✓ Compiled in 242ms (640 modules)
- GET / 200 in 107ms
- GET / 200 in 162ms
- GET / 200 in 62ms
- ✓ Compiled in 304ms (586 modules)
- GET / 200 in 135ms
- ✓ Compiled in 190ms (600 modules)
- GET / 200 in 88ms
- ✓ Compiled in 384ms (640 modules)
- GET / 200 in 183ms
- GET / 200 in 46ms
- ✓ Compiled /projects in 428ms (631 modules)
- GET /projects 200 in 589ms
- ✓ Compiled /about in 207ms (633 modules)
- GET /about 200 in 314ms
- ✓ Compiled in 284ms (647 modules)
- GET / 200 in 99ms
- ✓ Compiled in 249ms (641 modules)
- GET / 200 in 99ms
- GET / 200 in 224ms
+ ✓ Compiled / in 1149ms (644 modules)
+ ⨯ Error: Attempted to call organizationJsonLd() from the server but organizationJsonLd is on the client. It's not possible to invoke a client function from the server, it can only be rendered as a Component or passed to props of a Client Component.
+    at RootLayout (src\app\layout.tsx:48:41)
+  46 |     <html lang="en">
+  47 |       <head>
+> 48 |         <JsonLd data={organizationJsonLd()} />
+     |                                         ^
+  49 |         <JsonLd data={websiteJsonLd()} />
+  50 |       </head>
+  51 |       <body className="flex min-h-screen flex-col font-[family-name:var(--font-cairo)] antialiased"> {
+  digest: '3357392640'
+}
+ GET / 500 in 1526ms
+ ⨯ Error: Attempted to call organizationJsonLd() from the server but organizationJsonLd is on the client. It's not possible to invoke a client function from the server, it can only be rendered as a Component or passed to props of a Client Component.
+    at RootLayout (src\app\layout.tsx:48:41)
+  46 |     <html lang="en">
+  47 |       <head>
+> 48 |         <JsonLd data={organizationJsonLd()} />
+     |                                         ^
+  49 |         <JsonLd data={websiteJsonLd()} />
+  50 |       </head>
+  51 |       <body className="flex min-h-screen flex-col font-[family-name:var(--font-cairo)] antialiased"> {
+  digest: '3357392640'
+}
+ GET / 500 in 47ms
+ ⨯ Error: Attempted to call organizationJsonLd() from the server but organizationJsonLd is on the client. It's not possible to invoke a client function from the server, it can only be rendered as a Component or passed to props of a Client Component.
+    at RootLayout (src\app\layout.tsx:48:41)
+  46 |     <html lang="en">
+  47 |       <head>
+> 48 |         <JsonLd data={organizationJsonLd()} />
+     |                                         ^
+  49 |         <JsonLd data={websiteJsonLd()} />
+  50 |       </head>
+  51 |       <body className="flex min-h-screen flex-col font-[family-name:var(--font-cairo)] antialiased"> {
+  digest: '3357392640'
+}
+ GET / 500 in 57ms
+ ⨯ Error: Attempted to call organizationJsonLd() from the server but organizationJsonLd is on the client. It's not possible to invoke a client function from the server, it can only be rendered as a Component or passed to props of a Client Component.
+    at RootLayout (src\app\layout.tsx:48:41)
+  46 |     <html lang="en">
+  47 |       <head>
+> 48 |         <JsonLd data={organizationJsonLd()} />
+     |                                         ^
+  49 |         <JsonLd data={websiteJsonLd()} />
+  50 |       </head>
+  51 |       <body className="flex min-h-screen flex-col font-[family-name:var(--font-cairo)] antialiased"> {
+  digest: '3357392640'
+}
+ GET / 500 in 57ms
+ ✓ Compiled in 252ms (256 modules)
+ ⨯ Error: Attempted to call organizationJsonLd() from the server but organizationJsonLd is on the client. It's not possible to invoke a client function from the server, it can only be rendered as a Component or passed to props of a Client Component.
+    at RootLayout (src\app\layout.tsx:48:41)
+  46 |     <html lang="en">
+  47 |       <head>
+> 48 |         <JsonLd data={organizationJsonLd()} />
+     |                                         ^
+  49 |         <JsonLd data={websiteJsonLd()} />
+  50 |       </head>
+  51 |       <body className="flex min-h-screen flex-col font-[family-name:var(--font-cairo)] antialiased"> {
+  digest: '3357392640'
+}
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ GET / 500 in 138ms
+ ⚠ ./src/app/layout.tsx
+Attempted import error: 'organizationJsonLd' is not exported from '@/components/JsonLd' (imported as 'organizationJsonLd').
+
+Import trace for requested module:
+./src/app/layout.tsx
+
+./src/app/layout.tsx
+Attempted import error: 'websiteJsonLd' is not exported from '@/components/JsonLd' (imported as 'websiteJsonLd').
+
+Import trace for requested module:
+./src/app/layout.tsx
+ ⨯ TypeError: (0 , _components_JsonLd__WEBPACK_IMPORTED_MODULE_3__.organizationJsonLd) is not a function
+    at RootLayout (src\app\layout.tsx:48:41)
+  46 |     <html lang="en">
+  47 |       <head>
+> 48 |         <JsonLd data={organizationJsonLd()} />
+     |                                         ^
+  49 |         <JsonLd data={websiteJsonLd()} />
+  50 |       </head>
+  51 |       <body className="flex min-h-screen flex-col font-[family-name:var(--font-cairo)] antialiased"> {
+  digest: '976678488'
+}
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ GET / 500 in 201ms
+ ✓ Compiled in 321ms (643 modules)
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ GET / 200 in 305ms

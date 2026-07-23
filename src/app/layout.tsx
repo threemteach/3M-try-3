@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import JsonLd, { organizationJsonLd, websiteJsonLd } from "@/components/JsonLd";
+import JsonLd from "@/components/JsonLd";
+import { organizationJsonLd, websiteJsonLd } from "@/lib/jsonLdData";
 
 export const metadata: Metadata = {
   title: {
