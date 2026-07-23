@@ -47,7 +47,7 @@ export default function Home() {
         />
         <div style={{ paddingLeft: 40 }} className="relative z-10 flex min-h-[90vh] items-center pr-4">
           <div className="max-w-[713px]">
-            <h1 style={{ fontFamily: '"MedulaOne", serif', marginLeft: 20 }} className="text-5xl font-normal leading-tight text-white sm:text-6xl md:text-7xl lg:text-[90px] lg:leading-[91px] xl:text-[110px] xl:leading-[111px] 2xl:text-[135px] 2xl:leading-[136px]">
+            <h1 style={{ fontFamily: '"MedulaOne", serif', marginLeft: -20 }} className="text-5xl font-normal leading-tight text-white sm:text-6xl md:text-7xl lg:text-[90px] lg:leading-[91px] xl:text-[110px] xl:leading-[111px] 2xl:text-[135px] 2xl:leading-[136px]">
               Where Ambition<br />Meets Engineering
             </h1>
           </div>
