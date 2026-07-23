@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import Navbar from "@/components/Navbar";
+import RotatingSpinner from "@/components/RotatingSpinner";
 
 const services = [
   {
@@ -70,6 +71,7 @@ export default function Home() {
             <h1 style={{ fontFamily: '"MedulaOne", serif' }} className="text-[58px] font-normal leading-[59px] text-white sm:text-[72px] sm:leading-[73px] md:text-[86px] md:leading-[87px] lg:text-[120px] lg:leading-[121px] xl:text-[132px] xl:leading-[133px] 2xl:text-[162px] 2xl:leading-[163px]">
               Where Ambition<br />Meets Engineering
             </h1>
+            <RotatingSpinner />
           </div>
         </div>
         <Navbar />
