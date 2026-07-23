@@ -42,6 +42,13 @@ export default function RotatingSpinner() {
       <style>{`
         .spinner-container {
           display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 8px;
+          margin-top: 24px;
+        }
+        .spinner-top-row {
+          display: flex;
           align-items: center;
           gap: 12px;
         }
@@ -96,8 +103,10 @@ export default function RotatingSpinner() {
         }
       `}</style>
       <div className="spinner-container">
-        <span className="spinner-build-text">WE Build</span>
-        <span className="spinner-polygon" />
+        <div className="spinner-top-row">
+          <span className="spinner-build-text">WE Build</span>
+          <span className="spinner-polygon" />
+        </div>
         <div className="spinner-wrapper">
           {ITEMS.map((text, i) => (
             <div key={text} className={`spinner-item ${getPosition(i)}`}>
