@@ -34,7 +34,7 @@ export default function Home() {
           alt=""
           width={850}
           height={600}
-          className="absolute right-0 top-4 z-0 h-auto w-[440px] opacity-60 transition-all duration-500 ease-in-out -translate-x-4 md:w-[500px] md:top-0 md:-translate-x-4 md:opacity-100 lg:w-[600px] lg:top-0 lg:-translate-x-4 lg:opacity-100 xl:mt-12 xl:w-[850px] xl:-translate-x-2"
+          className="absolute right-0 top-4 z-0 h-auto w-[440px] opacity-60 transition-all duration-500 ease-in-out -translate-x-4 md:w-[500px] md:top-0 md:-translate-x-4 md:opacity-100 lg:w-[700px] lg:top-0 lg:-translate-x-12 lg:opacity-100 xl:mt-12 xl:w-[850px] xl:-translate-x-2"
           priority
         />
         <Image
@@ -42,7 +42,7 @@ export default function Home() {
           alt=""
           width={1050}
           height={600}
-          className="absolute right-0 z-[1] h-auto w-[350px] bottom-[40px] -translate-x-4 transition-all duration-500 ease-in-out sm:w-[450px] sm:bottom-[60px] sm:-translate-x-6 md:bottom-0 md:w-[560px] md:-translate-x-12 lg:bottom-0 lg:w-[650px] lg:-translate-x-12 xl:mt-[270px] xl:w-[1050px] xl:-translate-x-[120px] xl:bottom-auto"
+          className="absolute right-0 z-[1] h-auto w-[350px] bottom-[40px] -translate-x-4 transition-all duration-500 ease-in-out sm:w-[450px] sm:bottom-[60px] sm:-translate-x-6 md:bottom-0 md:w-[560px] md:-translate-x-12 lg:bottom-0 lg:w-[750px] lg:-translate-x-20 xl:mt-[270px] xl:w-[1050px] xl:-translate-x-[120px] xl:bottom-auto"
           priority
         />
         <div className="relative z-10 flex min-h-[90vh] items-center pl-4 pr-4 md:items-start md:pt-28 lg:items-start lg:pt-28 min-[1440px]:items-center min-[1440px]:pt-0">
