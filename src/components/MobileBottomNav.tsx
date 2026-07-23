@@ -47,9 +47,9 @@ export default function MobileBottomNav() {
   const pathname = usePathname();
 
   return (
-    <nav className="fixed bottom-5 left-1/2 z-50 flex -translate-x-1/2 items-end justify-center lg:hidden">
+    <nav className="fixed bottom-5 left-1/2 z-50 flex -translate-x-1/2 justify-center lg:hidden">
       <div
-        className="relative flex h-[95px] w-[370px] items-center justify-around rounded-[40px] bg-white px-5 pb-4 pt-3"
+        className="relative flex h-[90px] w-[370px] items-end justify-around overflow-visible rounded-[40px] bg-white px-5 pb-3 pt-3"
         style={{
           border: "1px solid #302451",
           boxShadow:
@@ -63,15 +63,14 @@ export default function MobileBottomNav() {
             <Link
               key={item.href}
               href={item.href}
-              className="relative flex flex-col items-center gap-1.5"
+              className="flex flex-col items-center gap-1.5"
             >
               {isActive ? (
                 <div
-                  className="flex h-[52px] w-[52px] items-center justify-center rounded-full bg-[#302451] text-white"
+                  className="absolute left-1/2 top-0 flex h-[60px] w-[60px] -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-[#302451] text-white"
                   style={{
                     boxShadow:
-                      "0 4px 14px rgba(48, 36, 81, 0.40), 0 2px 6px rgba(48, 36, 81, 0.25)",
-                    marginTop: "-14px",
+                      "0 6px 20px rgba(48, 36, 81, 0.45), 0 3px 8px rgba(48, 36, 81, 0.30)",
                   }}
                 >
                   {item.icon}

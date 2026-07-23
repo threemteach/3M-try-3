@@ -13,3 +13,39 @@
  GET / 200 in 3222ms
  ✓ Compiled in 411ms (646 modules)
  GET / 200 in 233ms
+ ✓ Compiled in 279ms (646 modules)
+ GET / 200 in 198ms
+ ✓ Compiled /projects in 248ms (637 modules)
+ GET /projects 200 in 353ms
+ GET /projects 200 in 22ms
+ GET /projects 200 in 20ms
+ ✓ Compiled /about in 202ms (639 modules)
+ GET /about 200 in 261ms
+ GET /about 200 in 22ms
+ GET / 200 in 27ms
+ GET /about 200 in 43ms
+ ✓ Compiled /_not-found in 411ms (644 modules)
+ GET /process 404 in 498ms
+ GET /process 404 in 220ms
+ GET / 200 in 214ms
+ GET /projects 200 in 55ms
+ GET / 200 in 45ms
+ ✓ Compiled in 345ms (658 modules)
+ GET / 200 in 101ms
+ ✓ Compiled in 201ms (658 modules)
+ GET / 200 in 94ms
+ GET /projects 200 in 28ms
+ GET /about 200 in 29ms
+ GET / 200 in 16ms
+ GET /process 404 in 21ms
+ GET /process 404 in 114ms
+ GET / 200 in 24ms
+ GET /projects 200 in 43ms
+ ✓ Compiled in 340ms (658 modules)
+ GET /projects 200 in 120ms
+ GET /about 200 in 62ms
+ GET /process 404 in 42ms
+ GET /process 404 in 135ms
+ GET / 200 in 47ms
+ GET /projects 200 in 38ms
+ GET / 200 in 41ms
