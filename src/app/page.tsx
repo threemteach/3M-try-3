@@ -34,7 +34,7 @@ export default function Home() {
           alt=""
           width={850}
           height={600}
-          className="absolute right-0 top-4 z-0 h-auto w-[440px] opacity-60 transition-all duration-500 ease-in-out -translate-x-4 sm:w-[400px] sm:-top-10 md:w-[500px] md:-top-12 md:translate-x-0 md:opacity-100 lg:mt-12 lg:w-[850px] lg:-translate-x-2"
+          className="absolute right-0 top-4 z-0 h-auto w-[440px] opacity-60 transition-all duration-500 ease-in-out -translate-x-4 md:w-[500px] md:top-0 md:-translate-x-4 md:opacity-100 lg:mt-12 lg:w-[850px] lg:-translate-x-2"
           priority
         />
         <Image
@@ -42,7 +42,7 @@ export default function Home() {
           alt=""
           width={1050}
           height={600}
-          className="absolute right-0 z-[1] h-auto w-[450px] bottom-[60px] -translate-x-6 transition-all duration-500 ease-in-out sm:bottom-auto sm:-top-10 sm:translate-x-0 md:w-[380px] md:-top-5 lg:mt-[270px] lg:w-[1050px] lg:-translate-x-[120px] lg:bottom-auto"
+          className="absolute right-0 z-[1] h-auto w-[450px] bottom-[60px] -translate-x-6 transition-all duration-500 ease-in-out md:w-[380px] md:bottom-0 md:-translate-x-4 lg:mt-[270px] lg:w-[1050px] lg:-translate-x-[120px] lg:bottom-auto"
           priority
         />
         <Navbar />
