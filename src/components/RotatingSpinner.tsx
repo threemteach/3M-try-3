@@ -31,46 +31,19 @@ export default function RotatingSpinner() {
   }, [startAutoRotate]);
 
   return (
-    <div style={{ display: "flex", alignItems: "center", gap: 12, marginTop: 8 }}>
-      <span style={{
-        fontFamily: '"MedulaOne", serif',
-        fontWeight: 400,
-        fontSize: "clamp(24px, 4vw, 65px)",
-        lineHeight: 1.1,
-        color: "#ffffff",
-        whiteSpace: "nowrap",
-      }}>
+    <div className="flex items-center gap-3 mt-6">
+      <span className="font-[family-name:var(--font-cairo)] text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold text-white whitespace-nowrap">
         WE Build
       </span>
-      <span style={{
-        width: 0,
-        height: 0,
-        borderTop: "10px solid transparent",
-        borderBottom: "10px solid transparent",
-        borderLeft: "16px solid #ffffff",
-        flexShrink: 0,
-      }} />
-      <div style={{
-        position: "relative",
-        height: "clamp(36px, 5vw, 70px)",
-        overflow: "hidden",
-      }}>
+      <span className="inline-block w-0 h-0 border-t-[10px] border-b-[10px] border-l-[16px] border-t-transparent border-b-transparent border-l-white flex-shrink-0" />
+      <div className="relative h-[40px] sm:h-[50px] md:h-[60px] lg:h-[70px] overflow-hidden">
         {ITEMS.map((text, i) => (
           <div
             key={text}
+            className={`absolute left-0 top-0 font-[family-name:var(--font-cairo)] text-xl sm:text-2xl md:text-3xl lg:text-4xl text-white whitespace-nowrap transition-opacity duration-300 ease-in-out ${i === activeIndex ? "opacity-100" : "opacity-0"}`}
             style={{
-              position: "absolute",
-              left: 0,
-              top: 0,
-              fontFamily: '"MedulaOne", serif',
-              fontWeight: 400,
-              fontSize: "clamp(20px, 3.5vw, 55px)",
-              lineHeight: "clamp(36px, 5vw, 70px)",
-              color: "#ffffff",
+              lineHeight: "40px",
               textShadow: "0px 0px 42px rgba(255, 255, 255, 0.68)",
-              whiteSpace: "nowrap",
-              opacity: i === activeIndex ? 1 : 0,
-              transition: "opacity 0.3s ease",
             }}
           >
             {text}
