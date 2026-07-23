@@ -45,6 +45,26 @@ export default function Home() {
           className="absolute right-0 z-[1] h-auto w-[350px] bottom-[40px] -translate-x-4 transition-all duration-500 ease-in-out sm:w-[450px] sm:bottom-[60px] sm:-translate-x-6 md:bottom-0 md:w-[560px] md:-translate-x-12 lg:bottom-0 lg:w-[750px] lg:-translate-x-20 xl:mt-[270px] xl:w-[1050px] xl:-translate-x-[120px] xl:bottom-auto"
           priority
         />
+        <div
+          className="absolute top-0 left-0 right-0 z-50 flex items-center justify-between px-4 pt-4 sm:hidden"
+        >
+          <Link href="/" className="shrink-0">
+            <Image
+              src="/logo.png"
+              alt="3M Logo"
+              width={80}
+              height={50}
+              className="h-[32px] w-auto object-contain"
+              priority
+            />
+          </Link>
+          <Link
+            href="/contact"
+            className="flex h-[32px] items-center justify-center whitespace-nowrap rounded-[150px] bg-white/20 px-5 text-[12px] font-bold text-white backdrop-blur-md"
+          >
+            Contact
+          </Link>
+        </div>
         <div className="relative z-10 flex min-h-[90vh] items-center justify-center text-center pl-4 pr-4 md:items-start md:justify-start md:text-left md:pt-28 lg:items-start lg:pt-28 min-[1440px]:items-center min-[1440px]:pt-0">
           <div style={{ marginTop: -350 }} className="max-w-[900px]">
             <h1 style={{ fontFamily: '"MedulaOne", serif' }} className="text-[58px] font-normal leading-[59px] text-white sm:text-[72px] sm:leading-[73px] md:text-[86px] md:leading-[87px] lg:text-[120px] lg:leading-[121px] xl:text-[132px] xl:leading-[133px] 2xl:text-[162px] 2xl:leading-[163px]">
