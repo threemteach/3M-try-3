@@ -1,0 +1,21 @@
+# 3M - Business Website
+
+## About
+3M is a business solutions company delivering innovative strategies, project management,
+digital transformation, and market analysis services. We help businesses of all sizes
+navigate complexity and achieve sustainable growth.
+
+## Pages
+- Home (/): Overview of 3M services, hero section, and call to action
+- Our Projects (/projects): Portfolio of 6 major projects across logistics, retail, healthcare, government, finance, and manufacturing
+- About Us (/about): Company mission, values, statistics, and team information
+
+## Services
+- Strategy Consulting: Business vision definition and growth roadmaps
+- Project Management: End-to-end project execution with proven methodologies
+- Digital Transformation: Modernization with cutting-edge technology solutions
+- Market Analysis: Data-driven insights for informed business decisions
+
+## Contact
+- Email: info@3m.com
+- Phone: +1 (555) 000-0000
