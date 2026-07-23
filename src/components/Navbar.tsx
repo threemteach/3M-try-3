@@ -15,9 +15,9 @@ export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <header className="absolute top-0 left-0 right-0 z-50 flex justify-center px-4 pt-8">
+    <header className="absolute top-0 left-0 right-0 z-50 flex justify-center px-4 pt-6">
       <nav
-        className="flex w-full max-w-[1602px] items-center justify-between rounded-[100px] px-6 py-3 sm:px-10 md:py-4 lg:px-16"
+        className="flex w-full max-w-[1360px] items-center justify-between rounded-[85px] px-5 py-2.5 sm:px-8 md:py-3 lg:px-14"
         style={{
           background: "rgba(255,255,255,0.1)",
           backdropFilter: "blur(7.5px)",
@@ -30,19 +30,19 @@ export default function Navbar() {
           <Image
             src="/logo.png"
             alt="3M Logo"
-            width={111}
-            height={70}
-            className="h-[70px] w-auto object-contain"
+            width={95}
+            height={60}
+            className="h-[60px] w-auto object-contain"
             priority
           />
         </Link>
 
-        <ul className="hidden items-center gap-6 lg:flex xl:gap-10">
+        <ul className="hidden items-center gap-5 lg:flex xl:gap-8">
           {navLinks.map((link) => (
             <li key={link.href}>
               <Link
                 href={link.href}
-                className="text-[29px] font-semibold leading-none text-white transition-opacity hover:opacity-80"
+                className="text-[24px] font-semibold leading-none text-white transition-opacity hover:opacity-80"
               >
                 {link.label}
               </Link>
@@ -52,7 +52,7 @@ export default function Navbar() {
 
         <Link
           href="/contact"
-          className="hidden h-[49px] w-[181px] shrink-0 items-center justify-center rounded-[200px] bg-white text-[30px] font-bold leading-none text-[#302451] transition-opacity hover:opacity-90 lg:inline-flex"
+          className="hidden h-[42px] w-[155px] shrink-0 items-center justify-center rounded-[170px] bg-white text-[25px] font-bold leading-none text-[#302451] transition-opacity hover:opacity-90 lg:inline-flex"
         >
           Contact
         </Link>
@@ -65,11 +65,11 @@ export default function Navbar() {
           aria-expanded={menuOpen}
         >
           {menuOpen ? (
-            <svg className="h-7 w-7" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
+            <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
             </svg>
           ) : (
-            <svg className="h-7 w-7" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
+            <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
             </svg>
           )}
@@ -78,7 +78,7 @@ export default function Navbar() {
 
       {menuOpen && (
         <div
-          className="absolute left-0 right-0 top-[100px] z-50 mx-4 overflow-hidden rounded-[24px] lg:hidden"
+          className="absolute left-0 right-0 top-[85px] z-50 mx-4 overflow-hidden rounded-[20px] lg:hidden"
           style={{
             background: "rgba(255,255,255,0.1)",
             backdropFilter: "blur(7.5px)",
@@ -87,13 +87,13 @@ export default function Navbar() {
               "-13px 43px 18px rgba(0,0,0,0.01), -7px 24px 15px rgba(0,0,0,0.04), -3px 11px 11px rgba(0,0,0,0.07), -1px 3px 6px rgba(0,0,0,0.08)",
           }}
         >
-          <ul className="flex flex-col gap-2 px-6 py-4">
+          <ul className="flex flex-col gap-2 px-5 py-3">
             {navLinks.map((link) => (
               <li key={link.href}>
                 <Link
                   href={link.href}
                   onClick={() => setMenuOpen(false)}
-                  className="block rounded-lg px-3 py-2 text-lg font-semibold text-white transition-colors hover:bg-white/10"
+                  className="block rounded-lg px-3 py-2 text-base font-semibold text-white transition-colors hover:bg-white/10"
                 >
                   {link.label}
                 </Link>
@@ -103,7 +103,7 @@ export default function Navbar() {
               <Link
                 href="/contact"
                 onClick={() => setMenuOpen(false)}
-                className="flex h-[49px] w-full items-center justify-center rounded-[200px] bg-white text-[20px] font-bold text-[#302451]"
+                className="flex h-[42px] w-full items-center justify-center rounded-[170px] bg-white text-[17px] font-bold text-[#302451]"
               >
                 Contact
               </Link>

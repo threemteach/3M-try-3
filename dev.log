@@ -26,3 +26,5 @@
  GET /projects 200 in 589ms
  ✓ Compiled /about in 207ms (633 modules)
  GET /about 200 in 314ms
+ ✓ Compiled in 284ms (647 modules)
+ GET / 200 in 99ms
