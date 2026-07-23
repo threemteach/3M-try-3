@@ -66,7 +66,7 @@ export default function Home() {
             Contact
           </Link>
         </div>
-        <div className="relative z-10 flex min-h-[90vh] items-end justify-start text-left pb-32 pl-4 pr-4 md:pb-32 md:pl-10 lg:items-center lg:pb-0 lg:pl-10 min-[1440px]:pl-10">
+        <div className="relative z-10 flex flex-col justify-end min-h-[90vh] pb-20 pl-4 pr-4 md:pb-28 md:pl-10 lg:items-start lg:pb-0 lg:justify-center lg:pl-10 min-[1440px]:pl-10">
           <div className="max-w-[900px]">
             <h1 style={{ fontFamily: '"MedulaOne", serif' }} className="text-[58px] font-normal leading-[59px] text-white sm:text-[72px] sm:leading-[73px] md:text-[86px] md:leading-[87px] lg:text-[120px] lg:leading-[121px] xl:text-[132px] xl:leading-[133px] 2xl:text-[162px] 2xl:leading-[163px]">
               Where Ambition<br />Meets Engineering

@@ -31,7 +31,7 @@ export default function RotatingSpinner() {
   }, [startAutoRotate]);
 
   return (
-    <div style={{ display: "flex", alignItems: "center", gap: 12, marginTop: 24 }}>
+    <div style={{ display: "flex", alignItems: "center", gap: 12, marginTop: 8 }}>
       <span style={{
         fontFamily: '"MedulaOne", serif',
         fontWeight: 400,
