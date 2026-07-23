@@ -14,7 +14,7 @@ export default function Navbar() {
   return (
     <header className="absolute top-0 left-0 right-0 z-50 hidden justify-center px-4 pt-5 md:flex lg:pt-8">
       <nav
-        className="flex w-full max-w-full items-center justify-between rounded-[72px] px-5 py-3 md:px-8 lg:px-10 lg:py-5"
+        className="flex w-full max-w-full items-center justify-between rounded-[72px] px-5 py-3 md:px-8 lg:px-10 lg:py-4"
         style={{
           background: "rgba(255,255,255,0.1)",
           backdropFilter: "blur(7.5px)",
