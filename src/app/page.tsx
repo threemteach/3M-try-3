@@ -30,11 +30,11 @@ export default function Home() {
     <>
       <section className="relative min-h-screen overflow-hidden bg-[#302451]">
         <Image
-          src="/Group 97.png"
+          src="/rectangles.png"
           alt=""
           width={340}
           height={600}
-          className="absolute right-0 top-0 z-0 h-auto w-[300px] md:w-[450px] lg:mt-12 lg:w-[850px] lg:-translate-x-2"
+          className="absolute right-0 -top-12 z-0 h-auto w-[520px] md:w-[450px] md:top-0 lg:mt-12 lg:w-[850px] lg:-translate-x-2"
           priority
         />
         <Navbar />
