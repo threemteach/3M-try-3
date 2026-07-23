@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import Navbar from "@/components/Navbar";
 
 const services = [
@@ -27,7 +28,15 @@ const services = [
 export default function Home() {
   return (
     <>
-      <section className="relative min-h-screen bg-[#302451]">
+      <section className="relative min-h-screen overflow-hidden bg-[#302451]">
+        <Image
+          src="/Group 97.png"
+          alt=""
+          width={340}
+          height={600}
+          className="absolute right-0 top-0 z-0 h-auto w-[300px] md:w-[450px] lg:mt-12 lg:w-[850px] lg:-translate-x-2"
+          priority
+        />
         <Navbar />
       </section>
 
