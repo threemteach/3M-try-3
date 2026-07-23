@@ -51,7 +51,6 @@ const BTN_R = BTN / 2;
 const CX = W / 2;
 const POP = 28;
 const NOTCH_GAP = 4;
-const NOTCH_R = 52;
 
 const NL = CX - BTN_R - NOTCH_GAP;
 const NR = CX + BTN_R + NOTCH_GAP;
@@ -63,7 +62,7 @@ const navPath = [
   `V ${R}`,
   `A ${R} ${R} 0 0 1 ${W - R} 0`,
   `H ${NR}`,
-  `A ${NOTCH_R} ${NOTCH_R} 0 0 0 ${NL} 0`,
+  `Q ${CX} ${28} ${NL} 0`,
   `H ${R}`,
   `A ${R} ${R} 0 0 1 0 ${R}`,
   `V ${H - R}`,
