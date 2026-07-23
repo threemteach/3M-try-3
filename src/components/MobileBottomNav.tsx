@@ -2,14 +2,15 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useState, useEffect, useMemo } from "react";
 
 const navItems = [
   {
     href: "/",
     label: "Home",
     icon: (
-      <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 12l8.954-8.955a1.126 1.126 0 011.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M3 9.5L12 3l9 6.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1V9.5z" />
       </svg>
     ),
   },
@@ -17,8 +18,9 @@ const navItems = [
     href: "/projects",
     label: "Portfolio",
     icon: (
-      <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 12.75V12A2.25 2.25 0 014.5 9.75h15A2.25 2.25 0 0121.75 12v.75m-8.69-6.44l-2.12-2.12a1.5 1.5 0 00-1.061-.44H4.5A2.25 2.25 0 002.25 6v12a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18V9a2.25 2.25 0 00-2.25-2.25h-5.379a1.5 1.5 0 01-1.06-.44z" />
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <rect x="2" y="7" width="20" height="14" rx="2" ry="2" />
+        <path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2" />
       </svg>
     ),
   },
@@ -26,8 +28,11 @@ const navItems = [
     href: "/about",
     label: "About Us",
     icon: (
-      <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z" />
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+        <circle cx="9" cy="7" r="4" />
+        <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+        <path d="M16 3.13a4 4 0 0 1 0 7.75" />
       </svg>
     ),
   },
@@ -35,103 +40,135 @@ const navItems = [
     href: "/process",
     label: "Process",
     icon: (
-      <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" d="M9.594 3.94c.09-.542.56-.94 1.11-.94h2.593c.55 0 1.02.398 1.11.94l.213 1.281c.063.374.313.686.645.87.074.04.147.083.22.127.325.196.72.257 1.075.124l1.217-.456a1.125 1.125 0 011.37.49l1.296 2.247a1.125 1.125 0 01-.26 1.431l-1.003.827c-.293.241-.438.613-.43.992a7.723 7.723 0 010 .255c-.008.378.137.75.43.991l1.004.827c.424.35.534.955.26 1.43l-1.298 2.247a1.125 1.125 0 01-1.369.491l-1.217-.456c-.355-.133-.75-.072-1.076.124a6.47 6.47 0 01-.22.128c-.331.183-.581.495-.644.869l-.213 1.281c-.09.543-.56.94-1.11.94h-2.594c-.55 0-1.019-.398-1.11-.94l-.213-1.281c-.062-.374-.312-.686-.644-.87a6.52 6.52 0 01-.22-.127c-.325-.196-.72-.257-1.076-.124l-1.217.456a1.125 1.125 0 01-1.369-.49l-1.297-2.247a1.125 1.125 0 01.26-1.431l1.004-.827c.292-.24.437-.613.43-.991a6.932 6.932 0 010-.255c.007-.38-.138-.751-.43-.992l-1.004-.827a1.125 1.125 0 01-.26-1.43l1.297-2.247a1.125 1.125 0 011.37-.491l1.216.456c.356.133.751.072 1.076-.124.072-.044.146-.086.22-.128.332-.183.582-.495.644-.869l.214-1.28z" />
-        <path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <rect x="3" y="3" width="7" height="7" />
+        <rect x="14" y="3" width="7" height="7" />
+        <rect x="3" y="14" width="7" height="7" />
+        <rect x="14" y="14" width="7" height="7" />
+        <line x1="6.5" y1="10" x2="6.5" y2="14" />
+        <line x1="17.5" y1="10" x2="17.5" y2="14" />
+        <line x1="10" y1="6.5" x2="14" y2="6.5" />
+        <line x1="10" y1="17.5" x2="14" y2="17.5" />
       </svg>
     ),
   },
 ];
 
-const W = 370;
-const H = 90;
-const R = 40;
-const BTN = 58;
-const BTN_R = BTN / 2;
-const CX = W / 2;
-const PROTRUDE = 20;
-const NOTCH_W = BTN + 6;
-const NL = CX - NOTCH_W / 2;
-const NR = CX + NOTCH_W / 2;
-const NOTCH_DEPTH = 22;
+const getContainerPath = (index: number) => {
+  const W = 320, H = 84, R = 24;
+  const topY = R;
+  const cx = 58 + 68 * index;
 
-const navPath = [
-  `M ${R} ${H}`,
-  `H ${W - R}`,
-  `A ${R} ${R} 0 0 1 ${W} ${H - R}`,
-  `V ${R}`,
-  `A ${R} ${R} 0 0 1 ${W - R} 0`,
-  `H ${NR}`,
-  `C ${NR} ${NOTCH_DEPTH} ${NL} ${NOTCH_DEPTH} ${NL} 0`,
-  `H ${R}`,
-  `A ${R} ${R} 0 0 1 0 ${R}`,
-  `V ${H - R}`,
-  `A ${R} ${R} 0 0 1 ${R} ${H}`,
-  `Z`,
-].join(" ");
+  return [
+    `M ${R},${topY}`,
+    `L ${Math.max(R, cx - 44)},${topY}`,
+    `C ${cx - 28},${topY} ${cx - 24},49 ${cx - 15},54`,
+    `C ${cx - 6},56 ${cx + 6},56 ${cx + 16},54`,
+    `C ${cx + 28},49 ${cx + 24},${topY} ${Math.min(W - R, cx + 44)},${topY}`,
+    `L ${W - R},${topY}`,
+    `A ${R},${R} 0 0 1 ${W},${topY + R}`,
+    `L ${W},${H - R}`,
+    `A ${R},${R} 0 0 1 ${W - R},${H}`,
+    `L ${R},${H}`,
+    `A ${R},${R} 0 0 1 0,${H - R}`,
+    `L 0,${topY + R}`,
+    `A ${R},${R} 0 0 1 ${R},${topY}`,
+    "Z",
+  ].join(" ");
+};
 
 export default function MobileBottomNav() {
   const pathname = usePathname();
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  useEffect(() => {
+    const idx = navItems.findIndex((item) =>
+      item.href === "/" ? pathname === "/" : pathname.startsWith(item.href)
+    );
+    if (idx !== -1) setActiveIndex(idx);
+  }, [pathname]);
+
+  const pathD = useMemo(() => getContainerPath(activeIndex), [activeIndex]);
 
   return (
     <nav
-      className="fixed bottom-5 left-1/2 z-50 -translate-x-1/2 lg:hidden"
-      style={{ width: W, height: H + PROTRUDE, overflow: "visible" }}
+      className="fixed bottom-0 left-0 right-0 z-[1000] lg:hidden"
+      style={{ padding: "0 24px", paddingBottom: "max(14px, env(safe-area-inset-bottom))" }}
+      aria-label="Mobile navigation"
     >
-      <svg
-        className="absolute bottom-0 left-0"
-        width={W}
-        height={H}
-        viewBox={`0 0 ${W} ${H}`}
-        style={{
-          overflow: "visible",
-          filter:
-            "drop-shadow(0 -2px 8px rgba(48,36,81,0.05)) drop-shadow(0 8px 24px rgba(48,36,81,0.12)) drop-shadow(0 1px 4px rgba(0,0,0,0.05))",
-        }}
-      >
-        <path
-          d={navPath}
-          fill="white"
-          stroke="#302451"
-          strokeWidth="1"
-          strokeLinejoin="round"
-        />
-      </svg>
-
       <div
-        className="absolute bottom-0 left-0 right-0 flex items-end justify-around px-5"
-        style={{ height: H }}
+        className="mx-auto flex items-end justify-between overflow-visible"
+        style={{ maxWidth: 320, height: 84, padding: "0 24px" }}
       >
-        {navItems.map((item) => {
-          const isActive = pathname === item.href;
+        <svg
+          className="absolute top-0 left-0 h-full w-full"
+          viewBox="0 0 320 84"
+          preserveAspectRatio="none"
+          style={{ zIndex: 0, pointerEvents: "none", filter: "drop-shadow(0 4px 12px rgba(48,36,81,0.08))" }}
+        >
+          <path
+            d={pathD}
+            fill="#ffffff"
+            stroke="#302451"
+            strokeWidth="1"
+            style={{ transition: "d 0.35s cubic-bezier(0.4, 0, 0.2, 1)" }}
+          />
+        </svg>
 
+        <div
+          className="pointer-events-none absolute flex items-center justify-center rounded-full"
+          style={{
+            width: 47,
+            height: 47,
+            top: 2,
+            left: `calc(24px + ((100% - 48px) / 4) * ${activeIndex} + ((100% - 48px) / 8) - 23.5px)`,
+            background: "#302451",
+            boxShadow: "0 4px 15px rgba(48,36,81,0.12), inset 0 2px 4px rgba(255,255,255,0.4)",
+            transition: "left 0.35s cubic-bezier(0.4, 0, 0.2, 1)",
+            zIndex: 1,
+          }}
+        >
+          <div className="flex h-[22px] w-[22px] items-center justify-center text-white">
+            {navItems[activeIndex].icon}
+          </div>
+        </div>
+
+        {navItems.map((item, index) => {
+          const isActive = activeIndex === index;
           return (
             <Link
               key={item.href}
               href={item.href}
-              className="flex flex-col items-center"
+              className="relative z-[2] flex flex-1 flex-col items-center justify-end no-underline"
+              style={{
+                height: 56,
+                gap: 4,
+                paddingBottom: 7,
+                WebkitTapHighlightColor: "transparent",
+              }}
             >
-              {isActive ? (
-                <div
-                  className="flex items-center justify-center rounded-full bg-[#302451] text-white"
-                  style={{
-                    width: BTN,
-                    height: BTN,
-                    marginBottom: -(H - BTN_R - 2),
-                    boxShadow:
-                      "0 4px 14px rgba(48,36,81,0.40), 0 2px 6px rgba(48,36,81,0.25)",
-                  }}
-                >
-                  {item.icon}
-                </div>
-              ) : (
-                <div className="flex h-[47px] w-[47px] items-center justify-center text-[#302451]">
-                  {item.icon}
-                </div>
-              )}
+              <div
+                className="flex items-center justify-center"
+                style={{
+                  width: 20,
+                  height: 20,
+                  color: "#302451",
+                  opacity: isActive ? 0 : 0.55,
+                  transition: "opacity 0.3s ease",
+                }}
+              >
+                {item.icon}
+              </div>
               <span
-                className="text-[12px] font-bold leading-none"
-                style={{ color: "#302451" }}
+                style={{
+                  fontFamily: '"Cairo", sans-serif',
+                  fontSize: 10.5,
+                  fontWeight: 700,
+                  color: "#302451",
+                  opacity: isActive ? 1 : 0.55,
+                  whiteSpace: "nowrap" as const,
+                  transition: "opacity 0.3s ease",
+                }}
               >
                 {item.label}
               </span>
