@@ -50,24 +50,6 @@ export default function Home() {
             <h1 className="text-5xl font-normal leading-tight text-white sm:text-6xl md:text-7xl lg:text-[90px] lg:leading-[91px] xl:text-[110px] xl:leading-[111px] 2xl:text-[135px] 2xl:leading-[136px]">
               Where Ambition<br />Meets Engineering
             </h1>
-            <div className="mt-4 flex items-center gap-3 text-white sm:mt-6">
-              <span className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl">WE Build</span>
-              <span className="inline-block border-t-[10px] border-b-[10px] border-l-[16px] border-t-transparent border-b-transparent border-l-white sm:border-t-[12px] sm:border-b-[12px] sm:border-l-[20px]" />
-            </div>
-            <div className="mt-8 hidden gap-0 sm:mt-10 sm:flex">
-              <a
-                href="#work"
-                className="rounded-l-full border-2 border-white px-6 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-white/15 sm:px-8 sm:py-3 sm:text-base lg:px-10"
-              >
-                See Our Work
-              </a>
-              <a
-                href="#contact"
-                className="rounded-r-full border-2 border-white bg-white px-6 py-2.5 text-sm font-semibold text-[#302451] transition-colors hover:bg-[#f0edf5] hover:-translate-y-0.5 sm:px-8 sm:py-3 sm:text-base lg:px-10"
-              >
-                Get a free quote
-              </a>
-            </div>
           </div>
         </div>
         <Navbar />
