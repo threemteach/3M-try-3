@@ -49,11 +49,11 @@ const R = 40;
 const BTN = 58;
 const BTN_R = BTN / 2;
 const CX = W / 2;
-const POP = 24;
-const NOTCH_HALF_W = BTN_R + 2;
-const NL = CX - NOTCH_HALF_W;
-const NR = CX + NOTCH_HALF_W;
-const NOTCH_R = 80;
+const PROTRUDE = 20;
+const NOTCH_W = BTN + 6;
+const NL = CX - NOTCH_W / 2;
+const NR = CX + NOTCH_W / 2;
+const NOTCH_DEPTH = 22;
 
 const navPath = [
   `M ${R} ${H}`,
@@ -62,7 +62,7 @@ const navPath = [
   `V ${R}`,
   `A ${R} ${R} 0 0 1 ${W - R} 0`,
   `H ${NR}`,
-  `A ${NOTCH_R} ${NOTCH_R} 0 0 0 ${NL} 0`,
+  `C ${NR} ${NOTCH_DEPTH} ${NL} ${NOTCH_DEPTH} ${NL} 0`,
   `H ${R}`,
   `A ${R} ${R} 0 0 1 0 ${R}`,
   `V ${H - R}`,
@@ -76,7 +76,7 @@ export default function MobileBottomNav() {
   return (
     <nav
       className="fixed bottom-5 left-1/2 z-50 -translate-x-1/2 lg:hidden"
-      style={{ width: W, height: H + POP }}
+      style={{ width: W, height: H + PROTRUDE, overflow: "visible" }}
     >
       <svg
         className="absolute bottom-0 left-0"
@@ -86,7 +86,7 @@ export default function MobileBottomNav() {
         style={{
           overflow: "visible",
           filter:
-            "drop-shadow(0 -2px 8px rgba(48,36,81,0.06)) drop-shadow(0 8px 24px rgba(48,36,81,0.14)) drop-shadow(0 1px 4px rgba(0,0,0,0.06))",
+            "drop-shadow(0 -2px 8px rgba(48,36,81,0.05)) drop-shadow(0 8px 24px rgba(48,36,81,0.12)) drop-shadow(0 1px 4px rgba(0,0,0,0.05))",
         }}
       >
         <path
@@ -117,9 +117,9 @@ export default function MobileBottomNav() {
                   style={{
                     width: BTN,
                     height: BTN,
-                    marginBottom: -(POP),
+                    marginBottom: -(H - BTN_R - 2),
                     boxShadow:
-                      "0 4px 16px rgba(48,36,81,0.40), 0 2px 6px rgba(48,36,81,0.25)",
+                      "0 4px 14px rgba(48,36,81,0.40), 0 2px 6px rgba(48,36,81,0.25)",
                   }}
                 >
                   {item.icon}
