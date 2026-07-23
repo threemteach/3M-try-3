@@ -29,17 +29,17 @@ export default function Navbar() {
             alt="3M Logo"
             width={80}
             height={50}
-            className="h-[42px] w-auto object-contain md:h-[46px] lg:h-[72px]"
+            className="h-[36px] w-auto object-contain md:h-[40px] lg:h-[50px] xl:h-[72px]"
             priority
           />
         </Link>
 
-        <ul className="flex items-center gap-5 md:gap-5 lg:gap-24 xl:gap-28">
+        <ul className="flex shrink-0 items-center gap-3 whitespace-nowrap md:gap-4 lg:gap-5 xl:gap-24 2xl:gap-28">
           {navLinks.map((link) => (
-            <li key={link.href}>
+            <li key={link.href} className="shrink-0">
               <Link
                 href={link.href}
-                className="text-[16px] font-semibold leading-none text-white transition-opacity hover:opacity-80 md:text-[17px] lg:text-[36px]"
+                className="block whitespace-nowrap text-[13px] font-semibold leading-none text-white transition-opacity hover:opacity-80 md:text-[14px] lg:text-[25px] xl:text-[36px]"
               >
                 {link.label}
               </Link>
@@ -49,7 +49,7 @@ export default function Navbar() {
 
         <Link
           href="/contact"
-          className="flex h-[30px] w-[100px] shrink-0 items-center justify-center rounded-[150px] bg-white text-[16px] font-bold leading-none text-[#302451] transition-opacity hover:opacity-90 md:h-[32px] md:w-[110px] md:text-[17px] lg:h-[56px] lg:w-[150px] lg:text-[27px]"
+          className="flex h-[26px] w-[80px] shrink-0 items-center justify-center whitespace-nowrap rounded-[150px] bg-white text-[13px] font-bold leading-none text-[#302451] transition-opacity hover:opacity-90 md:h-[28px] md:w-[90px] md:text-[14px] lg:h-[40px] lg:w-[135px] lg:text-[22px] xl:h-[56px] xl:w-[150px] xl:text-[27px]"
         >
           Contact
         </Link>
