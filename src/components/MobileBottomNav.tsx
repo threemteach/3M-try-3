@@ -47,10 +47,14 @@ export default function MobileBottomNav() {
   const pathname = usePathname();
 
   return (
-    <nav className="fixed bottom-4 left-1/2 z-50 flex -translate-x-1/2 items-center justify-center lg:hidden">
+    <nav className="fixed bottom-5 left-1/2 z-50 flex -translate-x-1/2 items-end justify-center lg:hidden">
       <div
-        className="flex h-[83.5px] w-[355px] items-center justify-around rounded-[40px] bg-white px-4"
-        style={{ border: "1px solid #302451" }}
+        className="relative flex h-[95px] w-[370px] items-center justify-around rounded-[40px] bg-white px-5 pb-4 pt-3"
+        style={{
+          border: "1px solid #302451",
+          boxShadow:
+            "0 -4px 20px rgba(48, 36, 81, 0.10), 0 8px 40px rgba(48, 36, 81, 0.12), 0 2px 8px rgba(0,0,0,0.06)",
+        }}
       >
         {navItems.map((item) => {
           const isActive = pathname === item.href;
@@ -59,10 +63,17 @@ export default function MobileBottomNav() {
             <Link
               key={item.href}
               href={item.href}
-              className="flex flex-col items-center justify-center gap-1"
+              className="relative flex flex-col items-center gap-1.5"
             >
               {isActive ? (
-                <div className="flex h-[47px] w-[47px] items-center justify-center rounded-full bg-[#302451] text-white">
+                <div
+                  className="flex h-[52px] w-[52px] items-center justify-center rounded-full bg-[#302451] text-white"
+                  style={{
+                    boxShadow:
+                      "0 4px 14px rgba(48, 36, 81, 0.40), 0 2px 6px rgba(48, 36, 81, 0.25)",
+                    marginTop: "-14px",
+                  }}
+                >
                   {item.icon}
                 </div>
               ) : (
