@@ -67,14 +67,14 @@ const getContainerPath = (index: number) => {
   const gap = usable / ITEMS;
   const cx = PAD_X + gap * index + gap / 2;
 
-  const nw = 36;
+  const nw = 46;
 
   return [
     `M ${R},${topY}`,
     `L ${Math.max(R, cx - nw)},${topY}`,
-    `C ${cx - 22},${topY} ${cx - 18},50 ${cx - 8},58`,
-    `C ${cx - 3},62 ${cx + 3},62 ${cx + 9},58`,
-    `C ${cx + 19},50 ${cx + 23},${topY} ${Math.min(W - R, cx + nw)},${topY}`,
+    `C ${cx - 30},${topY} ${cx - 24},48 ${cx - 10},58`,
+    `C ${cx - 3},62 ${cx + 3},62 ${cx + 11},58`,
+    `C ${cx + 25},48 ${cx + 31},${topY} ${Math.min(W - R, cx + nw)},${topY}`,
     `L ${W - R},${topY}`,
     `A ${R},${R} 0 0 1 ${W},${topY + R}`,
     `L ${W},${H - R}`,
@@ -139,7 +139,7 @@ export default function MobileBottomNav() {
           style={{
             width: BUBBLE,
             height: BUBBLE,
-            top: (H - BUBBLE) / 2,
+            top: (H - BUBBLE) / 2 - 15,
             left: `calc(${PAD_X}px + ((100% - ${PAD_X * 2}px) / ${ITEMS}) * ${activeIndex} + ((100% - ${PAD_X * 2}px) / ${ITEMS * 2}) - ${BUBBLE / 2}px)`,
             background: "linear-gradient(145deg, #3a2d5e, #302451)",
             boxShadow:
