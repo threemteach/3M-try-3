@@ -70,36 +70,37 @@ export default function RotatingSpinner() {
         }
         .spinner-wrapper {
           position: relative;
-          height: clamp(30px, 5vw, 70px);
+          height: clamp(36px, 5vw, 70px);
           overflow: hidden;
         }
         .spinner-item {
           font-family: "MedulaOne", serif;
           font-weight: 400;
           font-size: clamp(20px, 3.5vw, 55px);
-          line-height: 1;
+          line-height: clamp(36px, 5vw, 70px);
           color: #ffffff;
           text-shadow: 0px 0px 42px rgba(255, 255, 255, 0.68);
           white-space: nowrap;
           position: absolute;
           left: 0;
+          top: 0;
           transition: all 0.4s ease;
         }
         .spinner-item.pos-top {
-          opacity: 0.15;
-          transform: scaleY(0.85) translateY(0);
+          opacity: 0;
+          transform: translateY(-100%);
         }
         .spinner-item.pos-mid {
           opacity: 1;
-          transform: scaleY(1) translateY(100%);
+          transform: translateY(0);
         }
         .spinner-item.pos-bot {
           opacity: 0.15;
-          transform: scaleY(0.85) translateY(200%);
+          transform: translateY(100%);
         }
         .spinner-item.pos-hidden {
           opacity: 0;
-          transform: scaleY(0.85) translateY(300%);
+          transform: translateY(200%);
         }
       `}</style>
       <div className="spinner-container">
