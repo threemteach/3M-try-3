@@ -67,12 +67,14 @@ const getContainerPath = (index: number) => {
   const gap = usable / ITEMS;
   const cx = PAD_X + gap * index + gap / 2;
 
+  const nw = 36;
+
   return [
     `M ${R},${topY}`,
-    `L ${Math.max(R, cx - 40)},${topY}`,
-    `C ${cx - 26},${topY} ${cx - 22},48 ${cx - 12},56`,
-    `C ${cx - 6},60 ${cx + 6},60 ${cx + 13},56`,
-    `C ${cx + 23},48 ${cx + 20},${topY} ${Math.min(W - R, cx + 40)},${topY}`,
+    `L ${Math.max(R, cx - nw)},${topY}`,
+    `C ${cx - 22},${topY} ${cx - 18},50 ${cx - 8},58`,
+    `C ${cx - 3},62 ${cx + 3},62 ${cx + 9},58`,
+    `C ${cx + 19},50 ${cx + 23},${topY} ${Math.min(W - R, cx + nw)},${topY}`,
     `L ${W - R},${topY}`,
     `A ${R},${R} 0 0 1 ${W},${topY + R}`,
     `L ${W},${H - R}`,
