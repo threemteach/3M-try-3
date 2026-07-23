@@ -9,7 +9,7 @@ const navItems = [
     href: "/",
     label: "Home",
     icon: (
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
         <path d="M3 9.5L12 3l9 6.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1V9.5z" />
       </svg>
     ),
@@ -18,7 +18,7 @@ const navItems = [
     href: "/projects",
     label: "Portfolio",
     icon: (
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
         <rect x="2" y="7" width="20" height="14" rx="2" ry="2" />
         <path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2" />
       </svg>
@@ -28,7 +28,7 @@ const navItems = [
     href: "/about",
     label: "About Us",
     icon: (
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
         <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
         <circle cx="9" cy="7" r="4" />
         <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
@@ -40,7 +40,7 @@ const navItems = [
     href: "/process",
     label: "Process",
     icon: (
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
         <rect x="3" y="3" width="7" height="7" />
         <rect x="14" y="3" width="7" height="7" />
         <rect x="3" y="14" width="7" height="7" />
@@ -54,13 +54,12 @@ const navItems = [
   },
 ];
 
-const W = 280;
-const H = 70;
-const R = 20;
+const W = 290;
+const H = 72;
+const R = 22;
 const ITEMS = 4;
-const BUBBLE_SIZE = 40;
-const ITEM_H = 48;
-const PAD_X = 20;
+const BUBBLE = 44;
+const PAD_X = 18;
 
 const getContainerPath = (index: number) => {
   const topY = R;
@@ -68,12 +67,16 @@ const getContainerPath = (index: number) => {
   const gap = usable / ITEMS;
   const cx = PAD_X + gap * index + gap / 2;
 
+  const notchL = cx - 34;
+  const notchR = cx + 34;
+  const depth = 24;
+
   return [
     `M ${R},${topY}`,
-    `L ${Math.max(R, cx - 38)},${topY}`,
-    `C ${cx - 24},${topY} ${cx - 20},44 ${cx - 12},48`,
-    `C ${cx - 5},50 ${cx + 5},50 ${cx + 13},48`,
-    `C ${cx + 22},44 ${cx + 18},${topY} ${Math.min(W - R, cx + 38)},${topY}`,
+    `L ${Math.max(R, notchL)},${topY}`,
+    `C ${cx - 22},${topY} ${cx - 16},${depth} ${cx - 8},${depth + 2}`,
+    `Q ${cx},${depth + 4} ${cx + 9},${depth + 2}`,
+    `C ${cx + 17},${depth} ${cx + 21},${topY} ${Math.min(W - R, notchR)},${topY}`,
     `L ${W - R},${topY}`,
     `A ${R},${R} 0 0 1 ${W},${topY + R}`,
     `L ${W},${H - R}`,
@@ -104,13 +107,13 @@ export default function MobileBottomNav() {
       className="fixed bottom-0 left-0 right-0 z-[1000] lg:hidden"
       style={{
         padding: "0 16px",
-        paddingBottom: "max(10px, env(safe-area-inset-bottom))",
+        paddingBottom: "max(12px, env(safe-area-inset-bottom))",
       }}
       aria-label="Mobile navigation"
     >
       <div
         className="relative mx-auto overflow-visible"
-        style={{ maxWidth: W, height: H }}
+        style={{ maxWidth: W, height: H + BUBBLE / 2 }}
       >
         <svg
           className="absolute top-0 left-0 h-full w-full"
@@ -119,33 +122,33 @@ export default function MobileBottomNav() {
           style={{
             zIndex: 0,
             pointerEvents: "none",
-            filter: "drop-shadow(0 2px 8px rgba(48,36,81,0.10))",
+            filter: "drop-shadow(0 -1px 4px rgba(48,36,81,0.04)) drop-shadow(0 4px 14px rgba(48,36,81,0.10)) drop-shadow(0 1px 3px rgba(0,0,0,0.04))",
           }}
         >
           <path
             d={pathD}
             fill="#ffffff"
             stroke="#302451"
-            strokeWidth="1"
-            style={{ transition: "d 0.3s cubic-bezier(0.4, 0, 0.2, 1)" }}
+            strokeWidth="0.8"
+            style={{ transition: "d 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)" }}
           />
         </svg>
 
         <div
           className="pointer-events-none absolute flex items-center justify-center rounded-full"
           style={{
-            width: BUBBLE_SIZE,
-            height: BUBBLE_SIZE,
-            top: (H - BUBBLE_SIZE) / 2 + 2,
-            left: `calc(${PAD_X}px + ((100% - ${PAD_X * 2}px) / ${ITEMS}) * ${activeIndex} + ((100% - ${PAD_X * 2}px) / ${ITEMS * 2}) - ${BUBBLE_SIZE / 2}px)`,
-            background: "#302451",
+            width: BUBBLE,
+            height: BUBBLE,
+            top: 4,
+            left: `calc(${PAD_X}px + ((100% - ${PAD_X * 2}px) / ${ITEMS}) * ${activeIndex} + ((100% - ${PAD_X * 2}px) / ${ITEMS * 2}) - ${BUBBLE / 2}px)`,
+            background: "linear-gradient(145deg, #3a2d5e, #302451)",
             boxShadow:
-              "0 4px 14px rgba(48,36,81,0.35), inset 0 1px 3px rgba(255,255,255,0.3)",
-            transition: "left 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
+              "0 6px 18px rgba(48,36,81,0.40), 0 2px 6px rgba(48,36,81,0.20), inset 0 1px 2px rgba(255,255,255,0.25)",
+            transition: "left 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)",
             zIndex: 1,
           }}
         >
-          <div className="flex h-[18px] w-[18px] items-center justify-center text-white">
+          <div className="flex h-[20px] w-[20px] items-center justify-center text-white">
             {navItems[activeIndex].icon}
           </div>
         </div>
@@ -160,21 +163,21 @@ export default function MobileBottomNav() {
               style={{
                 left: `calc(${PAD_X}px + ((100% - ${PAD_X * 2}px) / ${ITEMS}) * ${index})`,
                 width: `calc((100% - ${PAD_X * 2}px) / ${ITEMS})`,
-                height: ITEM_H,
+                height: H,
                 justifyContent: "flex-end",
-                paddingBottom: 5,
-                gap: 2,
+                paddingBottom: 6,
+                gap: 3,
                 WebkitTapHighlightColor: "transparent",
               }}
             >
               <div
                 className="flex items-center justify-center"
                 style={{
-                  width: 18,
-                  height: 18,
+                  width: 20,
+                  height: 20,
                   color: "#302451",
-                  opacity: isActive ? 0 : 0.5,
-                  transition: "opacity 0.25s ease",
+                  opacity: isActive ? 0 : 0.55,
+                  transition: "opacity 0.3s ease",
                 }}
               >
                 {item.icon}
@@ -183,11 +186,11 @@ export default function MobileBottomNav() {
                 style={{
                   fontFamily: '"Cairo", sans-serif',
                   fontSize: 10,
-                  fontWeight: 700,
+                  fontWeight: isActive ? 700 : 600,
                   color: "#302451",
-                  opacity: isActive ? 1 : 0.5,
+                  opacity: isActive ? 1 : 0.55,
                   whiteSpace: "nowrap" as const,
-                  transition: "opacity 0.25s ease",
+                  transition: "opacity 0.3s ease, font-weight 0.3s ease",
                   lineHeight: 1,
                 }}
               >
