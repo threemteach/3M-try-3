@@ -99,3 +99,44 @@ Import trace for requested module:
  ✓ Compiled in 321ms (643 modules)
  ⚠ Fast Refresh had to perform a full reload due to a runtime error.
  GET / 200 in 305ms
+ ✓ Compiled in 233ms (255 modules)
+ GET / 200 in 82ms
+ ✓ Compiled in 219ms (643 modules)
+ GET / 200 in 89ms
+ ✓ Compiled in 146ms (643 modules)
+ GET / 200 in 89ms
+ ✓ Compiled in 250ms (648 modules)
+ GET / 200 in 140ms
+ ✓ Compiled /projects in 313ms (639 modules)
+ GET /projects 200 in 460ms
+ ✓ Compiled in 253ms (653 modules)
+ GET /projects 200 in 115ms
+ ✓ Compiled /about in 168ms (641 modules)
+ GET /about 200 in 278ms
+ ✓ Compiled /_not-found in 432ms (646 modules)
+ GET /process 404 in 525ms
+ GET /process 404 in 223ms
+ GET / 200 in 208ms
+ GET /projects 200 in 64ms
+ GET /about 200 in 59ms
+ GET /process 404 in 33ms
+ GET /process 404 in 81ms
+ GET / 200 in 41ms
+ ✓ Compiled in 490ms (660 modules)
+ GET / 200 in 159ms
+ GET /projects 200 in 36ms
+ GET /about 200 in 30ms
+ GET /process 404 in 26ms
+ GET /process 404 in 129ms
+ GET / 200 in 34ms
+ ✓ Compiled in 373ms (660 modules)
+ GET / 200 in 175ms
+ ⨯ [Error: ENOENT: no such file or directory, open 'M:\3Mupdtaed2\.next\server\app-paths-manifest.json'] {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'M:\\3Mupdtaed2\\.next\\server\\app-paths-manifest.json',
+  page: '/'
+}
+ ○ Compiling /_error ...
+ ✓ Compiled /_error in 1817ms (993 modules)

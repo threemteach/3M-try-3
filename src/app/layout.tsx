@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import Navbar from "@/components/Navbar";
+import MobileBottomNav from "@/components/MobileBottomNav";
 import Footer from "@/components/Footer";
 import JsonLd from "@/components/JsonLd";
 import { organizationJsonLd, websiteJsonLd } from "@/lib/jsonLdData";
@@ -52,6 +52,7 @@ export default function RootLayout({
       <body className="flex min-h-screen flex-col font-[family-name:var(--font-cairo)] antialiased">
         <main className="flex-1">{children}</main>
         <Footer />
+        <MobileBottomNav />
       </body>
     </html>
   );
