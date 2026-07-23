@@ -43,18 +43,57 @@ const navItems = [
   },
 ];
 
+const NAV_W = 370;
+const NAV_BAR_H = 90;
+const R = 40;
+const BTN = 58;
+const BTN_R = BTN / 2;
+const NOTCH_DEPTH = 30;
+const POP = 28;
+const CX = NAV_W / 2;
+const NL = CX - BTN_R - 4;
+const NR = CX + BTN_R + 4;
+
+const navBarPath = [
+  `M ${R} ${NAV_BAR_H}`,
+  `L ${NAV_W - R} ${NAV_BAR_H}`,
+  `A ${R} ${R} 0 0 1 ${NAV_W} ${NAV_BAR_H - R}`,
+  `L ${NAV_W} ${R}`,
+  `A ${R} ${R} 0 0 1 ${NAV_W - R} 0`,
+  `L ${NR} 0`,
+  `C ${NR} ${NOTCH_DEPTH} ${NL} ${NOTCH_DEPTH} ${NL} 0`,
+  `L ${R} 0`,
+  `A ${R} ${R} 0 0 1 0 ${R}`,
+  `L 0 ${NAV_BAR_H - R}`,
+  `A ${R} ${R} 0 0 1 ${R} ${NAV_BAR_H}`,
+  `Z`,
+].join(" ");
+
 export default function MobileBottomNav() {
   const pathname = usePathname();
 
   return (
-    <nav className="fixed bottom-5 left-1/2 z-50 flex -translate-x-1/2 justify-center lg:hidden">
-      <div
-        className="relative flex h-[90px] w-[370px] items-end justify-around overflow-visible rounded-[40px] bg-white px-5 pb-3 pt-3"
+    <nav
+      className="fixed bottom-5 left-1/2 z-50 -translate-x-1/2 lg:hidden"
+      style={{ width: NAV_W, height: NAV_BAR_H + POP }}
+    >
+      <svg
+        className="absolute bottom-0 left-0"
+        width={NAV_W}
+        height={NAV_BAR_H}
+        viewBox={`0 0 ${NAV_W} ${NAV_BAR_H}`}
         style={{
-          border: "1px solid #302451",
-          boxShadow:
-            "0 -4px 20px rgba(48, 36, 81, 0.10), 0 8px 40px rgba(48, 36, 81, 0.12), 0 2px 8px rgba(0,0,0,0.06)",
+          overflow: "visible",
+          filter:
+            "drop-shadow(0 -3px 12px rgba(48,36,81,0.06)) drop-shadow(0 8px 28px rgba(48,36,81,0.13)) drop-shadow(0 2px 6px rgba(0,0,0,0.05))",
         }}
+      >
+        <path d={navBarPath} fill="white" stroke="#302451" strokeWidth="1.2" />
+      </svg>
+
+      <div
+        className="absolute bottom-0 left-0 right-0 flex items-end justify-around px-5"
+        style={{ height: NAV_BAR_H }}
       >
         {navItems.map((item) => {
           const isActive = pathname === item.href;
@@ -63,14 +102,17 @@ export default function MobileBottomNav() {
             <Link
               key={item.href}
               href={item.href}
-              className="flex flex-col items-center gap-1.5"
+              className="flex flex-col items-center"
             >
               {isActive ? (
                 <div
-                  className="absolute left-1/2 top-0 flex h-[60px] w-[60px] -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-[#302451] text-white"
+                  className="flex items-center justify-center rounded-full bg-[#302451] text-white"
                   style={{
+                    width: BTN,
+                    height: BTN,
+                    marginBottom: -(POP),
                     boxShadow:
-                      "0 6px 20px rgba(48, 36, 81, 0.45), 0 3px 8px rgba(48, 36, 81, 0.30)",
+                      "0 6px 20px rgba(48,36,81,0.45), 0 2px 8px rgba(48,36,81,0.25)",
                   }}
                 >
                   {item.icon}

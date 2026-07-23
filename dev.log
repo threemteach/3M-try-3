@@ -49,3 +49,69 @@
  GET / 200 in 47ms
  GET /projects 200 in 38ms
  GET / 200 in 41ms
+ ✓ Compiled in 294ms (658 modules)
+ GET / 200 in 153ms
+ GET / 200 in 33ms
+ GET /about 200 in 55ms
+ GET / 200 in 41ms
+ GET /projects 200 in 24ms
+ GET /about 200 in 22ms
+ GET /process 404 in 25ms
+ GET /process 404 in 77ms
+ GET / 200 in 21ms
+ GET /projects 200 in 21ms
+ GET / 200 in 20ms
+ GET /process 404 in 18ms
+ GET /process 404 in 46ms
+ GET / 200 in 25ms
+ GET /process 404 in 18ms
+ GET /process 404 in 42ms
+ GET / 200 in 23ms
+ ✓ Compiled in 345ms (656 modules)
+ GET / 200 in 127ms
+ ✓ Compiled in 358ms (651 modules)
+ GET / 200 in 129ms
+ ✓ Compiled in 347ms (651 modules)
+ GET / 200 in 164ms
+ ⨯ Error: Cannot find module './124.js'
+Require stack:
+- M:\3Mupdtaed2\.next\server\webpack-runtime.js
+- M:\3Mupdtaed2\.next\server\app\page.js
+- M:\3Mupdtaed2\node_modules\next\dist\server\require.js
+- M:\3Mupdtaed2\node_modules\next\dist\server\load-components.js
+- M:\3Mupdtaed2\node_modules\next\dist\build\utils.js
+- M:\3Mupdtaed2\node_modules\next\dist\build\swc\options.js
+- M:\3Mupdtaed2\node_modules\next\dist\build\swc\index.js
+- M:\3Mupdtaed2\node_modules\next\dist\build\next-config-ts\transpile-config.js
+- M:\3Mupdtaed2\node_modules\next\dist\server\config.js
+- M:\3Mupdtaed2\node_modules\next\dist\server\next.js
+- M:\3Mupdtaed2\node_modules\next\dist\server\lib\start-server.js
+    at <unknown> (M:\3Mupdtaed2\.next\server\app\projects\page.js:2:11812)
+    at Object.<anonymous> (M:\3Mupdtaed2\.next\server\app\projects\page.js:2:11861) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array],
+  page: '/projects'
+}
+ ○ Compiling /_error ...
+ ✓ Compiled /_error in 2s (984 modules)
+ GET /projects 500 in 2743ms
+ ⨯ Error: Cannot find module './124.js'
+Require stack:
+- M:\3Mupdtaed2\.next\server\webpack-runtime.js
+- M:\3Mupdtaed2\.next\server\pages\_document.js
+- M:\3Mupdtaed2\node_modules\next\dist\server\require.js
+- M:\3Mupdtaed2\node_modules\next\dist\server\load-components.js
+- M:\3Mupdtaed2\node_modules\next\dist\build\utils.js
+- M:\3Mupdtaed2\node_modules\next\dist\build\swc\options.js
+- M:\3Mupdtaed2\node_modules\next\dist\build\swc\index.js
+- M:\3Mupdtaed2\node_modules\next\dist\build\next-config-ts\transpile-config.js
+- M:\3Mupdtaed2\node_modules\next\dist\server\config.js
+- M:\3Mupdtaed2\node_modules\next\dist\server\next.js
+- M:\3Mupdtaed2\node_modules\next\dist\server\lib\start-server.js
+    at <unknown> (M:\3Mupdtaed2\.next\server\app\projects\page.js:2:11812)
+    at Object.<anonymous> (M:\3Mupdtaed2\.next\server\app\projects\page.js:2:11861) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array],
+  page: '/projects'
+}
+ GET /projects 500 in 392ms
