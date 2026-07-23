@@ -42,7 +42,7 @@ export default function Home() {
           alt=""
           width={1050}
           height={600}
-          className="absolute right-0 z-[1] h-auto w-[450px] bottom-[60px] -translate-x-6 transition-all duration-500 ease-in-out md:bottom-0 md:w-[560px] md:-translate-x-12 lg:mt-[270px] lg:w-[1050px] lg:-translate-x-[120px] lg:bottom-auto"
+          className="absolute right-0 z-[1] h-auto w-[350px] bottom-[40px] -translate-x-4 transition-all duration-500 ease-in-out sm:w-[450px] sm:bottom-[60px] sm:-translate-x-6 md:bottom-0 md:w-[560px] md:-translate-x-12 lg:mt-[270px] lg:w-[1050px] lg:-translate-x-[120px] lg:bottom-auto"
           priority
         />
         <Navbar />
