@@ -33,7 +33,7 @@ export default function RotatingSpinner() {
   };
 
   return (
-    <div className="flex items-center gap-3 mt-6">
+    <div className="flex items-center gap-4 mt-12">
       <span style={{ fontFamily: '"MedulaOne", serif', fontWeight: 400, fontSize: "clamp(24px, 4vw, 65px)", lineHeight: 1.1 }} className="text-white whitespace-nowrap">
         WE Build
       </span>
