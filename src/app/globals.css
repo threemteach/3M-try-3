@@ -1,1 +1,11 @@
 @import "tailwindcss";
+@import "./fonts.css";
+
+@theme {
+  --font-cairo: "Cairo", sans-serif;
+}
+
+html,
+body {
+  overflow-x: hidden;
+}

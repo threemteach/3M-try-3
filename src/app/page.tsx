@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Navbar from "@/components/Navbar";
 
 const services = [
   {
@@ -26,31 +27,8 @@ const services = [
 export default function Home() {
   return (
     <>
-      <section className="relative flex min-h-[80vh] items-center justify-center bg-gradient-to-br from-blue-600 to-blue-800 px-4 text-center text-white">
-        <div className="mx-auto max-w-3xl">
-          <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-6xl">
-            Building Tomorrow&apos;s
-            <br />
-            Business Solutions
-          </h1>
-          <p className="mx-auto mt-6 max-w-xl text-lg text-blue-100 sm:text-xl">
-            3M delivers innovative strategies and world-class project execution to help your business thrive.
-          </p>
-          <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
-            <Link
-              href="/projects"
-              className="inline-flex items-center rounded-lg bg-white px-6 py-3 text-sm font-semibold text-blue-600 shadow transition-colors hover:bg-blue-50"
-            >
-              View Our Projects
-            </Link>
-            <Link
-              href="/about"
-              className="inline-flex items-center rounded-lg border border-white/30 px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-white/10"
-            >
-              Learn About Us
-            </Link>
-          </div>
-        </div>
+      <section className="relative min-h-screen bg-[#302451]">
+        <Navbar />
       </section>
 
       <section className="px-4 py-20 sm:px-6 lg:px-8">

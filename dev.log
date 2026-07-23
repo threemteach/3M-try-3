@@ -1,0 +1,28 @@
+
+> 3m-try-3@0.1.0 dev
+> next dev
+
+   ▲ Next.js 15.5.21
+   - Local:        http://localhost:3000
+   - Network:      http://192.168.1.9:3000
+
+ ✓ Starting...
+ ✓ Ready in 1903ms
+ ○ Compiling / ...
+ ✓ Compiled / in 1839ms (640 modules)
+ GET / 200 in 2350ms
+ ✓ Compiled in 242ms (640 modules)
+ GET / 200 in 107ms
+ GET / 200 in 162ms
+ GET / 200 in 62ms
+ ✓ Compiled in 304ms (586 modules)
+ GET / 200 in 135ms
+ ✓ Compiled in 190ms (600 modules)
+ GET / 200 in 88ms
+ ✓ Compiled in 384ms (640 modules)
+ GET / 200 in 183ms
+ GET / 200 in 46ms
+ ✓ Compiled /projects in 428ms (631 modules)
+ GET /projects 200 in 589ms
+ ✓ Compiled /about in 207ms (633 modules)
+ GET /about 200 in 314ms
