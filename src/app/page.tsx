@@ -75,7 +75,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="bg-gray-50 px-4 py-20 sm:px-6 lg:px-8">
+      <section id="process" className="bg-gray-50 px-4 py-20 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-7xl">
           <h2 className="text-center text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
             Our Process

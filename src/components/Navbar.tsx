@@ -2,13 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-
-const navLinks = [
-  { href: "/", label: "Home" },
-  { href: "/projects", label: "Our work" },
-  { href: "/about", label: "About" },
-  { href: "/process", label: "Process" },
-];
+import { navLinks } from "@/lib/constants";
 
 export default function Navbar() {
   return (
@@ -45,6 +39,14 @@ export default function Navbar() {
               </Link>
             </li>
           ))}
+          <li className="shrink-0">
+            <a
+              href="/#process"
+              className="block whitespace-nowrap text-[12px] font-semibold leading-none text-white transition-opacity hover:opacity-80 sm:text-[13px] md:text-[14px] lg:text-[20px] xl:text-[28px]"
+            >
+              Process
+            </a>
+          </li>
         </ul>
 
         <Link

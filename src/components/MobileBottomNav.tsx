@@ -36,28 +36,12 @@ const navItems = [
       </svg>
     ),
   },
-  {
-    href: "/process",
-    label: "Process",
-    icon: (
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <rect x="3" y="3" width="7" height="7" />
-        <rect x="14" y="3" width="7" height="7" />
-        <rect x="3" y="14" width="7" height="7" />
-        <rect x="14" y="14" width="7" height="7" />
-        <line x1="6.5" y1="10" x2="6.5" y2="14" />
-        <line x1="17.5" y1="10" x2="17.5" y2="14" />
-        <line x1="10" y1="6.5" x2="14" y2="6.5" />
-        <line x1="10" y1="17.5" x2="14" y2="17.5" />
-      </svg>
-    ),
-  },
 ];
 
 const W = 320;
 const H = 82;
 const R = 28;
-const ITEMS = 4;
+const ITEMS = 3;
 const BUBBLE = 48;
 const PAD_X = 24;
 
