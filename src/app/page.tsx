@@ -47,7 +47,7 @@ export default function Home() {
         />
         <div className="relative z-10 mx-auto flex min-h-[90vh] max-w-7xl items-center px-4 sm:px-6 lg:px-8">
           <div className="max-w-[713px]">
-            <h1 className="text-5xl font-normal leading-tight text-white sm:text-6xl md:text-7xl lg:text-[90px] lg:leading-[91px] xl:text-[110px] xl:leading-[111px] 2xl:text-[135px] 2xl:leading-[136px]">
+            <h1 style={{ fontFamily: '"MedulaOne", serif' }} className="text-5xl font-normal leading-tight text-white sm:text-6xl md:text-7xl lg:text-[90px] lg:leading-[91px] xl:text-[110px] xl:leading-[111px] 2xl:text-[135px] 2xl:leading-[136px]">
               Where Ambition<br />Meets Engineering
             </h1>
           </div>
