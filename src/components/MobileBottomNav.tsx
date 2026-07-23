@@ -54,12 +54,12 @@ const navItems = [
   },
 ];
 
-const W = 290;
-const H = 72;
-const R = 22;
+const W = 320;
+const H = 82;
+const R = 28;
 const ITEMS = 4;
-const BUBBLE = 44;
-const PAD_X = 18;
+const BUBBLE = 48;
+const PAD_X = 24;
 
 const getContainerPath = (index: number) => {
   const topY = R;
@@ -67,16 +67,12 @@ const getContainerPath = (index: number) => {
   const gap = usable / ITEMS;
   const cx = PAD_X + gap * index + gap / 2;
 
-  const notchL = cx - 34;
-  const notchR = cx + 34;
-  const depth = 24;
-
   return [
     `M ${R},${topY}`,
-    `L ${Math.max(R, notchL)},${topY}`,
-    `C ${cx - 22},${topY} ${cx - 16},${depth} ${cx - 8},${depth + 2}`,
-    `Q ${cx},${depth + 4} ${cx + 9},${depth + 2}`,
-    `C ${cx + 17},${depth} ${cx + 21},${topY} ${Math.min(W - R, notchR)},${topY}`,
+    `L ${Math.max(R, cx - 40)},${topY}`,
+    `C ${cx - 26},${topY} ${cx - 22},48 ${cx - 12},56`,
+    `C ${cx - 6},60 ${cx + 6},60 ${cx + 13},56`,
+    `C ${cx + 23},48 ${cx + 20},${topY} ${Math.min(W - R, cx + 40)},${topY}`,
     `L ${W - R},${topY}`,
     `A ${R},${R} 0 0 1 ${W},${topY + R}`,
     `L ${W},${H - R}`,
@@ -113,7 +109,7 @@ export default function MobileBottomNav() {
     >
       <div
         className="relative mx-auto overflow-visible"
-        style={{ maxWidth: W, height: H + BUBBLE / 2 }}
+        style={{ maxWidth: W, height: H }}
       >
         <svg
           className="absolute top-0 left-0 h-full w-full"
@@ -122,7 +118,8 @@ export default function MobileBottomNav() {
           style={{
             zIndex: 0,
             pointerEvents: "none",
-            filter: "drop-shadow(0 -1px 4px rgba(48,36,81,0.04)) drop-shadow(0 4px 14px rgba(48,36,81,0.10)) drop-shadow(0 1px 3px rgba(0,0,0,0.04))",
+            filter:
+              "drop-shadow(0 -1px 3px rgba(48,36,81,0.04)) drop-shadow(0 4px 12px rgba(48,36,81,0.10)) drop-shadow(0 1px 3px rgba(0,0,0,0.04))",
           }}
         >
           <path
@@ -130,7 +127,8 @@ export default function MobileBottomNav() {
             fill="#ffffff"
             stroke="#302451"
             strokeWidth="0.8"
-            style={{ transition: "d 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)" }}
+            strokeLinejoin="round"
+            style={{ transition: "d 0.38s cubic-bezier(0.4, 0, 0.2, 1)" }}
           />
         </svg>
 
@@ -139,12 +137,12 @@ export default function MobileBottomNav() {
           style={{
             width: BUBBLE,
             height: BUBBLE,
-            top: 4,
+            top: (H - BUBBLE) / 2,
             left: `calc(${PAD_X}px + ((100% - ${PAD_X * 2}px) / ${ITEMS}) * ${activeIndex} + ((100% - ${PAD_X * 2}px) / ${ITEMS * 2}) - ${BUBBLE / 2}px)`,
             background: "linear-gradient(145deg, #3a2d5e, #302451)",
             boxShadow:
-              "0 6px 18px rgba(48,36,81,0.40), 0 2px 6px rgba(48,36,81,0.20), inset 0 1px 2px rgba(255,255,255,0.25)",
-            transition: "left 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)",
+              "0 6px 20px rgba(48,36,81,0.40), 0 2px 6px rgba(48,36,81,0.18), inset 0 1px 2px rgba(255,255,255,0.20)",
+            transition: "left 0.38s cubic-bezier(0.4, 0, 0.2, 1)",
             zIndex: 1,
           }}
         >
@@ -165,8 +163,8 @@ export default function MobileBottomNav() {
                 width: `calc((100% - ${PAD_X * 2}px) / ${ITEMS})`,
                 height: H,
                 justifyContent: "flex-end",
-                paddingBottom: 6,
-                gap: 3,
+                paddingBottom: 8,
+                gap: 4,
                 WebkitTapHighlightColor: "transparent",
               }}
             >
@@ -176,7 +174,7 @@ export default function MobileBottomNav() {
                   width: 20,
                   height: 20,
                   color: "#302451",
-                  opacity: isActive ? 0 : 0.55,
+                  opacity: isActive ? 0 : 0.5,
                   transition: "opacity 0.3s ease",
                 }}
               >
@@ -185,12 +183,12 @@ export default function MobileBottomNav() {
               <span
                 style={{
                   fontFamily: '"Cairo", sans-serif',
-                  fontSize: 10,
+                  fontSize: 11,
                   fontWeight: isActive ? 700 : 600,
                   color: "#302451",
-                  opacity: isActive ? 1 : 0.55,
+                  opacity: isActive ? 1 : 0.5,
                   whiteSpace: "nowrap" as const,
-                  transition: "opacity 0.3s ease, font-weight 0.3s ease",
+                  transition: "opacity 0.3s ease",
                   lineHeight: 1,
                 }}
               >
