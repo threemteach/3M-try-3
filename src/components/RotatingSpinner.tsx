@@ -31,30 +31,29 @@ export default function RotatingSpinner() {
   }, [startAutoRotate]);
 
   return (
-    <div style={{ marginTop: 24 }}>
-      <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-        <span style={{
-          fontFamily: '"MedulaOne", serif',
-          fontWeight: 400,
-          fontSize: "clamp(24px, 4vw, 65px)",
-          lineHeight: 1.1,
-          color: "#ffffff",
-        }}>
-          WE Build
-        </span>
-        <span style={{
-          width: 0,
-          height: 0,
-          borderTop: "10px solid transparent",
-          borderBottom: "10px solid transparent",
-          borderLeft: "16px solid #ffffff",
-        }} />
-      </div>
+    <div style={{ display: "flex", alignItems: "center", gap: 12, marginTop: 24 }}>
+      <span style={{
+        fontFamily: '"MedulaOne", serif',
+        fontWeight: 400,
+        fontSize: "clamp(24px, 4vw, 65px)",
+        lineHeight: 1.1,
+        color: "#ffffff",
+        whiteSpace: "nowrap",
+      }}>
+        WE Build
+      </span>
+      <span style={{
+        width: 0,
+        height: 0,
+        borderTop: "10px solid transparent",
+        borderBottom: "10px solid transparent",
+        borderLeft: "16px solid #ffffff",
+        flexShrink: 0,
+      }} />
       <div style={{
         position: "relative",
         height: "clamp(36px, 5vw, 70px)",
         overflow: "hidden",
-        marginTop: 4,
       }}>
         {ITEMS.map((text, i) => (
           <div
