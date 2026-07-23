@@ -115,3 +115,7 @@ Require stack:
   page: '/projects'
 }
  GET /projects 500 in 392ms
+ ✓ Compiled /_not-found in 232ms (893 modules)
+ GET /process 404 in 354ms
+ GET /process 404 in 118ms
+ ✓ Compiled in 386ms (907 modules)

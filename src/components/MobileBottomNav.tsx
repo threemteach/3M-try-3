@@ -43,29 +43,31 @@ const navItems = [
   },
 ];
 
-const NAV_W = 370;
-const NAV_BAR_H = 90;
+const W = 370;
+const H = 90;
 const R = 40;
 const BTN = 58;
 const BTN_R = BTN / 2;
-const NOTCH_DEPTH = 30;
+const CX = W / 2;
 const POP = 28;
-const CX = NAV_W / 2;
-const NL = CX - BTN_R - 4;
-const NR = CX + BTN_R + 4;
+const NOTCH_GAP = 4;
+const NOTCH_R = 52;
 
-const navBarPath = [
-  `M ${R} ${NAV_BAR_H}`,
-  `L ${NAV_W - R} ${NAV_BAR_H}`,
-  `A ${R} ${R} 0 0 1 ${NAV_W} ${NAV_BAR_H - R}`,
-  `L ${NAV_W} ${R}`,
-  `A ${R} ${R} 0 0 1 ${NAV_W - R} 0`,
-  `L ${NR} 0`,
-  `C ${NR} ${NOTCH_DEPTH} ${NL} ${NOTCH_DEPTH} ${NL} 0`,
-  `L ${R} 0`,
+const NL = CX - BTN_R - NOTCH_GAP;
+const NR = CX + BTN_R + NOTCH_GAP;
+
+const navPath = [
+  `M ${R} ${H}`,
+  `H ${W - R}`,
+  `A ${R} ${R} 0 0 1 ${W} ${H - R}`,
+  `V ${R}`,
+  `A ${R} ${R} 0 0 1 ${W - R} 0`,
+  `H ${NR}`,
+  `A ${NOTCH_R} ${NOTCH_R} 0 0 0 ${NL} 0`,
+  `H ${R}`,
   `A ${R} ${R} 0 0 1 0 ${R}`,
-  `L 0 ${NAV_BAR_H - R}`,
-  `A ${R} ${R} 0 0 1 ${R} ${NAV_BAR_H}`,
+  `V ${H - R}`,
+  `A ${R} ${R} 0 0 1 ${R} ${H}`,
   `Z`,
 ].join(" ");
 
@@ -75,25 +77,25 @@ export default function MobileBottomNav() {
   return (
     <nav
       className="fixed bottom-5 left-1/2 z-50 -translate-x-1/2 lg:hidden"
-      style={{ width: NAV_W, height: NAV_BAR_H + POP }}
+      style={{ width: W, height: H + POP }}
     >
       <svg
         className="absolute bottom-0 left-0"
-        width={NAV_W}
-        height={NAV_BAR_H}
-        viewBox={`0 0 ${NAV_W} ${NAV_BAR_H}`}
+        width={W}
+        height={H}
+        viewBox={`0 0 ${W} ${H}`}
         style={{
           overflow: "visible",
           filter:
-            "drop-shadow(0 -3px 12px rgba(48,36,81,0.06)) drop-shadow(0 8px 28px rgba(48,36,81,0.13)) drop-shadow(0 2px 6px rgba(0,0,0,0.05))",
+            "drop-shadow(0 -2px 10px rgba(48,36,81,0.06)) drop-shadow(0 8px 24px rgba(48,36,81,0.13)) drop-shadow(0 1px 4px rgba(0,0,0,0.05))",
         }}
       >
-        <path d={navBarPath} fill="white" stroke="#302451" strokeWidth="1.2" />
+        <path d={navPath} fill="white" stroke="#302451" strokeWidth="1" />
       </svg>
 
       <div
         className="absolute bottom-0 left-0 right-0 flex items-end justify-around px-5"
-        style={{ height: NAV_BAR_H }}
+        style={{ height: H }}
       >
         {navItems.map((item) => {
           const isActive = pathname === item.href;
@@ -110,7 +112,7 @@ export default function MobileBottomNav() {
                   style={{
                     width: BTN,
                     height: BTN,
-                    marginBottom: -(POP),
+                    marginBottom: -POP,
                     boxShadow:
                       "0 6px 20px rgba(48,36,81,0.45), 0 2px 8px rgba(48,36,81,0.25)",
                   }}
