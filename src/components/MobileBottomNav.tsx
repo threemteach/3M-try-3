@@ -49,11 +49,11 @@ const R = 40;
 const BTN = 58;
 const BTN_R = BTN / 2;
 const CX = W / 2;
-const POP = 28;
-const NOTCH_GAP = 4;
-
-const NL = CX - BTN_R - NOTCH_GAP;
-const NR = CX + BTN_R + NOTCH_GAP;
+const POP = 24;
+const NOTCH_HALF_W = BTN_R + 2;
+const NL = CX - NOTCH_HALF_W;
+const NR = CX + NOTCH_HALF_W;
+const NOTCH_R = 80;
 
 const navPath = [
   `M ${R} ${H}`,
@@ -62,7 +62,7 @@ const navPath = [
   `V ${R}`,
   `A ${R} ${R} 0 0 1 ${W - R} 0`,
   `H ${NR}`,
-  `Q ${CX} ${28} ${NL} 0`,
+  `A ${NOTCH_R} ${NOTCH_R} 0 0 0 ${NL} 0`,
   `H ${R}`,
   `A ${R} ${R} 0 0 1 0 ${R}`,
   `V ${H - R}`,
@@ -86,10 +86,16 @@ export default function MobileBottomNav() {
         style={{
           overflow: "visible",
           filter:
-            "drop-shadow(0 -2px 10px rgba(48,36,81,0.06)) drop-shadow(0 8px 24px rgba(48,36,81,0.13)) drop-shadow(0 1px 4px rgba(0,0,0,0.05))",
+            "drop-shadow(0 -2px 8px rgba(48,36,81,0.06)) drop-shadow(0 8px 24px rgba(48,36,81,0.14)) drop-shadow(0 1px 4px rgba(0,0,0,0.06))",
         }}
       >
-        <path d={navPath} fill="white" stroke="#302451" strokeWidth="1" />
+        <path
+          d={navPath}
+          fill="white"
+          stroke="#302451"
+          strokeWidth="1"
+          strokeLinejoin="round"
+        />
       </svg>
 
       <div
@@ -111,9 +117,9 @@ export default function MobileBottomNav() {
                   style={{
                     width: BTN,
                     height: BTN,
-                    marginBottom: -POP,
+                    marginBottom: -(POP),
                     boxShadow:
-                      "0 6px 20px rgba(48,36,81,0.45), 0 2px 8px rgba(48,36,81,0.25)",
+                      "0 4px 16px rgba(48,36,81,0.40), 0 2px 6px rgba(48,36,81,0.25)",
                   }}
                 >
                   {item.icon}
