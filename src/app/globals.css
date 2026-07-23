@@ -15,3 +15,10 @@ html,
 body {
   overflow-x: hidden;
 }
+
+/* ===== Rotating Spinner ===== */
+.rotating-item {
+  font-family: "MedulaOne", serif;
+  color: #ffffff;
+  text-shadow: 0px 0px 42px rgba(255, 255, 255, 0.68);
+}
