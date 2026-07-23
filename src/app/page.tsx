@@ -45,6 +45,31 @@ export default function Home() {
           className="absolute right-0 z-[1] h-auto w-[350px] bottom-[40px] -translate-x-4 transition-all duration-500 ease-in-out sm:w-[450px] sm:bottom-[60px] sm:-translate-x-6 md:bottom-0 md:w-[560px] md:-translate-x-12 lg:bottom-0 lg:w-[800px] lg:-translate-x-12 xl:mt-[270px] xl:w-[1050px] xl:-translate-x-[120px] xl:bottom-auto"
           priority
         />
+        <div className="relative z-10 mx-auto flex min-h-[90vh] max-w-7xl items-center px-4 sm:px-6 lg:px-8">
+          <div className="max-w-[713px]">
+            <h1 className="text-5xl font-normal leading-tight text-white sm:text-6xl md:text-7xl lg:text-[90px] lg:leading-[91px] xl:text-[110px] xl:leading-[111px] 2xl:text-[135px] 2xl:leading-[136px]">
+              Where Ambition<br />Meets Engineering
+            </h1>
+            <div className="mt-4 flex items-center gap-3 text-white sm:mt-6">
+              <span className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl">WE Build</span>
+              <span className="inline-block border-t-[10px] border-b-[10px] border-l-[16px] border-t-transparent border-b-transparent border-l-white sm:border-t-[12px] sm:border-b-[12px] sm:border-l-[20px]" />
+            </div>
+            <div className="mt-8 hidden gap-0 sm:mt-10 sm:flex">
+              <a
+                href="#work"
+                className="rounded-l-full border-2 border-white px-6 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-white/15 sm:px-8 sm:py-3 sm:text-base lg:px-10"
+              >
+                See Our Work
+              </a>
+              <a
+                href="#contact"
+                className="rounded-r-full border-2 border-white bg-white px-6 py-2.5 text-sm font-semibold text-[#302451] transition-colors hover:bg-[#f0edf5] hover:-translate-y-0.5 sm:px-8 sm:py-3 sm:text-base lg:px-10"
+              >
+                Get a free quote
+              </a>
+            </div>
+          </div>
+        </div>
         <Navbar />
       </section>
 
