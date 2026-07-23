@@ -46,7 +46,7 @@ export default function Home() {
           priority
         />
         <div className="relative z-10 flex min-h-[90vh] items-center justify-center text-center pl-4 pr-4 md:items-start md:justify-start md:text-left md:pt-28 lg:items-start lg:pt-28 min-[1440px]:items-center min-[1440px]:pt-0">
-          <div style={{ marginTop: -400 }} className="max-w-[900px]">
+          <div style={{ marginTop: -350 }} className="max-w-[900px]">
             <h1 style={{ fontFamily: '"MedulaOne", serif' }} className="text-[58px] font-normal leading-[59px] text-white sm:text-[72px] sm:leading-[73px] md:text-[86px] md:leading-[87px] lg:text-[120px] lg:leading-[121px] xl:text-[132px] xl:leading-[133px] 2xl:text-[162px] 2xl:leading-[163px]">
               Where Ambition<br />Meets Engineering
             </h1>
