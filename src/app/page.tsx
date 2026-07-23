@@ -32,9 +32,9 @@ export default function Home() {
         <Image
           src="/rectangles.png"
           alt=""
-          width={340}
+          width={850}
           height={600}
-          className="absolute right-0 -top-12 z-0 h-auto w-[520px] md:w-[450px] md:top-0 lg:mt-12 lg:w-[850px] lg:-translate-x-2"
+          className="absolute right-0 -top-8 z-0 h-auto w-[320px] transition-all duration-500 ease-in-out sm:w-[400px] sm:-top-10 md:w-[500px] md:-top-12 lg:mt-12 lg:w-[850px] lg:-translate-x-2"
           priority
         />
         <Navbar />

@@ -102,7 +102,7 @@ export default function MobileBottomNav() {
 
   return (
     <nav
-      className="fixed bottom-0 left-0 right-0 z-[1000] md:hidden"
+      className="fixed bottom-0 left-0 right-0 z-[1000] sm:hidden"
       style={{
         padding: "0 16px",
         paddingBottom: "max(12px, env(safe-area-inset-bottom))",
