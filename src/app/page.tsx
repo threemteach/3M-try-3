@@ -45,10 +45,10 @@ export default function Home() {
           className="absolute right-0 z-[1] h-auto w-[350px] bottom-[40px] -translate-x-4 transition-all duration-500 ease-in-out sm:w-[450px] sm:bottom-[60px] sm:-translate-x-6 md:bottom-0 md:w-[560px] md:-translate-x-12 lg:bottom-0 lg:w-[800px] lg:-translate-x-12 xl:mt-[270px] xl:w-[1050px] xl:-translate-x-[120px] xl:bottom-auto"
           priority
         />
-        <div className="relative z-10 flex min-h-[90vh] items-center pl-4 pr-4">
-          <div style={{ marginLeft: 10 }} className="max-w-[713px]">
-            <h1 style={{ fontFamily: '"MedulaOne", serif', marginLeft: -20 }} className="text-5xl font-normal leading-tight text-white sm:text-6xl md:text-7xl lg:text-[90px] lg:leading-[91px] xl:text-[110px] xl:leading-[111px] 2xl:text-[135px] 2xl:leading-[136px]">
-              Where Ambition<br />Meets Engineering
+        <div className="relative z-10 flex min-h-[90vh] items-center pl-4 pr-4 md:items-start md:pt-28 lg:items-center lg:pt-0">
+          <div style={{ marginLeft: 150 }} className="max-w-[900px]">
+            <h1 style={{ fontFamily: '"MedulaOne", serif' }} className="text-[58px] font-normal leading-[59px] text-white sm:text-[72px] sm:leading-[73px] md:text-[86px] md:leading-[87px] lg:text-[108px] lg:leading-[109px] xl:text-[132px] xl:leading-[133px] 2xl:text-[162px] 2xl:leading-[163px]">
+              Where Ambition Meets Engineering
             </h1>
           </div>
         </div>
