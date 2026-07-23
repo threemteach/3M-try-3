@@ -8,7 +8,7 @@ export default function Navbar() {
   return (
     <header className="absolute top-0 left-0 right-0 z-50 hidden justify-center px-4 pt-4 sm:flex md:pt-5 lg:pt-8">
       <nav
-        className="flex w-full max-w-full items-center justify-between rounded-[72px] px-4 py-2 sm:px-6 sm:py-2.5 md:px-8 lg:px-12 lg:py-3.5 xl:py-4"
+        className="flex w-full items-center justify-between rounded-[72px] px-4 py-1.5 sm:px-5 sm:py-2 md:px-6 md:py-2 lg:px-10 lg:py-2.5 xl:py-3 mx-4 sm:mx-6 md:mx-8 lg:mx-12 xl:mx-20"
         style={{
           background: "rgba(255,255,255,0.1)",
           backdropFilter: "blur(7.5px)",
