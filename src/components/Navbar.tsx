@@ -12,9 +12,9 @@ const navLinks = [
 
 export default function Navbar() {
   return (
-    <header className="absolute top-0 left-0 right-0 z-50 hidden justify-center px-4 pt-3 md:flex lg:pt-4">
+    <header className="absolute top-0 left-0 right-0 z-50 hidden justify-center px-4 pt-5 md:flex lg:pt-8">
       <nav
-        className="flex w-full max-w-[1200px] items-center justify-between rounded-[72px] px-5 py-2 md:px-6 lg:px-14 lg:py-3"
+        className="flex w-full max-w-full items-center justify-between rounded-[72px] px-5 py-3 md:px-8 lg:px-10 lg:py-5"
         style={{
           background: "rgba(255,255,255,0.1)",
           backdropFilter: "blur(7.5px)",
@@ -29,17 +29,17 @@ export default function Navbar() {
             alt="3M Logo"
             width={80}
             height={50}
-            className="h-[42px] w-auto object-contain md:h-[46px] lg:h-[56px]"
+            className="h-[42px] w-auto object-contain md:h-[46px] lg:h-[72px]"
             priority
           />
         </Link>
 
-        <ul className="flex items-center gap-3 md:gap-3 lg:gap-6 xl:gap-8">
+        <ul className="flex items-center gap-5 md:gap-5 lg:gap-24 xl:gap-28">
           {navLinks.map((link) => (
             <li key={link.href}>
               <Link
                 href={link.href}
-                className="text-[15px] font-semibold leading-none text-white transition-opacity hover:opacity-80 md:text-[16px] lg:text-[22px]"
+                className="text-[16px] font-semibold leading-none text-white transition-opacity hover:opacity-80 md:text-[17px] lg:text-[36px]"
               >
                 {link.label}
               </Link>
@@ -49,7 +49,7 @@ export default function Navbar() {
 
         <Link
           href="/contact"
-          className="flex h-[30px] w-[100px] shrink-0 items-center justify-center rounded-[150px] bg-white text-[16px] font-bold leading-none text-[#302451] transition-opacity hover:opacity-90 md:h-[32px] md:w-[110px] md:text-[17px] lg:h-[40px] lg:w-[145px] lg:text-[22px]"
+          className="flex h-[30px] w-[100px] shrink-0 items-center justify-center rounded-[150px] bg-white text-[16px] font-bold leading-none text-[#302451] transition-opacity hover:opacity-90 md:h-[32px] md:w-[110px] md:text-[17px] lg:h-[56px] lg:w-[150px] lg:text-[27px]"
         >
           Contact
         </Link>
