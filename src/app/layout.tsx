@@ -50,7 +50,7 @@ export default function RootLayout({
         <JsonLd data={websiteJsonLd()} />
       </head>
       <body className="flex min-h-screen flex-col font-[family-name:var(--font-cairo)] antialiased">
-        <main className="flex-1">{children}</main>
+        <main className="flex-1 pb-24 sm:pb-0">{children}</main>
         <Footer />
         <MobileBottomNav />
       </body>
