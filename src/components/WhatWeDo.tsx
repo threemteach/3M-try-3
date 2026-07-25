@@ -84,30 +84,33 @@ export default function WhatWeDo() {
             return (
               <article
                 key={idx}
-                className={`relative w-full rounded-[28px] sm:rounded-[36px] border-2 border-white bg-[#302451] overflow-hidden flex flex-col sm:flex-row min-h-[300px] sm:min-h-[320px] lg:min-h-[340px] ${isReversed ? "sm:flex-row-reverse" : ""}`}
+                className={`relative w-full rounded-[28px] sm:rounded-[36px] border-2 border-white bg-[#302451] overflow-hidden flex flex-row ${isReversed ? "flex-row-reverse" : ""}`}
+                style={{ minHeight: "clamp(140px, 35vw, 340px)" }}
               >
-                {/* Text Content */}
-                <div className={`flex-1 p-7 sm:p-9 lg:pl-14 lg:pr-6 lg:py-12 flex flex-col justify-center z-10 ${isReversed ? "sm:pl-6 sm:pr-0" : ""}`}>
+                {/* Text Content - 56% */}
+                <div className={`flex flex-col justify-center z-10 min-w-0 ${isReversed ? "pl-4 pr-5 sm:pl-6 sm:pr-8 lg:pl-6 lg:pr-14" : "pl-5 pr-4 sm:pl-8 sm:pr-6 lg:pl-14 lg:pr-6"}`}
+                  style={{ width: "clamp(55%, 56%, 56%)", paddingTop: "clamp(10px, 2.5vw, 48px)", paddingBottom: "clamp(10px, 2.5vw, 48px)" }}
+                >
                   <h3
                     style={{ fontFamily: '"MedulaOne", serif' }}
-                    className="text-[36px] sm:text-[46px] lg:text-[58px] text-white leading-tight mb-3"
+                    className="text-[clamp(18px,4.2vw,58px)] text-white leading-tight mb-1 sm:mb-3"
                   >
                     {service.title}
                   </h3>
 
                   <p
                     style={{ fontFamily: '"Cairo", sans-serif' }}
-                    className="text-[16px] sm:text-[19px] lg:text-[22px] text-white mb-5 leading-relaxed max-w-[460px]"
+                    className="text-[clamp(10px,2vw,22px)] text-white mb-2 sm:mb-4 leading-relaxed"
                   >
                     {service.description}
                   </p>
 
-                  <ul className="flex flex-col gap-2.5">
+                  <ul className="flex flex-col gap-1 sm:gap-2.5">
                     {service.features.map((feat, fIdx) => (
                       <li
                         key={fIdx}
-                        style={{ fontFamily: '"Cairo", sans-serif' }}
-                        className="flex items-center gap-2.5 text-white text-[15px] sm:text-[17px] lg:text-[19px] font-semibold"
+                        style={{ fontFamily: '"Cairo", sans-serif', fontSize: "clamp(9px,1.6vw,19px)" }}
+                        className="flex items-center gap-1.5 sm:gap-2.5 text-white font-semibold"
                       >
                         <svg
                           width="14"
@@ -115,6 +118,7 @@ export default function WhatWeDo() {
                           viewBox="0 0 14 14"
                           fill="none"
                           className="shrink-0"
+                          style={{ width: "clamp(9px,1.2vw,14px)", height: "clamp(9px,1.2vw,14px)" }}
                         >
                           <path
                             d="M2 7.5L5 10.5L12 3"
@@ -130,21 +134,37 @@ export default function WhatWeDo() {
                   </ul>
                 </div>
 
-                {/* Image Area - White Circle behind + Image on top */}
-                <div
-                  className={`relative w-full sm:w-[42%] lg:w-[44%] min-h-[240px] sm:min-h-0 flex items-center justify-center ${isReversed ? "" : ""}`}
+                {/* Image Area - 44% */}
+                <div className="relative shrink-0 overflow-hidden"
+                  style={{ width: "clamp(44%, 44%, 44%)", minHeight: "clamp(140px, 35vw, 340px)" }}
                 >
-                  {/* White Circle (background decoration) */}
+                  {/* White Circle */}
                   <div
-                    className="absolute top-1/2 -translate-y-1/2 translate-x-[15px] w-[240px] h-[240px] sm:w-[276px] sm:h-[276px] lg:w-[324px] lg:h-[324px] rounded-full bg-white shrink-0"
+                    className="absolute rounded-full bg-white"
+                    style={{
+                      width: "clamp(120px, 28vw, 300px)",
+                      height: "clamp(120px, 28vw, 300px)",
+                      top: "50%",
+                      left: "50%",
+                      transform: "translate(-50%, -40%) translateX(15%)",
+                    }}
                   />
-                  {/* Image on top of circle */}
-                  <div className={`absolute bottom-[-84.25px] ${isReversed ? "left-[-25%]" : "right-[0%]"} w-[90%] h-[85%] z-10`}>
+                  {/* Image */}
+                  <div
+                    className="absolute z-10"
+                    style={{
+                      width: "clamp(130px, 30vw, 310px)",
+                      height: "clamp(120px, 28vw, 280px)",
+                      bottom: "0",
+                      right: "0",
+                      maxWidth: "100%",
+                    }}
+                  >
                     <Image
                       src={service.image}
                       alt={service.title}
                       fill
-                      className="object-contain object-center"
+                      className="object-contain object-right-bottom"
                     />
                   </div>
                 </div>
