@@ -4,6 +4,6 @@ export const SITE_DESCRIPTION = "3M company - delivering innovative business sol
 
 export const navLinks = [
   { href: "/", label: "Home" },
-  { href: "/projects", label: "Our Projects" },
+  { href: "/#portfolio", label: "Our Work" },
   { href: "/about", label: "About Us" },
 ] as const;

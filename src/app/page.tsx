@@ -3,6 +3,7 @@ import Image from "next/image";
 import Navbar from "@/components/Navbar";
 import RotatingSpinner from "@/components/RotatingSpinner";
 import NextSection from "@/components/NextSection";
+import Portfolio from "@/components/Portfolio";
 
 const services = [
   {
@@ -134,6 +135,9 @@ export default function Home() {
 
       {/* Curved Transition & Dream It Section */}
       <NextSection />
+
+      {/* Portfolio / Our Work Section */}
+      <Portfolio />
 
       {/* Services Section */}
       <section className="px-4 py-20 sm:px-6 lg:px-8">
