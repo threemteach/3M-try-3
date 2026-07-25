@@ -9,7 +9,7 @@ import WhatWeDo from "@/components/WhatWeDo";
 export default function Home() {
   return (
     <>
-      <section className="relative min-h-[100dvh] sm:min-h-[620px] md:min-h-[700px] lg:min-h-[820px] xl:min-h-[880px] w-full overflow-hidden bg-[#302451] flex flex-col justify-start pt-4 sm:pt-6 lg:pt-8 pb-10 sm:pb-14 lg:pb-20">
+      <section className="relative min-h-[560px] sm:min-h-[620px] md:min-h-[700px] lg:min-h-[820px] xl:min-h-[880px] w-full overflow-hidden bg-[#302451] flex flex-col justify-start pt-4 sm:pt-6 lg:pt-8 pb-10 sm:pb-14 lg:pb-20">
         {/* Background Decorative Pattern (Made smaller) */}
         <div className="absolute right-0 top-0 z-0 pointer-events-none overflow-hidden opacity-40 md:opacity-70 lg:opacity-100">
           <Image

@@ -3,6 +3,7 @@ import "./globals.css";
 import MobileBottomNav from "@/components/MobileBottomNav";
 import Footer from "@/components/Footer";
 import JsonLd from "@/components/JsonLd";
+import ScrollToTop from "@/components/ScrollToTop";
 import { organizationJsonLd, websiteJsonLd } from "@/lib/jsonLdData";
 
 export const metadata: Metadata = {
@@ -53,6 +54,7 @@ export default function RootLayout({
         <JsonLd data={websiteJsonLd()} />
       </head>
       <body className="flex min-h-screen flex-col font-[family-name:var(--font-cairo)] antialiased">
+        <ScrollToTop />
         <main className="flex-1 pb-24 sm:pb-0">{children}</main>
         <Footer />
         <MobileBottomNav />
