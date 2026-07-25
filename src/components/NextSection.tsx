@@ -14,7 +14,7 @@ export default function NextSection() {
   };
 
   return (
-    <section className="relative min-h-[280px] sm:min-h-[360px] lg:min-h-[420px] w-full bg-[#e6e1e6] overflow-hidden pt-20 sm:pt-28 lg:pt-32 pb-12 sm:pb-16 px-4 flex flex-col items-center justify-center" id="work">
+    <section className="relative min-h-[200px] sm:min-h-[260px] lg:min-h-[300px] w-full overflow-hidden pt-16 sm:pt-20 lg:pt-24 pb-8 sm:pb-12 px-4 flex flex-col items-center justify-center" id="work" style={{ background: "linear-gradient(to bottom, #e6e1e6 0%, #f9f7fc 100%)" }}>
       {/* Desktop Curved Transition (1440px optimized viewBox) */}
       <div className="absolute top-0 left-0 w-full h-[80px] sm:h-[100px] lg:h-[110px] z-10 pointer-events-none hidden sm:block">
         <svg viewBox="0 0 1440 120" preserveAspectRatio="none" className="w-full h-full block">
