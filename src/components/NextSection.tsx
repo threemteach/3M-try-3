@@ -14,9 +14,9 @@ export default function NextSection() {
   };
 
   return (
-    <section className="relative min-h-[400px] sm:min-h-[500px] lg:min-h-[550px] w-full bg-[#e6e1e6] overflow-hidden pt-24 pb-16 px-4 flex flex-col items-center justify-center" id="work">
+    <section className="relative min-h-[200px] sm:min-h-[260px] lg:min-h-[300px] w-full bg-[#e6e1e6] overflow-hidden pt-16 sm:pt-20 lg:pt-24 pb-8 sm:pb-12 px-4 flex flex-col items-center justify-center" id="work">
       {/* Desktop Curved Transition (1440px optimized viewBox) */}
-      <div className="absolute top-0 left-0 w-full h-[100px] sm:h-[120px] z-10 pointer-events-none hidden sm:block">
+      <div className="absolute top-0 left-0 w-full h-[80px] sm:h-[100px] lg:h-[110px] z-10 pointer-events-none hidden sm:block">
         <svg viewBox="0 0 1440 120" preserveAspectRatio="none" className="w-full h-full block">
           {/* Path 1: Innermost layer */}
           <path
@@ -47,7 +47,7 @@ export default function NextSection() {
       </div>
 
       {/* Mobile Curved Transition (430px optimized viewBox) */}
-      <div className="absolute top-0 left-0 w-full h-[70px] sm:h-[80px] z-10 pointer-events-none sm:hidden">
+      <div className="absolute top-0 left-0 w-full h-[60px] sm:h-[70px] z-10 pointer-events-none sm:hidden">
         <svg viewBox="0 0 430 80" preserveAspectRatio="none" className="w-full h-full block">
           {/* Path 1: Innermost layer */}
           <path
@@ -77,12 +77,17 @@ export default function NextSection() {
         </svg>
       </div>
 
-      <h2
-        style={{ fontFamily: '"MedulaOne", serif' }}
-        className="text-[48px] sm:text-[80px] md:text-[110px] lg:text-[140px] xl:text-[170px] font-normal leading-[1.0] text-[#302451] text-center my-auto px-4"
-      >
-        Dream it and we build it
-      </h2>
+      <div className="flex flex-col items-center justify-center my-auto w-full">
+        <h2
+          style={{ fontFamily: '"MedulaOne", serif' }}
+          className="text-[36px] sm:text-[60px] md:text-[84px] lg:text-[110px] xl:text-[130px] font-normal leading-[1.0] text-[#302451] text-center px-4"
+        >
+          Dream it and we build it
+        </h2>
+
+        {/* Gradient Line below text */}
+        <div className="w-[85%] max-w-[1100px] h-[3px] sm:h-[5px] mt-2 sm:mt-4 mx-auto rounded-full bg-gradient-to-r from-transparent via-[#302451] to-transparent opacity-75 pointer-events-none" />
+      </div>
     </section>
   );
 }
