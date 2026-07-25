@@ -40,12 +40,12 @@ export default function Navbar() {
             </li>
           ))}
           <li className="shrink-0">
-            <a
+            <Link
               href="/#process"
               className="block whitespace-nowrap text-[12px] font-semibold leading-none text-white transition-opacity hover:opacity-80 sm:text-[13px] md:text-[14px] lg:text-[20px] xl:text-[28px]"
             >
               Process
-            </a>
+            </Link>
           </li>
         </ul>
 

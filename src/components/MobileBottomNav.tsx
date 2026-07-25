@@ -9,7 +9,7 @@ const navItems = [
     href: "/",
     label: "Home",
     icon: (
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
         <path d="M3 9.5L12 3l9 6.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1V9.5z" />
       </svg>
     ),
@@ -18,7 +18,7 @@ const navItems = [
     href: "/projects",
     label: "Portfolio",
     icon: (
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
         <rect x="2" y="7" width="20" height="14" rx="2" ry="2" />
         <path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2" />
       </svg>
@@ -28,7 +28,7 @@ const navItems = [
     href: "/about",
     label: "About Us",
     icon: (
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
         <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
         <circle cx="9" cy="7" r="4" />
         <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
@@ -36,14 +36,27 @@ const navItems = [
       </svg>
     ),
   },
+  {
+    href: "/#process",
+    label: "Process",
+    icon: (
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <rect x="9" y="3" width="6" height="4" rx="1" />
+        <rect x="3" y="17" width="6" height="4" rx="1" />
+        <rect x="15" y="17" width="6" height="4" rx="1" />
+        <path d="M12 7v4" />
+        <path d="M6 17v-3h12v3" />
+      </svg>
+    ),
+  },
 ];
 
-const W = 320;
-const H = 82;
-const R = 28;
-const ITEMS = 3;
-const BUBBLE = 48;
-const PAD_X = 24;
+const W = 340;
+const H = 76;
+const R = 24;
+const ITEMS = 4;
+const BUBBLE = 44;
+const PAD_X = 12;
 
 const getContainerPath = (index: number) => {
   const topY = R;
@@ -51,14 +64,14 @@ const getContainerPath = (index: number) => {
   const gap = usable / ITEMS;
   const cx = PAD_X + gap * index + gap / 2;
 
-  const nw = 46;
+  const nw = 40;
 
   return [
     `M ${R},${topY}`,
     `L ${Math.max(R, cx - nw)},${topY}`,
-    `C ${cx - 30},${topY} ${cx - 24},48 ${cx - 10},58`,
-    `C ${cx - 3},62 ${cx + 3},62 ${cx + 11},58`,
-    `C ${cx + 25},48 ${cx + 31},${topY} ${Math.min(W - R, cx + nw)},${topY}`,
+    `C ${cx - 26},${topY} ${cx - 20},42 ${cx - 8},52`,
+    `C ${cx - 2},56 ${cx + 2},56 ${cx + 8},52`,
+    `C ${cx + 20},42 ${cx + 26},${topY} ${Math.min(W - R, cx + nw)},${topY}`,
     `L ${W - R},${topY}`,
     `A ${R},${R} 0 0 1 ${W},${topY + R}`,
     `L ${W},${H - R}`,
@@ -76,9 +89,11 @@ export default function MobileBottomNav() {
   const [activeIndex, setActiveIndex] = useState(0);
 
   useEffect(() => {
-    const idx = navItems.findIndex((item) =>
-      item.href === "/" ? pathname === "/" : pathname.startsWith(item.href)
-    );
+    const idx = navItems.findIndex((item) => {
+      if (item.href === "/") return pathname === "/";
+      if (item.href.startsWith("/#")) return false;
+      return pathname.startsWith(item.href);
+    });
     if (idx !== -1) setActiveIndex(idx);
   }, [pathname]);
 
@@ -86,10 +101,10 @@ export default function MobileBottomNav() {
 
   return (
     <nav
-      className="fixed bottom-0 left-0 right-0 z-[1000] sm:hidden"
+      className="fixed bottom-2 left-0 right-0 z-[1000] sm:hidden"
       style={{
-        padding: "0 16px",
-        paddingBottom: "max(12px, env(safe-area-inset-bottom))",
+        padding: "0 12px",
+        paddingBottom: "max(6px, env(safe-area-inset-bottom))",
       }}
       aria-label="Mobile navigation"
     >
@@ -105,7 +120,7 @@ export default function MobileBottomNav() {
             zIndex: 0,
             pointerEvents: "none",
             filter:
-              "drop-shadow(0 -1px 3px rgba(48,36,81,0.04)) drop-shadow(0 4px 12px rgba(48,36,81,0.10)) drop-shadow(0 1px 3px rgba(0,0,0,0.04))",
+              "drop-shadow(0 -1px 3px rgba(48,36,81,0.06)) drop-shadow(0 4px 12px rgba(48,36,81,0.15))",
           }}
         >
           <path
@@ -123,7 +138,7 @@ export default function MobileBottomNav() {
           style={{
             width: BUBBLE,
             height: BUBBLE,
-            top: (H - BUBBLE) / 2 - 15,
+            top: (H - BUBBLE) / 2 - 12,
             left: `calc(${PAD_X}px + ((100% - ${PAD_X * 2}px) / ${ITEMS}) * ${activeIndex} + ((100% - ${PAD_X * 2}px) / ${ITEMS * 2}) - ${BUBBLE / 2}px)`,
             background: "linear-gradient(145deg, #3a2d5e, #302451)",
             boxShadow:
@@ -132,7 +147,7 @@ export default function MobileBottomNav() {
             zIndex: 1,
           }}
         >
-          <div className="flex h-[20px] w-[20px] items-center justify-center text-white">
+          <div className="flex h-[18px] w-[18px] items-center justify-center text-white">
             {navItems[activeIndex].icon}
           </div>
         </div>
@@ -143,6 +158,7 @@ export default function MobileBottomNav() {
             <Link
               key={item.href}
               href={item.href}
+              onClick={() => setActiveIndex(index)}
               className="absolute bottom-0 z-[2] flex flex-col items-center no-underline"
               style={{
                 left: `calc(${PAD_X}px + ((100% - ${PAD_X * 2}px) / ${ITEMS}) * ${index})`,
@@ -150,15 +166,15 @@ export default function MobileBottomNav() {
                 height: H,
                 justifyContent: "flex-end",
                 paddingBottom: 8,
-                gap: 4,
+                gap: 3,
                 WebkitTapHighlightColor: "transparent",
               }}
             >
               <div
                 className="flex items-center justify-center"
                 style={{
-                  width: 20,
-                  height: 20,
+                  width: 18,
+                  height: 18,
                   color: "#302451",
                   opacity: isActive ? 0 : 0.5,
                   transition: "opacity 0.3s ease",
@@ -169,7 +185,7 @@ export default function MobileBottomNav() {
               <span
                 style={{
                   fontFamily: '"Cairo", sans-serif',
-                  fontSize: 11,
+                  fontSize: 10,
                   fontWeight: isActive ? 700 : 600,
                   color: "#302451",
                   opacity: isActive ? 1 : 0.5,
