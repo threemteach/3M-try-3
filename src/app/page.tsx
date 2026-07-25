@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import Navbar from "@/components/Navbar";
 import RotatingSpinner from "@/components/RotatingSpinner";
+import NextSection from "@/components/NextSection";
 
 const services = [
   {
@@ -29,15 +30,15 @@ const services = [
 export default function Home() {
   return (
     <>
-      <section className="relative min-h-screen w-full overflow-hidden bg-[#302451] flex flex-col justify-between pt-4 sm:pt-6 lg:pt-8">
-        {/* Background Decorative Pattern */}
+      <section className="relative min-h-[560px] sm:min-h-[620px] md:min-h-[700px] lg:min-h-[820px] xl:min-h-[880px] w-full overflow-hidden bg-[#302451] flex flex-col justify-start pt-4 sm:pt-6 lg:pt-8 pb-10 sm:pb-14 lg:pb-20">
+        {/* Background Decorative Pattern (Made smaller) */}
         <div className="absolute right-0 top-0 z-0 pointer-events-none overflow-hidden opacity-40 md:opacity-70 lg:opacity-100">
           <Image
             src="/rectangles.png"
             alt=""
             width={850}
             height={600}
-            className="h-auto w-[340px] sm:w-[500px] md:w-[700px] lg:w-[900px] xl:w-[1100px] object-contain translate-x-10 lg:translate-x-0"
+            className="h-auto w-[250px] sm:w-[350px] md:w-[480px] lg:w-[680px] xl:w-[820px] object-contain translate-x-8 sm:translate-x-0"
             priority
           />
         </div>
@@ -66,35 +67,35 @@ export default function Home() {
         <Navbar />
 
         {/* Main Hero Content */}
-        <div className="relative z-10 w-full max-w-[1600px] mx-auto my-auto px-4 sm:px-8 md:px-12 lg:pl-12 lg:pr-16 xl:pl-16 xl:pr-20 2xl:pl-20 2xl:pr-24 pt-4 pb-24 sm:pt-8 sm:pb-16 lg:pt-20 lg:pb-20">
+        <div className="relative z-10 w-full max-w-[1600px] mx-auto my-auto px-4 sm:px-8 md:px-12 lg:pl-12 lg:pr-16 xl:pl-16 xl:pr-20 2xl:pl-20 2xl:pr-24 pt-6 sm:pt-10 md:pt-12 lg:pt-28 xl:pt-32">
           
-          <div className="flex flex-col items-center lg:items-start text-center lg:text-left">
+          <div className="flex flex-col items-center sm:items-start text-center sm:text-left w-full sm:max-w-[400px] md:max-w-[500px] lg:max-w-[680px] xl:max-w-[780px] 2xl:max-w-[880px]">
             
             {/* Title */}
             <h1
               style={{ fontFamily: '"MedulaOne", serif' }}
-              className="text-[44px] sm:text-[60px] md:text-[80px] lg:text-[115px] xl:text-[135px] 2xl:text-[155px] font-normal leading-[0.92] text-white"
+              className="text-[40px] xs:text-[45px] sm:text-[52px] md:text-[68px] lg:text-[108px] xl:text-[128px] 2xl:text-[142px] font-normal leading-[0.92] text-white tracking-tight w-full"
             >
               Where Ambition<br />Meets Engineering
             </h1>
 
             {/* Spinner */}
-            <div className="mt-2 sm:mt-3 lg:mt-4 w-full flex justify-center lg:justify-start">
+            <div className="mt-2 sm:mt-3 lg:mt-4 w-full flex justify-center sm:justify-start">
               <RotatingSpinner />
             </div>
 
-            {/* Buttons (Desktop & Tablet) */}
+            {/* Buttons (Tablet & Desktop: sm:flex, hidden on mobile) */}
             <div className="mt-5 hidden sm:flex items-center gap-0 lg:mt-8">
               <a
                 href="#work"
-                className="flex h-[44px] w-[140px] md:h-[50px] md:w-[165px] lg:h-[56px] lg:w-[185px] items-center justify-center rounded-l-[9999px] border-2 border-white bg-transparent text-[13px] md:text-[15px] lg:text-[17px] font-semibold text-white transition-colors hover:bg-white/15"
+                className="flex h-[42px] w-[130px] md:h-[48px] md:w-[155px] lg:h-[56px] lg:w-[185px] items-center justify-center rounded-l-[9999px] border-2 border-white bg-transparent text-[12px] md:text-[14px] lg:text-[17px] font-semibold text-white transition-colors hover:bg-white/15"
                 style={{ fontFamily: '"Cairo", sans-serif' }}
               >
                 See Our Work
               </a>
               <a
                 href="#contact"
-                className="flex h-[44px] w-[140px] md:h-[50px] md:w-[165px] lg:h-[56px] lg:w-[185px] items-center justify-center rounded-r-[9999px] border-2 border-white bg-white text-[13px] md:text-[15px] lg:text-[17px] font-semibold text-[#302451] transition-colors hover:bg-[#f0edf5]"
+                className="flex h-[42px] w-[130px] md:h-[48px] md:w-[155px] lg:h-[56px] lg:w-[185px] items-center justify-center rounded-r-[9999px] border-2 border-white bg-white text-[12px] md:text-[14px] lg:text-[17px] font-semibold text-[#302451] transition-colors hover:bg-[#f0edf5]"
                 style={{ fontFamily: '"Cairo", sans-serif' }}
               >
                 Get a free quote
@@ -103,26 +104,26 @@ export default function Home() {
 
           </div>
 
-          {/* Mockup Image - Desktop (absolute, right side) */}
-          <div className="hidden lg:block absolute right-0 top-1/2 -translate-y-[45%] z-[1] pointer-events-none">
+          {/* Mockup Image - Desktop & Tablet (absolute, right side for >= sm) */}
+          <div className="hidden sm:block absolute right-0 sm:right-2 md:right-4 lg:right-6 xl:right-8 top-1/2 -translate-y-[45%] z-[1] pointer-events-none">
             <Image
               src="/موكب.png"
               alt="3M Portfolio Showcase"
               width={1150}
               height={700}
-              className="h-auto w-[500px] xl:w-[650px] 2xl:w-[800px] max-w-none object-contain drop-shadow-2xl"
+              className="h-auto w-[310px] md:w-[420px] lg:w-[520px] xl:w-[650px] 2xl:w-[780px] max-w-none object-contain drop-shadow-2xl"
               priority
             />
           </div>
 
-          {/* Mockup Image - Mobile & Tablet */}
-          <div className="flex justify-center lg:hidden mt-8">
+          {/* Mockup Image - Mobile (< sm) */}
+          <div className="flex justify-center sm:hidden mt-2 translate-x-3">
             <Image
               src="/موكب.png"
               alt="3M Portfolio Showcase"
               width={1150}
               height={700}
-              className="h-auto w-[300px] sm:w-[420px] md:w-[520px] object-contain drop-shadow-2xl"
+              className="h-auto w-[380px] max-w-[108%] object-contain drop-shadow-2xl"
               priority
             />
           </div>
@@ -130,6 +131,9 @@ export default function Home() {
         </div>
 
       </section>
+
+      {/* Curved Transition & Dream It Section */}
+      <NextSection />
 
       {/* Services Section */}
       <section className="px-4 py-20 sm:px-6 lg:px-8">

@@ -62,7 +62,7 @@ export default function RotatingSpinner({ className = "" }: { className?: string
     >
       <span
         className="shrink-0 text-white font-normal leading-[1.1]"
-        style={{ fontFamily: '"MedulaOne", serif', fontSize: "clamp(22px, 4.2vw, 72px)" }}
+        style={{ fontFamily: '"MedulaOne", serif', fontSize: "clamp(32px, 7vw, 75px)" }}
       >
         WE Build
       </span>

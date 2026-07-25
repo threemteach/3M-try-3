@@ -6,9 +6,9 @@ import { navLinks } from "@/lib/constants";
 
 export default function Navbar() {
   return (
-    <header className="absolute top-0 left-0 right-0 z-50 hidden justify-center px-4 pt-4 sm:flex md:pt-5 lg:pt-8">
+    <header className="absolute top-0 left-0 right-0 z-50 hidden justify-center px-4 pt-4 sm:flex md:pt-6 lg:pt-8">
       <nav
-        className="flex w-full items-center justify-between rounded-[72px] px-4 py-1.5 sm:px-5 sm:py-2 md:px-6 md:py-2 lg:px-10 lg:py-2.5 xl:py-3 mx-4 sm:mx-6 md:mx-8 lg:mx-12 xl:mx-20"
+        className="flex w-full items-center justify-between rounded-[72px] px-4 py-2 sm:px-6 sm:py-2.5 md:px-8 lg:px-10 lg:py-3 mx-4 sm:mx-6 md:mx-8 lg:mx-12 xl:mx-16 max-w-[1400px]"
         style={{
           background: "rgba(255,255,255,0.1)",
           backdropFilter: "blur(7.5px)",
@@ -23,17 +23,17 @@ export default function Navbar() {
             alt="3M Logo"
             width={80}
             height={50}
-            className="h-[32px] w-auto object-contain sm:h-[36px] md:h-[40px] lg:h-[46px] xl:h-[56px]"
+            className="h-[32px] w-auto object-contain sm:h-[36px] md:h-[40px] lg:h-[46px]"
             priority
           />
         </Link>
 
-        <ul className="flex shrink-0 items-center gap-2 whitespace-nowrap sm:gap-3 md:gap-4 lg:gap-8 xl:gap-12 2xl:gap-16">
+        <ul className="flex shrink-0 items-center gap-3 whitespace-nowrap sm:gap-4 md:gap-6 lg:gap-10 xl:gap-12">
           {navLinks.map((link) => (
             <li key={link.href} className="shrink-0">
               <Link
                 href={link.href}
-                className="block whitespace-nowrap text-[12px] font-semibold leading-none text-white transition-opacity hover:opacity-80 sm:text-[13px] md:text-[14px] lg:text-[20px] xl:text-[28px]"
+                className="block whitespace-nowrap text-[13px] font-semibold leading-none text-white transition-opacity hover:opacity-80 sm:text-[14px] md:text-[15px] lg:text-[17px] xl:text-[19px]"
               >
                 {link.label}
               </Link>
@@ -42,7 +42,7 @@ export default function Navbar() {
           <li className="shrink-0">
             <Link
               href="/#process"
-              className="block whitespace-nowrap text-[12px] font-semibold leading-none text-white transition-opacity hover:opacity-80 sm:text-[13px] md:text-[14px] lg:text-[20px] xl:text-[28px]"
+              className="block whitespace-nowrap text-[13px] font-semibold leading-none text-white transition-opacity hover:opacity-80 sm:text-[14px] md:text-[15px] lg:text-[17px] xl:text-[19px]"
             >
               Process
             </Link>
@@ -51,7 +51,7 @@ export default function Navbar() {
 
         <Link
           href="/contact"
-          className="flex h-[24px] w-[72px] shrink-0 items-center justify-center whitespace-nowrap rounded-[150px] bg-white text-[11px] font-bold leading-none text-[#302451] transition-opacity hover:opacity-90 sm:h-[26px] sm:w-[80px] sm:text-[12px] md:h-[28px] md:w-[90px] md:text-[14px] lg:h-[36px] lg:w-[120px] lg:text-[18px] xl:h-[44px] xl:w-[140px] xl:text-[22px]"
+          className="flex h-[30px] w-[85px] shrink-0 items-center justify-center whitespace-nowrap rounded-[150px] bg-white text-[12px] font-bold leading-none text-[#302451] transition-opacity hover:opacity-90 sm:h-[32px] sm:w-[95px] sm:text-[13px] md:h-[36px] md:w-[105px] md:text-[14px] lg:h-[40px] lg:w-[120px] lg:text-[16px]"
         >
           Contact
         </Link>
