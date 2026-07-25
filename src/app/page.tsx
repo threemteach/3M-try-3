@@ -29,21 +29,26 @@ const services = [
 export default function Home() {
   return (
     <>
-      <section className="relative min-h-screen w-full overflow-hidden bg-[#302451] flex flex-col justify-between pt-4 sm:pt-6 lg:pt-8">
-        {/* Background Decorative Pattern */}
-        <div className="absolute right-0 top-0 z-0 pointer-events-none overflow-hidden opacity-40 md:opacity-70 lg:opacity-100">
-          <Image
-            src="/rectangles.png"
-            alt=""
-            width={850}
-            height={600}
-            className="h-auto w-[340px] sm:w-[500px] md:w-[700px] lg:w-[900px] xl:w-[1100px] object-contain translate-x-10 lg:translate-x-0"
-            priority
-          />
-        </div>
-
-        {/* Mobile Header Bar */}
-        <div className="relative z-50 flex items-center justify-between px-5 pt-2 sm:hidden w-full">
+      <section className="relative min-h-[90vh] lg:min-h-screen overflow-hidden bg-[#302451]">
+        <Image
+          src="/rectangles.png"
+          alt=""
+          width={850}
+          height={600}
+          className="absolute right-0 top-4 z-0 h-auto w-[440px] opacity-60 transition-all duration-500 ease-in-out -translate-x-4 md:w-[500px] md:top-0 md:-translate-x-4 md:opacity-100 lg:w-[700px] lg:top-0 lg:-translate-x-12 lg:opacity-100 xl:mt-12 xl:w-[850px] xl:-translate-x-2"
+          priority
+        />
+        <Image
+          src="/موكب.png"
+          alt=""
+          width={1050}
+          height={600}
+          className="absolute right-0 z-[1] h-auto w-[350px] bottom-[40px] -translate-x-4 transition-all duration-500 ease-in-out sm:w-[450px] sm:bottom-[60px] sm:-translate-x-6 md:bottom-0 md:w-[560px] md:-translate-x-12 lg:bottom-[-40px] lg:w-[750px] lg:-translate-x-20 xl:mt-[270px] xl:w-[1050px] xl:-translate-x-[120px] xl:bottom-auto"
+          priority
+        />
+        <div
+          className="absolute top-0 left-0 right-0 z-50 flex items-center justify-between px-4 pt-4 sm:hidden"
+        >
           <Link href="/" className="shrink-0">
             <Image
               src="/logo.png"
@@ -61,77 +66,17 @@ export default function Home() {
             Contact
           </Link>
         </div>
-
-        {/* Desktop / Tablet Glassmorphism Navbar */}
-        <Navbar />
-
-        {/* Main Hero Content */}
-        <div className="relative z-10 w-full max-w-[1600px] mx-auto my-auto px-4 sm:px-8 md:px-12 lg:pl-12 lg:pr-16 xl:pl-16 xl:pr-20 2xl:pl-20 2xl:pr-24 pt-4 pb-24 sm:pt-8 sm:pb-16 lg:pt-20 lg:pb-20">
-          
-          <div className="flex flex-col items-center lg:items-start text-center lg:text-left">
-            
-            {/* Title */}
-            <h1
-              style={{ fontFamily: '"MedulaOne", serif' }}
-              className="text-[44px] sm:text-[60px] md:text-[80px] lg:text-[115px] xl:text-[135px] 2xl:text-[155px] font-normal leading-[0.92] text-white"
-            >
+        <div className="absolute z-10 left-0 right-0 bottom-0 px-4 pb-16 md:pb-28 md:pl-10 lg:bottom-auto lg:top-1/3 lg:-translate-y-1/3 lg:pl-10 min-[1440px]:pl-10">
+          <div className="max-w-[900px]">
+            <h1 style={{ fontFamily: '"MedulaOne", serif' }} className="text-[58px] font-normal leading-[59px] text-white sm:text-[72px] sm:leading-[73px] md:text-[86px] md:leading-[87px] lg:text-[120px] lg:leading-[121px] xl:text-[132px] xl:leading-[133px] 2xl:text-[162px] 2xl:leading-[163px]">
               Where Ambition<br />Meets Engineering
             </h1>
-
-            {/* Spinner */}
-            <div className="mt-2 sm:mt-3 lg:mt-4 w-full flex justify-center lg:justify-start">
-              <RotatingSpinner />
-            </div>
-
-            {/* Buttons (Desktop & Tablet) */}
-            <div className="mt-5 hidden sm:flex items-center gap-0 lg:mt-8">
-              <a
-                href="#work"
-                className="flex h-[44px] w-[140px] md:h-[50px] md:w-[165px] lg:h-[56px] lg:w-[185px] items-center justify-center rounded-l-[9999px] border-2 border-white bg-transparent text-[13px] md:text-[15px] lg:text-[17px] font-semibold text-white transition-colors hover:bg-white/15"
-                style={{ fontFamily: '"Cairo", sans-serif' }}
-              >
-                See Our Work
-              </a>
-              <a
-                href="#contact"
-                className="flex h-[44px] w-[140px] md:h-[50px] md:w-[165px] lg:h-[56px] lg:w-[185px] items-center justify-center rounded-r-[9999px] border-2 border-white bg-white text-[13px] md:text-[15px] lg:text-[17px] font-semibold text-[#302451] transition-colors hover:bg-[#f0edf5]"
-                style={{ fontFamily: '"Cairo", sans-serif' }}
-              >
-                Get a free quote
-              </a>
-            </div>
-
+            <RotatingSpinner className="mt-[50px]" />
           </div>
-
-          {/* Mockup Image - Desktop (absolute, right side) */}
-          <div className="hidden lg:block absolute right-0 top-1/2 -translate-y-[45%] z-[1] pointer-events-none">
-            <Image
-              src="/موكب.png"
-              alt="3M Portfolio Showcase"
-              width={1150}
-              height={700}
-              className="h-auto w-[500px] xl:w-[650px] 2xl:w-[800px] max-w-none object-contain drop-shadow-2xl"
-              priority
-            />
-          </div>
-
-          {/* Mockup Image - Mobile & Tablet */}
-          <div className="flex justify-center lg:hidden mt-8">
-            <Image
-              src="/موكب.png"
-              alt="3M Portfolio Showcase"
-              width={1150}
-              height={700}
-              className="h-auto w-[300px] sm:w-[420px] md:w-[520px] object-contain drop-shadow-2xl"
-              priority
-            />
-          </div>
-
         </div>
-
+        <Navbar />
       </section>
 
-      {/* Services Section */}
       <section className="px-4 py-20 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-7xl">
           <h2 className="text-center text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
@@ -159,7 +104,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Process Section */}
       <section id="process" className="bg-gray-50 px-4 py-20 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-7xl">
           <h2 className="text-center text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
@@ -188,7 +132,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* CTA Section */}
       <section className="bg-gray-50 px-4 py-20 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-4xl text-center">
           <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">

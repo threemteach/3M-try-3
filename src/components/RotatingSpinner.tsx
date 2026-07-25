@@ -2,9 +2,9 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 
 const ITEMS = [
-  "UI / UX Designs",
-  "Web Application",
   "E-commerce",
+  "Web Application",
+  "UI/UX Designs",
   "Scalable Websites",
   "Portfolio",
   "Digital Platforms",
@@ -24,7 +24,7 @@ export default function RotatingSpinner({ className = "" }: { className?: string
           ? (prev + 1) % count
           : (prev - 1 + count) % count
       );
-    }, 2200);
+    }, 1500);
   }, [count]);
 
   useEffect(() => {
@@ -48,36 +48,46 @@ export default function RotatingSpinner({ className = "" }: { className?: string
     [count, startAutoRotate]
   );
 
-  const getPositionClass = (i: number) => {
-    if (i === topIndex) return "pos-top";
-    if (i === (topIndex + 1) % count) return "pos-mid";
-    if (i === (topIndex + 2) % count) return "pos-bot";
-    return "pos-hidden";
+  const getPosition = (i: number) => {
+    if (i === topIndex) return 0;
+    if (i === (topIndex + 1) % count) return 1;
+    if (i === (topIndex + 2) % count) return 2;
+    return 3;
   };
 
   return (
     <div
       onWheel={handleWheel}
-      className={`inline-flex items-center justify-center lg:justify-start gap-[clamp(6px,1.2vw,18px)] whitespace-nowrap ${className}`}
+      className={`inline-flex items-center gap-[clamp(10px,1.5vw,24px)] whitespace-nowrap ${className}`}
     >
       <span
-        className="shrink-0 text-white font-normal leading-[1.1]"
-        style={{ fontFamily: '"MedulaOne", serif', fontSize: "clamp(22px, 4.2vw, 72px)" }}
+        className="shrink-0 text-white"
+        style={{ fontFamily: '"MedulaOne", serif', fontSize: "clamp(24px, 4vw, 65px)", lineHeight: "1.1" }}
       >
         WE Build
       </span>
-
-      <span className="inline-block w-0 h-0 shrink-0 border-t-[8px] sm:border-t-[10px] md:border-t-[12px] border-t-transparent border-b-[8px] sm:border-b-[10px] md:border-b-[12px] border-b-transparent border-l-[12px] sm:border-l-[16px] md:border-l-[20px] border-l-white self-center" />
-
+      <span className="inline-block w-0 h-0 shrink-0 border-t-[10px] sm:border-t-[12px] border-t-transparent border-b-[10px] sm:border-b-[12px] border-b-transparent border-l-[16px] sm:border-l-[20px] border-l-white self-center" />
       <div
-        className="relative inline-block overflow-hidden h-[120px] sm:h-[160px] md:h-[190px] lg:h-[210px] min-w-[140px] sm:min-w-[200px] md:min-w-[260px] lg:min-w-[300px] xl:min-w-[360px]"
+        className="relative inline-block overflow-hidden"
+        style={{ minWidth: "30vw", height: "210px" }}
       >
         {ITEMS.map((text, i) => {
-          const pos = getPositionClass(i);
+          const pos = getPosition(i);
+          const styles = [
+            { top: "0px", opacity: 0.15, transform: "scale(0.85)" },
+            { top: "70px", opacity: 1, transform: "scale(1)" },
+            { top: "140px", opacity: 0.15, transform: "scale(0.85)" },
+            { top: "140px", opacity: 0, transform: "translateY(40px) scale(0.85)" },
+          ];
           return (
             <div
               key={text}
-              className={`rotating-item absolute left-0 w-full whitespace-nowrap pointer-events-none transition-all duration-[400ms] ease-[cubic-bezier(0.25,0.46,0.45,0.94)] ${pos}`}
+              className="rotating-item absolute left-0 w-full whitespace-nowrap pointer-events-none transition-all duration-[400ms] ease-[cubic-bezier(0.25,0.46,0.45,0.94)]"
+              style={{
+                ...styles[pos],
+                fontSize: "clamp(20px, 3.5vw, 55px)",
+                lineHeight: "70px",
+              }}
             >
               {text}
             </div>
