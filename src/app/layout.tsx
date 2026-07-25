@@ -6,6 +6,9 @@ import JsonLd from "@/components/JsonLd";
 import { organizationJsonLd, websiteJsonLd } from "@/lib/jsonLdData";
 
 export const metadata: Metadata = {
+  icons: {
+    icon: "/logo.png",
+  },
   title: {
     default: "3M - Business Website",
     template: "%s | 3M",
