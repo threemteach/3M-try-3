@@ -74,7 +74,7 @@ export default function Home() {
             {/* Title */}
             <h1
               style={{ fontFamily: '"MedulaOne", serif' }}
-              className="text-[40px] xs:text-[45px] sm:text-[52px] md:text-[68px] lg:text-[108px] xl:text-[128px] 2xl:text-[142px] font-normal leading-[0.92] text-white tracking-tight w-full"
+              className="text-[48px] xs:text-[54px] sm:text-[52px] md:text-[68px] lg:text-[108px] xl:text-[128px] 2xl:text-[142px] font-normal leading-[0.92] text-white tracking-tight w-full"
             >
               Where Ambition<br />Meets Engineering
             </h1>
