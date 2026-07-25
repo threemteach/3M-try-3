@@ -147,19 +147,19 @@ export default function WhatWeDo() {
                       top: "50%",
                       left: "50%",
                       transform: isReversed
-                        ? "translate(-50%, -40%) translateX(-15%)"
+                        ? "translate(-50%, -40%) translateX(calc(15% - 5px))"
                         : "translate(-50%, -40%) translateX(15%)",
                     }}
                   />
                   {/* Image */}
                   <div
-                    className={`absolute z-10 ${isReversed ? "-ml-[10px] sm:ml-0" : "-mr-[10px] sm:mr-0"}`}
+                    className={`absolute z-10 ${isReversed ? "sm:!left-0" : "right-0"}`}
                     style={{
                       width: "clamp(130px, 30vw, 372px)",
                       height: "clamp(120px, 28vw, 336px)",
                       bottom: "0",
-                      [isReversed ? "left" : "right"]: "0",
                       maxWidth: "100%",
+                      left: isReversed ? "calc(50% - 83px)" : undefined,
                     }}
                   >
                     <Image
