@@ -1,43 +1,24 @@
-import type { Metadata } from "next";
+"use client";
+
+import { use } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { useState } from "react";
 import Navbar from "@/components/Navbar";
 import { projectsData } from "@/lib/projectsData";
 
-export async function generateStaticParams() {
-  return projectsData.map((project) => ({
-    id: project.id,
-  }));
-}
-
-export async function generateMetadata({
-  params,
-}: {
-  params: Promise<{ id: string }>;
-}): Promise<Metadata> {
-  const { id } = await params;
-  const project = projectsData.find((p) => p.id === id);
-  if (!project) return { title: "Project Not Found" };
-
-  return {
-    title: `${project.title} - Case Study`,
-    description: project.description,
-    openGraph: {
-      title: `${project.title} | 3M Projects`,
-      description: project.description,
-      images: [{ url: project.image }],
-    },
-  };
-}
-
-export default async function ProjectDetailPage({
+export default function ProjectDetailPage({
   params,
 }: {
   params: Promise<{ id: string }>;
 }) {
-  const { id } = await params;
+  const { id } = use(params);
   const project = projectsData.find((p) => p.id === id);
+
+  const [activeImage, setActiveImage] = useState<string>(
+    project ? project.image : ""
+  );
 
   if (!project) {
     notFound();
@@ -84,7 +65,7 @@ export default async function ProjectDetailPage({
         {/* Hero Title & Breadcrumb */}
         <div className="relative z-10 max-w-[1100px] mx-auto pt-10 sm:pt-24 text-center sm:text-left text-white">
           <Link
-            href="/#portfolio"
+            href="/projects"
             style={{ fontFamily: '"Cairo", sans-serif' }}
             className="inline-flex items-center gap-2 text-xs sm:text-sm font-semibold text-purple-200 hover:text-white transition-colors mb-4"
           >
@@ -122,26 +103,62 @@ export default async function ProjectDetailPage({
       {/* Main Content Area */}
       <main className="flex-1 max-w-[1100px] w-full mx-auto px-4 -mt-10 sm:-mt-16 relative z-20 pb-20">
         {/* Main Showcase Preview Image */}
-        <div className="relative w-full aspect-[16/9] bg-[#302451] rounded-[28px] sm:rounded-[36px] overflow-hidden shadow-2xl border-4 border-white mb-10">
+        <div className="relative w-full aspect-[16/9] bg-[#302451] rounded-[28px] sm:rounded-[36px] overflow-hidden shadow-2xl border-4 border-white mb-6">
           <Image
-            src={project.image}
+            src={activeImage || project.image}
             alt={project.title}
             fill
-            className="object-cover object-top"
+            className="object-cover object-top transition-all duration-300"
             priority
           />
+        </div>
+
+        {/* Gallery Thumbnails Grid (Multiple Screenshots) */}
+        <div className="bg-white/80 backdrop-blur-md rounded-[24px] p-4 sm:p-6 shadow-lg mb-10 border border-white">
+          <h3
+            style={{ fontFamily: '"Cairo", sans-serif' }}
+            className="text-xs sm:text-sm font-bold text-gray-500 uppercase tracking-wider mb-3 text-left"
+          >
+            Project Image Gallery & Views (Click to Preview)
+          </h3>
+
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
+            {project.gallery.map((img, idx) => (
+              <button
+                key={idx}
+                onClick={() => setActiveImage(img)}
+                className={`relative aspect-[16/10] rounded-xl overflow-hidden border-2 transition-all duration-300 group ${
+                  activeImage === img
+                    ? "border-[#302451] ring-2 ring-[#302451]/30 scale-[1.02] shadow-md"
+                    : "border-transparent opacity-75 hover:opacity-100 hover:scale-[1.01]"
+                }`}
+              >
+                <Image
+                  src={img}
+                  alt={`Screenshot ${idx + 1}`}
+                  fill
+                  className="object-cover object-top"
+                />
+                <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                  <span className="text-white text-[10px] sm:text-xs font-bold bg-[#302451]/90 px-2.5 py-1 rounded-full">
+                    View {idx + 1}
+                  </span>
+                </div>
+              </button>
+            ))}
+          </div>
         </div>
 
         {/* Project Features & Specifications Grid */}
         <div className="bg-white rounded-[28px] sm:rounded-[36px] p-6 sm:p-10 shadow-xl mb-10 border border-gray-100">
           <h2
             style={{ fontFamily: '"Cairo", sans-serif' }}
-            className="text-2xl sm:text-3xl font-bold text-[#302451] mb-6 border-b border-gray-100 pb-4"
+            className="text-2xl sm:text-3xl font-bold text-[#302451] mb-6 border-b border-gray-100 pb-4 text-left"
           >
             Project Highlights & Specifications
           </h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8 text-left">
             {project.features.map((feat, idx) => (
               <div
                 key={idx}
@@ -168,7 +185,7 @@ export default async function ProjectDetailPage({
 
           {/* Tech Stack & Live Link */}
           <div className="flex flex-col sm:flex-row items-center justify-between gap-6 pt-6 border-t border-gray-100">
-            <div>
+            <div className="text-left w-full sm:w-auto">
               <h4
                 style={{ fontFamily: '"Cairo", sans-serif' }}
                 className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-2"
@@ -204,7 +221,7 @@ export default async function ProjectDetailPage({
         {/* Back Link Button */}
         <div className="text-center">
           <Link
-            href="/#portfolio"
+            href="/projects"
             style={{ fontFamily: '"Cairo", sans-serif' }}
             className="inline-flex h-12 px-8 items-center justify-center rounded-full bg-white text-[#302451] border border-gray-200 font-bold text-sm shadow-md hover:bg-gray-50 transition-all"
           >
