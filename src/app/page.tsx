@@ -86,7 +86,7 @@ export default function Home() {
           {/* Mockup Image - Desktop & Tablet (absolute, right side for >= sm) */}
           <div className="hidden sm:block absolute right-0 sm:right-2 md:right-4 lg:right-6 xl:right-8 top-1/2 -translate-y-[45%] z-[1] pointer-events-none">
             <Image
-              src="/موكب.png"
+               src="/mockup.png"
               alt="3M Portfolio Showcase"
               width={1150}
               height={700}
@@ -98,7 +98,7 @@ export default function Home() {
           {/* Mockup Image - Mobile (< sm) */}
           <div className="flex justify-center sm:hidden mt-2 translate-x-3">
             <Image
-              src="/موكب.png"
+               src="/mockup.png"
               alt="3M Portfolio Showcase"
               width={1150}
               height={700}
