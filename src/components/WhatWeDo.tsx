@@ -26,7 +26,7 @@ const services = [
       "Interactive Prototypes",
       "Design Systems",
     ],
-    image: "/royalcars-preview.png",
+    image: "/services/uiux-design.png",
   },
   {
     title: "Maintenance & Support",
@@ -85,22 +85,22 @@ export default function WhatWeDo() {
               <article
                 key={idx}
                 className={`relative w-full rounded-[28px] sm:rounded-[36px] border-2 border-white bg-[#302451] overflow-hidden flex flex-row ${isReversed ? "flex-row-reverse" : ""}`}
-                style={{ minHeight: "clamp(140px, 35vw, 340px)" }}
+                style={{ minHeight: "clamp(140px, 35vw, 408px)" }}
               >
                 {/* Text Content - 56% */}
                 <div className={`flex flex-col justify-center z-10 min-w-0 ${isReversed ? "pl-4 pr-5 sm:pl-6 sm:pr-8 lg:pl-6 lg:pr-14" : "pl-5 pr-4 sm:pl-8 sm:pr-6 lg:pl-14 lg:pr-6"}`}
-                  style={{ width: "clamp(55%, 56%, 56%)", paddingTop: "clamp(10px, 2.5vw, 48px)", paddingBottom: "clamp(10px, 2.5vw, 48px)" }}
+                  style={{ width: "clamp(55%, 56%, 56%)", paddingTop: "clamp(10px, 2.5vw, 58px)", paddingBottom: "clamp(10px, 2.5vw, 58px)" }}
                 >
                   <h3
                     style={{ fontFamily: '"MedulaOne", serif' }}
-                    className="text-[clamp(18px,4.2vw,58px)] text-white leading-tight mb-1 sm:mb-3"
+                    className="text-[clamp(18px,4.2vw,70px)] text-white leading-tight mb-1 sm:mb-3"
                   >
                     {service.title}
                   </h3>
 
                   <p
                     style={{ fontFamily: '"Cairo", sans-serif' }}
-                    className="text-[clamp(10px,2vw,22px)] text-white mb-2 sm:mb-4 leading-relaxed"
+                    className="text-[clamp(10px,2vw,26px)] text-white mb-2 sm:mb-4 leading-relaxed"
                   >
                     {service.description}
                   </p>
@@ -109,7 +109,7 @@ export default function WhatWeDo() {
                     {service.features.map((feat, fIdx) => (
                       <li
                         key={fIdx}
-                        style={{ fontFamily: '"Cairo", sans-serif', fontSize: "clamp(9px,1.6vw,19px)" }}
+                        style={{ fontFamily: '"Cairo", sans-serif', fontSize: "clamp(9px,1.6vw,23px)" }}
                         className="flex items-center gap-1.5 sm:gap-2.5 text-white font-semibold"
                       >
                         <svg
@@ -142,21 +142,23 @@ export default function WhatWeDo() {
                   <div
                     className="absolute rounded-full bg-white"
                     style={{
-                      width: "clamp(120px, 28vw, 300px)",
-                      height: "clamp(120px, 28vw, 300px)",
+                      width: "clamp(120px, 28vw, 360px)",
+                      height: "clamp(120px, 28vw, 360px)",
                       top: "50%",
                       left: "50%",
-                      transform: "translate(-50%, -40%) translateX(15%)",
+                      transform: isReversed
+                        ? "translate(-50%, -40%) translateX(-15%)"
+                        : "translate(-50%, -40%) translateX(15%)",
                     }}
                   />
                   {/* Image */}
                   <div
-                    className="absolute z-10"
+                    className={`absolute z-10 ${isReversed ? "-ml-[10px] sm:ml-0" : "-mr-[10px] sm:mr-0"}`}
                     style={{
-                      width: "clamp(130px, 30vw, 310px)",
-                      height: "clamp(120px, 28vw, 280px)",
+                      width: "clamp(130px, 30vw, 372px)",
+                      height: "clamp(120px, 28vw, 336px)",
                       bottom: "0",
-                      right: "0",
+                      [isReversed ? "left" : "right"]: "0",
                       maxWidth: "100%",
                     }}
                   >
