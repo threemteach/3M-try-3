@@ -6,7 +6,7 @@ const services = [
   {
     title: "Web Development",
     description:
-      "E-Commerce, Digital Platforms, Portfolio — scalable websites built for performance and business growth.",
+      "E-Commerce, Digital Platforms, Portfolio scalable websites built for performance and business growth.",
     features: [
       "Admin Dashboards",
       "Responsive Design",
@@ -15,11 +15,11 @@ const services = [
       "CMS Integration",
     ],
     image: "/services/web-development.png",
+    hasCircle: true,
   },
   {
     title: "UI/UX Design",
-    description:
-      "Creating intuitive and engaging digital experiences.",
+    description: "Creating intuitive and engaging digital experiences.",
     features: [
       "User Research",
       "Wireframing",
@@ -27,6 +27,7 @@ const services = [
       "Design Systems",
     ],
     image: "/services/uiux-design.png",
+    hasCircle: true,
   },
   {
     title: "Maintenance & Support",
@@ -38,19 +39,20 @@ const services = [
       "Bug Fixes",
       "Technical Support",
     ],
-    image: "/rentgo-preview.png",
+    image: "/services/maintenance.png",
+    hasCircle: true,
   },
   {
     title: "Software Optimization",
-    description:
-      "Software tailored to your unique business needs.",
+    description: "Software tailored to your unique business needs.",
     features: [
       "Business Automation",
       "Management Systems",
       "Internal Tools",
       "API Integrations",
     ],
-    image: "/royalcars-preview.png",
+    image: "/services/software-optimization.png",
+    hasCircle: false, // white circle is embedded in the image itself
   },
 ];
 
@@ -78,47 +80,67 @@ export default function WhatWeDo() {
         </p>
 
         {/* Service Cards */}
-        <div className="flex flex-col gap-5 sm:gap-6">
+        <div className="flex flex-col gap-4 sm:gap-6">
           {services.map((service, idx) => {
             const isReversed = idx % 2 !== 0;
             return (
               <article
                 key={idx}
-                className={`relative w-full rounded-[28px] sm:rounded-[36px] border-2 border-white bg-[#302451] overflow-hidden flex flex-row ${isReversed ? "flex-row-reverse" : ""}`}
-                style={{ minHeight: "clamp(140px, 35vw, 408px)" }}
+                className={`relative w-full rounded-[24px] sm:rounded-[32px] border-[3px] border-white bg-[#302451] overflow-hidden flex ${
+                  isReversed ? "flex-row-reverse" : "flex-row"
+                }`}
+                style={{ height: "clamp(180px, 45vw, 430px)" }}
               >
                 {/* Text Content - 56% */}
-                <div className={`flex flex-col justify-center z-10 min-w-0 ${isReversed ? "pl-4 pr-5 sm:pl-6 sm:pr-8 lg:pl-6 lg:pr-14" : "pl-5 pr-4 sm:pl-8 sm:pr-6 lg:pl-14 lg:pr-6"}`}
-                  style={{ width: "clamp(55%, 56%, 56%)", paddingTop: "clamp(10px, 2.5vw, 58px)", paddingBottom: "clamp(10px, 2.5vw, 58px)" }}
+                <div
+                  className="flex flex-col justify-center min-w-0 z-10"
+                  style={{
+                    width: "56%",
+                    paddingTop: "clamp(10px, 2.5vw, 40px)",
+                    paddingBottom: "clamp(10px, 2.5vw, 40px)",
+                    paddingLeft: isReversed
+                      ? "clamp(8px, 2vw, 24px)"
+                      : "clamp(14px, 3.5vw, 52px)",
+                    paddingRight: isReversed
+                      ? "clamp(14px, 3.5vw, 52px)"
+                      : "clamp(8px, 2vw, 24px)",
+                  }}
                 >
                   <h3
                     style={{ fontFamily: '"MedulaOne", serif' }}
-                    className="text-[clamp(18px,4.2vw,70px)] text-white leading-tight mb-1 sm:mb-3"
+                    className="text-[clamp(19px,4.4vw,72px)] text-white leading-tight mb-1 sm:mb-2"
                   >
                     {service.title}
                   </h3>
 
                   <p
                     style={{ fontFamily: '"Cairo", sans-serif' }}
-                    className="text-[clamp(10px,2vw,26px)] text-white mb-2 sm:mb-4 leading-relaxed"
+                    className="text-[clamp(9px,1.9vw,24px)] text-white/90 mb-1.5 sm:mb-3 leading-snug"
                   >
                     {service.description}
                   </p>
 
-                  <ul className="flex flex-col gap-1 sm:gap-2.5">
+                  <ul
+                    className="flex flex-col"
+                    style={{ gap: "clamp(2px, 0.7vw, 10px)" }}
+                  >
                     {service.features.map((feat, fIdx) => (
                       <li
                         key={fIdx}
-                        style={{ fontFamily: '"Cairo", sans-serif', fontSize: "clamp(9px,1.6vw,23px)" }}
+                        style={{
+                          fontFamily: '"Cairo", sans-serif',
+                          fontSize: "clamp(9px, 1.7vw, 22px)",
+                        }}
                         className="flex items-center gap-1.5 sm:gap-2.5 text-white font-semibold"
                       >
                         <svg
-                          width="14"
-                          height="14"
                           viewBox="0 0 14 14"
                           fill="none"
                           className="shrink-0"
-                          style={{ width: "clamp(9px,1.2vw,14px)", height: "clamp(9px,1.2vw,14px)" }}
+                          style={{
+                            width: "clamp(9px, 1.2vw, 14px)",
+                            height: "clamp(9px, 1.2vw, 14px)",
+                          }}
                         >
                           <path
                             d="M2 7.5L5 10.5L12 3"
@@ -135,38 +157,58 @@ export default function WhatWeDo() {
                 </div>
 
                 {/* Image Area - 44% */}
-                <div className="relative shrink-0 overflow-hidden"
-                  style={{ width: "clamp(44%, 44%, 44%)", minHeight: "clamp(140px, 35vw, 340px)" }}
+                <div
+                  className="relative shrink-0 h-full"
+                  style={{ width: "44%" }}
                 >
-                  {/* White Circle */}
-                  <div
-                    className="absolute rounded-full bg-white"
-                    style={{
-                      width: "clamp(120px, 28vw, 360px)",
-                      height: "clamp(120px, 28vw, 360px)",
-                      top: "50%",
-                      left: "50%",
-                      transform: isReversed
-                        ? "translate(-50%, -40%) translateX(calc(15% - 5px))"
-                        : "translate(-50%, -40%) translateX(15%)",
-                    }}
-                  />
+                  {/* White Circle (only for cards 1-3, card 4 has it embedded) */}
+                  {service.hasCircle && (
+                    <div
+                      className="absolute rounded-full bg-white"
+                      style={{
+                        width: "clamp(150px, 38vw, 365px)",
+                        height: "clamp(150px, 38vw, 365px)",
+                        top: "50%",
+                        left: isReversed ? "41%" : "59%",
+                        transform: "translate(-50%, -50%)",
+                      }}
+                    />
+                  )}
+
                   {/* Image */}
                   <div
-                    className={`absolute z-10 ${isReversed ? "sm:!left-0" : "right-0"}`}
-                    style={{
-                      width: "clamp(130px, 30vw, 372px)",
-                      height: "clamp(120px, 28vw, 336px)",
-                      bottom: "0",
-                      maxWidth: "100%",
-                      left: isReversed ? "calc(50% - 83px)" : undefined,
-                    }}
+                    className="absolute z-10"
+                    style={
+                      service.hasCircle
+                        ? {
+                            width: "96%",
+                            height: "86%",
+                            bottom: "0",
+                            ...(isReversed
+                              ? { left: "2%" }
+                              : { right: "2%" }),
+                          }
+                        : {
+                            width: "88%",
+                            height: "84%",
+                            top: "50%",
+                            left: "50%",
+                            transform: "translate(-50%, -50%)",
+                          }
+                    }
                   >
                     <Image
                       src={service.image}
                       alt={service.title}
                       fill
-                      className="object-contain object-right-bottom"
+                      sizes="(max-width: 640px) 40vw, 480px"
+                      className={`object-contain ${
+                        service.hasCircle
+                          ? isReversed
+                            ? "object-left-bottom"
+                            : "object-right-bottom"
+                          : "object-center"
+                      }`}
                     />
                   </div>
                 </div>
