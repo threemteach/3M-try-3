@@ -1,6 +1,7 @@
 "use client";
 
 import { FormEvent } from "react";
+import { SITE_EMAIL, SITE_PHONE } from "@/lib/constants";
 
 function Flourish({ flip = false }: { flip?: boolean }) {
   return (
@@ -31,11 +32,11 @@ export default function ContactForm() {
     ].join("\n");
 
     if (method === "whatsapp") {
-      window.location.href = `https://wa.me/201061884370?text=${encodeURIComponent(message)}`;
+      window.location.href = `https://wa.me/${SITE_PHONE.replace("+", "")}?text=${encodeURIComponent(message)}`;
       return;
     }
 
-    window.location.href = `mailto:info.3mtechs@gmail.com?subject=${encodeURIComponent(
+    window.location.href = `mailto:${SITE_EMAIL}?subject=${encodeURIComponent(
       `New project inquiry from ${name}`,
     )}&body=${encodeURIComponent(message)}`;
   }

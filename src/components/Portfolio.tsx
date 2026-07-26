@@ -27,12 +27,12 @@ export default function Portfolio() {
     setActiveIndex(index);
     if (!scrollRef.current) return;
     const container = scrollRef.current;
-    const cards = container.children;
-    if (cards[index]) {
-      cards[index].scrollIntoView({
+    const card = container.children[index] as HTMLElement | undefined;
+    if (card) {
+      const left = card.offsetLeft - (container.clientWidth - card.clientWidth) / 2;
+      container.scrollTo({
+        left,
         behavior: "smooth",
-        block: "nearest",
-        inline: "center",
       });
     }
   };
@@ -81,9 +81,13 @@ export default function Portfolio() {
         {/* Subtitle */}
         <p
           style={{ fontFamily: '"Cairo", sans-serif' }}
-          className="text-[16px] sm:text-[20px] md:text-[24px] lg:text-[26px] font-semibold text-[#302451] max-w-[800px] mx-auto mb-10 sm:mb-14 px-2"
+          className="mx-auto mb-3 max-w-[800px] px-2 text-[16px] font-semibold text-[#302451] sm:text-[20px] md:text-[24px] lg:text-[26px]"
         >
           Explore some of the products we&apos;ve built for our clients.
+        </p>
+        <p className="mx-auto mb-10 max-w-[760px] rounded-full border border-[#302451]/10 bg-white/55 px-5 py-3 text-[11px] font-semibold leading-5 text-[#302451]/75 shadow-sm sm:mb-14 sm:px-7 sm:text-sm sm:leading-6">
+          No random AI design directions—every product decision is intentional,
+          researched, and connected to the client&apos;s business.
         </p>
 
         {/* Carousel Container with Scroll Arrow Buttons */}

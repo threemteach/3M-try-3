@@ -38,7 +38,7 @@ export default function Home() {
           </Link>
           <Link
             href="/contact"
-            className="flex h-[32px] items-center justify-center whitespace-nowrap rounded-[150px] bg-white/20 px-5 text-[12px] font-bold text-white backdrop-blur-md"
+            className="flex h-[32px] items-center justify-center whitespace-nowrap rounded-[150px] bg-white px-5 text-[12px] font-bold text-[#302451] shadow-md"
           >
             Contact
           </Link>
@@ -75,7 +75,7 @@ export default function Home() {
                 See Our Work
               </a>
               <a
-                href="#contact"
+                href="#contact-form"
                 className="flex h-[42px] w-[130px] md:h-[48px] md:w-[155px] lg:h-[56px] lg:w-[185px] items-center justify-center rounded-r-[9999px] border-2 border-white bg-white text-[12px] md:text-[14px] lg:text-[17px] font-semibold text-[#302451] transition-colors hover:bg-[#f0edf5]"
                 style={{ fontFamily: '"Cairo", sans-serif' }}
               >

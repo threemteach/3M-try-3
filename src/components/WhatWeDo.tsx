@@ -74,9 +74,13 @@ export default function WhatWeDo() {
 
         <p
           style={{ fontFamily: '"Cairo", sans-serif' }}
-          className="text-center text-sm sm:text-base text-gray-500 mb-10 sm:mb-14 max-w-[500px] mx-auto"
+          className="mx-auto mb-3 max-w-[500px] text-center text-sm text-gray-500 sm:text-base"
         >
           Everything you need to bring your ideas to life.
+        </p>
+        <p className="mx-auto mb-10 max-w-[720px] text-center text-[12px] font-semibold leading-6 text-[#302451]/75 sm:mb-14 sm:text-sm">
+          We don&apos;t create random AI-generated designs. Every interface is
+          shaped by research, brand context, and a real business goal.
         </p>
 
         {/* Service Cards */}

@@ -1,133 +1,277 @@
 import type { Metadata } from "next";
-import { SITE_URL } from "@/lib/constants";
+import Image from "next/image";
+import Link from "next/link";
+import Navbar from "@/components/Navbar";
+import { faqItems, teamMembers } from "@/lib/aboutData";
 
 export const metadata: Metadata = {
   title: "About Us",
-  description: "Learn about 3M - our mission, story, and the team behind our success.",
-  openGraph: {
-    title: "About Us | 3M",
-    description: "Learn about 3M - our mission, story, and the team behind our success.",
-    url: `${SITE_URL}/about`,
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "About Us | 3M",
-    description: "Learn about 3M - our mission, story, and the team behind our success.",
-  },
+  description:
+    "Meet the 3M tech team in Egypt. We design and build custom web applications, e-commerce platforms, Shopify stores, MVPs, and UI/UX experiences.",
 };
 
-const values = [
+const services = [
   {
-    title: "Excellence",
-    description: "We hold ourselves to the highest standards in everything we deliver.",
+    number: "01",
+    title: "Custom Web Applications",
+    text: "Dashboards, booking systems, internal tools, and customer portals engineered around real business workflows.",
   },
   {
-    title: "Innovation",
-    description: "We embrace new ideas and technologies to solve complex business challenges.",
+    number: "02",
+    title: "E-Commerce Platforms",
+    text: "Fast, conversion-focused stores with secure payments and experiences tailored to Egypt and the Middle East.",
   },
   {
-    title: "Integrity",
-    description: "We build trust through transparency and honest partnerships.",
+    number: "03",
+    title: "Shopify Store Setup",
+    text: "Professional storefronts with custom themes, product configuration, shipping, and payment integrations.",
   },
   {
-    title: "Collaboration",
-    description: "We believe the best results come from working together with our clients.",
+    number: "04",
+    title: "MVP Development",
+    text: "Focused products that help founders validate an idea quickly with real customers, partners, and investors.",
+  },
+  {
+    number: "05",
+    title: "UI/UX Design",
+    text: "Research-led wireframes, Figma interfaces, prototypes, design systems, and developer-ready handoff.",
   },
 ];
 
-const team = [
-  { name: "Alex Morgan", role: "CEO & Founder" },
-  { name: "Jordan Lee", role: "Head of Operations" },
-  { name: "Casey Kim", role: "Lead Consultant" },
-  { name: "Taylor Swift", role: "Director of Technology" },
+const principles = [
+  {
+    title: "No random AI designs",
+    text: "AI may support parts of the workflow, but it never replaces research, brand understanding, product thinking, or human creative judgment.",
+  },
+  {
+    title: "Business before features",
+    text: "Every decision starts with the result your product needs to create—not a checklist of trendy technology.",
+  },
+  {
+    title: "Design and engineering together",
+    text: "Designers and developers work as one team so the final experience stays true to the original idea.",
+  },
+  {
+    title: "Clear, measurable delivery",
+    text: "Focused scopes, visible progress, responsive communication, and practical milestones from discovery to launch.",
+  },
 ];
+
+function Flourish({ flip = false }: { flip?: boolean }) {
+  return (
+    <span
+      aria-hidden="true"
+      className={`hidden h-[8px] w-[74px] bg-[#75678b] sm:block ${flip ? "rotate-180" : ""}`}
+      style={{ clipPath: "polygon(0 15%, 100% 42%, 100% 58%, 0 85%)" }}
+    />
+  );
+}
 
 export default function About() {
   return (
     <>
-      <section className="bg-gray-50 px-4 py-20 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-7xl">
-          <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2">
-            <div>
-              <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl">
-                About 3M
-              </h1>
-              <p className="mt-6 text-lg leading-relaxed text-gray-600">
-                Founded with a vision to transform how businesses operate, 3M has grown into a trusted partner for
-                organizations seeking meaningful change. We combine deep industry expertise with innovative thinking
-                to deliver results that matter.
-              </p>
-              <p className="mt-4 text-lg leading-relaxed text-gray-600">
-                From startups to Fortune 500 companies, we&apos;ve helped hundreds of clients navigate complexity,
-                seize opportunities, and achieve their goals.
-              </p>
+      <section className="relative isolate min-h-[620px] overflow-hidden bg-[#302451] px-4 pb-20 pt-24 text-white sm:min-h-[700px] sm:px-8 sm:pb-24 sm:pt-36 lg:pt-44">
+        <Navbar />
+        <Image
+          src="/rectangles.png"
+          alt=""
+          width={850}
+          height={600}
+          priority
+          className="pointer-events-none absolute right-[-100px] top-0 -z-10 h-auto w-[430px] opacity-45 sm:right-[-40px] sm:w-[620px] lg:w-[760px]"
+        />
+
+        <div className="absolute left-5 top-5 z-20 flex w-[calc(100%-2.5rem)] items-center justify-between sm:hidden">
+          <Link href="/" aria-label="3M tech home">
+            <Image src="/logo.png" alt="3M tech" width={82} height={52} className="h-[34px] w-auto" priority />
+          </Link>
+          <Link
+            href="/contact"
+            className="rounded-full bg-white px-5 py-2 text-xs font-bold text-[#302451] shadow-md"
+          >
+            Contact
+          </Link>
+        </div>
+
+        <div className="mx-auto grid min-h-[500px] max-w-[1180px] items-center gap-12 lg:grid-cols-[1.15fr_.85fr]">
+          <div className="text-center lg:text-left">
+            <p className="mb-4 text-sm font-bold uppercase tracking-[.25em] text-[#b8a1ed]">
+              Egypt-based · Middle East focused
+            </p>
+            <h1 className="text-[54px] leading-[.92] [font-family:MedulaOne] sm:text-[78px] lg:text-[100px]">
+              We Turn Ambition
+              <br />
+              Into Digital Products
+            </h1>
+            <p className="mx-auto mt-7 max-w-[680px] text-[15px] leading-8 text-white/80 sm:text-lg lg:mx-0">
+              3M tech is a digital product studio that brings strategy, creative
+              design, and modern engineering together to build useful, scalable
+              products for startups and established businesses.
+            </p>
+            <p className="mx-auto mt-4 max-w-[680px] text-[13px] font-bold leading-7 text-[#c9b7ef] sm:text-[15px] lg:mx-0">
+              We don&apos;t build random designs generated by AI. We use research,
+              product thinking, and human creative judgment to design for each
+              business intentionally.
+            </p>
+            <div className="mt-8 flex flex-wrap justify-center gap-3 lg:justify-start">
+              <Link
+                href="/projects"
+                className="rounded-full bg-white px-7 py-3 text-sm font-bold text-[#302451] transition-transform hover:-translate-y-0.5"
+              >
+                Explore Our Work
+              </Link>
+              <Link
+                href="#contact-form"
+                className="rounded-full border border-white px-7 py-3 text-sm font-bold text-white transition-colors hover:bg-white hover:text-[#302451]"
+              >
+                Start a Project
+              </Link>
             </div>
-            <div className="flex items-center justify-center">
-              <div className="grid grid-cols-2 gap-4">
-                <div className="rounded-xl bg-blue-600 p-6 text-center text-white">
-                  <div className="text-3xl font-bold">500+</div>
-                  <div className="mt-1 text-sm text-blue-100">Projects Delivered</div>
-                </div>
-                <div className="rounded-xl bg-blue-700 p-6 text-center text-white">
-                  <div className="text-3xl font-bold">12+</div>
-                  <div className="mt-1 text-sm text-blue-100">Years Experience</div>
-                </div>
-                <div className="rounded-xl bg-blue-700 p-6 text-center text-white">
-                  <div className="text-3xl font-bold">50+</div>
-                  <div className="mt-1 text-sm text-blue-100">Team Members</div>
-                </div>
-                <div className="rounded-xl bg-blue-600 p-6 text-center text-white">
-                  <div className="text-3xl font-bold">98%</div>
-                  <div className="mt-1 text-sm text-blue-100">Client Satisfaction</div>
-                </div>
-              </div>
-            </div>
+          </div>
+
+          <div className="relative mx-auto flex h-[320px] w-full max-w-[430px] items-center justify-center sm:h-[390px]">
+            <div className="absolute h-[280px] w-[280px] rounded-full bg-white/8 sm:h-[350px] sm:w-[350px]" />
+            <Image
+              src="/who-we-are.png"
+              alt="Who we are at 3M tech"
+              width={420}
+              height={430}
+              className="relative h-auto w-[290px] object-contain drop-shadow-2xl sm:w-[360px]"
+            />
           </div>
         </div>
       </section>
 
-      <section className="px-4 py-20 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-7xl">
-          <h2 className="text-center text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-            Our Mission & Values
-          </h2>
-          <p className="mx-auto mt-4 max-w-2xl text-center text-gray-600">
-            Everything we do is guided by our commitment to excellence and our core values.
-          </p>
-          <div className="mt-14 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
-            {values.map((value) => (
-              <article
-                key={value.title}
-                className="rounded-xl border border-gray-200 p-6"
-              >
-                <h3 className="text-lg font-semibold text-gray-900">{value.title}</h3>
-                <p className="mt-2 text-sm text-gray-600">{value.description}</p>
+      <section className="bg-[#f5f2f3] px-4 py-20 text-[#312354] sm:px-8 sm:py-24">
+        <div className="mx-auto max-w-[1120px]">
+          <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-20">
+            <div>
+              <div className="flex items-center gap-4">
+                <h2 className="text-[44px] leading-none [font-family:MedulaOne] sm:text-[60px]">
+                  Built for Real Business
+                </h2>
+                <Flourish flip />
+              </div>
+              <p className="mt-6 text-[15px] leading-8 text-[#5f5770] sm:text-lg">
+                We started 3M tech to close the gap between beautiful ideas and
+                dependable software. Our team works from the first sketch through
+                launch, helping clients make clearer product decisions and ship
+                without unnecessary complexity.
+              </p>
+              <p className="mt-4 text-[15px] leading-8 text-[#5f5770] sm:text-lg">
+                Based in Egypt, we understand the needs of growing businesses in
+                the region while building to modern international standards.
+              </p>
+            </div>
+            <dl className="grid grid-cols-2 gap-4">
+              {[
+                ["1–4", "Weeks for most projects"],
+                ["2", "Weeks for a focused MVP"],
+                ["5", "Core digital services"],
+                ["EG + ME", "Primary markets served"],
+              ].map(([value, label]) => (
+                <div key={label} className="rounded-[24px] bg-white p-5 shadow-[0_9px_0_#a78be3] sm:p-7">
+                  <dt className="text-[42px] leading-none [font-family:MedulaOne] sm:text-[54px]">{value}</dt>
+                  <dd className="mt-2 text-xs font-semibold leading-5 text-[#6c6479] sm:text-sm">{label}</dd>
+                </div>
+              ))}
+            </dl>
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-white px-4 py-20 text-[#312354] sm:px-8 sm:py-24">
+        <div className="mx-auto max-w-[1120px]">
+          <header className="text-center">
+            <div className="flex items-center justify-center gap-4">
+              <Flourish />
+              <h2 className="text-[44px] leading-none [font-family:MedulaOne] sm:text-[60px]">What We Build</h2>
+              <Flourish flip />
+            </div>
+            <p className="mx-auto mt-4 max-w-[650px] text-[#696175]">
+              Product strategy, design, development, and launch support in one focused team.
+            </p>
+          </header>
+          <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            {services.map((service) => (
+              <article key={service.title} className="rounded-[24px] border border-[#ded8e8] bg-[#f8f6f8] p-6">
+                <span className="text-[34px] text-[#9b84d7] [font-family:MedulaOne]">{service.number}</span>
+                <h3 className="mt-3 text-xl font-bold">{service.title}</h3>
+                <p className="mt-3 text-sm leading-7 text-[#696175]">{service.text}</p>
               </article>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="bg-gray-50 px-4 py-20 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-7xl text-center">
-          <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-            Our Team
-          </h2>
-          <p className="mx-auto mt-4 max-w-2xl text-gray-600">
-            Meet the people who make it all happen.
-          </p>
-          <div className="mt-14 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
-            {team.map((member) => (
-              <article
-                key={member.name}
-                className="rounded-xl border border-gray-200 bg-white p-6"
-              >
-                <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-blue-100 text-xl font-bold text-blue-600">
-                  {member.name.split(" ").map((n) => n[0]).join("")}
-                </div>
-                <h3 className="mt-4 text-lg font-semibold text-gray-900">{member.name}</h3>
-                <p className="mt-1 text-sm text-gray-600">{member.role}</p>
+      <section className="bg-[#302451] px-4 py-20 text-white sm:px-8 sm:py-24">
+        <div className="mx-auto max-w-[1120px]">
+          <header className="text-center">
+            <p className="text-sm font-bold uppercase tracking-[.25em] text-[#b8a1ed]">The people behind the work</p>
+            <h2 className="mt-3 text-[48px] leading-none [font-family:MedulaOne] sm:text-[64px]">Meet the Founders</h2>
+          </header>
+          <div className="mt-12 grid grid-cols-3 gap-2 sm:gap-4 md:gap-6">
+            {teamMembers.map((member) => {
+              const initials = member.name.split(" ").map((part) => part[0]).slice(0, 2).join("");
+              const content = (
+                <>
+                  <span className="mx-auto flex h-10 w-10 items-center justify-center rounded-full bg-white text-[20px] text-[#302451] [font-family:MedulaOne] sm:h-14 sm:w-14 sm:text-[25px] md:mx-0 md:h-20 md:w-20 md:text-[32px]">
+                    {initials}
+                  </span>
+                  <h3 className="mt-3 break-words text-[9px] font-bold leading-4 min-[390px]:text-[10px] sm:mt-4 sm:text-sm md:mt-5 md:text-xl">{member.name}</h3>
+                  <p className="mt-1 text-[8px] leading-3 text-white/65 sm:mt-2 sm:text-[11px] sm:leading-4 md:text-sm">{member.jobTitle}</p>
+                </>
+              );
+              return member.url ? (
+                <a
+                  key={member.name}
+                  href={member.url}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="min-w-0 rounded-[16px] border border-white/15 bg-white/8 p-2.5 text-center transition-transform hover:-translate-y-1 sm:rounded-[22px] sm:p-5 md:rounded-[26px] md:p-7 md:text-left"
+                >
+                  {content}
+                </a>
+              ) : (
+                <article key={member.name} className="min-w-0 rounded-[16px] border border-white/15 bg-white/8 p-2.5 text-center sm:rounded-[22px] sm:p-5 md:rounded-[26px] md:p-7 md:text-left">
+                  {content}
+                </article>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-[#f5f2f3] px-4 py-20 text-[#312354] sm:px-8 sm:py-24">
+        <div className="mx-auto max-w-[1120px]">
+          <header className="text-center">
+            <h2 className="text-[46px] leading-none [font-family:MedulaOne] sm:text-[60px]">How We Work</h2>
+          </header>
+          <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+            {principles.map((principle) => (
+              <article key={principle.title} className="rounded-[24px] bg-white p-7 shadow-[0_10px_0_#9b82da]">
+                <h3 className="text-xl font-bold">{principle.title}</h3>
+                <p className="mt-3 text-sm leading-7 text-[#696175]">{principle.text}</p>
               </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-white px-4 py-20 text-[#312354] sm:px-8 sm:py-24">
+        <div className="mx-auto max-w-[900px]">
+          <header className="text-center">
+            <h2 className="text-[46px] leading-none [font-family:MedulaOne] sm:text-[60px]">Frequently Asked Questions</h2>
+            <p className="mt-4 text-[#696175]">Clear answers about working with 3M tech.</p>
+          </header>
+          <div className="mt-10 space-y-4">
+            {faqItems.map((item) => (
+              <details key={item.question} className="group rounded-[20px] border border-[#ddd6e7] bg-[#f8f6f8] p-5 open:bg-white">
+                <summary className="cursor-pointer list-none pr-8 font-bold marker:hidden">
+                  {item.question}
+                </summary>
+                <p className="mt-4 text-sm leading-7 text-[#696175]">{item.answer}</p>
+              </details>
             ))}
           </div>
         </div>

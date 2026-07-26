@@ -53,7 +53,7 @@ export default function ProjectsPage() {
           </Link>
           <Link
             href="/contact"
-            className="flex h-[32px] items-center justify-center whitespace-nowrap rounded-[150px] bg-white/20 px-5 text-[12px] font-bold text-white backdrop-blur-md"
+            className="flex h-[32px] items-center justify-center whitespace-nowrap rounded-[150px] bg-white px-5 text-[12px] font-bold text-[#302451] shadow-md"
           >
             Contact
           </Link>

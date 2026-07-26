@@ -1,43 +1,40 @@
 import type { Metadata } from "next";
-import { SITE_URL } from "@/lib/constants";
+import Image from "next/image";
+import Link from "next/link";
+import Navbar from "@/components/Navbar";
 
 export const metadata: Metadata = {
   title: "Contact Us",
-  description: "Get in touch with 3M for your next project.",
-  openGraph: {
-    title: "Contact Us | 3M",
-    description: "Get in touch with 3M for your next project.",
-    url: `${SITE_URL}/contact`,
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Contact Us | 3M",
-    description: "Get in touch with 3M for your next project.",
-  },
+  description: "Get in touch with 3M tech for your next project.",
 };
 
 export default function ContactPage() {
   return (
-    <div className="min-h-screen bg-[#f0edf5] flex flex-col items-center justify-center px-4 text-center">
-      <h1
-        style={{ fontFamily: '"MedulaOne", serif' }}
-        className="text-4xl sm:text-5xl text-[#302451] mb-4"
-      >
-        Let&apos;s Work Together
-      </h1>
-      <p
-        style={{ fontFamily: '"Cairo", sans-serif' }}
-        className="text-gray-600 text-lg max-w-md mb-8"
-      >
-        Have a project in mind? Reach out and let&apos;s build something amazing.
-      </p>
-      <a
-        href="mailto:info@3m.com"
-        style={{ fontFamily: '"Cairo", sans-serif' }}
-        className="h-12 px-8 rounded-full bg-[#302451] text-white font-bold text-sm flex items-center justify-center shadow-xl hover:bg-[#43346d] transition-all hover:scale-105 active:scale-95"
-      >
-        info@3m.com
-      </a>
-    </div>
+    <section className="relative isolate flex min-h-[500px] items-center overflow-hidden bg-[#302451] px-4 pb-20 pt-28 text-center text-white sm:px-8 sm:pt-40">
+      <Navbar />
+      <Image
+        src="/rectangles.png"
+        alt=""
+        width={850}
+        height={600}
+        className="pointer-events-none absolute right-[-90px] top-0 -z-10 h-auto w-[560px] opacity-40"
+        priority
+      />
+      <div className="mx-auto max-w-[800px]">
+        <h1 className="text-[58px] leading-[.92] [font-family:MedulaOne] sm:text-[84px]">
+          Let&apos;s Build Something Great
+        </h1>
+        <p className="mx-auto mt-6 max-w-[620px] text-[15px] leading-8 text-white/75 sm:text-lg">
+          Tell us what you want to build. The project form below can open your
+          message in email or WhatsApp with all the details ready to send.
+        </p>
+        <Link
+          href="#contact-form"
+          className="mt-8 inline-flex rounded-full bg-white px-8 py-3 text-sm font-bold text-[#302451]"
+        >
+          Start Your Project
+        </Link>
+      </div>
+    </section>
   );
 }

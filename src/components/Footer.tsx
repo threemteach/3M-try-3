@@ -1,5 +1,11 @@
 import Image from "next/image";
 import Link from "next/link";
+import {
+  FACEBOOK_URL,
+  INSTAGRAM_URL,
+  SITE_EMAIL,
+  SITE_PHONE,
+} from "@/lib/constants";
 
 const quickLinks = [
   { href: "/", label: "Home" },
@@ -77,16 +83,7 @@ export default function Footer() {
 
         <nav aria-label="Social media" className="mt-3 flex items-center gap-5 sm:mt-4">
           <a
-            href="https://www.linkedin.com/"
-            target="_blank"
-            rel="noreferrer"
-            aria-label="LinkedIn"
-            className="flex h-10 w-10 items-center justify-center rounded-full bg-white text-[22px] font-bold leading-none text-[#312354] transition-transform hover:-translate-y-1 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
-          >
-            in
-          </a>
-          <a
-            href="https://www.instagram.com/"
+            href={INSTAGRAM_URL}
             target="_blank"
             rel="noreferrer"
             aria-label="Instagram"
@@ -97,7 +94,7 @@ export default function Footer() {
             </span>
           </a>
           <a
-            href="https://www.facebook.com/"
+            href={FACEBOOK_URL}
             target="_blank"
             rel="noreferrer"
             aria-label="Facebook"
@@ -128,11 +125,11 @@ export default function Footer() {
               Contact
             </h2>
             <address className="mt-4 space-y-2 text-[15px] not-italic sm:text-base">
-              <a className="block transition-colors hover:text-white" href="mailto:info.3mtechs@gmail.com">
-                info.3mtechs@gmail.com
+              <a className="block transition-colors hover:text-white" href={`mailto:${SITE_EMAIL}`}>
+                {SITE_EMAIL}
               </a>
-              <a className="block transition-colors hover:text-white" href="tel:+201061884370">
-                +20 10 6188 43 70
+              <a className="block transition-colors hover:text-white" href={`tel:${SITE_PHONE}`}>
+                +20 10 6188 3470
               </a>
             </address>
           </section>

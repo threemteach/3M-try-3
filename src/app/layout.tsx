@@ -3,44 +3,18 @@ import "./globals.css";
 import MobileBottomNav from "@/components/MobileBottomNav";
 import Footer from "@/components/Footer";
 import ContactForm from "@/components/ContactForm";
-import JsonLd from "@/components/JsonLd";
 import ScrollToTop from "@/components/ScrollToTop";
-import { organizationJsonLd, websiteJsonLd } from "@/lib/jsonLdData";
 
 export const metadata: Metadata = {
   icons: {
     icon: "/logo.png",
   },
   title: {
-    default: "3M - Business Website",
-    template: "%s | 3M",
+    default: "3M tech",
+    template: "%s | 3M tech",
   },
-  description: "3M company - delivering innovative business solutions and projects worldwide.",
-  keywords: ["business", "projects", "solutions", "3M", "company"],
-  authors: [{ name: "3M" }],
-  openGraph: {
-    type: "website",
-    locale: "en_US",
-    siteName: "3M",
-    title: "3M - Business Website",
-    description: "3M company - delivering innovative business solutions and projects worldwide.",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "3M - Business Website",
-    description: "3M company - delivering innovative business solutions and projects worldwide.",
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-video-preview": -1,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-    },
-  },
+  description:
+    "3M tech builds custom web applications, e-commerce platforms, MVPs, and digital experiences.",
 };
 
 export default function RootLayout({
@@ -50,10 +24,6 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <head>
-        <JsonLd data={organizationJsonLd()} />
-        <JsonLd data={websiteJsonLd()} />
-      </head>
       <body className="flex min-h-screen flex-col font-[family-name:var(--font-cairo)] antialiased">
         <ScrollToTop />
         <main className="flex-1">{children}</main>

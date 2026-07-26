@@ -81,6 +81,10 @@ export default function WhoWeAre() {
             competitive market.
           </span>
         </p>
+        <p className="mt-5 max-w-[760px] rounded-full border border-white/15 bg-white/8 px-5 py-3 text-center text-[11px] font-semibold leading-5 text-white/80 sm:px-7 sm:text-sm">
+          No random AI design directions—every product decision is intentional,
+          researched, and connected to the client&apos;s business.
+        </p>
 
         <div className="mt-11 grid w-full max-w-[1040px] grid-cols-3 gap-2 sm:mt-12 sm:gap-4 lg:gap-6">
           {features.map((feature) => (
@@ -89,17 +93,16 @@ export default function WhoWeAre() {
               className="relative flex min-h-[64px] items-center justify-center rounded-[9px] bg-white px-1 pb-3 pt-4 text-center shadow-[0_9px_0_#8064bd,0_15px_14px_rgba(0,0,0,.18)] sm:min-h-[76px] sm:rounded-[12px] sm:px-4 sm:pb-4 sm:pt-5 sm:shadow-[0_13px_0_#8064bd,0_20px_18px_rgba(0,0,0,.18)]"
             >
               <span
-                className="absolute -top-[21px] left-1/2 flex h-[27px] w-[64px] -translate-x-1/2 items-start justify-center bg-white pt-[2px] sm:-top-[24px] sm:h-[30px] sm:w-[72px] sm:pt-[3px]"
+                className="absolute -top-[29px] left-1/2 flex h-[35px] w-[82px] -translate-x-1/2 items-start justify-center bg-white pt-[5px] sm:-top-[35px] sm:h-[41px] sm:w-[100px] sm:pt-[7px]"
                 style={{
-                  clipPath:
-                    'polygon(0 80%, 10% 79%, 20% 68%, 30% 38%, 40% 10%, 50% 0, 60% 10%, 70% 38%, 80% 68%, 90% 79%, 100% 80%, 100% 100%, 0 100%)',
+                  clipPath: "ellipse(50% 100% at 50% 100%)",
                 }}
               >
                 <svg
                   viewBox="0 0 24 24"
                   fill="none"
                   aria-hidden="true"
-                  className="h-[17px] w-[17px] stroke-[#312354] [stroke-linecap:round] [stroke-linejoin:round] [stroke-width:1.35] sm:h-[20px] sm:w-[20px]"
+                  className="h-[19px] w-[19px] stroke-[#312354] [stroke-linecap:round] [stroke-linejoin:round] [stroke-width:1.35] sm:h-[23px] sm:w-[23px]"
                 >
                   {feature.icon}
                 </svg>
