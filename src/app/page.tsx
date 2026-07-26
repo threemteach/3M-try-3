@@ -5,6 +5,7 @@ import RotatingSpinner from "@/components/RotatingSpinner";
 import NextSection from "@/components/NextSection";
 import Portfolio from "@/components/Portfolio";
 import WhatWeDo from "@/components/WhatWeDo";
+import WhoWeAre from "@/components/WhoWeAre";
 
 export default function Home() {
   return (
@@ -119,6 +120,9 @@ export default function Home() {
 
       {/* What We Do / Services Section */}
       <WhatWeDo />
+
+      {/* Who We Are Section */}
+      <WhoWeAre />
 
       {/* Process Section */}
       <section id="process" className="bg-gray-50 px-4 py-20 sm:px-6 lg:px-8">
