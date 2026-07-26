@@ -36,7 +36,7 @@ export default function Footer() {
       <a
         href="#"
         aria-label="Scroll back to the top"
-        className="group absolute left-1/2 top-[23px] z-[5] h-[110px] w-[300px] -translate-x-1/2 bg-[#312354] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#312354] sm:top-[20px]"
+        className="group absolute left-1/2 top-[38px] z-[5] h-[110px] w-[300px] -translate-x-1/2 bg-[#312354] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#312354] sm:top-[35px]"
         style={{
           clipPath:
             'path("M0 86 C45 85 66 69 88 42 C109 16 127 1 150 1 C173 1 191 16 212 42 C234 69 255 85 300 86 L300 110 L0 110 Z")',
