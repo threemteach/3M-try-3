@@ -42,7 +42,7 @@ export default function Footer() {
             'path("M0 86 C45 85 66 69 88 42 C109 16 127 1 150 1 C173 1 191 16 212 42 C234 69 255 85 300 86 L300 110 L0 110 Z")',
         }}
       >
-        <span className="absolute left-1/2 top-[9px] flex -translate-x-1/2 flex-col items-center">
+        <span className="absolute left-1/2 top-[30px] flex -translate-x-1/2 flex-col items-center sm:top-[33px]">
           {[0, 1, 2, 3, 4].map((line) => (
             <span
               key={line}
