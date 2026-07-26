@@ -9,18 +9,22 @@ const quickLinks = [
 ];
 
 const stars = [
-  "left-[-22px] top-[155px] h-20 w-20 rotate-12 sm:left-[2%] sm:top-[150px] sm:h-24 sm:w-24",
-  "left-[8%] top-[125px] h-9 w-9 -rotate-12 sm:h-12 sm:w-12",
-  "left-[17%] top-[205px] h-16 w-16 rotate-[18deg] sm:h-24 sm:w-24",
-  "left-[27%] top-[145px] h-10 w-10 rotate-45 sm:h-14 sm:w-14",
-  "left-[4%] top-[255px] h-10 w-10 rotate-[8deg] sm:h-14 sm:w-14",
-  "left-[14%] top-[285px] h-7 w-7 rotate-45 sm:h-10 sm:w-10",
-  "right-[3%] top-[185px] h-16 w-16 -rotate-12 sm:h-24 sm:w-24",
-  "right-[14%] top-[125px] h-10 w-10 rotate-[18deg] sm:h-14 sm:w-14",
-  "right-[23%] top-[205px] h-11 w-11 rotate-45 sm:h-16 sm:w-16",
-  "right-[9%] top-[280px] h-8 w-8 -rotate-12 sm:h-12 sm:w-12",
-  "right-[27%] top-[270px] h-6 w-6 rotate-45 sm:h-9 sm:w-9",
-  "right-[-20px] top-[315px] h-12 w-12 rotate-12 sm:h-16 sm:w-16",
+  "left-[-18px] top-[165px] h-16 w-16 rotate-12 sm:left-[1%] sm:h-20 sm:w-20",
+  "left-[10%] top-[125px] h-8 w-8 -rotate-12 sm:h-11 sm:w-11",
+  "left-[22%] top-[205px] h-14 w-14 rotate-[18deg] sm:left-[17%] sm:h-20 sm:w-20",
+  "left-[28%] top-[140px] h-9 w-9 rotate-45 sm:h-12 sm:w-12",
+  "left-[4%] top-[265px] h-9 w-9 rotate-[8deg] sm:h-12 sm:w-12",
+  "left-[15%] top-[305px] h-7 w-7 rotate-45 sm:h-9 sm:w-9",
+  "right-[-18px] top-[165px] h-16 w-16 -rotate-12 sm:right-[1%] sm:h-20 sm:w-20",
+  "right-[10%] top-[125px] h-8 w-8 rotate-[18deg] sm:h-11 sm:w-11",
+  "right-[22%] top-[205px] h-14 w-14 -rotate-[18deg] sm:right-[17%] sm:h-20 sm:w-20",
+  "right-[28%] top-[140px] h-9 w-9 -rotate-45 sm:h-12 sm:w-12",
+  "right-[4%] top-[265px] h-9 w-9 -rotate-[8deg] sm:h-12 sm:w-12",
+  "right-[15%] top-[305px] h-7 w-7 -rotate-45 sm:h-9 sm:w-9",
+  "hidden sm:block sm:left-[7%] sm:top-[225px] sm:h-8 sm:w-8 sm:rotate-[20deg]",
+  "hidden sm:block sm:left-[27%] sm:top-[285px] sm:h-7 sm:w-7 sm:-rotate-12",
+  "hidden sm:block sm:right-[7%] sm:top-[225px] sm:h-8 sm:w-8 sm:-rotate-[20deg]",
+  "hidden sm:block sm:right-[27%] sm:top-[285px] sm:h-7 sm:w-7 sm:rotate-12",
 ];
 
 export default function Footer() {
@@ -32,14 +36,18 @@ export default function Footer() {
       <a
         href="#"
         aria-label="Scroll back to the top"
-        className="group absolute left-1/2 top-[23px] z-[5] h-[165px] w-[225px] -translate-x-1/2 rounded-[50%] bg-[#312354] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#312354] sm:top-[19px] sm:h-[185px] sm:w-[275px]"
+        className="group absolute left-1/2 top-[23px] z-[5] h-[110px] w-[300px] -translate-x-1/2 bg-[#312354] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#312354] sm:top-[20px]"
+        style={{
+          clipPath:
+            'path("M0 86 C45 85 66 69 88 42 C109 16 127 1 150 1 C173 1 191 16 212 42 C234 69 255 85 300 86 L300 110 L0 110 Z")',
+        }}
       >
-        <span className="absolute left-1/2 top-[18px] flex -translate-x-1/2 flex-col items-center sm:top-[22px]">
+        <span className="absolute left-1/2 top-[9px] flex -translate-x-1/2 flex-col items-center">
           {[0, 1, 2, 3, 4].map((line) => (
             <span
               key={line}
               aria-hidden="true"
-              className="-mt-[12px] block h-[25px] w-[25px] rotate-45 border-l border-t border-white/75 transition-transform first:mt-0 group-hover:-translate-y-0.5 sm:-mt-[14px] sm:h-[29px] sm:w-[29px]"
+              className="-mt-[13px] block h-[27px] w-[27px] rotate-45 border-l border-t border-white/75 transition-transform first:mt-0 group-hover:-translate-y-0.5 sm:-mt-[14px] sm:h-[29px] sm:w-[29px]"
             />
           ))}
         </span>
