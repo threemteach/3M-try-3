@@ -88,12 +88,18 @@ export default function WhoWeAre() {
               key={feature.title}
               className="relative flex min-h-[64px] items-center justify-center rounded-[9px] bg-white px-1 pb-3 pt-4 text-center shadow-[0_9px_0_#8064bd,0_15px_14px_rgba(0,0,0,.18)] sm:min-h-[76px] sm:rounded-[12px] sm:px-4 sm:pb-4 sm:pt-5 sm:shadow-[0_13px_0_#8064bd,0_20px_18px_rgba(0,0,0,.18)]"
             >
-              <span className="absolute -top-[17px] left-1/2 flex h-[34px] w-[34px] -translate-x-1/2 items-center justify-center rounded-full bg-white sm:-top-[23px] sm:h-[46px] sm:w-[46px]">
+              <span
+                className="absolute -top-[21px] left-1/2 flex h-[27px] w-[64px] -translate-x-1/2 items-start justify-center bg-white pt-[2px] sm:-top-[24px] sm:h-[30px] sm:w-[72px] sm:pt-[3px]"
+                style={{
+                  clipPath:
+                    'polygon(0 80%, 10% 79%, 20% 68%, 30% 38%, 40% 10%, 50% 0, 60% 10%, 70% 38%, 80% 68%, 90% 79%, 100% 80%, 100% 100%, 0 100%)',
+                }}
+              >
                 <svg
                   viewBox="0 0 24 24"
                   fill="none"
                   aria-hidden="true"
-                  className="h-[18px] w-[18px] stroke-[#312354] [stroke-linecap:round] [stroke-linejoin:round] [stroke-width:1.35] sm:h-[24px] sm:w-[24px]"
+                  className="h-[17px] w-[17px] stroke-[#312354] [stroke-linecap:round] [stroke-linejoin:round] [stroke-width:1.35] sm:h-[20px] sm:w-[20px]"
                 >
                   {feature.icon}
                 </svg>

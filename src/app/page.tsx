@@ -6,6 +6,7 @@ import NextSection from "@/components/NextSection";
 import Portfolio from "@/components/Portfolio";
 import WhatWeDo from "@/components/WhatWeDo";
 import WhoWeAre from "@/components/WhoWeAre";
+import Workflow from "@/components/Workflow";
 
 export default function Home() {
   return (
@@ -124,34 +125,7 @@ export default function Home() {
       {/* Who We Are Section */}
       <WhoWeAre />
 
-      {/* Process Section */}
-      <section id="process" className="bg-gray-50 px-4 py-20 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-7xl">
-          <h2 className="text-center text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-            Our Process
-          </h2>
-          <p className="mx-auto mt-4 max-w-2xl text-center text-gray-600">
-            A structured approach to deliver results every time.
-          </p>
-          <div className="mt-14 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
-            {[
-              { step: "01", title: "Discover", description: "We analyze your business needs and identify opportunities." },
-              { step: "02", title: "Strategize", description: "We craft a tailored plan aligned with your goals." },
-              { step: "03", title: "Execute", description: "We implement solutions with precision and transparency." },
-              { step: "04", title: "Optimize", description: "We measure results and continuously improve." },
-            ].map((item) => (
-              <article
-                key={item.step}
-                className="rounded-xl border border-gray-200 bg-white p-6"
-              >
-                <div className="text-4xl font-bold text-blue-600">{item.step}</div>
-                <h3 className="mt-4 text-lg font-semibold text-gray-900">{item.title}</h3>
-                <p className="mt-2 text-sm text-gray-600">{item.description}</p>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
+      <Workflow />
 
       {/* CTA Section */}
       <section className="bg-gray-50 px-4 py-20 sm:px-6 lg:px-8">
