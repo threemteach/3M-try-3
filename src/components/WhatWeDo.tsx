@@ -185,7 +185,7 @@ export default function WhatWeDo() {
                             height: "86%",
                             bottom: "0",
                             ...(isReversed
-                              ? { left: "calc(2% + 50px)" }
+                              ? { left: "2%" }
                               : { right: "2%" }),
                           }
                         : {
