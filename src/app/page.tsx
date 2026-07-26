@@ -11,7 +11,7 @@ import Workflow from "@/components/Workflow";
 export default function Home() {
   return (
     <>
-      <section className="relative min-h-[560px] sm:min-h-[620px] md:min-h-[700px] lg:min-h-[820px] xl:min-h-[880px] w-full overflow-hidden bg-[#302451] flex flex-col justify-start pt-4 sm:pt-6 lg:pt-8 pb-10 sm:pb-14 lg:pb-20">
+      <section className="relative flex min-h-[650px] w-full flex-col justify-start overflow-hidden bg-[#302451] pb-24 pt-4 sm:min-h-[760px] sm:pb-20 sm:pt-6 md:min-h-[820px] lg:min-h-[820px] lg:pb-20 lg:pt-8 xl:min-h-[880px]">
         {/* Background Decorative Pattern (Made smaller) */}
         <div className="absolute right-0 top-0 z-0 pointer-events-none overflow-hidden opacity-40 md:opacity-70 lg:opacity-100">
           <Image
@@ -48,25 +48,25 @@ export default function Home() {
         <Navbar />
 
         {/* Main Hero Content */}
-        <div className="relative z-10 w-full max-w-[1600px] mx-auto my-auto px-4 sm:px-8 md:px-12 lg:pl-12 lg:pr-16 xl:pl-16 xl:pr-20 2xl:pl-20 2xl:pr-24 pt-6 sm:pt-10 md:pt-12 lg:pt-28 xl:pt-32">
+        <div className="relative z-10 mx-auto my-auto w-full max-w-[1600px] px-4 pt-5 sm:px-8 sm:pt-20 md:px-12 md:pt-24 lg:pl-12 lg:pr-16 lg:pt-28 xl:pl-16 xl:pr-20 xl:pt-32 2xl:pl-20 2xl:pr-24">
           
-          <div className="flex flex-col items-center sm:items-start text-center sm:text-left w-full sm:max-w-[400px] md:max-w-[500px] lg:max-w-[680px] xl:max-w-[780px] 2xl:max-w-[880px]">
+          <div className="mx-auto flex w-full max-w-[340px] flex-col items-center text-center sm:max-w-[560px] md:max-w-[680px] lg:mx-0 lg:max-w-[680px] lg:items-start lg:text-left xl:max-w-[780px] 2xl:max-w-[880px]">
             
             {/* Title */}
             <h1
               style={{ fontFamily: '"MedulaOne", serif' }}
-              className="text-[48px] xs:text-[54px] sm:text-[52px] md:text-[68px] lg:text-[108px] xl:text-[128px] 2xl:text-[142px] font-normal leading-[0.92] text-white tracking-tight w-full"
+              className="w-full text-[46px] font-normal leading-[0.94] tracking-tight text-white min-[390px]:text-[50px] sm:text-[62px] md:text-[76px] lg:text-[118px] lg:leading-[0.9] xl:text-[140px] 2xl:text-[154px]"
             >
               Where Ambition<br />Meets Engineering
             </h1>
 
             {/* Spinner */}
-            <div className="mt-2 sm:mt-3 lg:mt-4 w-full flex justify-center sm:justify-start">
+            <div className="mt-1 flex w-full justify-center sm:mt-2 lg:mt-4 lg:justify-start">
               <RotatingSpinner />
             </div>
 
             {/* Buttons (Tablet & Desktop: sm:flex, hidden on mobile) */}
-            <div className="mt-5 hidden sm:flex items-center gap-0 lg:mt-8">
+            <div className="mt-8 hidden items-center gap-0 lg:flex">
               <a
                 href="#work"
                 className="flex h-[42px] w-[130px] md:h-[48px] md:w-[155px] lg:h-[56px] lg:w-[185px] items-center justify-center rounded-l-[9999px] border-2 border-white bg-transparent text-[12px] md:text-[14px] lg:text-[17px] font-semibold text-white transition-colors hover:bg-white/15"
@@ -85,8 +85,8 @@ export default function Home() {
 
           </div>
 
-          {/* Mockup Image - Desktop & Tablet (absolute, right side for >= sm) */}
-          <div className="hidden sm:block absolute right-0 sm:right-2 md:right-4 lg:right-6 xl:right-8 top-1/2 -translate-y-[45%] z-[1] pointer-events-none">
+          {/* Mockup Image - Desktop (absolute, right side for >= lg) */}
+          <div className="pointer-events-none absolute right-0 top-1/2 z-[1] hidden -translate-y-[45%] lg:right-6 lg:block xl:right-8">
             <Image
                src="/mockup.png"
               alt="3M Portfolio Showcase"
@@ -97,14 +97,14 @@ export default function Home() {
             />
           </div>
 
-          {/* Mockup Image - Mobile (< sm) */}
-          <div className="flex justify-center sm:hidden mt-2 translate-x-3">
+          {/* Mockup Image - Mobile & Tablet (< lg) */}
+          <div className="mt-0 flex translate-x-2 justify-center sm:mt-2 md:mt-4 lg:hidden">
             <Image
                src="/mockup.png"
               alt="3M Portfolio Showcase"
               width={1150}
               height={700}
-              className="h-auto w-[380px] max-w-[108%] object-contain drop-shadow-2xl"
+              className="h-auto w-[390px] max-w-[116%] object-contain drop-shadow-2xl sm:w-[620px] sm:max-w-[112%] md:w-[760px] md:max-w-[110%]"
               priority
             />
           </div>

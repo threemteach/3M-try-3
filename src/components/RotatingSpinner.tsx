@@ -42,7 +42,7 @@ export default function RotatingSpinner({ className = "" }: { className?: string
       <span className="inline-block w-0 h-0 shrink-0 border-t-[8px] sm:border-t-[10px] md:border-t-[12px] border-t-transparent border-b-[8px] sm:border-b-[10px] md:border-b-[12px] border-b-transparent border-l-[12px] sm:border-l-[16px] md:border-l-[20px] border-l-white self-center" />
 
       <div
-        className="relative inline-block overflow-hidden h-[120px] sm:h-[160px] md:h-[190px] lg:h-[210px] min-w-[140px] sm:min-w-[200px] md:min-w-[260px] lg:min-w-[300px] xl:min-w-[360px]"
+        className="relative inline-block h-[128px] min-w-[190px] overflow-hidden sm:h-[160px] sm:min-w-[320px] md:h-[190px] md:min-w-[390px] lg:h-[210px] lg:min-w-[300px] xl:min-w-[360px]"
       >
         {ITEMS.map((text, i) => {
           const pos = getPositionClass(i);
