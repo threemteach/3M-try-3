@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import MobileBottomNav from "@/components/MobileBottomNav";
 import Footer from "@/components/Footer";
+import ContactForm from "@/components/ContactForm";
 import JsonLd from "@/components/JsonLd";
 import ScrollToTop from "@/components/ScrollToTop";
 import { organizationJsonLd, websiteJsonLd } from "@/lib/jsonLdData";
@@ -55,7 +56,8 @@ export default function RootLayout({
       </head>
       <body className="flex min-h-screen flex-col font-[family-name:var(--font-cairo)] antialiased">
         <ScrollToTop />
-        <main className="flex-1 pb-24 sm:pb-0">{children}</main>
+        <main className="flex-1">{children}</main>
+        <ContactForm />
         <Footer />
         <MobileBottomNav />
       </body>

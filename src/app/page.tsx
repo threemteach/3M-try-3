@@ -127,23 +127,6 @@ export default function Home() {
 
       <Workflow />
 
-      {/* CTA Section */}
-      <section className="bg-gray-50 px-4 py-20 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-4xl text-center">
-          <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-            Ready to Start Your Next Project?
-          </h2>
-          <p className="mt-4 text-lg text-gray-600">
-            Let&apos;s discuss how 3M can help your business reach its full potential.
-          </p>
-          <Link
-            href="/about"
-            className="mt-8 inline-flex items-center rounded-lg bg-blue-600 px-8 py-3.5 text-sm font-semibold text-white shadow transition-colors hover:bg-blue-700"
-          >
-            Get in Touch
-          </Link>
-        </div>
-      </section>
     </>
   );
 }
