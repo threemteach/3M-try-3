@@ -12,41 +12,14 @@ const ITEMS = [
 
 export default function RotatingSpinner({ className = "" }: { className?: string }) {
   const [topIndex, setTopIndex] = useState(0);
-  const spinDirection = useRef(1);
-  const autoRotateRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const count = ITEMS.length;
 
-  const startAutoRotate = useCallback(() => {
-    if (autoRotateRef.current) clearInterval(autoRotateRef.current);
-    autoRotateRef.current = setInterval(() => {
-      setTopIndex((prev) =>
-        spinDirection.current > 0
-          ? (prev + 1) % count
-          : (prev - 1 + count) % count
-      );
-    }, 2200);
-  }, [count]);
-
   useEffect(() => {
-    startAutoRotate();
-    return () => {
-      if (autoRotateRef.current) clearInterval(autoRotateRef.current);
-    };
-  }, [startAutoRotate]);
-
-  const handleWheel = useCallback(
-    (e: React.WheelEvent) => {
-      e.preventDefault();
-      spinDirection.current = e.deltaY > 0 ? 1 : -1;
-      setTopIndex((prev) =>
-        spinDirection.current > 0
-          ? (prev + 1) % count
-          : (prev - 1 + count) % count
-      );
-      startAutoRotate();
-    },
-    [count, startAutoRotate]
-  );
+    const interval = setInterval(() => {
+      setTopIndex((prev) => (prev + 1) % count);
+    }, 2200);
+    return () => clearInterval(interval);
+  }, [count]);
 
   const getPositionClass = (i: number) => {
     if (i === topIndex) return "pos-top";
@@ -57,7 +30,6 @@ export default function RotatingSpinner({ className = "" }: { className?: string
 
   return (
     <div
-      onWheel={handleWheel}
       className={`inline-flex items-center justify-center lg:justify-start gap-[clamp(6px,1.2vw,18px)] whitespace-nowrap ${className}`}
     >
       <span
