@@ -79,10 +79,23 @@ export default function WhatWeDo() {
         >
           Everything you need to bring your ideas to life.
         </p>
-        <p className="mx-auto mb-10 max-w-[720px] text-center text-[12px] font-semibold leading-6 text-[#302451]/75 sm:mb-14 sm:text-sm">
-          We don&apos;t create random AI-generated designs. Every interface is
-          shaped by research, brand context, and a real business goal.
-        </p>
+        <div className="relative mx-auto mb-12 mt-7 max-w-[850px] overflow-hidden rounded-[22px] border border-white/75 bg-[#302451] px-5 py-6 text-center text-white shadow-[0_10px_0_#8a70c7,0_20px_38px_rgba(48,36,81,.22)] sm:mb-16 sm:rounded-[28px] sm:px-10 sm:py-8">
+          <span
+            aria-hidden="true"
+            className="absolute -left-8 -top-10 h-28 w-28 rounded-full bg-[#8b72c7]/35 blur-2xl"
+          />
+          <span
+            aria-hidden="true"
+            className="absolute -bottom-12 -right-8 h-32 w-32 rounded-full bg-white/15 blur-2xl"
+          />
+          <p className="relative text-[10px] font-bold uppercase tracking-[.24em] text-[#c9b8ef] sm:text-xs">
+            Our approach
+          </p>
+          <p className="relative mx-auto mt-3 max-w-[720px] text-[13px] font-bold leading-6 sm:text-lg sm:leading-8">
+            No random AI design directions—every product decision is intentional,
+            researched, and connected to the client&apos;s business.
+          </p>
+        </div>
 
         {/* Service Cards */}
         <div className="flex flex-col gap-4 sm:gap-6">

@@ -1,297 +1,45 @@
 
 > 3m-try-3@0.1.0 dev
-> next dev
+> next dev --hostname 127.0.0.1
 
    ▲ Next.js 15.5.21
-   - Local:        http://localhost:3000
-   - Network:      http://192.168.1.9:3000
+   - Local:        http://127.0.0.1:3000
+   - Network:      http://127.0.0.1:3000
 
  ✓ Starting...
- ✓ Ready in 2.1s
+ ✓ Ready in 2.7s
  ○ Compiling / ...
- ✓ Compiled / in 2.5s (648 modules)
- GET / 200 in 3222ms
- ✓ Compiled in 411ms (646 modules)
- GET / 200 in 233ms
- ✓ Compiled in 279ms (646 modules)
- GET / 200 in 198ms
- ✓ Compiled /projects in 248ms (637 modules)
- GET /projects 200 in 353ms
- GET /projects 200 in 22ms
- GET /projects 200 in 20ms
- ✓ Compiled /about in 202ms (639 modules)
- GET /about 200 in 261ms
- GET /about 200 in 22ms
- GET / 200 in 27ms
- GET /about 200 in 43ms
- ✓ Compiled /_not-found in 411ms (644 modules)
- GET /process 404 in 498ms
- GET /process 404 in 220ms
- GET / 200 in 214ms
- GET /projects 200 in 55ms
- GET / 200 in 45ms
- ✓ Compiled in 345ms (658 modules)
- GET / 200 in 101ms
- ✓ Compiled in 201ms (658 modules)
- GET / 200 in 94ms
- GET /projects 200 in 28ms
- GET /about 200 in 29ms
- GET / 200 in 16ms
- GET /process 404 in 21ms
- GET /process 404 in 114ms
- GET / 200 in 24ms
- GET /projects 200 in 43ms
- ✓ Compiled in 340ms (658 modules)
- GET /projects 200 in 120ms
- GET /about 200 in 62ms
- GET /process 404 in 42ms
- GET /process 404 in 135ms
- GET / 200 in 47ms
- GET /projects 200 in 38ms
- GET / 200 in 41ms
- ✓ Compiled in 294ms (658 modules)
- GET / 200 in 153ms
- GET / 200 in 33ms
+ ✓ Compiled / in 1081ms (666 modules)
+ GET / 200 in 1652ms
+ GET / 200 in 150ms
+ ✓ Compiled in 1157ms (680 modules)
+ GET / 200 in 156ms
+ GET / 200 in 249ms
+ GET / 200 in 230ms
+ ✓ Compiled /about in 461ms (672 modules)
+ GET /about 200 in 657ms
+ GET / 200 in 293ms
+ GET /about 200 in 77ms
+ GET / 200 in 75ms
+ GET /about 200 in 58ms
  GET /about 200 in 55ms
- GET / 200 in 41ms
- GET /projects 200 in 24ms
- GET /about 200 in 22ms
- GET /process 404 in 25ms
- GET /process 404 in 77ms
- GET / 200 in 21ms
- GET /projects 200 in 21ms
- GET / 200 in 20ms
- GET /process 404 in 18ms
- GET /process 404 in 46ms
- GET / 200 in 25ms
- GET /process 404 in 18ms
- GET /process 404 in 42ms
- GET / 200 in 23ms
- ✓ Compiled in 345ms (656 modules)
- GET / 200 in 127ms
- ✓ Compiled in 358ms (651 modules)
- GET / 200 in 129ms
- ✓ Compiled in 347ms (651 modules)
- GET / 200 in 164ms
- ⨯ Error: Cannot find module './124.js'
-Require stack:
-- M:\3Mupdtaed2\.next\server\webpack-runtime.js
-- M:\3Mupdtaed2\.next\server\app\page.js
-- M:\3Mupdtaed2\node_modules\next\dist\server\require.js
-- M:\3Mupdtaed2\node_modules\next\dist\server\load-components.js
-- M:\3Mupdtaed2\node_modules\next\dist\build\utils.js
-- M:\3Mupdtaed2\node_modules\next\dist\build\swc\options.js
-- M:\3Mupdtaed2\node_modules\next\dist\build\swc\index.js
-- M:\3Mupdtaed2\node_modules\next\dist\build\next-config-ts\transpile-config.js
-- M:\3Mupdtaed2\node_modules\next\dist\server\config.js
-- M:\3Mupdtaed2\node_modules\next\dist\server\next.js
-- M:\3Mupdtaed2\node_modules\next\dist\server\lib\start-server.js
-    at <unknown> (M:\3Mupdtaed2\.next\server\app\projects\page.js:2:11812)
-    at Object.<anonymous> (M:\3Mupdtaed2\.next\server\app\projects\page.js:2:11861) {
-  code: 'MODULE_NOT_FOUND',
-  requireStack: [Array],
-  page: '/projects'
-}
- ○ Compiling /_error ...
- ✓ Compiled /_error in 2s (984 modules)
- GET /projects 500 in 2743ms
- ⨯ Error: Cannot find module './124.js'
-Require stack:
-- M:\3Mupdtaed2\.next\server\webpack-runtime.js
-- M:\3Mupdtaed2\.next\server\pages\_document.js
-- M:\3Mupdtaed2\node_modules\next\dist\server\require.js
-- M:\3Mupdtaed2\node_modules\next\dist\server\load-components.js
-- M:\3Mupdtaed2\node_modules\next\dist\build\utils.js
-- M:\3Mupdtaed2\node_modules\next\dist\build\swc\options.js
-- M:\3Mupdtaed2\node_modules\next\dist\build\swc\index.js
-- M:\3Mupdtaed2\node_modules\next\dist\build\next-config-ts\transpile-config.js
-- M:\3Mupdtaed2\node_modules\next\dist\server\config.js
-- M:\3Mupdtaed2\node_modules\next\dist\server\next.js
-- M:\3Mupdtaed2\node_modules\next\dist\server\lib\start-server.js
-    at <unknown> (M:\3Mupdtaed2\.next\server\app\projects\page.js:2:11812)
-    at Object.<anonymous> (M:\3Mupdtaed2\.next\server\app\projects\page.js:2:11861) {
-  code: 'MODULE_NOT_FOUND',
-  requireStack: [Array],
-  page: '/projects'
-}
- GET /projects 500 in 392ms
- ✓ Compiled /_not-found in 232ms (893 modules)
- GET /process 404 in 354ms
- GET /process 404 in 118ms
- ✓ Compiled in 386ms (907 modules)
- GET /process 404 in 174ms
- ✓ Compiled /about in 407ms (496 modules)
- ⨯ Error: Cannot find module './124.js'
-Require stack:
-- M:\3Mupdtaed2\.next\server\webpack-runtime.js
-- M:\3Mupdtaed2\.next\server\app\projects\page.js
-- M:\3Mupdtaed2\node_modules\next\dist\server\require.js
-- M:\3Mupdtaed2\node_modules\next\dist\server\load-components.js
-- M:\3Mupdtaed2\node_modules\next\dist\build\utils.js
-- M:\3Mupdtaed2\node_modules\next\dist\build\swc\options.js
-- M:\3Mupdtaed2\node_modules\next\dist\build\swc\index.js
-- M:\3Mupdtaed2\node_modules\next\dist\build\next-config-ts\transpile-config.js
-- M:\3Mupdtaed2\node_modules\next\dist\server\config.js
-- M:\3Mupdtaed2\node_modules\next\dist\server\next.js
-- M:\3Mupdtaed2\node_modules\next\dist\server\lib\start-server.js
-    at <unknown> (M:\3Mupdtaed2\.next\server\app\projects\page.js:2:11812)
-    at Object.<anonymous> (M:\3Mupdtaed2\.next\server\app\projects\page.js:2:11861) {
-  code: 'MODULE_NOT_FOUND',
-  requireStack: [Array],
-  page: '/projects'
-}
- ⨯ Error: Cannot find module './124.js'
-Require stack:
-- M:\3Mupdtaed2\.next\server\webpack-runtime.js
-- M:\3Mupdtaed2\.next\server\app\projects\page.js
-- M:\3Mupdtaed2\node_modules\next\dist\server\require.js
-- M:\3Mupdtaed2\node_modules\next\dist\server\load-components.js
-- M:\3Mupdtaed2\node_modules\next\dist\build\utils.js
-- M:\3Mupdtaed2\node_modules\next\dist\build\swc\options.js
-- M:\3Mupdtaed2\node_modules\next\dist\build\swc\index.js
-- M:\3Mupdtaed2\node_modules\next\dist\build\next-config-ts\transpile-config.js
-- M:\3Mupdtaed2\node_modules\next\dist\server\config.js
-- M:\3Mupdtaed2\node_modules\next\dist\server\next.js
-- M:\3Mupdtaed2\node_modules\next\dist\server\lib\start-server.js
-    at <unknown> (M:\3Mupdtaed2\.next\server\app\page.js:2:14966)
-    at Object.<anonymous> (M:\3Mupdtaed2\.next\server\app\page.js:2:15015) {
-  code: 'MODULE_NOT_FOUND',
-  requireStack: [Array],
-  page: '/'
-}
- GET /about 200 in 728ms
- ✓ Compiled /_error in 381ms (991 modules)
- ⨯ Error: Cannot find module './611.js'
-Require stack:
-- M:\3Mupdtaed2\.next\server\webpack-runtime.js
-- M:\3Mupdtaed2\.next\server\pages\_document.js
-- M:\3Mupdtaed2\node_modules\next\dist\server\require.js
-- M:\3Mupdtaed2\node_modules\next\dist\server\load-components.js
-- M:\3Mupdtaed2\node_modules\next\dist\build\utils.js
-- M:\3Mupdtaed2\node_modules\next\dist\build\swc\options.js
-- M:\3Mupdtaed2\node_modules\next\dist\build\swc\index.js
-- M:\3Mupdtaed2\node_modules\next\dist\build\next-config-ts\transpile-config.js
-- M:\3Mupdtaed2\node_modules\next\dist\server\config.js
-- M:\3Mupdtaed2\node_modules\next\dist\server\next.js
-- M:\3Mupdtaed2\node_modules\next\dist\server\lib\start-server.js
-    at <unknown> (M:\3Mupdtaed2\.next\server\pages\_document.js:1:321)
-    at Object.<anonymous> (M:\3Mupdtaed2\.next\server\pages\_document.js:1:366) {
-  code: 'MODULE_NOT_FOUND',
-  requireStack: [Array]
-}
- ⨯ Error: Cannot find module './611.js'
-Require stack:
-- M:\3Mupdtaed2\.next\server\webpack-runtime.js
-- M:\3Mupdtaed2\.next\server\pages\_document.js
-- M:\3Mupdtaed2\node_modules\next\dist\server\require.js
-- M:\3Mupdtaed2\node_modules\next\dist\server\load-components.js
-- M:\3Mupdtaed2\node_modules\next\dist\build\utils.js
-- M:\3Mupdtaed2\node_modules\next\dist\build\swc\options.js
-- M:\3Mupdtaed2\node_modules\next\dist\build\swc\index.js
-- M:\3Mupdtaed2\node_modules\next\dist\build\next-config-ts\transpile-config.js
-- M:\3Mupdtaed2\node_modules\next\dist\server\config.js
-- M:\3Mupdtaed2\node_modules\next\dist\server\next.js
-- M:\3Mupdtaed2\node_modules\next\dist\server\lib\start-server.js
-    at <unknown> (M:\3Mupdtaed2\.next\server\pages\_document.js:1:321)
-    at Object.<anonymous> (M:\3Mupdtaed2\.next\server\pages\_document.js:1:366) {
-  code: 'MODULE_NOT_FOUND',
-  requireStack: [Array]
-}
- ⨯ Error: Cannot find module './124.js'
-Require stack:
-- M:\3Mupdtaed2\.next\server\webpack-runtime.js
-- M:\3Mupdtaed2\.next\server\pages\_document.js
-- M:\3Mupdtaed2\node_modules\next\dist\server\require.js
-- M:\3Mupdtaed2\node_modules\next\dist\server\load-components.js
-- M:\3Mupdtaed2\node_modules\next\dist\build\utils.js
-- M:\3Mupdtaed2\node_modules\next\dist\build\swc\options.js
-- M:\3Mupdtaed2\node_modules\next\dist\build\swc\index.js
-- M:\3Mupdtaed2\node_modules\next\dist\build\next-config-ts\transpile-config.js
-- M:\3Mupdtaed2\node_modules\next\dist\server\config.js
-- M:\3Mupdtaed2\node_modules\next\dist\server\next.js
-- M:\3Mupdtaed2\node_modules\next\dist\server\lib\start-server.js
-    at <unknown> (M:\3Mupdtaed2\.next\server\app\_not-found\page.js:2:11788)
-    at Object.<anonymous> (M:\3Mupdtaed2\.next\server\app\_not-found\page.js:2:11837) {
-  code: 'MODULE_NOT_FOUND',
-  requireStack: [Array]
-}
- GET /projects 500 in 5944ms
- GET / 500 in 6370ms
- ⨯ Error: Cannot find module './124.js'
-Require stack:
-- M:\3Mupdtaed2\.next\server\webpack-runtime.js
-- M:\3Mupdtaed2\.next\server\pages\_document.js
-- M:\3Mupdtaed2\node_modules\next\dist\server\require.js
-- M:\3Mupdtaed2\node_modules\next\dist\server\load-components.js
-- M:\3Mupdtaed2\node_modules\next\dist\build\utils.js
-- M:\3Mupdtaed2\node_modules\next\dist\build\swc\options.js
-- M:\3Mupdtaed2\node_modules\next\dist\build\swc\index.js
-- M:\3Mupdtaed2\node_modules\next\dist\build\next-config-ts\transpile-config.js
-- M:\3Mupdtaed2\node_modules\next\dist\server\config.js
-- M:\3Mupdtaed2\node_modules\next\dist\server\next.js
-- M:\3Mupdtaed2\node_modules\next\dist\server\lib\start-server.js
-    at <unknown> (M:\3Mupdtaed2\.next\server\app\page.js:2:14966)
-    at Object.<anonymous> (M:\3Mupdtaed2\.next\server\app\page.js:2:15015) {
-  code: 'MODULE_NOT_FOUND',
-  requireStack: [Array],
-  page: '/'
-}
- ⨯ Error: Cannot find module './611.js'
-Require stack:
-- M:\3Mupdtaed2\.next\server\webpack-runtime.js
-- M:\3Mupdtaed2\.next\server\pages\_document.js
-- M:\3Mupdtaed2\node_modules\next\dist\server\require.js
-- M:\3Mupdtaed2\node_modules\next\dist\server\load-components.js
-- M:\3Mupdtaed2\node_modules\next\dist\build\utils.js
-- M:\3Mupdtaed2\node_modules\next\dist\build\swc\options.js
-- M:\3Mupdtaed2\node_modules\next\dist\build\swc\index.js
-- M:\3Mupdtaed2\node_modules\next\dist\build\next-config-ts\transpile-config.js
-- M:\3Mupdtaed2\node_modules\next\dist\server\config.js
-- M:\3Mupdtaed2\node_modules\next\dist\server\next.js
-- M:\3Mupdtaed2\node_modules\next\dist\server\lib\start-server.js
-    at <unknown> (M:\3Mupdtaed2\.next\server\pages\_document.js:1:321)
-    at Object.<anonymous> (M:\3Mupdtaed2\.next\server\pages\_document.js:1:366) {
-  code: 'MODULE_NOT_FOUND',
-  requireStack: [Array]
-}
- GET / 500 in 649ms
-<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename 'M:\3Mupdtaed2\.next\cache\webpack\client-development-fallback\0.pack.gz_' -> 'M:\3Mupdtaed2\.next\cache\webpack\client-development-fallback\0.pack.gz'
-[Error: ENOENT: no such file or directory, stat 'M:\3Mupdtaed2\.next\cache\webpack\client-development\6.pack.gz'] {
-  errno: -4058,
-  code: 'ENOENT',
-  syscall: 'stat',
-  path: 'M:\\3Mupdtaed2\\.next\\cache\\webpack\\client-development\\6.pack.gz'
-}
- ⨯ unhandledRejection: [Error: ENOENT: no such file or directory, stat 'M:\3Mupdtaed2\.next\cache\webpack\client-development\6.pack.gz'] {
-  errno: -4058,
-  code: 'ENOENT',
-  syscall: 'stat',
-  path: 'M:\\3Mupdtaed2\\.next\\cache\\webpack\\client-development\\6.pack.gz'
-}
- ⨯ unhandledRejection:  [Error: ENOENT: no such file or directory, stat 'M:\3Mupdtaed2\.next\cache\webpack\client-development\6.pack.gz'] {
-  errno: -4058,
-  code: 'ENOENT',
-  syscall: 'stat',
-  path: 'M:\\3Mupdtaed2\\.next\\cache\\webpack\\client-development\\6.pack.gz'
-}
-<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, stat 'M:\3Mupdtaed2\.next\cache\webpack\client-development\6.pack.gz'
-[Error: ENOENT: no such file or directory, stat 'M:\3Mupdtaed2\.next\cache\webpack\server-development\3.pack.gz'] {
-  errno: -4058,
-  code: 'ENOENT',
-  syscall: 'stat',
-  path: 'M:\\3Mupdtaed2\\.next\\cache\\webpack\\server-development\\3.pack.gz'
-}
- ⨯ unhandledRejection: [Error: ENOENT: no such file or directory, stat 'M:\3Mupdtaed2\.next\cache\webpack\server-development\3.pack.gz'] {
-  errno: -4058,
-  code: 'ENOENT',
-  syscall: 'stat',
-  path: 'M:\\3Mupdtaed2\\.next\\cache\\webpack\\server-development\\3.pack.gz'
-}
- ⨯ unhandledRejection:  [Error: ENOENT: no such file or directory, stat 'M:\3Mupdtaed2\.next\cache\webpack\server-development\3.pack.gz'] {
-  errno: -4058,
-  code: 'ENOENT',
-  syscall: 'stat',
-  path: 'M:\\3Mupdtaed2\\.next\\cache\\webpack\\server-development\\3.pack.gz'
-}
-<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, stat 'M:\3Mupdtaed2\.next\cache\webpack\server-development\3.pack.gz'
-[?25h
+ ✓ Compiled in 551ms (686 modules)
+ GET /about 200 in 260ms
+ GET /about 200 in 265ms
+ GET /about 200 in 67ms
+ ✓ Compiled in 487ms (686 modules)
+ GET /about 200 in 227ms
+ GET /about 200 in 229ms
+ GET /about 200 in 234ms
+ GET /about 200 in 240ms
+ GET / 200 in 69ms
+ GET /about 200 in 61ms
+ GET / 200 in 63ms
+ ✓ Compiled in 657ms (686 modules)
+ GET /about 200 in 251ms
+ GET /about 200 in 257ms
+ GET / 200 in 269ms
+ ✓ Compiled in 270ms (265 modules)
+ GET /about 200 in 184ms
+ GET /about 200 in 189ms
+ GET / 200 in 197ms
