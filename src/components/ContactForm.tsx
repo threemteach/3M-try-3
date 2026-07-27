@@ -4,6 +4,9 @@ import { FormEvent, useState } from "react";
 import emailjs from "@emailjs/browser";
 import { SITE_PHONE } from "@/lib/constants";
 
+type FieldName = "name" | "email" | "phone" | "details";
+type FieldErrors = Partial<Record<FieldName, string>>;
+
 function Flourish({ flip = false }: { flip?: boolean }) {
   return (
     <span
@@ -18,16 +21,71 @@ export default function ContactForm() {
   const [sending, setSending] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState(false);
+  const [fieldErrors, setFieldErrors] = useState<FieldErrors>({});
+
+  function validate(values: Record<FieldName, string>) {
+    const nextErrors: FieldErrors = {};
+
+    if (values.name.length < 2) {
+      nextErrors.name = "Please enter your full name.";
+    } else if (values.name.length > 80) {
+      nextErrors.name = "Name must be 80 characters or fewer.";
+    }
+
+    if (!values.email) {
+      nextErrors.email = "Please enter your email address.";
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i.test(values.email)) {
+      nextErrors.email = "Please enter a valid email address.";
+    }
+
+    const phoneDigits = values.phone.replace(/\D/g, "");
+    if (!values.phone) {
+      nextErrors.phone = "Please enter your phone number.";
+    } else if (phoneDigits.length < 8 || phoneDigits.length > 15) {
+      nextErrors.phone = "Enter a valid phone number with 8–15 digits.";
+    }
+
+    if (values.details.length < 20) {
+      nextErrors.details = "Please tell us a little more (at least 20 characters).";
+    } else if (values.details.length > 2000) {
+      nextErrors.details = "Project details must be 2,000 characters or fewer.";
+    }
+
+    return nextErrors;
+  }
+
+  function clearFieldError(field: FieldName) {
+    setFieldErrors((current) => {
+      if (!current[field]) return current;
+      const next = { ...current };
+      delete next[field];
+      return next;
+    });
+  }
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const submitter = (event.nativeEvent as SubmitEvent).submitter as HTMLButtonElement | null;
     const method = submitter?.value ?? "email";
     const data = new FormData(event.currentTarget);
-    const name = String(data.get("name") ?? "");
-    const email = String(data.get("email") ?? "");
-    const phone = String(data.get("phone") ?? "");
-    const details = String(data.get("details") ?? "");
+    const values = {
+      name: String(data.get("name") ?? "").trim(),
+      email: String(data.get("email") ?? "").trim(),
+      phone: String(data.get("phone") ?? "").trim(),
+      details: String(data.get("details") ?? "").trim(),
+    };
+    const validationErrors = validate(values);
+
+    if (Object.keys(validationErrors).length > 0) {
+      setFieldErrors(validationErrors);
+      setError(false);
+      const firstInvalidField = Object.keys(validationErrors)[0] as FieldName;
+      document.getElementById(`contact-${firstInvalidField}`)?.focus();
+      return;
+    }
+
+    setFieldErrors({});
+    const { name, email, phone, details } = values;
 
     if (method === "whatsapp") {
       const message = [
@@ -64,8 +122,23 @@ export default function ContactForm() {
       });
   }
 
-  const fieldClass =
-    "w-full rounded-[16px] border-0 bg-[#9d96aa] px-5 py-4 text-[15px] text-white outline-none placeholder:text-white/75 focus:ring-2 focus:ring-white/85 sm:px-7 sm:py-5 sm:text-base";
+  const fieldClass = (field: FieldName) =>
+    `w-full rounded-[16px] border bg-[#9d96aa] px-5 py-4 text-[15px] text-white outline-none placeholder:text-white/75 transition-[border-color,box-shadow] focus:ring-2 sm:px-7 sm:py-5 sm:text-base ${
+      fieldErrors[field]
+        ? "border-red-300 ring-2 ring-red-300/35 focus:ring-red-300"
+        : "border-transparent focus:ring-white/85"
+    }`;
+
+  const fieldError = (field: FieldName) =>
+    fieldErrors[field] ? (
+      <p
+        id={`contact-${field}-error`}
+        className="mt-2 px-1 text-xs font-semibold text-red-200"
+        role="alert"
+      >
+        {fieldErrors[field]}
+      </p>
+    ) : null;
 
   return (
     <section id="contact-form" className="bg-[#f5f2f3] px-4 py-20 sm:px-8 sm:py-24">
@@ -96,6 +169,7 @@ export default function ContactForm() {
         ) : (
         <form
           onSubmit={handleSubmit}
+          noValidate
           className="mx-auto mt-10 max-w-[780px] space-y-5 rounded-[34px] bg-[#312354] p-5 shadow-[0_16px_28px_rgba(49,35,84,.18)] sm:mt-12 sm:space-y-7 sm:p-10 md:p-12"
         >
           <label className="sr-only" htmlFor="contact-name">
@@ -106,10 +180,16 @@ export default function ContactForm() {
             name="name"
             type="text"
             required
+            minLength={2}
+            maxLength={80}
             autoComplete="name"
             placeholder="Name"
-            className={fieldClass}
+            aria-invalid={Boolean(fieldErrors.name)}
+            aria-describedby={fieldErrors.name ? "contact-name-error" : undefined}
+            onInput={() => clearFieldError("name")}
+            className={fieldClass("name")}
           />
+          {fieldError("name")}
 
           <div className="grid gap-5 sm:grid-cols-2 sm:gap-4">
             <div>
@@ -123,8 +203,12 @@ export default function ContactForm() {
                 required
                 autoComplete="email"
                 placeholder="Email"
-                className={fieldClass}
+                aria-invalid={Boolean(fieldErrors.email)}
+                aria-describedby={fieldErrors.email ? "contact-email-error" : undefined}
+                onInput={() => clearFieldError("email")}
+                className={fieldClass("email")}
               />
+              {fieldError("email")}
             </div>
             <div>
               <label className="sr-only" htmlFor="contact-phone">
@@ -134,10 +218,22 @@ export default function ContactForm() {
                 id="contact-phone"
                 name="phone"
                 type="tel"
+                required
+                inputMode="numeric"
+                pattern="[0-9]*"
+                minLength={8}
+                maxLength={15}
                 autoComplete="tel"
                 placeholder="Phone Number"
-                className={fieldClass}
+                aria-invalid={Boolean(fieldErrors.phone)}
+                aria-describedby={fieldErrors.phone ? "contact-phone-error" : undefined}
+                onInput={(event) => {
+                  event.currentTarget.value = event.currentTarget.value.replace(/\D/g, "");
+                  clearFieldError("phone");
+                }}
+                className={fieldClass("phone")}
               />
+              {fieldError("phone")}
             </div>
           </div>
 
@@ -148,10 +244,16 @@ export default function ContactForm() {
             id="contact-details"
             name="details"
             required
+            minLength={20}
+            maxLength={2000}
             rows={7}
             placeholder="Details"
-            className={`${fieldClass} min-h-[190px] resize-y sm:min-h-[230px]`}
+            aria-invalid={Boolean(fieldErrors.details)}
+            aria-describedby={fieldErrors.details ? "contact-details-error" : undefined}
+            onInput={() => clearFieldError("details")}
+            className={`${fieldClass("details")} min-h-[190px] resize-y sm:min-h-[230px]`}
           />
+          {fieldError("details")}
 
           {error && (
             <p className="text-center text-sm text-red-400">
