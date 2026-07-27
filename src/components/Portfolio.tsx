@@ -5,30 +5,42 @@ import Link from "next/link";
 import {
   useCallback,
   useEffect,
+  useMemo,
   useRef,
   useState,
 } from "react";
 import type { Project } from "@/lib/projects";
 
 const AUTO_SWIPE_DELAY = 4500;
+const LOOP_SET_COUNT = 5;
+const CENTER_LOOP_SET = 2;
 
 export default function Portfolio({ projects }: { projects: Project[] }) {
   const projectCount = projects.length;
-  const loopedProjects = Array.from({ length: 3 }, (_, setIndex) =>
-    projects.map((project, projectIndex) => ({
-      project,
-      projectIndex,
-      loopKey: `${setIndex}-${project.id}`,
-    }))
-  ).flat();
-  const [activeIndex, setActiveIndex] = useState(1);
-  const [activePhysicalIndex, setActivePhysicalIndex] = useState(projectCount + 1);
+  const initialProjectIndex = Math.min(1, Math.max(0, projectCount - 1));
+  const initialPhysicalIndex =
+    projectCount * CENTER_LOOP_SET + initialProjectIndex;
+  const loopedProjects = useMemo(
+    () =>
+      Array.from({ length: LOOP_SET_COUNT }, (_, setIndex) =>
+        projects.map((project, projectIndex) => ({
+          project,
+          projectIndex,
+          loopKey: `${setIndex}-${project.id}`,
+        }))
+      ).flat(),
+    [projects]
+  );
+  const [activeIndex, setActiveIndex] = useState(initialProjectIndex);
+  const [activePhysicalIndex, setActivePhysicalIndex] =
+    useState(initialPhysicalIndex);
   const [isAutoSwipePaused, setIsAutoSwipePaused] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
   const scrollEndTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const resumeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const physicalIndexRef = useRef(projectCount + 1);
-  const activeIndexRef = useRef(1);
+  const scrollFrame = useRef<number | null>(null);
+  const physicalIndexRef = useRef(initialPhysicalIndex);
+  const activeIndexRef = useRef(initialProjectIndex);
 
   const scrollToPhysicalSlide = useCallback((index: number, behavior: ScrollBehavior = "smooth") => {
     const container = scrollRef.current;
@@ -64,44 +76,50 @@ export default function Portfolio({ projects }: { projects: Project[] }) {
   }, []);
 
   const settleInfiniteLoop = useCallback(() => {
+    if (projectCount === 0) return;
     const physicalIndex = findClosestPhysicalIndex();
     const projectIndex = physicalIndex % projectCount;
-    let correctedIndex = physicalIndex;
+    const correctedIndex = projectCount * CENTER_LOOP_SET + projectIndex;
 
-    setActiveIndex(projectIndex);
+    if (activeIndexRef.current !== projectIndex) setActiveIndex(projectIndex);
     activeIndexRef.current = projectIndex;
-
-    if (physicalIndex < projectCount) {
-      correctedIndex = physicalIndex + projectCount;
-    } else if (physicalIndex >= projectCount * 2) {
-      correctedIndex = physicalIndex - projectCount;
-    }
-
     physicalIndexRef.current = correctedIndex;
-    setActivePhysicalIndex(correctedIndex);
+    setActivePhysicalIndex((current) =>
+      current === correctedIndex ? current : correctedIndex
+    );
     if (correctedIndex !== physicalIndex) {
       scrollToPhysicalSlide(correctedIndex, "auto");
     }
   }, [findClosestPhysicalIndex, projectCount, scrollToPhysicalSlide]);
 
   const handleScroll = useCallback(() => {
-    const physicalIndex = findClosestPhysicalIndex();
-    physicalIndexRef.current = physicalIndex;
-    setActivePhysicalIndex(physicalIndex);
-    activeIndexRef.current = physicalIndex % projectCount;
-    setActiveIndex(activeIndexRef.current);
+    if (projectCount === 0) return;
+    if (scrollFrame.current === null) {
+      scrollFrame.current = window.requestAnimationFrame(() => {
+        scrollFrame.current = null;
+        const physicalIndex = findClosestPhysicalIndex();
+        const projectIndex = physicalIndex % projectCount;
+        physicalIndexRef.current = physicalIndex;
+        setActivePhysicalIndex((current) =>
+          current === physicalIndex ? current : physicalIndex
+        );
+        if (activeIndexRef.current !== projectIndex) {
+          activeIndexRef.current = projectIndex;
+          setActiveIndex(projectIndex);
+        }
+      });
+    }
 
     if (scrollEndTimer.current) clearTimeout(scrollEndTimer.current);
-    scrollEndTimer.current = setTimeout(settleInfiniteLoop, 120);
+    scrollEndTimer.current = setTimeout(settleInfiniteLoop, 180);
   }, [findClosestPhysicalIndex, projectCount, settleInfiniteLoop]);
 
   const scrollToProject = useCallback((projectIndex: number) => {
     const currentPhysical = physicalIndexRef.current;
-    const candidates = [
-      projectIndex,
-      projectIndex + projectCount,
-      projectIndex + projectCount * 2,
-    ];
+    const candidates = Array.from(
+      { length: LOOP_SET_COUNT },
+      (_, setIndex) => projectIndex + projectCount * setIndex
+    );
     const closest = candidates.reduce((best, candidate) =>
       Math.abs(candidate - currentPhysical) < Math.abs(best - currentPhysical)
         ? candidate
@@ -122,13 +140,13 @@ export default function Portfolio({ projects }: { projects: Project[] }) {
 
   useEffect(() => {
     if (projectCount === 0) return;
-    const initialIndex = projectCount + Math.min(1, Math.max(0, projectCount - 1));
     const timer = window.setTimeout(
-      () => scrollToPhysicalSlide(initialIndex, "auto"),
-      100
+      () => scrollToPhysicalSlide(initialPhysicalIndex, "auto"),
+      50
     );
     const handleResize = () => {
-      const centeredLoopIndex = projectCount + activeIndexRef.current;
+      const centeredLoopIndex =
+        projectCount * CENTER_LOOP_SET + activeIndexRef.current;
       physicalIndexRef.current = centeredLoopIndex;
       setActivePhysicalIndex(centeredLoopIndex);
       scrollToPhysicalSlide(centeredLoopIndex, "auto");
@@ -139,9 +157,12 @@ export default function Portfolio({ projects }: { projects: Project[] }) {
       window.clearTimeout(timer);
       if (scrollEndTimer.current) clearTimeout(scrollEndTimer.current);
       if (resumeTimer.current) clearTimeout(resumeTimer.current);
+      if (scrollFrame.current !== null) {
+        window.cancelAnimationFrame(scrollFrame.current);
+      }
       window.removeEventListener("resize", handleResize);
     };
-  }, [projectCount, scrollToPhysicalSlide]);
+  }, [initialPhysicalIndex, projectCount, scrollToPhysicalSlide]);
 
   useEffect(() => {
     if (
@@ -153,6 +174,7 @@ export default function Portfolio({ projects }: { projects: Project[] }) {
     }
 
     const autoSwipeTimer = window.setInterval(() => {
+      if (document.hidden) return;
       const nextPhysicalIndex = physicalIndexRef.current + 1;
       physicalIndexRef.current = nextPhysicalIndex;
       setActivePhysicalIndex(nextPhysicalIndex);
@@ -207,11 +229,13 @@ export default function Portfolio({ projects }: { projects: Project[] }) {
             {loopedProjects.map(({ project, projectIndex, loopKey }, physicalIndex) => {
               const isActive = physicalIndex === activePhysicalIndex;
               const isBefore = physicalIndex < activePhysicalIndex;
+              const isNearActive =
+                Math.abs(physicalIndex - activePhysicalIndex) <= 1;
 
               return (
                 <article
                   key={loopKey}
-                  className={`relative aspect-[590/799] w-[78vw] max-w-[440px] shrink-0 snap-center overflow-hidden rounded-[22px] border border-white/90 shadow-[0_18px_45px_rgba(48,36,81,.14)] transition-[transform,filter,opacity] duration-500 ease-out sm:w-[60vw] lg:w-[35%] lg:max-w-[480px] ${
+                  className={`relative aspect-[590/799] w-[78vw] max-w-[440px] shrink-0 snap-center overflow-hidden rounded-[22px] border border-white/90 shadow-[0_18px_45px_rgba(48,36,81,.14)] transition-transform duration-500 ease-out sm:w-[60vw] lg:w-[35%] lg:max-w-[480px] ${
                     isActive ? "z-10 scale-100" : "z-0 lg:scale-[.975]"
                   }`}
                 >
@@ -225,7 +249,7 @@ export default function Portfolio({ projects }: { projects: Project[] }) {
                       src={project.image}
                       alt={project.title}
                       fill
-                      priority={physicalIndex === projectCount + 1}
+                      priority={physicalIndex === initialPhysicalIndex}
                       className="object-cover object-top transition-transform duration-700 ease-out group-hover:scale-[1.025]"
                       sizes="(max-width: 639px) 78vw, (max-width: 1023px) 60vw, 35vw"
                     />
@@ -235,10 +259,23 @@ export default function Portfolio({ projects }: { projects: Project[] }) {
                       className="absolute inset-0 bg-gradient-to-b from-white/8 via-transparent to-white/15"
                     />
 
+                    <div className="absolute inset-x-0 top-0 z-[2] flex justify-start px-4 pt-4 sm:px-5 sm:pt-5">
+                      <span
+                        style={{ fontFamily: '"Cairo", sans-serif' }}
+                        className={`max-w-full truncate rounded-full border border-white/85 bg-white/78 px-4 py-2 text-[9px] font-bold uppercase tracking-[.09em] text-[#302451] shadow-[0_8px_24px_rgba(48,36,81,.16),inset_0_1px_0_rgba(255,255,255,.95)] sm:px-5 sm:text-[10px] ${
+                          isNearActive ? "backdrop-blur-md" : ""
+                        }`}
+                      >
+                        {project.category}
+                      </span>
+                    </div>
+
                     <div className="absolute inset-x-0 bottom-0 flex min-h-[39%] flex-col justify-end px-5 pb-5 pt-20 text-left sm:px-6 sm:pb-6">
                       <div
                         aria-hidden="true"
-                        className="absolute inset-0 border-t border-white/30 bg-gradient-to-b from-white/0 via-white/82 to-white/95 backdrop-blur-[2px]"
+                        className={`absolute inset-0 border-t border-white/30 bg-gradient-to-b from-white/0 via-white/82 to-white/95 ${
+                          isNearActive ? "backdrop-blur-[2px]" : ""
+                        }`}
                         style={{
                           WebkitMaskImage:
                             "linear-gradient(to bottom, transparent 0%, rgba(0,0,0,.2) 15%, black 42%)",
@@ -287,7 +324,7 @@ export default function Portfolio({ projects }: { projects: Project[] }) {
                       <div
                         aria-hidden="true"
                         data-side-card-fade
-                        className={`pointer-events-none absolute inset-0 hidden backdrop-blur-[0.7px] lg:block ${
+                        className={`pointer-events-none absolute inset-0 hidden lg:block ${
                           isBefore
                             ? "bg-[linear-gradient(to_right,rgba(255,255,255,.72)_0%,rgba(255,255,255,.32)_32%,rgba(255,255,255,.08)_58%,transparent_90%)]"
                             : "bg-[linear-gradient(to_left,rgba(255,255,255,.72)_0%,rgba(255,255,255,.32)_32%,rgba(255,255,255,.08)_58%,transparent_90%)]"
