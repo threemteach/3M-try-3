@@ -64,7 +64,7 @@ export default function Portfolio() {
   }, [handleScroll]);
 
   return (
-    <section className="relative w-full bg-[#f5f2f3] py-16 sm:py-20 lg:py-24 px-4 overflow-hidden" id="portfolio">
+    <section className="relative w-full bg-gradient-to-b from-[#f9f7fc] via-[#f3eef8] to-[#e8e2f0] py-16 sm:py-20 lg:py-24 px-4 overflow-hidden" id="portfolio">
       <div className="max-w-[1280px] mx-auto text-center">
         {/* Section Title with Decorative Accent Lines */}
         <div className="flex items-center justify-center gap-4 sm:gap-6 mb-3">

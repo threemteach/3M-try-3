@@ -58,19 +58,20 @@ const services = [
 
 export default function WhatWeDo() {
   return (
-    <section className="relative w-full bg-[#f5f2f3] py-16 sm:py-20 lg:py-24 px-4 overflow-hidden">
+    <section className="relative w-full bg-[#f0edf5] py-16 sm:py-20 lg:py-24 px-4 overflow-hidden">
       <div className="max-w-[1100px] mx-auto">
         {/* Section Header */}
-        <div className="flex items-center justify-center gap-4 sm:gap-6 mb-3">
-          <span className="hidden sm:block h-[2px] w-10 lg:w-16 bg-[#302451]" />
+        <div className="mb-3 flex items-center justify-center gap-2 sm:gap-6">
+          <span className="h-[2px] w-7 bg-[#302451] sm:w-12 lg:w-20" />
           <h2
             style={{ fontFamily: '"MedulaOne", serif' }}
-            className="text-[36px] sm:text-[60px] md:text-[84px] lg:text-[110px] xl:text-[130px] font-normal leading-[1.0] text-[#302451] text-center px-4 whitespace-nowrap"
+            className="whitespace-nowrap px-2 text-center text-[36px] font-normal leading-[1.0] text-[#302451] sm:px-4 sm:text-[60px] md:text-[84px] lg:text-[110px] xl:text-[130px]"
           >
             What We Do
           </h2>
-          <span className="hidden sm:block h-[2px] w-10 lg:w-16 bg-[#302451]" />
+          <span className="h-[2px] w-7 bg-[#302451] sm:w-12 lg:w-20" />
         </div>
+        <div className="mx-auto mb-5 h-[3px] w-[76%] max-w-[700px] rounded-full bg-gradient-to-r from-transparent via-[#302451] to-transparent opacity-70 sm:h-[4px]" />
 
         <p
           style={{ fontFamily: '"Cairo", sans-serif' }}
