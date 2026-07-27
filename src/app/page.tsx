@@ -140,6 +140,7 @@ export default async function Home() {
       {/* Curved Transition & Dream It Section */}
       <NextSection />
 
+
       {/* Portfolio / Our Work Section */}
       <Portfolio projects={projects} />
 

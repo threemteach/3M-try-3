@@ -125,6 +125,15 @@ export default async function ProjectsPage() {
                   className="absolute inset-0 bg-gradient-to-b from-white/10 via-transparent to-white/15"
                 />
 
+                <div className="absolute inset-x-0 top-0 z-[2] flex justify-start px-4 pt-4 sm:px-5 sm:pt-5">
+                  <span
+                    style={{ fontFamily: '"Cairo", sans-serif' }}
+                    className="max-w-full truncate rounded-full border border-white/85 bg-white/78 px-4 py-2 text-[9px] font-bold uppercase tracking-[.09em] text-[#302451] shadow-[0_8px_24px_rgba(48,36,81,.16),inset_0_1px_0_rgba(255,255,255,.95)] sm:px-5 sm:text-[10px] backdrop-blur-md"
+                  >
+                    {project.category}
+                  </span>
+                </div>
+
                 <div className="absolute inset-x-0 bottom-0 flex min-h-[40%] flex-col justify-end px-5 pb-5 pt-20 text-left sm:px-6 sm:pb-6">
                   <div
                     aria-hidden="true"
@@ -138,13 +147,6 @@ export default async function ProjectsPage() {
                   />
 
                   <div className="relative">
-                    <span
-                      style={{ fontFamily: '"Cairo", sans-serif' }}
-                      className="mb-2 inline-flex rounded-full border border-[#302451]/10 bg-white/65 px-3 py-1 text-[9px] font-bold uppercase tracking-[.08em] text-[#302451]/75 backdrop-blur-md sm:text-[10px]"
-                    >
-                      {project.category}
-                    </span>
-
                     <div className="flex items-end gap-3">
                       <h3
                         style={{ fontFamily: '"MedulaOne", serif' }}
