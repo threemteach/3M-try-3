@@ -16,11 +16,11 @@ export default function LoadingScreen() {
     ).matches;
     const leaveTimer = window.setTimeout(
       () => setLeaving(true),
-      reduceMotion ? 350 : 2550
+      reduceMotion ? 350 : 2700
     );
     const removeTimer = window.setTimeout(
       () => setVisible(false),
-      reduceMotion ? 650 : 3000
+      reduceMotion ? 650 : 3150
     );
 
     return () => {
