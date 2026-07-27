@@ -41,7 +41,7 @@ export default function Navbar() {
           ))}
           <li className="shrink-0">
             <Link
-              href="/#process"
+              href="/workflow"
               className="block whitespace-nowrap text-[13px] font-semibold leading-none text-white transition-opacity hover:opacity-80 sm:text-[14px] md:text-[15px] lg:text-[17px] xl:text-[19px]"
             >
               Process
