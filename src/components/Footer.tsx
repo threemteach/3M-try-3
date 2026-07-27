@@ -13,6 +13,7 @@ const quickLinks = [
   { href: "/about", label: "About" },
   { href: "/#process", label: "Process" },
 ];
+// TEST
 
 const stars = [
   "left-[-18px] top-[165px] h-16 w-16 rotate-12 sm:left-[1%] sm:h-20 sm:w-20",
