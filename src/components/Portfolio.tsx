@@ -193,7 +193,7 @@ export default function Portfolio({ projects }: { projects: Project[] }) {
     >
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-x-0 top-0 h-44 bg-gradient-to-b from-white/70 to-transparent"
+        className="pointer-events-none absolute inset-x-0 top-0 h-16 bg-[linear-gradient(to_bottom,#cbc5ce_0%,rgba(216,211,219,.72)_38%,rgba(243,240,243,0)_100%)] sm:h-20 lg:h-24"
       />
 
       <div className="relative mx-auto max-w-[1440px] text-center">
