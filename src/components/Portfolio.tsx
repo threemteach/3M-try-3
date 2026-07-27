@@ -92,15 +92,6 @@ export default function Portfolio() {
 
         {/* Carousel Container with Scroll Arrow Buttons */}
         <div className="relative mx-auto max-w-[1150px] px-2 sm:px-6">
-          {/* Soft side glow, matching the faded edges in the reference */}
-          <div
-            aria-hidden="true"
-            className="pointer-events-none absolute inset-y-[-12px] left-[-16px] z-10 w-[24%] bg-gradient-to-r from-white via-[#f7f3fa]/90 to-transparent blur-[5px] sm:left-0 sm:w-[16%] lg:w-[10%] lg:blur-[2px]"
-          />
-          <div
-            aria-hidden="true"
-            className="pointer-events-none absolute inset-y-[-12px] right-[-16px] z-10 w-[24%] bg-gradient-to-l from-white via-[#eee8f4]/90 to-transparent blur-[5px] sm:right-0 sm:w-[16%] lg:w-[10%] lg:blur-[2px]"
-          />
           {/* Left Scroll Arrow Button */}
           <button
             onClick={handlePrev}
@@ -128,16 +119,27 @@ export default function Portfolio() {
           {/* Cards Carousel (Horizontal Scroll for Mobile/Tablet, Grid for Desktop) */}
           <div
             ref={scrollRef}
-            className="flex lg:grid lg:grid-cols-3 gap-5 sm:gap-8 lg:gap-10 max-w-[1150px] mx-auto overflow-x-auto lg:overflow-visible snap-x snap-mandatory scrollbar-none py-4 px-2 -mx-2"
+            className="mx-auto -mx-2 flex max-w-[1150px] snap-x snap-mandatory gap-5 overflow-x-auto px-5 py-10 scrollbar-none sm:gap-8 sm:px-7 lg:grid lg:grid-cols-3 lg:gap-10 lg:overflow-visible"
             style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
           >
             {projectsData.map((project, idx) => (
-              <Link
+              <div
                 key={project.id}
-                href={`/projects/${project.id}`}
-                onClick={() => setActiveIndex(idx)}
-                className="group relative flex w-[82vw] shrink-0 snap-center flex-col overflow-hidden rounded-[22px] border border-white/85 bg-white/45 text-left shadow-[0_16px_38px_rgba(48,36,81,.16),inset_0_1px_0_rgba(255,255,255,.95)] backdrop-blur-xl transition-all duration-300 hover:-translate-y-2 hover:border-white hover:bg-white/55 hover:shadow-[0_24px_54px_rgba(48,36,81,.24),inset_0_1px_0_rgba(255,255,255,1)] sm:w-[50vw] sm:rounded-[25px] md:w-[42vw] lg:w-auto"
+                className="relative w-[78vw] shrink-0 snap-center sm:w-[50vw] md:w-[42vw] lg:w-auto"
               >
+                <div
+                  aria-hidden="true"
+                  className="pointer-events-none absolute -inset-3 rounded-[38px] bg-white/85 opacity-90 blur-[22px] sm:-inset-4 sm:blur-[28px]"
+                />
+                <div
+                  aria-hidden="true"
+                  className="pointer-events-none absolute -inset-1 rounded-[34px] bg-gradient-to-br from-white via-[#ddd3f1]/85 to-white shadow-[0_0_38px_rgba(255,255,255,1)]"
+                />
+                <Link
+                  href={`/projects/${project.id}`}
+                  onClick={() => setActiveIndex(idx)}
+                  className="group relative flex h-full flex-col overflow-hidden rounded-[26px] border border-white/90 bg-[#e6def2]/12 text-left shadow-[0_18px_44px_rgba(48,36,81,.22),inset_0_1px_0_rgba(255,255,255,1)] backdrop-blur-2xl transition-all duration-300 hover:-translate-y-2 hover:border-white hover:shadow-[0_27px_60px_rgba(48,36,81,.30),inset_0_1px_0_rgba(255,255,255,1)] sm:rounded-[30px]"
+                >
                 {/* Preview Image Container */}
                 <div className="relative w-full aspect-[4/3] sm:aspect-[16/11] bg-[#ded9e6] overflow-hidden">
                   <Image
@@ -156,8 +158,12 @@ export default function Portfolio() {
                 </div>
 
                 {/* Card Body */}
-                <div className="flex flex-1 flex-col justify-between border-t border-white/80 bg-white/50 px-4 pb-4 pt-3 backdrop-blur-xl sm:px-5 sm:pb-5 sm:pt-4">
-                  <div>
+                <div className="relative flex flex-1 flex-col justify-between overflow-hidden border-t border-white/60 bg-[#d8cfea]/18 px-4 pb-4 pt-3 shadow-[inset_0_1px_14px_rgba(255,255,255,.20)] backdrop-blur-[32px] sm:px-5 sm:pb-5 sm:pt-4">
+                  <div
+                    aria-hidden="true"
+                    className="pointer-events-none absolute inset-0 bg-gradient-to-br from-white/18 via-transparent to-[#9f8cc8]/18"
+                  />
+                  <div className="relative">
                     <h3
                       style={{ fontFamily: '"MedulaOne", serif' }}
                       className="text-[32px] font-normal leading-none text-[#302451] sm:text-[38px] lg:text-[42px]"
@@ -179,7 +185,7 @@ export default function Portfolio() {
                   </div>
 
                   {/* Tech Tags */}
-                  <div className="flex flex-nowrap gap-1.5 overflow-hidden pt-1 sm:gap-2">
+                  <div className="relative flex flex-nowrap gap-1.5 overflow-hidden pt-1 sm:gap-2">
                     {project.tags.map((tag) => (
                       <span
                         key={tag}
@@ -191,7 +197,8 @@ export default function Portfolio() {
                     ))}
                   </div>
                 </div>
-              </Link>
+                </Link>
+              </div>
             ))}
           </div>
         </div>
