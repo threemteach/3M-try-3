@@ -11,7 +11,7 @@ const quickLinks = [
   { href: "/", label: "Home" },
   { href: "/projects", label: "Our Work" },
   { href: "/about", label: "About" },
-  { href: "/#process", label: "Process" },
+  { href: "/workflow", label: "Process" },
 ];
 // TEST
 
