@@ -2,232 +2,347 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState, useRef, useEffect, useCallback } from "react";
-import { projectsData } from "@/lib/projectsData";
+import {
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
+import type { Project } from "@/lib/projects";
 
-export default function Portfolio() {
-  const [activeIndex, setActiveIndex] = useState(1); // Default to middle card
+const AUTO_SWIPE_DELAY = 4500;
+
+export default function Portfolio({ projects }: { projects: Project[] }) {
+  const projectCount = projects.length;
+  const loopedProjects = Array.from({ length: 3 }, (_, setIndex) =>
+    projects.map((project, projectIndex) => ({
+      project,
+      projectIndex,
+      loopKey: `${setIndex}-${project.id}`,
+    }))
+  ).flat();
+  const [activeIndex, setActiveIndex] = useState(1);
+  const [activePhysicalIndex, setActivePhysicalIndex] = useState(projectCount + 1);
+  const [isAutoSwipePaused, setIsAutoSwipePaused] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
+  const scrollEndTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const resumeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const physicalIndexRef = useRef(projectCount + 1);
+  const activeIndexRef = useRef(1);
+
+  const scrollToPhysicalSlide = useCallback((index: number, behavior: ScrollBehavior = "smooth") => {
+    const container = scrollRef.current;
+    const card = container?.children[index] as HTMLElement | undefined;
+
+    if (!container || !card) return;
+
+    physicalIndexRef.current = index;
+    container.scrollTo({
+      left: card.offsetLeft - (container.clientWidth - card.clientWidth) / 2,
+      behavior,
+    });
+  }, []);
+
+  const findClosestPhysicalIndex = useCallback(() => {
+    const container = scrollRef.current;
+    if (!container) return physicalIndexRef.current;
+
+    const center = container.scrollLeft + container.clientWidth / 2;
+    let closestIndex = 0;
+    let closestDistance = Number.POSITIVE_INFINITY;
+
+    Array.from(container.children).forEach((child, index) => {
+      const card = child as HTMLElement;
+      const distance = Math.abs(card.offsetLeft + card.clientWidth / 2 - center);
+      if (distance < closestDistance) {
+        closestDistance = distance;
+        closestIndex = index;
+      }
+    });
+
+    return closestIndex;
+  }, []);
+
+  const settleInfiniteLoop = useCallback(() => {
+    const physicalIndex = findClosestPhysicalIndex();
+    const projectIndex = physicalIndex % projectCount;
+    let correctedIndex = physicalIndex;
+
+    setActiveIndex(projectIndex);
+    activeIndexRef.current = projectIndex;
+
+    if (physicalIndex < projectCount) {
+      correctedIndex = physicalIndex + projectCount;
+    } else if (physicalIndex >= projectCount * 2) {
+      correctedIndex = physicalIndex - projectCount;
+    }
+
+    physicalIndexRef.current = correctedIndex;
+    setActivePhysicalIndex(correctedIndex);
+    if (correctedIndex !== physicalIndex) {
+      scrollToPhysicalSlide(correctedIndex, "auto");
+    }
+  }, [findClosestPhysicalIndex, projectCount, scrollToPhysicalSlide]);
 
   const handleScroll = useCallback(() => {
-    if (!scrollRef.current) return;
-    const container = scrollRef.current;
-    const scrollPosition = container.scrollLeft;
-    const cardWidth = container.clientWidth * 0.78;
-    if (cardWidth > 0) {
-      const newIndex = Math.min(
-        Math.max(0, Math.round(scrollPosition / cardWidth)),
-        projectsData.length - 1
-      );
-      setActiveIndex(newIndex);
-    }
-  }, []);
+    const physicalIndex = findClosestPhysicalIndex();
+    physicalIndexRef.current = physicalIndex;
+    setActivePhysicalIndex(physicalIndex);
+    activeIndexRef.current = physicalIndex % projectCount;
+    setActiveIndex(activeIndexRef.current);
 
-  const scrollToSlide = (index: number) => {
-    setActiveIndex(index);
-    if (!scrollRef.current) return;
-    const container = scrollRef.current;
-    const card = container.children[index] as HTMLElement | undefined;
-    if (card) {
-      const left = card.offsetLeft - (container.clientWidth - card.clientWidth) / 2;
-      container.scrollTo({
-        left,
-        behavior: "smooth",
-      });
-    }
-  };
+    if (scrollEndTimer.current) clearTimeout(scrollEndTimer.current);
+    scrollEndTimer.current = setTimeout(settleInfiniteLoop, 120);
+  }, [findClosestPhysicalIndex, projectCount, settleInfiniteLoop]);
 
-  const handlePrev = () => {
-    const nextIndex = Math.max(0, activeIndex - 1);
-    scrollToSlide(nextIndex);
-  };
+  const scrollToProject = useCallback((projectIndex: number) => {
+    const currentPhysical = physicalIndexRef.current;
+    const candidates = [
+      projectIndex,
+      projectIndex + projectCount,
+      projectIndex + projectCount * 2,
+    ];
+    const closest = candidates.reduce((best, candidate) =>
+      Math.abs(candidate - currentPhysical) < Math.abs(best - currentPhysical)
+        ? candidate
+        : best
+    );
 
-  const handleNext = () => {
-    const nextIndex = Math.min(projectsData.length - 1, activeIndex + 1);
-    scrollToSlide(nextIndex);
-  };
+    setActiveIndex(projectIndex);
+    activeIndexRef.current = projectIndex;
+    setActivePhysicalIndex(closest);
+    scrollToPhysicalSlide(closest);
+  }, [projectCount, scrollToPhysicalSlide]);
 
-  // Scroll to middle card by default on initial mount
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      scrollToSlide(1);
-    }, 150);
-    return () => clearTimeout(timer);
+  const pauseAfterInteraction = useCallback(() => {
+    setIsAutoSwipePaused(true);
+    if (resumeTimer.current) clearTimeout(resumeTimer.current);
+    resumeTimer.current = setTimeout(() => setIsAutoSwipePaused(false), 7000);
   }, []);
 
   useEffect(() => {
-    const el = scrollRef.current;
-    if (el) {
-      el.addEventListener("scroll", handleScroll, { passive: true });
-      return () => el.removeEventListener("scroll", handleScroll);
+    if (projectCount === 0) return;
+    const initialIndex = projectCount + Math.min(1, Math.max(0, projectCount - 1));
+    const timer = window.setTimeout(
+      () => scrollToPhysicalSlide(initialIndex, "auto"),
+      100
+    );
+    const handleResize = () => {
+      const centeredLoopIndex = projectCount + activeIndexRef.current;
+      physicalIndexRef.current = centeredLoopIndex;
+      setActivePhysicalIndex(centeredLoopIndex);
+      scrollToPhysicalSlide(centeredLoopIndex, "auto");
+    };
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.clearTimeout(timer);
+      if (scrollEndTimer.current) clearTimeout(scrollEndTimer.current);
+      if (resumeTimer.current) clearTimeout(resumeTimer.current);
+      window.removeEventListener("resize", handleResize);
+    };
+  }, [projectCount, scrollToPhysicalSlide]);
+
+  useEffect(() => {
+    if (
+      projectCount === 0 ||
+      isAutoSwipePaused ||
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches
+    ) {
+      return;
     }
-  }, [handleScroll]);
+
+    const autoSwipeTimer = window.setInterval(() => {
+      const nextPhysicalIndex = physicalIndexRef.current + 1;
+      physicalIndexRef.current = nextPhysicalIndex;
+      setActivePhysicalIndex(nextPhysicalIndex);
+      activeIndexRef.current = nextPhysicalIndex % projectCount;
+      setActiveIndex(activeIndexRef.current);
+      scrollToPhysicalSlide(nextPhysicalIndex);
+    }, AUTO_SWIPE_DELAY);
+
+    return () => window.clearInterval(autoSwipeTimer);
+  }, [isAutoSwipePaused, projectCount, scrollToPhysicalSlide]);
 
   return (
-    <section className="relative w-full bg-gradient-to-b from-[#f9f7fc] via-[#f3eef8] to-[#e8e2f0] py-16 sm:py-20 lg:py-24 px-4 overflow-hidden" id="portfolio">
-      <div className="max-w-[1280px] mx-auto text-center">
-        {/* Section Title with Decorative Accent Lines */}
-        <div className="flex items-center justify-center gap-4 sm:gap-6 mb-3">
-          <div className="w-12 sm:w-20 lg:w-28 h-[3px] bg-[#5E5376] rounded-full opacity-80" />
+    <section
+      id="portfolio"
+      className="relative w-full overflow-hidden bg-[#f3f0f3] px-0 py-16 sm:py-20 lg:py-24"
+    >
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-x-0 top-0 h-44 bg-gradient-to-b from-white/70 to-transparent"
+      />
+
+      <div className="relative mx-auto max-w-[1440px] text-center">
+        <div className="mb-3 flex items-center justify-center gap-4 px-5 sm:gap-6">
+          <span className="h-[2px] w-12 bg-[#302451] sm:w-20 lg:w-24" />
           <h2
             style={{ fontFamily: '"MedulaOne", serif' }}
-            className="text-[52px] sm:text-[68px] md:text-[80px] lg:text-[90px] font-normal leading-none text-[#302451]"
+            className="text-[52px] font-normal leading-none text-[#302451] sm:text-[68px] lg:text-[76px]"
           >
             Our Work
           </h2>
-          <div className="w-12 sm:w-20 lg:w-28 h-[3px] bg-[#5E5376] rounded-full opacity-80" />
+          <span className="h-[2px] w-12 bg-[#302451] sm:w-20 lg:w-24" />
         </div>
 
-        {/* Subtitle */}
         <p
           style={{ fontFamily: '"Cairo", sans-serif' }}
-          className="mx-auto mb-3 max-w-[800px] px-2 text-[16px] font-semibold text-[#302451] sm:text-[20px] md:text-[24px] lg:text-[26px]"
+          className="mx-auto mb-9 max-w-[760px] px-5 text-[15px] font-semibold text-[#302451] sm:mb-12 sm:text-xl"
         >
           Explore some of the products we&apos;ve built for our clients.
         </p>
-        <p className="mx-auto mb-10 max-w-[760px] rounded-full border border-[#302451]/10 bg-white/55 px-5 py-3 text-[11px] font-semibold leading-5 text-[#302451]/75 shadow-sm sm:mb-14 sm:px-7 sm:text-sm sm:leading-6">
-          No random AI design directions—every product decision is intentional,
-          researched, and connected to the client&apos;s business.
-        </p>
 
-        {/* Carousel Container with Scroll Arrow Buttons */}
-        <div className="relative mx-auto max-w-[1150px] px-2 sm:px-6">
-          {/* Left Scroll Arrow Button */}
-          <button
-            onClick={handlePrev}
-            disabled={activeIndex === 0}
-            aria-label="Previous project"
-            className="absolute left-0 top-1/2 -translate-y-1/2 z-20 flex h-10 w-10 sm:h-12 sm:w-12 items-center justify-center rounded-full bg-[#302451] text-white shadow-xl transition-all duration-300 hover:scale-110 hover:bg-[#43346d] active:scale-95 disabled:opacity-30 disabled:pointer-events-none lg:hidden"
-          >
-            <svg className="h-5 w-5 sm:h-6 sm:w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
-            </svg>
-          </button>
-
-          {/* Right Scroll Arrow Button */}
-          <button
-            onClick={handleNext}
-            disabled={activeIndex === projectsData.length - 1}
-            aria-label="Next project"
-            className="absolute right-0 top-1/2 -translate-y-1/2 z-20 flex h-10 w-10 sm:h-12 sm:w-12 items-center justify-center rounded-full bg-[#302451] text-white shadow-xl transition-all duration-300 hover:scale-110 hover:bg-[#43346d] active:scale-95 disabled:opacity-30 disabled:pointer-events-none lg:hidden"
-          >
-            <svg className="h-5 w-5 sm:h-6 sm:w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-            </svg>
-          </button>
-
-          {/* Cards Carousel (Horizontal Scroll for Mobile/Tablet, Grid for Desktop) */}
+        <div className="relative mx-auto max-w-[1320px]">
           <div
             ref={scrollRef}
-            className="mx-auto -mx-2 flex max-w-[1150px] snap-x snap-mandatory gap-5 overflow-x-auto px-5 py-10 scrollbar-none sm:gap-8 sm:px-7 lg:grid lg:grid-cols-3 lg:gap-10 lg:overflow-visible"
-            style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+            onScroll={handleScroll}
+            onMouseEnter={() => setIsAutoSwipePaused(true)}
+            onMouseLeave={() => setIsAutoSwipePaused(false)}
+            onFocusCapture={() => setIsAutoSwipePaused(true)}
+            onBlurCapture={() => setIsAutoSwipePaused(false)}
+            onPointerDown={pauseAfterInteraction}
+            className="flex snap-x snap-mandatory items-stretch gap-4 overflow-x-auto px-[11vw] py-7 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:gap-6 sm:px-[20vw] lg:gap-8 lg:px-[5%]"
           >
-            {projectsData.map((project, idx) => (
-              <div
-                key={project.id}
-                className="relative w-[78vw] shrink-0 snap-center sm:w-[50vw] md:w-[42vw] lg:w-auto"
-              >
-                <div
-                  aria-hidden="true"
-                  className="pointer-events-none absolute -inset-3 rounded-[38px] bg-white/85 opacity-90 blur-[22px] sm:-inset-4 sm:blur-[28px]"
-                />
-                <div
-                  aria-hidden="true"
-                  className="pointer-events-none absolute -inset-1 rounded-[34px] bg-gradient-to-br from-white via-[#ddd3f1]/85 to-white shadow-[0_0_38px_rgba(255,255,255,1)]"
-                />
-                <Link
-                  href={`/projects/${project.id}`}
-                  onClick={() => setActiveIndex(idx)}
-                  className="group relative flex h-full flex-col overflow-hidden rounded-[26px] border border-white/90 bg-[#e6def2]/12 text-left shadow-[0_18px_44px_rgba(48,36,81,.22),inset_0_1px_0_rgba(255,255,255,1)] backdrop-blur-2xl transition-all duration-300 hover:-translate-y-2 hover:border-white hover:shadow-[0_27px_60px_rgba(48,36,81,.30),inset_0_1px_0_rgba(255,255,255,1)] sm:rounded-[30px]"
+            {loopedProjects.map(({ project, projectIndex, loopKey }, physicalIndex) => {
+              const isActive = physicalIndex === activePhysicalIndex;
+              const isBefore = physicalIndex < activePhysicalIndex;
+
+              return (
+                <article
+                  key={loopKey}
+                  className={`relative aspect-[590/799] w-[78vw] max-w-[440px] shrink-0 snap-center overflow-hidden rounded-[22px] border border-white/90 shadow-[0_18px_45px_rgba(48,36,81,.14)] transition-[transform,filter,opacity] duration-500 ease-out sm:w-[60vw] lg:w-[35%] lg:max-w-[480px] ${
+                    isActive ? "z-10 scale-100" : "z-0 lg:scale-[.975]"
+                  }`}
                 >
-                {/* Preview Image Container */}
-                <div className="relative w-full aspect-[4/3] sm:aspect-[16/11] bg-[#ded9e6] overflow-hidden">
-                  <Image
-                    src={project.image}
-                    alt={project.title}
-                    fill
-                    className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
-                    sizes="(max-width: 768px) 85vw, (max-width: 1024px) 50vw, 33vw"
-                  />
-                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-white/25 via-transparent to-[#b9acd0]/10" />
-                  <div className="hidden absolute inset-0 bg-gradient-to-t from-[#302451]/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 items-end p-4">
-                    <span className="text-white text-xs font-semibold bg-[#302451]/90 px-3.5 py-1.5 rounded-full backdrop-blur-md">
-                      View Project Details ↗
-                    </span>
-                  </div>
-                </div>
+                  <Link
+                    href={`/projects/${project.slug}`}
+                    onClick={() => setActiveIndex(projectIndex)}
+                    aria-label={`View ${project.title} project`}
+                    className="group absolute inset-0 block overflow-hidden rounded-[inherit] bg-white/35"
+                  >
+                    <Image
+                      src={project.image}
+                      alt={project.title}
+                      fill
+                      priority={physicalIndex === projectCount + 1}
+                      className="object-cover object-top transition-transform duration-700 ease-out group-hover:scale-[1.025]"
+                      sizes="(max-width: 639px) 78vw, (max-width: 1023px) 60vw, 35vw"
+                    />
 
-                {/* Card Body */}
-                <div className="relative flex flex-1 flex-col justify-between overflow-hidden border-t border-white/60 bg-[#d8cfea]/18 px-4 pb-4 pt-3 shadow-[inset_0_1px_14px_rgba(255,255,255,.20)] backdrop-blur-[32px] sm:px-5 sm:pb-5 sm:pt-4">
-                  <div
-                    aria-hidden="true"
-                    className="pointer-events-none absolute inset-0 bg-gradient-to-br from-white/18 via-transparent to-[#9f8cc8]/18"
-                  />
-                  <div className="relative">
-                    <h3
-                      style={{ fontFamily: '"MedulaOne", serif' }}
-                      className="text-[32px] font-normal leading-none text-[#302451] sm:text-[38px] lg:text-[42px]"
-                    >
-                      {project.title}
-                    </h3>
-                    <div className="mb-2 mt-1 flex items-center gap-2">
-                      <span className="h-px flex-1 bg-gradient-to-r from-[#302451]/65 via-[#302451]/45 to-[#302451]/15" />
-                      <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-[5px] border border-[#302451]/55 text-[15px] leading-none text-[#302451] transition-colors duration-200 group-hover:bg-[#302451] group-hover:text-white sm:h-7 sm:w-7 sm:text-[17px]">
-                        ↗
-                      </span>
+                    <div
+                      aria-hidden="true"
+                      className="absolute inset-0 bg-gradient-to-b from-white/8 via-transparent to-white/15"
+                    />
+
+                    <div className="absolute inset-x-0 bottom-0 flex min-h-[39%] flex-col justify-end px-5 pb-5 pt-20 text-left sm:px-6 sm:pb-6">
+                      <div
+                        aria-hidden="true"
+                        className="absolute inset-0 border-t border-white/30 bg-gradient-to-b from-white/0 via-white/82 to-white/95 backdrop-blur-[2px]"
+                        style={{
+                          WebkitMaskImage:
+                            "linear-gradient(to bottom, transparent 0%, rgba(0,0,0,.2) 15%, black 42%)",
+                          maskImage:
+                            "linear-gradient(to bottom, transparent 0%, rgba(0,0,0,.2) 15%, black 42%)",
+                        }}
+                      />
+
+                      <div className="relative">
+                        <div className="flex items-end gap-3">
+                          <h3
+                            style={{ fontFamily: '"MedulaOne", serif' }}
+                            className="min-w-0 flex-1 text-[38px] font-normal leading-[.95] text-[#302451] sm:text-[46px] lg:text-[clamp(34px,3vw,52px)]"
+                          >
+                            {project.title}
+                          </h3>
+                          <span className="mb-1 flex h-6 w-6 shrink-0 items-center justify-center rounded-[3px] border border-[#302451]/65 text-sm leading-none text-[#302451] transition-colors group-hover:bg-[#302451] group-hover:text-white">
+                            ↗
+                          </span>
+                        </div>
+
+                        <span className="my-2 block h-px w-full bg-gradient-to-r from-[#302451]/60 to-transparent" />
+
+                        <p
+                          style={{ fontFamily: '"Cairo", sans-serif' }}
+                          className="line-clamp-2 min-h-[2.9em] text-[10px] font-medium leading-[1.45] text-[#504961] sm:text-[11px] lg:text-[clamp(9px,.82vw,12px)]"
+                        >
+                          {project.description}
+                        </p>
+
+                        <div className="mt-3 flex items-center justify-center gap-2 overflow-hidden sm:mt-4 sm:gap-2.5">
+                          {project.tags.slice(0, 3).map((tag) => (
+                            <span
+                              key={tag}
+                              style={{ fontFamily: '"Cairo", sans-serif' }}
+                              className="shrink-0 whitespace-nowrap rounded-full bg-[#302451] px-3.5 py-1.5 text-[10px] font-bold leading-none text-white shadow-[0_3px_10px_rgba(48,36,81,.25)] sm:px-4 sm:py-2 sm:text-[12px] lg:text-[clamp(10px,.78vw,12px)]"
+                            >
+                              {tag}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
                     </div>
-                    <p
-                      style={{ fontFamily: '"Cairo", sans-serif' }}
-                      className="mb-3 line-clamp-2 text-[10px] font-medium leading-[1.45] text-[#5f5870] sm:text-[11px] lg:text-[12px]"
-                    >
-                      {project.description}
-                    </p>
-                  </div>
 
-                  {/* Tech Tags */}
-                  <div className="relative flex flex-nowrap gap-1.5 overflow-hidden pt-1 sm:gap-2">
-                    {project.tags.map((tag) => (
-                      <span
-                        key={tag}
-                        style={{ fontFamily: '"Cairo", sans-serif' }}
-                        className="whitespace-nowrap rounded-full bg-[#302451] px-3 py-1 text-[9px] font-semibold text-white shadow-sm sm:text-[10px]"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-                </Link>
+                    {!isActive && (
+                      <div
+                        aria-hidden="true"
+                        data-side-card-fade
+                        className={`pointer-events-none absolute inset-0 hidden backdrop-blur-[0.7px] lg:block ${
+                          isBefore
+                            ? "bg-[linear-gradient(to_right,rgba(255,255,255,.72)_0%,rgba(255,255,255,.32)_32%,rgba(255,255,255,.08)_58%,transparent_90%)]"
+                            : "bg-[linear-gradient(to_left,rgba(255,255,255,.72)_0%,rgba(255,255,255,.32)_32%,rgba(255,255,255,.08)_58%,transparent_90%)]"
+                        }`}
+                      />
+                    )}
+                  </Link>
+                </article>
+              );
+            })}
+            {projects.length === 0 && (
+              <div className="mx-auto flex min-h-72 w-full items-center justify-center rounded-[28px] border border-dashed border-[#302451]/15 bg-white/40 px-6 text-sm font-semibold text-[#302451]/55">
+                New projects are coming soon.
               </div>
-            ))}
+            )}
           </div>
+
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-y-0 left-0 w-[8%] bg-gradient-to-r from-[#f3f0f3]/70 to-transparent sm:w-[12%] lg:w-[5%]"
+          />
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-y-0 right-0 w-[8%] bg-gradient-to-l from-[#f3f0f3]/70 to-transparent sm:w-[12%] lg:w-[5%]"
+          />
         </div>
 
-        {/* Animated Carousel Indicator Dots */}
-        <div className="flex items-center justify-center gap-2 mt-8 sm:mt-10">
-          {projectsData.map((_, idx) => (
+        <div className="mt-5 flex items-center justify-center gap-2 sm:mt-7">
+          {projects.map((project, index) => (
             <button
-              key={idx}
-              onClick={() => scrollToSlide(idx)}
-              aria-label={`Go to slide ${idx + 1}`}
-              className={`h-3 rounded-full transition-all duration-300 ${
-                activeIndex === idx
-                  ? "w-8 sm:w-10 bg-[#302451] shadow-sm"
-                  : "w-3 bg-[#a299b8] hover:bg-[#5E5376]"
+              key={project.id}
+              type="button"
+              onClick={() => {
+                pauseAfterInteraction();
+                scrollToProject(index);
+              }}
+              aria-label={`Show ${project.title}`}
+              aria-current={activeIndex === index ? "true" : undefined}
+              className={`h-2.5 rounded-full transition-all duration-300 ${
+                activeIndex === index
+                  ? "w-10 bg-[#302451]"
+                  : "w-5 bg-[#302451]/45 hover:bg-[#302451]/65"
               }`}
             />
           ))}
         </div>
 
-        {/* SEE ALL PROJECTS BUTTON */}
-        <div className="mt-10 sm:mt-12 flex justify-center">
+        <div className="mt-9 flex justify-center px-5 sm:mt-11">
           <Link
             href="/projects"
             style={{ fontFamily: '"Cairo", sans-serif' }}
-            className="group flex h-12 sm:h-14 px-8 items-center justify-center gap-3 rounded-full bg-[#302451] text-white text-14px sm:text-16px font-bold shadow-xl transition-all duration-300 hover:bg-[#43346d] hover:scale-105 hover:shadow-2xl active:scale-95 border border-white/20"
+            className="group flex h-12 items-center justify-center gap-3 rounded-full border border-white/30 bg-[#302451] px-8 text-sm font-bold text-white shadow-[0_12px_30px_rgba(48,36,81,.22)] transition-all hover:-translate-y-0.5 hover:bg-[#43346d] sm:h-14 sm:text-base"
           >
             <span>See All Projects</span>
-            <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
+            <span className="transition-transform group-hover:translate-x-1">→</span>
           </Link>
         </div>
       </div>

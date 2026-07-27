@@ -9,6 +9,9 @@ import WhoWeAre from "@/components/WhoWeAre";
 import Workflow from "@/components/Workflow";
 import type { Metadata } from "next";
 import { SITE_DESCRIPTION, SITE_NAME, SITE_URL } from "@/lib/constants";
+import { getPublishedProjects } from "@/lib/projects";
+
+export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: { absolute: "3M tech | Digital Product Studio in Egypt" },
@@ -28,7 +31,8 @@ export const metadata: Metadata = {
   },
 };
 
-export default function Home() {
+export default async function Home() {
+  const projects = await getPublishedProjects();
   return (
     <>
       <section className="relative flex min-h-[650px] w-full flex-col justify-start overflow-hidden bg-[#302451] pb-24 pt-4 sm:min-h-[760px] sm:pb-20 sm:pt-6 md:min-h-[820px] lg:min-h-[820px] lg:pb-20 lg:pt-8 xl:min-h-[880px]">
@@ -137,7 +141,7 @@ export default function Home() {
       <NextSection />
 
       {/* Portfolio / Our Work Section */}
-      <Portfolio />
+      <Portfolio projects={projects} />
 
       {/* What We Do / Services Section */}
       <WhatWeDo />

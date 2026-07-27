@@ -1,28 +1,18 @@
 "use client";
 
-import { use } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { notFound } from "next/navigation";
 import { useState } from "react";
 import Navbar from "@/components/Navbar";
-import { projectsData } from "@/lib/projectsData";
+import type { Project } from "@/lib/projects";
+import FeatureIcon from "@/components/FeatureIcon";
 
 export default function ProjectDetailClient({
-  params,
+  project,
 }: {
-  params: Promise<{ id: string }>;
+  project: Project;
 }) {
-  const { id } = use(params);
-  const project = projectsData.find((p) => p.id === id);
-
-  const [activeImage, setActiveImage] = useState<string>(
-    project ? project.image : ""
-  );
-
-  if (!project) {
-    notFound();
-  }
+  const [activeImage, setActiveImage] = useState(project.image);
 
   return (
     <div className="min-h-screen bg-[#f0edf5] flex flex-col justify-between">
@@ -164,7 +154,9 @@ export default function ProjectDetailClient({
                 key={idx}
                 className="p-5 rounded-2xl bg-purple-50/60 border border-purple-100 flex items-start gap-4 transition-transform duration-300 hover:-translate-y-1"
               >
-                <span className="text-3xl shrink-0">{feat.icon}</span>
+                <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-[#302451] text-white shadow-[0_8px_20px_rgba(48,36,81,.18)]">
+                  <FeatureIcon name={feat.icon} className="h-6 w-6" />
+                </span>
                 <div>
                   <h3
                     style={{ fontFamily: '"Cairo", sans-serif' }}
@@ -176,7 +168,7 @@ export default function ProjectDetailClient({
                     style={{ fontFamily: '"Cairo", sans-serif' }}
                     className="text-xs sm:text-sm text-gray-600 leading-relaxed"
                   >
-                    {feat.desc}
+                    {feat.description}
                   </p>
                 </div>
               </div>
