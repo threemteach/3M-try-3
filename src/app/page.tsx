@@ -140,6 +140,13 @@ export default async function Home() {
       {/* Curved Transition & Dream It Section */}
       <NextSection />
 
+      {/* Color blend between NextSection (#cbc5ce) and Portfolio (#f3f0f3) */}
+      <div
+        aria-hidden="true"
+        className="w-full"
+        style={{ background: "linear-gradient(to bottom, #cbc5ce 0%, #f3f0f3 100%)", height: "clamp(40px, 6vw, 80px)" }}
+      />
+
       {/* Portfolio / Our Work Section */}
       <Portfolio projects={projects} />
 
