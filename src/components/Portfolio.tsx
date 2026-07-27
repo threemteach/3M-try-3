@@ -91,7 +91,16 @@ export default function Portfolio() {
         </p>
 
         {/* Carousel Container with Scroll Arrow Buttons */}
-        <div className="relative max-w-[1150px] mx-auto px-2 sm:px-6">
+        <div className="relative mx-auto max-w-[1150px] px-2 sm:px-6">
+          {/* Soft side glow, matching the faded edges in the reference */}
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-y-[-12px] left-[-16px] z-10 w-[24%] bg-gradient-to-r from-white via-[#f7f3fa]/90 to-transparent blur-[5px] sm:left-0 sm:w-[16%] lg:w-[10%] lg:blur-[2px]"
+          />
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-y-[-12px] right-[-16px] z-10 w-[24%] bg-gradient-to-l from-white via-[#eee8f4]/90 to-transparent blur-[5px] sm:right-0 sm:w-[16%] lg:w-[10%] lg:blur-[2px]"
+          />
           {/* Left Scroll Arrow Button */}
           <button
             onClick={handlePrev}
@@ -127,7 +136,7 @@ export default function Portfolio() {
                 key={project.id}
                 href={`/projects/${project.id}`}
                 onClick={() => setActiveIndex(idx)}
-                className="group relative flex flex-col shrink-0 w-[82vw] sm:w-[50vw] md:w-[42vw] lg:w-auto snap-center bg-white/90 backdrop-blur-sm rounded-[28px] sm:rounded-[32px] overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-white/60 text-left"
+                className="group relative flex w-[82vw] shrink-0 snap-center flex-col overflow-hidden rounded-[22px] border border-white/85 bg-white/45 text-left shadow-[0_16px_38px_rgba(48,36,81,.16),inset_0_1px_0_rgba(255,255,255,.95)] backdrop-blur-xl transition-all duration-300 hover:-translate-y-2 hover:border-white hover:bg-white/55 hover:shadow-[0_24px_54px_rgba(48,36,81,.24),inset_0_1px_0_rgba(255,255,255,1)] sm:w-[50vw] sm:rounded-[25px] md:w-[42vw] lg:w-auto"
               >
                 {/* Preview Image Container */}
                 <div className="relative w-full aspect-[4/3] sm:aspect-[16/11] bg-[#ded9e6] overflow-hidden">
@@ -138,7 +147,8 @@ export default function Portfolio() {
                     className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
                     sizes="(max-width: 768px) 85vw, (max-width: 1024px) 50vw, 33vw"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#302451]/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-white/25 via-transparent to-[#b9acd0]/10" />
+                  <div className="hidden absolute inset-0 bg-gradient-to-t from-[#302451]/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 items-end p-4">
                     <span className="text-white text-xs font-semibold bg-[#302451]/90 px-3.5 py-1.5 rounded-full backdrop-blur-md">
                       View Project Details ↗
                     </span>
@@ -146,32 +156,35 @@ export default function Portfolio() {
                 </div>
 
                 {/* Card Body */}
-                <div className="p-5 sm:p-6 flex flex-col flex-1 justify-between bg-white/80">
+                <div className="flex flex-1 flex-col justify-between border-t border-white/80 bg-white/50 px-4 pb-4 pt-3 backdrop-blur-xl sm:px-5 sm:pb-5 sm:pt-4">
                   <div>
                     <h3
-                      style={{ fontFamily: '"Cairo", sans-serif' }}
-                      className="text-[20px] sm:text-[22px] lg:text-[24px] font-bold text-[#302451] mb-2 leading-tight flex items-center justify-between"
+                      style={{ fontFamily: '"MedulaOne", serif' }}
+                      className="text-[32px] font-normal leading-none text-[#302451] sm:text-[38px] lg:text-[42px]"
                     >
-                      <span>{project.title}</span>
-                      <span className="text-xs font-semibold text-[#302451] bg-purple-100 px-3 py-1 rounded-full group-hover:bg-[#302451] group-hover:text-white transition-colors duration-200">
-                        View ↗
-                      </span>
+                      {project.title}
                     </h3>
+                    <div className="mb-2 mt-1 flex items-center gap-2">
+                      <span className="h-px flex-1 bg-gradient-to-r from-[#302451]/65 via-[#302451]/45 to-[#302451]/15" />
+                      <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-[5px] border border-[#302451]/55 text-[15px] leading-none text-[#302451] transition-colors duration-200 group-hover:bg-[#302451] group-hover:text-white sm:h-7 sm:w-7 sm:text-[17px]">
+                        ↗
+                      </span>
+                    </div>
                     <p
                       style={{ fontFamily: '"Cairo", sans-serif' }}
-                      className="text-[12px] sm:text-[13px] text-gray-600 leading-relaxed mb-4 line-clamp-3"
+                      className="mb-3 line-clamp-2 text-[10px] font-medium leading-[1.45] text-[#5f5870] sm:text-[11px] lg:text-[12px]"
                     >
                       {project.description}
                     </p>
                   </div>
 
                   {/* Tech Tags */}
-                  <div className="flex flex-wrap gap-1.5 sm:gap-2 pt-2">
+                  <div className="flex flex-nowrap gap-1.5 overflow-hidden pt-1 sm:gap-2">
                     {project.tags.map((tag) => (
                       <span
                         key={tag}
                         style={{ fontFamily: '"Cairo", sans-serif' }}
-                        className="px-3 py-1 rounded-full bg-[#302451] text-white text-[10px] sm:text-[11px] font-semibold whitespace-nowrap"
+                        className="whitespace-nowrap rounded-full bg-[#302451] px-3 py-1 text-[9px] font-semibold text-white shadow-sm sm:text-[10px]"
                       >
                         {tag}
                       </span>

@@ -4,6 +4,7 @@ import MobileBottomNav from "@/components/MobileBottomNav";
 import Footer from "@/components/Footer";
 import ContactForm from "@/components/ContactForm";
 import ScrollToTop from "@/components/ScrollToTop";
+import LoadingScreen from "@/components/LoadingScreen";
 import {
   FACEBOOK_URL,
   INSTAGRAM_URL,
@@ -126,6 +127,7 @@ export default function RootLayout({
         />
       </head>
       <body className="flex min-h-screen flex-col font-[family-name:var(--font-cairo)] antialiased">
+        <LoadingScreen />
         <ScrollToTop />
         <main className="flex-1">{children}</main>
         <ContactForm />
