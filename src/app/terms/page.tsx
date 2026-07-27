@@ -3,6 +3,8 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Terms of Use",
   description: "Terms for using the 3M tech website and requesting project services.",
+  alternates: { canonical: "/terms" },
+  robots: { index: true, follow: true },
 };
 
 export default function TermsPage() {

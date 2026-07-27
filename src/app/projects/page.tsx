@@ -3,20 +3,25 @@ import Image from "next/image";
 import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import { projectsData } from "@/lib/projectsData";
-import { SITE_URL } from "@/lib/constants";
+import { SITE_NAME, SITE_URL } from "@/lib/constants";
 
 export const metadata: Metadata = {
-  title: "Our Work & Projects",
-  description: "Explore the portfolio of web applications and digital platforms built by 3M.",
+  title: "Web Development Portfolio",
+  description:
+    "Explore custom web applications, e-commerce platforms, and digital products designed and developed by 3M tech.",
+  alternates: { canonical: "/projects" },
   openGraph: {
-    title: "Our Work & Projects | 3M",
-    description: "Explore the portfolio of web applications and digital platforms built by 3M.",
+    title: "Web Development Portfolio | 3M tech",
+    description:
+      "Explore custom web applications, e-commerce platforms, and digital products built by 3M tech.",
     url: `${SITE_URL}/projects`,
+    siteName: SITE_NAME,
+    type: "website",
   },
   twitter: {
-    card: "summary_large_image",
-    title: "Our Work & Projects | 3M",
-    description: "Explore the portfolio of web applications and digital platforms built by 3M.",
+    card: "summary",
+    title: "Web Development Portfolio | 3M tech",
+    description: "Explore custom web applications, e-commerce platforms, and digital products built by 3M tech.",
   },
 };
 

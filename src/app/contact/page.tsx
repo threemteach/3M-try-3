@@ -2,10 +2,26 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import Navbar from "@/components/Navbar";
+import { SITE_NAME, SITE_URL } from "@/lib/constants";
 
 export const metadata: Metadata = {
   title: "Contact Us",
-  description: "Get in touch with 3M tech for your next project.",
+  description:
+    "Contact 3M tech in Egypt to discuss a custom web application, e-commerce platform, Shopify store, MVP, or UI/UX project.",
+  alternates: { canonical: "/contact" },
+  openGraph: {
+    title: "Contact 3M tech | Start Your Digital Project",
+    description:
+      "Tell us what you want to build and start a conversation with our digital product team in Egypt.",
+    url: `${SITE_URL}/contact`,
+    siteName: SITE_NAME,
+    type: "website",
+  },
+  twitter: {
+    card: "summary",
+    title: "Contact 3M tech | Start Your Digital Project",
+    description: "Tell us what you want to build and start a conversation with our team.",
+  },
 };
 
 export default function ContactPage() {

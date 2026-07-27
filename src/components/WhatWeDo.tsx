@@ -58,7 +58,7 @@ const services = [
 
 export default function WhatWeDo() {
   return (
-    <section className="relative w-full bg-[#f0edf5] py-16 sm:py-20 lg:py-24 px-4 overflow-hidden">
+    <section className="relative w-full bg-[#f5f2f3] py-16 sm:py-20 lg:py-24 px-4 overflow-hidden">
       <div className="max-w-[1100px] mx-auto">
         {/* Section Header */}
         <div className="flex items-center justify-center gap-4 sm:gap-6 mb-3">

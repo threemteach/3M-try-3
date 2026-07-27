@@ -7,6 +7,26 @@ import Portfolio from "@/components/Portfolio";
 import WhatWeDo from "@/components/WhatWeDo";
 import WhoWeAre from "@/components/WhoWeAre";
 import Workflow from "@/components/Workflow";
+import type { Metadata } from "next";
+import { SITE_DESCRIPTION, SITE_NAME, SITE_URL } from "@/lib/constants";
+
+export const metadata: Metadata = {
+  title: { absolute: "3M tech | Digital Product Studio in Egypt" },
+  description: SITE_DESCRIPTION,
+  alternates: { canonical: "/" },
+  openGraph: {
+    title: "3M tech | Digital Product Studio in Egypt",
+    description: SITE_DESCRIPTION,
+    url: SITE_URL,
+    siteName: SITE_NAME,
+    type: "website",
+  },
+  twitter: {
+    card: "summary",
+    title: "3M tech | Digital Product Studio in Egypt",
+    description: SITE_DESCRIPTION,
+  },
+};
 
 export default function Home() {
   return (

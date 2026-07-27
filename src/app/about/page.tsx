@@ -3,11 +3,27 @@ import Image from "next/image";
 import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import { faqItems, teamMembers } from "@/lib/aboutData";
+import { SITE_NAME, SITE_URL } from "@/lib/constants";
 
 export const metadata: Metadata = {
   title: "About Us",
   description:
     "Meet the 3M tech team in Egypt. We design and build custom web applications, e-commerce platforms, Shopify stores, MVPs, and UI/UX experiences.",
+  alternates: { canonical: "/about" },
+  openGraph: {
+    title: "About 3M tech | Digital Product Team in Egypt",
+    description:
+      "Meet the team behind 3M tech and discover how we turn business goals into intentional, scalable digital products.",
+    url: `${SITE_URL}/about`,
+    siteName: SITE_NAME,
+    type: "website",
+  },
+  twitter: {
+    card: "summary",
+    title: "About 3M tech | Digital Product Team in Egypt",
+    description:
+      "Meet the team behind 3M tech and discover how we build intentional, scalable digital products.",
+  },
 };
 
 const services = [
@@ -180,7 +196,7 @@ export default function About() {
         </div>
       </section>
 
-      <section className="bg-white px-4 py-20 text-[#312354] sm:px-8 sm:py-24">
+      <section className="bg-[#f5f2f3] px-4 py-20 text-[#312354] sm:px-8 sm:py-24">
         <div className="mx-auto max-w-[1120px]">
           <header className="text-center">
             <div className="flex items-center justify-center gap-4">
@@ -194,8 +210,11 @@ export default function About() {
           </header>
           <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {services.map((service) => (
-              <article key={service.title} className="rounded-[24px] border border-[#ded8e8] bg-[#f8f6f8] p-6">
-                <span className="text-[34px] text-[#9b84d7] [font-family:MedulaOne]">{service.number}</span>
+              <article
+                key={service.title}
+                className="rounded-[24px] bg-white p-6 shadow-[0_10px_0_#a78be3,0_18px_22px_rgba(49,35,84,.10)] transition-transform hover:-translate-y-1 sm:p-7"
+              >
+                <span className="text-[38px] text-[#8065ba] [font-family:MedulaOne]">{service.number}</span>
                 <h3 className="mt-3 text-xl font-bold">{service.title}</h3>
                 <p className="mt-3 text-sm leading-7 text-[#696175]">{service.text}</p>
               </article>
