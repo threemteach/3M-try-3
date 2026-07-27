@@ -26,7 +26,7 @@ export default async function AdminDashboard() {
           href="/admin/projects/new"
           className="inline-flex h-12 items-center justify-center gap-2 rounded-full bg-[#302451] px-6 text-sm font-bold text-white shadow-[0_12px_30px_rgba(48,36,81,.22)] transition hover:-translate-y-0.5 hover:bg-[#43346d]"
         >
-          <span className="text-xl">+</span>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
           New project
         </Link>
       </div>

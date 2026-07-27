@@ -53,7 +53,7 @@ export default function WhoWeAre() {
             <span
               key={badge.label}
               aria-hidden="true"
-              className={`absolute z-10 flex h-[38px] w-[100px] items-center justify-center rounded-full border border-white/15 bg-[#4a3d6b] text-[12px] font-medium text-white shadow-[0_9px_17px_rgba(0,0,0,.22)] sm:h-[44px] sm:w-[116px] sm:text-sm ${badge.position}`}
+              className={`absolute z-10 flex h-[38px] w-[100px] items-center justify-center rounded-full border border-white/25 bg-white/10 text-[12px] font-medium text-white shadow-[0_8px_32px_rgba(0,0,0,.25),inset_0_1px_0_rgba(255,255,255,.2)] backdrop-blur-lg sm:h-[44px] sm:w-[116px] sm:text-sm ${badge.position}`}
             >
               {badge.label}
             </span>
@@ -72,8 +72,8 @@ export default function WhoWeAre() {
         </div>
 
         <p className="mt-4 flex max-w-[860px] items-start gap-3 text-left text-[12px] leading-6 text-white sm:mt-5 sm:text-[15px] sm:leading-7 lg:text-base">
-          <span className="mt-[7px] shrink-0 text-[14px] leading-none text-white" aria-hidden="true">
-            ▶
+          <span className="mt-[5px] shrink-0 text-white" aria-hidden="true">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><polygon points="6 3 20 12 6 21 6 3"/></svg>
           </span>
           <span>
             We combine design, technology, and strategy to build digital products

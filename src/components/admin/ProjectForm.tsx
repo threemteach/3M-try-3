@@ -125,7 +125,7 @@ export default function ProjectForm({ project }: { project?: Project }) {
           <div className="mt-4 flex flex-wrap gap-2">
             {tags.map((tag) => (
               <button key={tag} type="button" onClick={() => setTags(tags.filter((item) => item !== tag))} className="rounded-full bg-[#302451] px-4 py-2 text-xs font-bold text-white" title="Remove tag">
-                {tag} ×
+                {tag} <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
               </button>
             ))}
           </div>
@@ -134,7 +134,7 @@ export default function ProjectForm({ project }: { project?: Project }) {
         <section className="rounded-[26px] border border-white bg-white/70 p-5 shadow-sm backdrop-blur-xl sm:p-7">
           <div className="flex items-center justify-between">
             <div><h2 className="text-lg font-bold">Project highlights</h2><p className="mt-1 text-xs text-[#625b70]">Add the feature cards used on the project page.</p></div>
-            <button type="button" onClick={() => setFeatures([...features, { ...emptyFeature }])} className="rounded-full bg-[#302451]/8 px-4 py-2 text-xs font-bold">+ Feature</button>
+            <button type="button" onClick={() => setFeatures([...features, { ...emptyFeature }])} className="inline-flex items-center gap-1.5 rounded-full bg-[#302451]/8 px-4 py-2 text-xs font-bold"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="M12 5v14"/></svg> Feature</button>
           </div>
           <div className="mt-5 space-y-4">
             {features.map((feature, index) => (

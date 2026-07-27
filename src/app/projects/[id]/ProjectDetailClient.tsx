@@ -59,7 +59,7 @@ export default function ProjectDetailClient({
             style={{ fontFamily: '"Cairo", sans-serif' }}
             className="inline-flex items-center gap-2 text-xs sm:text-sm font-semibold text-purple-200 hover:text-white transition-colors mb-4"
           >
-            <span>←</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>
             <span>Back to Our Work</span>
           </Link>
 
@@ -205,7 +205,7 @@ export default function ProjectDetailClient({
               className="w-full sm:w-auto h-12 sm:h-14 px-8 rounded-full bg-[#302451] text-white text-sm font-bold flex items-center justify-center gap-2 shadow-xl hover:bg-[#43346d] transition-all hover:scale-105 active:scale-95"
             >
               <span>Visit Live Project</span>
-              <span>↗</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>
             </a>
           </div>
         </div>
@@ -217,7 +217,7 @@ export default function ProjectDetailClient({
             style={{ fontFamily: '"Cairo", sans-serif' }}
             className="inline-flex h-12 px-8 items-center justify-center rounded-full bg-white text-[#302451] border border-gray-200 font-bold text-sm shadow-md hover:bg-gray-50 transition-all"
           >
-            ← Back to All Projects
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg> Back to All Projects
           </Link>
         </div>
       </main>

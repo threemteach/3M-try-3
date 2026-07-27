@@ -292,8 +292,8 @@ export default function Portfolio({ projects }: { projects: Project[] }) {
                           >
                             {project.title}
                           </h3>
-                          <span className="mb-1 flex h-6 w-6 shrink-0 items-center justify-center rounded-[3px] border border-[#302451]/65 text-sm leading-none text-[#302451] transition-colors group-hover:bg-[#302451] group-hover:text-white">
-                            ↗
+                          <span className="mb-1 flex h-6 w-6 shrink-0 items-center justify-center rounded-[3px] border border-[#302451]/65 text-[#302451] transition-colors group-hover:bg-[#302451] group-hover:text-white">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>
                           </span>
                         </div>
 
@@ -379,7 +379,7 @@ export default function Portfolio({ projects }: { projects: Project[] }) {
             className="group flex h-12 items-center justify-center gap-3 rounded-full border border-white/30 bg-[#302451] px-8 text-sm font-bold text-white shadow-[0_12px_30px_rgba(48,36,81,.22)] transition-all hover:-translate-y-0.5 hover:bg-[#43346d] sm:h-14 sm:text-base"
           >
             <span>See All Projects</span>
-            <span className="transition-transform group-hover:translate-x-1">→</span>
+            <span className="transition-transform group-hover:translate-x-1"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>
           </Link>
         </div>
       </div>
