@@ -13,6 +13,7 @@
 
 # next.js
 /.next/
+/.next-*/
 /out/
 
 # production
@@ -32,6 +33,7 @@ dev.log
 
 # env files
 .env*.local
+/env.download
 
 # vercel
 .vercel
