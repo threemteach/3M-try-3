@@ -59,6 +59,144 @@ body {
   100% { opacity: 1; transform: scale(1); filter: blur(0); }
 }
 
+html[dir="rtl"] body {
+  font-family: "Sahlab", "Cairo", sans-serif;
+  letter-spacing: 0;
+}
+
+html[dir="rtl"] h1,
+html[dir="rtl"] h2,
+html[dir="rtl"] h3,
+html[dir="rtl"] [style*="MedulaOne"] {
+  font-family: "Sahlab", "Cairo", sans-serif !important;
+  letter-spacing: 0 !important;
+}
+
+html[dir="rtl"] .rtl-hero-copy {
+  text-align: right;
+  align-items: flex-start;
+}
+
+@media (min-width: 1024px) {
+  html[dir="rtl"] .rtl-hero-copy {
+    width: 48% !important;
+    max-width: 560px !important;
+    margin-left: auto !important;
+    margin-right: 0 !important;
+  }
+
+  html[dir="rtl"] .rtl-hero-copy h1 {
+    font-size: clamp(72px, 6.4vw, 96px) !important;
+  }
+
+  html[dir="rtl"] .rtl-hero-copy .hero-rotator {
+    max-width: 100%;
+  }
+
+  html[dir="rtl"] .hero-mockup-desktop {
+    left: 1.5rem !important;
+    right: auto !important;
+  }
+}
+
+html[dir="rtl"] .rtl-hero-copy h1 {
+  font-size: clamp(48px, 7.6vw, 96px) !important;
+  line-height: 1.05 !important;
+}
+
+html[dir="rtl"] .hero-rotator {
+  direction: rtl;
+  max-width: 100%;
+}
+
+html[dir="rtl"] .hero-build-label {
+  font-size: clamp(29px, 4.1vw, 54px) !important;
+}
+
+html[dir="rtl"] .rotating-item {
+  font-size: clamp(22px, 3.2vw, 42px) !important;
+}
+
+html[dir="rtl"] .approach-label {
+  font-size: clamp(18px, 2vw, 25px) !important;
+  letter-spacing: 0 !important;
+}
+
+html[dir="rtl"] .approach-copy {
+  font-size: clamp(17px, 2vw, 24px) !important;
+  line-height: 1.75 !important;
+}
+
+.mobile-language-toggle {
+  mix-blend-mode: difference;
+}
+
+.mobile-language-toggle .language-toggle {
+  border-color: rgba(255, 255, 255, 0.78);
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+  box-shadow:
+    0 8px 24px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.32);
+  backdrop-filter: blur(16px) saturate(1.25);
+}
+
+.mobile-language-toggle .language-toggle:hover {
+  border-color: #fff;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.mobile-language-toggle .language-toggle > span.absolute {
+  display: none;
+}
+
+html[dir="rtl"] .rtl-arrow {
+  transform: scaleX(-1);
+  transform-origin: center;
+}
+
+html[dir="rtl"] .project-card-copy,
+html[dir="rtl"] .project-detail-header,
+html[dir="rtl"] .project-section-title,
+html[dir="rtl"] .project-feature-grid,
+html[dir="rtl"] .project-tech-stack {
+  text-align: right !important;
+}
+
+html[dir="rtl"] .project-card-category {
+  justify-content: flex-end !important;
+}
+
+html[dir="rtl"] .project-detail-header > p {
+  margin-left: auto;
+  margin-right: 0;
+}
+
+html[dir="rtl"] .project-detail-header > div {
+  justify-content: flex-start;
+}
+
+html[dir="rtl"] .hero-actions {
+  direction: ltr;
+}
+
+html[dir="rtl"] .hero-actions > a {
+  direction: rtl;
+}
+
+html[dir="rtl"] .projects-page-hero {
+  text-align: center !important;
+}
+
+html[dir="rtl"] .projects-page-hero > div {
+  justify-content: center;
+}
+
+html[dir="rtl"] .projects-page-hero > p {
+  margin-left: auto;
+  margin-right: auto;
+}
+
 /* Dynamic floating desktop navbar. */
 @keyframes navbarEnter {
   from {

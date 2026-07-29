@@ -53,7 +53,7 @@ export default function ProjectDetailClient({
         </div>
 
         {/* Hero Title & Breadcrumb */}
-        <div className="relative z-10 max-w-[1100px] mx-auto pt-10 sm:pt-24 text-center sm:text-left text-white">
+        <div className="project-detail-header relative z-10 max-w-[1100px] mx-auto pt-10 sm:pt-24 text-center sm:text-left text-white">
           <Link
             href="/projects"
             style={{ fontFamily: '"Cairo", sans-serif' }}
@@ -107,7 +107,7 @@ export default function ProjectDetailClient({
         <div className="bg-white/80 backdrop-blur-md rounded-[24px] p-4 sm:p-6 shadow-lg mb-10 border border-white">
           <h3
             style={{ fontFamily: '"Cairo", sans-serif' }}
-            className="text-xs sm:text-sm font-bold text-gray-500 uppercase tracking-wider mb-3 text-left"
+            className="project-section-title text-xs sm:text-sm font-bold text-gray-500 uppercase tracking-wider mb-3 text-left"
           >
             Project Image Gallery & Views (Click to Preview)
           </h3>
@@ -143,12 +143,12 @@ export default function ProjectDetailClient({
         <div className="bg-white rounded-[28px] sm:rounded-[36px] p-6 sm:p-10 shadow-xl mb-10 border border-gray-100">
           <h2
             style={{ fontFamily: '"Cairo", sans-serif' }}
-            className="text-2xl sm:text-3xl font-bold text-[#302451] mb-6 border-b border-gray-100 pb-4 text-left"
+            className="project-section-title text-2xl sm:text-3xl font-bold text-[#302451] mb-6 border-b border-gray-100 pb-4 text-left"
           >
             Project Highlights & Specifications
           </h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8 text-left">
+          <div className="project-feature-grid grid grid-cols-1 md:grid-cols-2 gap-6 mb-8 text-left">
             {project.features.map((feat, idx) => (
               <div
                 key={idx}
@@ -177,7 +177,7 @@ export default function ProjectDetailClient({
 
           {/* Tech Stack & Live Link */}
           <div className="flex flex-col sm:flex-row items-center justify-between gap-6 pt-6 border-t border-gray-100">
-            <div className="text-left w-full sm:w-auto">
+            <div className="project-tech-stack text-left w-full sm:w-auto">
               <h4
                 style={{ fontFamily: '"Cairo", sans-serif' }}
                 className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-2"

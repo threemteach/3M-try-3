@@ -30,16 +30,16 @@ export default function RotatingSpinner({ className = "" }: { className?: string
 
   return (
     <div
-      className={`inline-flex items-center justify-center lg:justify-start gap-[clamp(6px,1.2vw,18px)] whitespace-nowrap ${className}`}
+      className={`hero-rotator inline-flex items-center justify-center lg:justify-start gap-[clamp(6px,1.2vw,18px)] whitespace-nowrap ${className}`}
     >
       <span
-        className="shrink-0 text-white font-normal leading-[1.1]"
+        className="hero-build-label shrink-0 text-white font-normal leading-[1.1]"
         style={{ fontFamily: '"MedulaOne", serif', fontSize: "clamp(32px, 7vw, 75px)" }}
       >
         WE Build
       </span>
 
-      <span className="inline-block w-0 h-0 shrink-0 border-t-[8px] sm:border-t-[10px] md:border-t-[12px] border-t-transparent border-b-[8px] sm:border-b-[10px] md:border-b-[12px] border-b-transparent border-l-[12px] sm:border-l-[16px] md:border-l-[20px] border-l-white self-center" />
+      <span className="rtl-arrow inline-block w-0 h-0 shrink-0 border-t-[8px] sm:border-t-[10px] md:border-t-[12px] border-t-transparent border-b-[8px] sm:border-b-[10px] md:border-b-[12px] border-b-transparent border-l-[12px] sm:border-l-[16px] md:border-l-[20px] border-l-white self-center" />
 
       <div
         className="relative inline-block h-[128px] min-w-[190px] overflow-hidden sm:h-[160px] sm:min-w-[320px] md:h-[190px] md:min-w-[390px] lg:h-[210px] lg:min-w-[300px] xl:min-w-[360px]"

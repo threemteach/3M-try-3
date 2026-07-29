@@ -74,7 +74,7 @@ export default async function Home() {
         {/* Main Hero Content */}
         <div className="relative z-10 mx-auto my-auto w-full max-w-[1600px] px-4 pt-5 sm:px-8 sm:pt-20 md:px-12 md:pt-24 lg:pl-12 lg:pr-16 lg:pt-28 xl:pl-16 xl:pr-20 xl:pt-32 2xl:pl-20 2xl:pr-24">
           
-          <div className="mx-auto flex w-full max-w-[340px] flex-col items-center text-center sm:max-w-[560px] md:max-w-[680px] lg:mx-0 lg:max-w-[680px] lg:items-start lg:text-left xl:max-w-[780px] 2xl:max-w-[880px]">
+          <div className="rtl-hero-copy relative z-[2] mx-auto flex w-full max-w-[340px] flex-col items-center text-center sm:max-w-[560px] md:max-w-[680px] lg:mx-0 lg:max-w-[680px] lg:items-start lg:text-left xl:max-w-[780px] 2xl:max-w-[880px]">
             
             {/* Title */}
             <h1
@@ -90,7 +90,7 @@ export default async function Home() {
             </div>
 
             {/* Buttons (Tablet & Desktop: sm:flex, hidden on mobile) */}
-            <div className="mt-8 hidden items-center gap-0 lg:flex">
+            <div className="hero-actions mt-8 hidden items-center gap-0 lg:flex">
               <a
                 href="#work"
                 className="flex h-[42px] w-[130px] md:h-[48px] md:w-[155px] lg:h-[56px] lg:w-[185px] items-center justify-center rounded-l-[9999px] border-2 border-white bg-transparent text-[12px] md:text-[14px] lg:text-[17px] font-semibold text-white transition-colors hover:bg-white/15"
@@ -110,7 +110,7 @@ export default async function Home() {
           </div>
 
           {/* Mockup Image - Desktop (absolute, right side for >= lg) */}
-          <div className="pointer-events-none absolute right-0 top-1/2 z-[1] hidden -translate-y-[45%] lg:right-6 lg:block xl:right-8">
+          <div className="hero-mockup-desktop pointer-events-none absolute right-0 top-1/2 z-[1] hidden -translate-y-[45%] lg:right-6 lg:block xl:right-8">
             <Image
                src="/mockup.png"
               alt="3M Portfolio Showcase"

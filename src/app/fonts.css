@@ -10,6 +10,14 @@
 }
 
 @font-face {
+  font-family: "Sahlab";
+  font-style: normal;
+  font-weight: 400 900;
+  font-display: swap;
+  src: url("/fonts/ALLEXP03SAHLAB.woff2") format("woff2");
+}
+
+@font-face {
   font-family: "Cairo";
   font-style: normal;
   font-weight: 600;

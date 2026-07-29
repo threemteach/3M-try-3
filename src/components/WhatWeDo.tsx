@@ -88,10 +88,10 @@ export default function WhatWeDo() {
             aria-hidden="true"
             className="absolute -bottom-12 -right-8 h-32 w-32 rounded-full bg-white/15 blur-2xl"
           />
-          <p className="relative text-[10px] font-bold uppercase tracking-[.24em] text-[#c9b8ef] sm:text-xs">
+          <p className="approach-label relative text-sm font-bold uppercase tracking-[.18em] text-[#c9b8ef] sm:text-base">
             Our approach
           </p>
-          <p className="relative mx-auto mt-3 max-w-[720px] text-[13px] font-bold leading-6 sm:text-lg sm:leading-8">
+          <p className="approach-copy relative mx-auto mt-3 max-w-[720px] text-[15px] font-bold leading-7 sm:text-xl sm:leading-9">
             No random AI design directions—every product decision is intentional,
             researched, and connected to the client&apos;s business.
           </p>

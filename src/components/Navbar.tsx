@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { navLinks } from "@/lib/constants";
+import { LanguageToggle } from "@/components/LanguageProvider";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -74,12 +75,15 @@ export default function Navbar() {
           </li>
         </ul>
 
-        <Link
-          href="/contact"
-          className="flex h-[30px] w-[85px] shrink-0 items-center justify-center whitespace-nowrap rounded-[150px] bg-white text-[12px] font-bold leading-none text-[#302451] transition-opacity hover:opacity-90 sm:h-[32px] sm:w-[95px] sm:text-[13px] md:h-[36px] md:w-[105px] md:text-[14px] lg:h-[40px] lg:w-[120px] lg:text-[16px]"
-        >
-          Contact
-        </Link>
+        <div className="flex shrink-0 items-center gap-2 lg:gap-3">
+          <LanguageToggle compact />
+          <Link
+            href="/contact"
+            className="flex h-[30px] w-[85px] shrink-0 items-center justify-center whitespace-nowrap rounded-[150px] bg-white text-[12px] font-bold leading-none text-[#302451] transition-opacity hover:opacity-90 sm:h-[32px] sm:w-[95px] sm:text-[13px] md:h-[36px] md:w-[105px] md:text-[14px] lg:h-[40px] lg:w-[120px] lg:text-[16px]"
+          >
+            Contact
+          </Link>
+        </div>
       </nav>
     </header>
   );

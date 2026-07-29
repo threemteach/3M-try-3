@@ -145,7 +145,7 @@ export default function Footer() {
               Terms
             </Link>
           </div>
-          <p>© {currentYear} triple m · All rights reserved</p>
+          <p>© {currentYear} 3M tech · All rights reserved</p>
         </div>
       </div>
     </footer>

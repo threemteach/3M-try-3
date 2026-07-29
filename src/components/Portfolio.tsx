@@ -259,7 +259,7 @@ export default function Portfolio({ projects }: { projects: Project[] }) {
                       className="absolute inset-0 bg-gradient-to-b from-white/8 via-transparent to-white/15"
                     />
 
-                    <div className="absolute inset-x-0 top-0 z-[2] flex justify-start px-4 pt-4 sm:px-5 sm:pt-5">
+                    <div className="project-card-category absolute inset-x-0 top-0 z-[2] flex justify-start px-4 pt-4 sm:px-5 sm:pt-5">
                       <span
                         style={{ fontFamily: '"Cairo", sans-serif' }}
                         className={`max-w-full truncate rounded-full border border-white/85 bg-white/78 px-4 py-2 text-[9px] font-bold uppercase tracking-[.09em] text-[#302451] shadow-[0_8px_24px_rgba(48,36,81,.16),inset_0_1px_0_rgba(255,255,255,.95)] sm:px-5 sm:text-[10px] ${
@@ -270,7 +270,7 @@ export default function Portfolio({ projects }: { projects: Project[] }) {
                       </span>
                     </div>
 
-                    <div className="absolute inset-x-0 bottom-0 flex min-h-[39%] flex-col justify-end px-5 pb-5 pt-20 text-left sm:px-6 sm:pb-6">
+                    <div className="project-card-copy absolute inset-x-0 bottom-0 flex min-h-[39%] flex-col justify-end px-5 pb-5 pt-20 text-left sm:px-6 sm:pb-6">
                       <div
                         aria-hidden="true"
                         className={`absolute inset-0 border-t border-white/30 bg-gradient-to-b from-white/0 via-white/82 to-white/95 ${
