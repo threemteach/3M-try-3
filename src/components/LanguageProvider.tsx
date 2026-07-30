@@ -29,7 +29,7 @@ const ARABIC: Record<string, string> = {
   "Digital Platforms": "منصات رقمية",
   "See Our Work": "شاهد أعمالنا",
   "Get a free quote": "اطلب عرضًا مجانيًا",
-  "Dream it and we build it": "تخيّلها، ونحنُ نبنيها",
+  "Dream it and we build it": "تخيّلها ونحنُ نبنيها",
   "Explore some of the products we've built for our clients.":
     "استكشف نماذج من المنتجات التي صنعناها لعملائنا.",
   "See All Projects": "شاهد كل المشاريع",

@@ -18,11 +18,13 @@ export default function Navbar() {
 
   return (
     <header
+      dir="ltr"
       className={`navbar-shell pointer-events-none fixed left-0 right-0 top-0 z-[100] hidden justify-center px-4 transition-[padding] duration-300 sm:flex ${
         scrolled ? "pt-2 md:pt-3" : "pt-4 md:pt-6 lg:pt-8"
       }`}
     >
       <nav
+        dir="ltr"
         className={`navbar-glass pointer-events-auto mx-4 flex w-full items-center justify-between overflow-hidden rounded-[72px] border px-4 transition-[max-width,transform,border-color,background-color,box-shadow,padding] duration-300 hover:-translate-y-0.5 hover:border-white/30 sm:mx-6 sm:px-6 md:mx-8 md:px-8 lg:mx-12 lg:px-10 xl:mx-16 ${
           scrolled
             ? "max-w-[1180px] border-white/20 py-1.5 sm:py-2"

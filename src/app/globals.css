@@ -60,14 +60,13 @@ body {
 }
 
 html[dir="rtl"] body {
-  font-family: "Sahlab", "Cairo", sans-serif;
+  font-family: "Cairo", sans-serif;
   letter-spacing: 0;
 }
 
-html[dir="rtl"] h1,
-html[dir="rtl"] h2,
-html[dir="rtl"] h3,
-html[dir="rtl"] [style*="MedulaOne"] {
+html[dir="rtl"] [class*="MedulaOne"],
+html[dir="rtl"] [style*="MedulaOne"],
+html[dir="rtl"] .rotating-item {
   font-family: "Sahlab", "Cairo", sans-serif !important;
   letter-spacing: 0 !important;
 }
@@ -122,9 +121,19 @@ html[dir="rtl"] .approach-label {
   letter-spacing: 0 !important;
 }
 
+.approach-label,
+.approach-copy {
+  font-family: "Cairo", sans-serif;
+}
+
 html[dir="rtl"] .approach-copy {
   font-size: clamp(17px, 2vw, 24px) !important;
   line-height: 1.75 !important;
+}
+
+html[dir="rtl"] .service-card-copy {
+  direction: rtl;
+  text-align: right;
 }
 
 .mobile-language-toggle {
@@ -215,6 +224,16 @@ html[dir="rtl"] .projects-page-hero > p {
 
 .navbar-glass {
   position: relative;
+  direction: ltr;
+}
+
+html[dir="rtl"] .navbar-glass .language-toggle > span.absolute {
+  left: 0.25rem !important;
+  right: auto !important;
+}
+
+html[dir="rtl"] .navbar-glass .language-toggle:hover > span.absolute {
+  transform: translateX(85%) !important;
 }
 
 .navbar-glass::after {

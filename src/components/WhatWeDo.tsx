@@ -104,6 +104,7 @@ export default function WhatWeDo() {
             return (
               <article
                 key={idx}
+                dir="ltr"
                 className={`relative w-full rounded-[24px] sm:rounded-[32px] border-[3px] border-white bg-[#302451] overflow-hidden flex ${
                   isReversed ? "flex-row-reverse" : "flex-row"
                 }`}
@@ -111,7 +112,7 @@ export default function WhatWeDo() {
               >
                 {/* Text Content - 56% */}
                 <div
-                  className="flex flex-col justify-center min-w-0 z-10"
+                  className="service-card-copy flex flex-col justify-center min-w-0 z-10"
                   style={{
                     width: "56%",
                     paddingTop: "clamp(10px, 2.5vw, 40px)",
@@ -199,12 +200,12 @@ export default function WhatWeDo() {
                     style={
                       service.hasCircle
                         ? {
-                            width: "96%",
+                            width: isReversed ? "96%" : "104%",
                             height: "86%",
                             bottom: "0",
                             ...(isReversed
                               ? { left: "calc(2% + 50px)" }
-                              : { right: "2%" }),
+                              : { right: "-5%" }),
                           }
                         : {
                             width: "88%",

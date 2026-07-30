@@ -117,6 +117,7 @@ export default async function ProjectsPage() {
                   fill
                   priority={index < 3}
                   className="object-cover object-top transition-transform duration-700 ease-out group-hover:scale-[1.035]"
+                  style={{ objectPosition: "58% top" }}
                   sizes="(max-width: 639px) calc(100vw - 32px), (max-width: 1023px) 48vw, 31vw"
                 />
 

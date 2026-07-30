@@ -251,6 +251,7 @@ export default function Portfolio({ projects }: { projects: Project[] }) {
                       fill
                       priority={physicalIndex === initialPhysicalIndex}
                       className="object-cover object-top transition-transform duration-700 ease-out group-hover:scale-[1.025]"
+                      style={{ objectPosition: "58% top" }}
                       sizes="(max-width: 639px) 78vw, (max-width: 1023px) 60vw, 35vw"
                     />
 

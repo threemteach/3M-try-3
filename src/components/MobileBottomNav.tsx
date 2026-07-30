@@ -101,6 +101,7 @@ export default function MobileBottomNav() {
 
   return (
     <nav
+      dir="ltr"
       className="fixed bottom-2 left-0 right-0 z-[1000] sm:hidden"
       style={{
         padding: "0 12px",
