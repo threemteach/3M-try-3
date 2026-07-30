@@ -7,6 +7,7 @@ import Portfolio from "@/components/Portfolio";
 import WhatWeDo from "@/components/WhatWeDo";
 import WhoWeAre from "@/components/WhoWeAre";
 import Workflow from "@/components/Workflow";
+import { LanguageToggle } from "@/components/LanguageProvider";
 import type { Metadata } from "next";
 import { SITE_DESCRIPTION, SITE_NAME, SITE_URL } from "@/lib/constants";
 import { getPublishedProjects } from "@/lib/projects";
@@ -49,7 +50,7 @@ export default async function Home() {
         </div>
 
         {/* Mobile Header Bar */}
-        <div className="relative z-50 flex items-center justify-between px-5 pt-2 sm:hidden w-full">
+        <div dir="ltr" className="relative z-50 flex w-full items-center justify-between px-5 pt-2 sm:hidden">
           <Link href="/" className="shrink-0">
             <Image
               src="/logo.png"
@@ -60,12 +61,15 @@ export default async function Home() {
               priority
             />
           </Link>
-          <Link
-            href="/contact"
-            className="flex h-[32px] items-center justify-center whitespace-nowrap rounded-[150px] bg-white px-5 text-[12px] font-bold text-[#302451] shadow-md"
-          >
-            Contact
-          </Link>
+          <div dir="ltr" className="flex shrink-0 items-center gap-2">
+            <LanguageToggle compact />
+            <Link
+              href="/contact"
+              className="flex h-[32px] w-[94px] items-center justify-center whitespace-nowrap rounded-[150px] bg-white px-2 text-[11px] font-bold text-[#302451] shadow-md"
+            >
+              Contact
+            </Link>
+          </div>
         </div>
 
         {/* Desktop / Tablet Glassmorphism Navbar */}

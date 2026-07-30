@@ -2,6 +2,7 @@
 
 import { createContext, useContext, useEffect, useMemo, useState } from "react";
 import { usePathname } from "next/navigation";
+import { Languages } from "lucide-react";
 
 type Language = "en" | "ar";
 
@@ -333,7 +334,6 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
   return (
     <LanguageContext.Provider value={value}>
       {children}
-      {isPublic && <MobileLanguageToggle />}
     </LanguageContext.Provider>
   );
 }
@@ -348,21 +348,14 @@ export function LanguageToggle({ compact = false }: { compact?: boolean }) {
     <button
       type="button"
       onClick={toggleLanguage}
-      className={`language-toggle group relative isolate flex shrink-0 items-center overflow-hidden rounded-full border border-white/35 bg-white/10 font-bold text-white shadow-[inset_0_1px_0_rgba(255,255,255,.18)] backdrop-blur-xl transition-all hover:border-white/70 hover:bg-white/20 ${
-        compact ? "h-8 min-w-[58px] px-2 text-[11px]" : "h-10 min-w-[76px] px-2.5 text-xs"
+      className={`language-toggle group relative isolate flex shrink-0 items-center justify-center gap-1.5 overflow-hidden rounded-full border border-white/35 bg-white/10 font-bold text-white shadow-[inset_0_1px_0_rgba(255,255,255,.18)] backdrop-blur-xl transition-all hover:border-white/70 hover:bg-white/20 ${
+        compact ? "h-8 w-[64px] px-1.5 text-[10px]" : "h-10 min-w-[76px] px-2.5 text-xs"
       }`}
       aria-label={isArabic ? "Switch to English" : "التبديل إلى العربية"}
     >
-      <span className="relative z-10 mx-auto">{isArabic ? "EN" : "عربي"}</span>
+      <Languages aria-hidden="true" className="relative z-10 h-[14px] w-[14px] shrink-0" strokeWidth={2.2} />
+      <span className="relative z-10">{isArabic ? "EN" : "عربي"}</span>
       <span className="absolute inset-y-1 left-1 w-[46%] rounded-full bg-white/14 transition-transform duration-300 group-hover:translate-x-[85%] rtl:left-auto rtl:right-1 rtl:group-hover:-translate-x-[85%]" />
     </button>
-  );
-}
-
-function MobileLanguageToggle() {
-  return (
-    <div className="mobile-language-toggle fixed bottom-[88px] right-4 z-[900] sm:hidden">
-      <LanguageToggle compact />
-    </div>
   );
 }
