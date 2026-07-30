@@ -97,18 +97,6 @@ export default function About() {
           className="pointer-events-none absolute right-[-100px] top-0 -z-10 h-auto w-[430px] opacity-45 sm:right-[-40px] sm:w-[620px] lg:w-[760px]"
         />
 
-        <div className="absolute left-5 top-5 z-20 flex w-[calc(100%-2.5rem)] items-center justify-between sm:hidden">
-          <Link href="/" aria-label="3M tech home">
-            <Image src="/logo.png" alt="3M tech" width={82} height={52} className="h-[34px] w-auto" priority />
-          </Link>
-          <Link
-            href="/contact"
-            className="rounded-full bg-white px-5 py-2 text-xs font-bold text-[#302451] shadow-md"
-          >
-            Contact
-          </Link>
-        </div>
-
         <div className="mx-auto grid min-h-[500px] max-w-[1180px] items-center gap-12 lg:grid-cols-[1.15fr_.85fr]">
           <div className="text-center lg:text-left">
             <p className="mb-4 text-sm font-bold uppercase tracking-[.25em] text-[#b8a1ed]">

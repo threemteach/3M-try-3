@@ -32,26 +32,6 @@ export default function ProjectDetailClient({
         {/* Desktop Navbar */}
         <Navbar />
 
-        {/* Mobile Top Bar */}
-        <div className="relative z-50 flex items-center justify-between px-2 pt-2 sm:hidden w-full mb-6">
-          <Link href="/" className="shrink-0">
-            <Image
-              src="/logo.png"
-              alt="3M Logo"
-              width={80}
-              height={50}
-              className="h-[32px] w-auto object-contain"
-              priority
-            />
-          </Link>
-          <Link
-            href="/contact"
-            className="flex h-[32px] items-center justify-center whitespace-nowrap rounded-[150px] bg-white px-5 text-[12px] font-bold text-[#302451] shadow-md"
-          >
-            Contact
-          </Link>
-        </div>
-
         {/* Hero Title & Breadcrumb */}
         <div className="project-detail-header relative z-10 max-w-[1100px] mx-auto pt-10 sm:pt-24 text-center sm:text-left text-white">
           <Link

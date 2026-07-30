@@ -52,25 +52,6 @@ export default async function ProjectsPage() {
 
         <Navbar />
 
-        <div className="relative z-50 mb-8 flex w-full items-center justify-between px-2 pt-2 sm:hidden">
-          <Link href="/" className="shrink-0">
-            <Image
-              src="/logo.png"
-              alt="3M Logo"
-              width={80}
-              height={50}
-              className="h-8 w-auto object-contain"
-              priority
-            />
-          </Link>
-          <Link
-            href="/contact"
-            className="flex h-8 items-center justify-center rounded-full bg-white px-5 text-xs font-bold text-[#302451] shadow-md"
-          >
-            Contact
-          </Link>
-        </div>
-
         <div className="projects-page-hero relative z-10 mx-auto max-w-[900px] pb-2 pt-8 text-center sm:pt-20">
           <div className="mb-4 flex items-center justify-center gap-4 sm:gap-6">
             <span className="h-[2px] w-12 bg-white/80 sm:w-24" />

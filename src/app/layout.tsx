@@ -8,6 +8,7 @@ import LoadingScreen from "@/components/LoadingScreen";
 import PublicSiteChrome from "@/components/PublicSiteChrome";
 import ScrollReveal from "@/components/ScrollReveal";
 import { LanguageProvider } from "@/components/LanguageProvider";
+import MobileHeader from "@/components/MobileHeader";
 import {
   FACEBOOK_URL,
   INSTAGRAM_URL,
@@ -134,6 +135,7 @@ export default function RootLayout({
           <PublicSiteChrome>
             <LoadingScreen />
             <ScrollToTop />
+            <MobileHeader />
           </PublicSiteChrome>
           <ScrollReveal />
           <main className="flex-1">{children}</main>
