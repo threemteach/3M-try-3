@@ -35,14 +35,11 @@ export default function NextSection() {
             d="M 640 -3 C 690 -3 690 80 720 80 C 750 80 750 -3 800 -3 Z"
             fill="#302451"
           />
-          {/* Interactive chevron group */}
-          <a href="#work" onClick={handleScroll} className="pointer-events-auto cursor-pointer">
-            <g className="chevron-group">
-              <path d="M 710 42 L 720 49 L 730 42" stroke="#ffffff" strokeWidth="2.5" fill="none" strokeLinecap="round" strokeLinejoin="round" className="chevron-arrow arrow-1" />
-              <path d="M 710 50 L 720 57 L 730 50" stroke="#ffffff" strokeWidth="2.5" fill="none" strokeLinecap="round" strokeLinejoin="round" className="chevron-arrow arrow-2" />
-              <path d="M 710 58 L 720 65 L 730 58" stroke="#ffffff" strokeWidth="2.5" fill="none" strokeLinecap="round" strokeLinejoin="round" className="chevron-arrow arrow-3" />
-            </g>
-          </a>
+          <g className="chevron-group">
+            <path d="M 710 42 L 720 49 L 730 42" stroke="#ffffff" strokeWidth="2.5" fill="none" strokeLinecap="round" strokeLinejoin="round" className="chevron-arrow arrow-1" />
+            <path d="M 710 50 L 720 57 L 730 50" stroke="#ffffff" strokeWidth="2.5" fill="none" strokeLinecap="round" strokeLinejoin="round" className="chevron-arrow arrow-2" />
+            <path d="M 710 58 L 720 65 L 730 58" stroke="#ffffff" strokeWidth="2.5" fill="none" strokeLinecap="round" strokeLinejoin="round" className="chevron-arrow arrow-3" />
+          </g>
         </svg>
       </div>
 
@@ -66,16 +63,20 @@ export default function NextSection() {
             d="M 165 -3 C 190 -3 195 60 215 60 C 235 60 240 -3 265 -3 Z"
             fill="#302451"
           />
-          {/* Interactive chevron group */}
-          <a href="#work" onClick={handleScroll} className="pointer-events-auto cursor-pointer">
-            <g className="chevron-group">
-              <path d="M 207 28 L 215 35 L 223 28" stroke="#ffffff" strokeWidth="2.5" fill="none" strokeLinecap="round" strokeLinejoin="round" className="chevron-arrow arrow-1" />
-              <path d="M 207 36 L 215 43 L 223 36" stroke="#ffffff" strokeWidth="2.5" fill="none" strokeLinecap="round" strokeLinejoin="round" className="chevron-arrow arrow-2" />
-              <path d="M 207 44 L 215 51 L 223 44" stroke="#ffffff" strokeWidth="2.5" fill="none" strokeLinecap="round" strokeLinejoin="round" className="chevron-arrow arrow-3" />
-            </g>
-          </a>
+          <g className="chevron-group">
+            <path d="M 207 28 L 215 35 L 223 28" stroke="#ffffff" strokeWidth="2.5" fill="none" strokeLinecap="round" strokeLinejoin="round" className="chevron-arrow arrow-1" />
+            <path d="M 207 36 L 215 43 L 223 36" stroke="#ffffff" strokeWidth="2.5" fill="none" strokeLinecap="round" strokeLinejoin="round" className="chevron-arrow arrow-2" />
+            <path d="M 207 44 L 215 51 L 223 44" stroke="#ffffff" strokeWidth="2.5" fill="none" strokeLinecap="round" strokeLinejoin="round" className="chevron-arrow arrow-3" />
+          </g>
         </svg>
       </div>
+
+      <a
+        href="#work"
+        onClick={handleScroll}
+        aria-label="Scroll to our work"
+        className="absolute left-1/2 top-0 z-20 h-[65px] w-[64px] -translate-x-1/2 cursor-pointer sm:h-[85px] sm:w-[90px]"
+      />
 
       <div className="flex flex-col items-center justify-center my-auto w-full">
         <h2

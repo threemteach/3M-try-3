@@ -51,7 +51,7 @@ export default async function Home() {
         <Navbar />
 
         {/* Main Hero Content */}
-        <div className="relative z-10 mx-auto my-auto w-full max-w-[1600px] px-4 pt-5 sm:px-8 sm:pt-20 md:px-12 md:pt-24 lg:pl-12 lg:pr-16 lg:pt-28 xl:pl-16 xl:pr-20 xl:pt-32 2xl:pl-20 2xl:pr-24">
+        <div className="relative z-10 mx-auto my-auto w-full max-w-[1600px] px-4 pt-20 sm:px-8 sm:pt-20 md:px-12 md:pt-24 lg:pl-12 lg:pr-16 lg:pt-28 xl:pl-16 xl:pr-20 xl:pt-32 2xl:pl-20 2xl:pr-24">
           
           <div className="rtl-hero-copy relative z-[2] mx-auto flex w-full max-w-[340px] flex-col items-center text-center sm:max-w-[560px] md:max-w-[680px] lg:mx-0 lg:max-w-[680px] lg:items-start lg:text-left xl:max-w-[780px] 2xl:max-w-[880px]">
             
