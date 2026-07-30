@@ -58,49 +58,51 @@ const services = [
 
 export default function WhatWeDo() {
   return (
-    <section className="relative w-full bg-[#f0edf5] py-16 sm:py-20 lg:py-24 px-4 overflow-hidden">
+    <section className="relative w-full overflow-hidden bg-[#f0edf5] px-4 py-16 sm:py-20 lg:py-24">
       <div className="max-w-[1100px] mx-auto">
         {/* Section Header */}
-        <div className="mb-3 flex items-center justify-center gap-2 sm:gap-6">
-          <span className="h-[2px] w-7 bg-[#302451] sm:w-12 lg:w-20" />
+        <div className="mb-1 flex items-center justify-center gap-3 sm:gap-5">
+          <span className="h-[2px] w-9 bg-[#302451]/65 sm:w-16" />
           <h2
             style={{ fontFamily: '"MedulaOne", serif' }}
-            className="whitespace-nowrap px-2 text-center text-[36px] font-normal leading-[1.0] text-[#302451] sm:px-4 sm:text-[60px] md:text-[84px] lg:text-[110px] xl:text-[130px]"
+            className="whitespace-nowrap text-center text-[38px] font-normal leading-none text-[#302451] sm:text-[48px]"
           >
             What We Do
           </h2>
-          <span className="h-[2px] w-7 bg-[#302451] sm:w-12 lg:w-20" />
+          <span className="h-[2px] w-9 bg-[#302451]/65 sm:w-16" />
         </div>
-        <div className="mx-auto mb-5 h-[3px] w-[76%] max-w-[700px] rounded-full bg-gradient-to-r from-transparent via-[#302451] to-transparent opacity-70 sm:h-[4px]" />
 
         <p
           style={{ fontFamily: '"Cairo", sans-serif' }}
-          className="mx-auto mb-3 max-w-[500px] text-center text-sm text-gray-500 sm:text-base"
+          className="mx-auto max-w-[500px] text-center text-[13px] font-semibold text-[#302451]/80 sm:text-[16px]"
         >
           Everything you need to bring your ideas to life.
         </p>
-        <div dir="ltr" className="relative mx-auto mb-12 mt-7 flex max-w-[920px] flex-col items-center sm:mb-16">
-          <div className="relative z-20 h-[230px] w-[280px] sm:h-[300px] sm:w-[370px] lg:h-[360px] lg:w-[450px]">
-            <div className="absolute bottom-0 left-1/2 h-[200px] w-[200px] -translate-x-1/2 rounded-full bg-white shadow-[0_34px_44px_rgba(48,36,81,.08)] sm:h-[270px] sm:w-[270px] lg:h-[330px] lg:w-[330px]" />
+
+        <div
+          dir="ltr"
+          className="relative mx-auto mb-8 mt-10 h-[255px] w-full max-w-[980px] min-[400px]:h-[285px] sm:mb-24 sm:mt-12 sm:h-[350px] lg:mb-28 lg:mt-14 lg:h-[370px]"
+        >
+          <div className="absolute right-[-12px] top-[14px] z-20 h-[215px] w-[225px] min-[400px]:right-0 min-[400px]:top-[16px] min-[400px]:h-[250px] min-[400px]:w-[270px] sm:top-0 sm:h-[330px] sm:w-[400px] lg:h-[360px] lg:w-[440px]">
+            <div className="absolute bottom-[3px] right-[5px] h-[185px] w-[185px] rounded-full bg-white shadow-[0_28px_42px_rgba(48,36,81,.10)] min-[400px]:right-[8px] min-[400px]:h-[215px] min-[400px]:w-[215px] sm:bottom-[8px] sm:right-[12px] sm:h-[305px] sm:w-[305px] lg:h-[335px] lg:w-[335px]" />
             <Image
               src="/what we do char.png"
               alt="3M tech character"
               fill
-              sizes="(max-width: 640px) 280px, (max-width: 1024px) 370px, 450px"
+              sizes="(max-width: 399px) 245px, (max-width: 639px) 270px, (max-width: 1023px) 400px, 440px"
               className="object-contain object-bottom"
             />
           </div>
 
-          <div className="approach-card relative z-10 mt-[-34px] w-full max-w-[700px] rounded-[22px] bg-[#302451] px-6 py-6 text-left text-white shadow-[0_14px_0_#8a70c7,0_26px_0_rgba(138,112,199,.45),0_22px_48px_rgba(48,36,81,.2)] sm:mt-[-46px] sm:px-9 sm:py-7 lg:mt-[-58px]">
-            <p className="approach-label text-sm font-bold text-[#c9b8ef] sm:text-base">
+          <div className="approach-card absolute left-0 top-[92px] z-10 min-h-[108px] w-[78%] rounded-[16px] bg-[#302451] px-4 py-4 text-left text-white shadow-[0_10px_0_#876dca,0_20px_0_rgba(135,109,202,.42)] min-[400px]:top-[108px] min-[400px]:min-h-[124px] min-[400px]:w-[76%] min-[400px]:px-5 min-[400px]:py-5 sm:top-[128px] sm:min-h-0 sm:w-[78%] sm:rounded-[22px] sm:px-8 sm:py-7 sm:shadow-[0_12px_0_#876dca,0_24px_0_rgba(135,109,202,.42)] md:w-[75%] lg:top-[146px] lg:w-[74%] lg:px-10">
+            <p className="approach-label text-[9px] font-bold text-[#c9b8ef] min-[400px]:text-[11px] sm:text-[15px]">
               Our approach
             </p>
-            <p className="approach-copy mt-3 max-w-[620px] text-[13px] font-bold leading-7 sm:text-[15px] sm:leading-8">
+            <p className="approach-copy mt-1 max-w-[510px] pr-[72px] text-[7px] font-bold leading-[1.7] min-[360px]:pr-[88px] min-[400px]:mt-1.5 min-[400px]:pr-[102px] min-[400px]:text-[8px] sm:mt-3 sm:pr-20 sm:text-[12px] sm:leading-6 lg:pr-16 lg:text-[13px] lg:leading-7">
               No random AI design directions—every product decision is intentional,
               researched, and connected to the client&apos;s business.
             </p>
           </div>
-
         </div>
 
         {/* Service Cards */}

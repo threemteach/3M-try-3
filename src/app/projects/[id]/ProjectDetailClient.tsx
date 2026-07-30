@@ -76,6 +76,7 @@ export default function ProjectDetailClient({
 
           <h1
             style={{ fontFamily: '"MedulaOne", serif' }}
+            data-preserve-font="true"
             className="text-[44px] sm:text-[68px] lg:text-[84px] font-normal leading-none mb-4"
           >
             {project.title}

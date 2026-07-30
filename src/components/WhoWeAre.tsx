@@ -81,10 +81,6 @@ export default function WhoWeAre() {
             competitive market.
           </span>
         </p>
-        <p className="mt-5 max-w-[760px] rounded-full border border-white/15 bg-white/8 px-5 py-3 text-center text-[11px] font-semibold leading-5 text-white/80 sm:px-7 sm:text-sm">
-          No random AI design directions—every product decision is intentional,
-          researched, and connected to the client&apos;s business.
-        </p>
 
         <div className="mt-11 grid w-full max-w-[1040px] grid-cols-3 gap-2 sm:mt-12 sm:gap-4 lg:gap-6">
           {features.map((feature) => (

@@ -6,6 +6,7 @@ import ContactForm from "@/components/ContactForm";
 import ScrollToTop from "@/components/ScrollToTop";
 import LoadingScreen from "@/components/LoadingScreen";
 import PublicSiteChrome from "@/components/PublicSiteChrome";
+import ScrollReveal from "@/components/ScrollReveal";
 import { LanguageProvider } from "@/components/LanguageProvider";
 import {
   FACEBOOK_URL,
@@ -134,6 +135,7 @@ export default function RootLayout({
             <LoadingScreen />
             <ScrollToTop />
           </PublicSiteChrome>
+          <ScrollReveal />
           <main className="flex-1">{children}</main>
           <PublicSiteChrome>
             <ContactForm />

@@ -11,6 +11,19 @@
   to { opacity: 1; }
 }
 
+@keyframes scrollRevealIn {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 34px, 0) scale(0.985);
+    filter: blur(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+    filter: blur(0);
+  }
+}
+
 html,
 body {
   overflow-x: hidden;
@@ -46,6 +59,33 @@ body {
   background:
     linear-gradient(180deg, rgba(255, 255, 255, 0.58), rgba(255, 255, 255, 0.22)) padding-box,
     linear-gradient(180deg, rgba(255, 255, 255, 0.46), rgba(128, 101, 186, 0.34)) border-box;
+}
+
+.scroll-reveal {
+  opacity: 0;
+  transform: translate3d(0, 34px, 0) scale(0.985);
+  filter: blur(10px);
+  transition:
+    opacity 0.75s ease,
+    transform 0.75s cubic-bezier(.2, .8, .2, 1),
+    filter 0.75s ease;
+  transition-delay: var(--reveal-delay, 0ms);
+  will-change: opacity, transform, filter;
+}
+
+.scroll-reveal.is-visible {
+  opacity: 1;
+  transform: translate3d(0, 0, 0) scale(1);
+  filter: blur(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scroll-reveal {
+    opacity: 1;
+    transform: none;
+    filter: none;
+    transition: none;
+  }
 }
 
 /* ===== Chevron Down Animation ===== */
@@ -100,6 +140,23 @@ html[dir="rtl"] [style*="MedulaOne"],
 html[dir="rtl"] .rotating-item {
   font-family: "Sahlab", "Cairo", sans-serif !important;
   letter-spacing: 0 !important;
+}
+
+html[dir="rtl"] [data-preserve-font="true"] {
+  font-family: "MedulaOne", serif !important;
+  direction: ltr;
+  unicode-bidi: plaintext;
+}
+
+html[dir="rtl"] [data-latin-text="true"] {
+  direction: ltr;
+  unicode-bidi: plaintext;
+}
+
+html[dir="rtl"] [data-latin-text="true"][class*="MedulaOne"],
+html[dir="rtl"] [data-latin-text="true"][style*="MedulaOne"],
+html[dir="rtl"] [data-latin-text="true"][data-preserve-font="true"] {
+  font-family: "MedulaOne", serif !important;
 }
 
 html[dir="rtl"] .rtl-hero-copy {

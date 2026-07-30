@@ -151,6 +151,7 @@ export default async function ProjectsPage() {
                     <div className="flex items-end gap-3">
                       <h3
                         style={{ fontFamily: '"MedulaOne", serif' }}
+                        data-preserve-font="true"
                         className="min-w-0 flex-1 text-[42px] font-normal leading-[.95] text-[#302451] sm:text-[48px] lg:text-[clamp(38px,3.4vw,52px)]"
                       >
                         {project.title}

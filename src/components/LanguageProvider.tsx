@@ -244,6 +244,9 @@ type LanguageContextValue = {
   toggleLanguage: () => void;
 };
 
+const ARABIC_RE = /[\u0600-\u06FF]/;
+const LATIN_RE = /[A-Za-z]/;
+
 const LanguageContext = createContext<LanguageContextValue>({
   language: "en",
   isArabic: false,
@@ -254,6 +257,10 @@ function replaceText(root: ParentNode, language: Language) {
   const map = language === "ar" ? ARABIC : REVERSE;
   const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
   let node = walker.nextNode();
+
+  root.querySelectorAll<HTMLElement>("[data-latin-text]").forEach((element) => {
+    element.removeAttribute("data-latin-text");
+  });
 
   while (node) {
     const parent = node.parentElement;
@@ -266,6 +273,10 @@ function replaceText(root: ParentNode, language: Language) {
         const leading = value.match(/^\s*/)?.[0] ?? "";
         const trailing = value.match(/\s*$/)?.[0] ?? "";
         node.textContent = `${leading}${translated}${trailing}`;
+      }
+      const current = node.textContent?.trim().replace(/\s+/g, " ") ?? "";
+      if (language === "ar" && LATIN_RE.test(current) && !ARABIC_RE.test(current)) {
+        parent.setAttribute("data-latin-text", "true");
       }
     }
     node = walker.nextNode();
