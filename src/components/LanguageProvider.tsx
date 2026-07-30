@@ -8,7 +8,7 @@ type Language = "en" | "ar";
 const ARABIC: Record<string, string> = {
   Home: "الرئيسية",
   "Our Work": "أعمالنا",
-  Portfolio: "الأعمال",
+  Portfolio: "معرض الأعمال",
   "About Us": "من نحن",
   About: "عن الشركة",
   Process: "مراحل العمل",
