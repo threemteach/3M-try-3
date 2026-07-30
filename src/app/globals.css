@@ -148,7 +148,6 @@ html[dir="rtl"] .rotating-item {
 }
 
 html[dir="rtl"] .approach-label {
-  font-size: clamp(18px, 2vw, 25px) !important;
   letter-spacing: 0 !important;
 }
 
@@ -158,13 +157,32 @@ html[dir="rtl"] .approach-label {
 }
 
 html[dir="rtl"] .approach-copy {
-  font-size: clamp(17px, 2vw, 24px) !important;
-  line-height: 1.75 !important;
+  line-height: 1.65 !important;
+}
+
+html[dir="rtl"] .approach-card {
+  direction: rtl;
+  text-align: right;
 }
 
 html[dir="rtl"] .service-card-copy {
   direction: rtl;
   text-align: right;
+}
+
+html[dir="rtl"] .service-card-copy h3 {
+  font-size: clamp(16px, 3.5vw, 58px) !important;
+  line-height: 1.12 !important;
+}
+
+html[dir="rtl"] .service-card-copy p {
+  font-size: clamp(8.5px, 1.55vw, 20px) !important;
+  line-height: 1.45 !important;
+}
+
+html[dir="rtl"] .service-card-copy li {
+  font-size: clamp(8.5px, 1.45vw, 19px) !important;
+  line-height: 1.35 !important;
 }
 
 .mobile-language-toggle {

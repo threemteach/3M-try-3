@@ -79,22 +79,28 @@ export default function WhatWeDo() {
         >
           Everything you need to bring your ideas to life.
         </p>
-        <div className="relative mx-auto mb-12 mt-7 max-w-[850px] overflow-hidden rounded-[22px] border border-white/75 bg-[#302451] px-5 py-6 text-center text-white shadow-[0_10px_0_#8a70c7,0_20px_38px_rgba(48,36,81,.22)] sm:mb-16 sm:rounded-[28px] sm:px-10 sm:py-8">
-          <span
-            aria-hidden="true"
-            className="absolute -left-8 -top-10 h-28 w-28 rounded-full bg-[#8b72c7]/35 blur-2xl"
-          />
-          <span
-            aria-hidden="true"
-            className="absolute -bottom-12 -right-8 h-32 w-32 rounded-full bg-white/15 blur-2xl"
-          />
-          <p className="approach-label relative text-sm font-bold uppercase tracking-[.18em] text-[#c9b8ef] sm:text-base">
-            Our approach
-          </p>
-          <p className="approach-copy relative mx-auto mt-3 max-w-[720px] text-[15px] font-bold leading-7 sm:text-xl sm:leading-9">
-            No random AI design directions—every product decision is intentional,
-            researched, and connected to the client&apos;s business.
-          </p>
+        <div dir="ltr" className="relative mx-auto mb-12 mt-7 flex max-w-[920px] flex-col items-center sm:mb-16">
+          <div className="relative z-20 h-[230px] w-[280px] sm:h-[300px] sm:w-[370px] lg:h-[360px] lg:w-[450px]">
+            <div className="absolute bottom-0 left-1/2 h-[200px] w-[200px] -translate-x-1/2 rounded-full bg-white shadow-[0_34px_44px_rgba(48,36,81,.08)] sm:h-[270px] sm:w-[270px] lg:h-[330px] lg:w-[330px]" />
+            <Image
+              src="/what we do char.png"
+              alt="3M tech character"
+              fill
+              sizes="(max-width: 640px) 280px, (max-width: 1024px) 370px, 450px"
+              className="object-contain object-bottom"
+            />
+          </div>
+
+          <div className="approach-card relative z-10 mt-[-34px] w-full max-w-[700px] rounded-[22px] bg-[#302451] px-6 py-6 text-left text-white shadow-[0_14px_0_#8a70c7,0_26px_0_rgba(138,112,199,.45),0_22px_48px_rgba(48,36,81,.2)] sm:mt-[-46px] sm:px-9 sm:py-7 lg:mt-[-58px]">
+            <p className="approach-label text-sm font-bold text-[#c9b8ef] sm:text-base">
+              Our approach
+            </p>
+            <p className="approach-copy mt-3 max-w-[620px] text-[13px] font-bold leading-7 sm:text-[15px] sm:leading-8">
+              No random AI design directions—every product decision is intentional,
+              researched, and connected to the client&apos;s business.
+            </p>
+          </div>
+
         </div>
 
         {/* Service Cards */}
