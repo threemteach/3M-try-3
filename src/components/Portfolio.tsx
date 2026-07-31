@@ -39,8 +39,6 @@ export default function Portfolio({ projects }: { projects: Project[] }) {
   const scrollEndTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const resumeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const scrollFrame = useRef<number | null>(null);
-  const wheelLockTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const isWheelLocked = useRef(false);
   const physicalIndexRef = useRef(initialPhysicalIndex);
   const activeIndexRef = useRef(initialProjectIndex);
 
@@ -81,7 +79,12 @@ export default function Portfolio({ projects }: { projects: Project[] }) {
     if (projectCount === 0) return;
     const physicalIndex = findClosestPhysicalIndex();
     const projectIndex = physicalIndex % projectCount;
-    const correctedIndex = projectCount * CENTER_LOOP_SET + projectIndex;
+    const isNearLoopStart = physicalIndex < projectCount;
+    const isNearLoopEnd = physicalIndex >= projectCount * (LOOP_SET_COUNT - 1);
+    const correctedIndex =
+      isNearLoopStart || isNearLoopEnd
+        ? projectCount * CENTER_LOOP_SET + projectIndex
+        : physicalIndex;
 
     if (activeIndexRef.current !== projectIndex) setActiveIndex(projectIndex);
     activeIndexRef.current = projectIndex;
@@ -140,40 +143,6 @@ export default function Portfolio({ projects }: { projects: Project[] }) {
     resumeTimer.current = setTimeout(() => setIsAutoSwipePaused(false), 7000);
   }, []);
 
-  const handleWheel = useCallback(
-    (event: React.WheelEvent<HTMLDivElement>) => {
-      if (projectCount === 0) return;
-
-      const horizontalIntent =
-        Math.abs(event.deltaX) > Math.abs(event.deltaY) &&
-        Math.abs(event.deltaX) > 8;
-
-      if (!horizontalIntent) return;
-      event.preventDefault();
-
-      if (isWheelLocked.current) return;
-      isWheelLocked.current = true;
-      pauseAfterInteraction();
-
-      const direction = event.deltaX > 0 ? 1 : -1;
-      const nextPhysicalIndex = physicalIndexRef.current + direction;
-      const nextProjectIndex =
-        ((nextPhysicalIndex % projectCount) + projectCount) % projectCount;
-
-      physicalIndexRef.current = nextPhysicalIndex;
-      activeIndexRef.current = nextProjectIndex;
-      setActivePhysicalIndex(nextPhysicalIndex);
-      setActiveIndex(nextProjectIndex);
-      scrollToPhysicalSlide(nextPhysicalIndex);
-
-      if (wheelLockTimer.current) clearTimeout(wheelLockTimer.current);
-      wheelLockTimer.current = setTimeout(() => {
-        isWheelLocked.current = false;
-      }, 520);
-    },
-    [pauseAfterInteraction, projectCount, scrollToPhysicalSlide]
-  );
-
   useEffect(() => {
     if (projectCount === 0) return;
     const timer = window.setTimeout(
@@ -193,7 +162,6 @@ export default function Portfolio({ projects }: { projects: Project[] }) {
       window.clearTimeout(timer);
       if (scrollEndTimer.current) clearTimeout(scrollEndTimer.current);
       if (resumeTimer.current) clearTimeout(resumeTimer.current);
-      if (wheelLockTimer.current) clearTimeout(wheelLockTimer.current);
       if (scrollFrame.current !== null) {
         window.cancelAnimationFrame(scrollFrame.current);
       }
@@ -261,7 +229,6 @@ export default function Portfolio({ projects }: { projects: Project[] }) {
             onFocusCapture={() => setIsAutoSwipePaused(true)}
             onBlurCapture={() => setIsAutoSwipePaused(false)}
             onPointerDown={pauseAfterInteraction}
-            onWheel={handleWheel}
             className="flex touch-pan-x snap-x snap-mandatory items-stretch gap-4 overflow-x-auto overflow-y-hidden overscroll-x-contain scroll-smooth px-[11vw] py-7 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:gap-6 sm:px-[20vw] lg:gap-8 lg:px-[5%]"
           >
             {loopedProjects.map(({ project, projectIndex, loopKey }, physicalIndex) => {
