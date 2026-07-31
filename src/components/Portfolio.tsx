@@ -39,6 +39,8 @@ export default function Portfolio({ projects }: { projects: Project[] }) {
   const scrollEndTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const resumeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const scrollFrame = useRef<number | null>(null);
+  const wheelLockTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const isWheelLocked = useRef(false);
   const physicalIndexRef = useRef(initialPhysicalIndex);
   const activeIndexRef = useRef(initialProjectIndex);
 
@@ -138,6 +140,40 @@ export default function Portfolio({ projects }: { projects: Project[] }) {
     resumeTimer.current = setTimeout(() => setIsAutoSwipePaused(false), 7000);
   }, []);
 
+  const handleWheel = useCallback(
+    (event: React.WheelEvent<HTMLDivElement>) => {
+      if (projectCount === 0) return;
+
+      const horizontalIntent =
+        Math.abs(event.deltaX) > Math.abs(event.deltaY) &&
+        Math.abs(event.deltaX) > 8;
+
+      if (!horizontalIntent) return;
+      event.preventDefault();
+
+      if (isWheelLocked.current) return;
+      isWheelLocked.current = true;
+      pauseAfterInteraction();
+
+      const direction = event.deltaX > 0 ? 1 : -1;
+      const nextPhysicalIndex = physicalIndexRef.current + direction;
+      const nextProjectIndex =
+        ((nextPhysicalIndex % projectCount) + projectCount) % projectCount;
+
+      physicalIndexRef.current = nextPhysicalIndex;
+      activeIndexRef.current = nextProjectIndex;
+      setActivePhysicalIndex(nextPhysicalIndex);
+      setActiveIndex(nextProjectIndex);
+      scrollToPhysicalSlide(nextPhysicalIndex);
+
+      if (wheelLockTimer.current) clearTimeout(wheelLockTimer.current);
+      wheelLockTimer.current = setTimeout(() => {
+        isWheelLocked.current = false;
+      }, 520);
+    },
+    [pauseAfterInteraction, projectCount, scrollToPhysicalSlide]
+  );
+
   useEffect(() => {
     if (projectCount === 0) return;
     const timer = window.setTimeout(
@@ -157,6 +193,7 @@ export default function Portfolio({ projects }: { projects: Project[] }) {
       window.clearTimeout(timer);
       if (scrollEndTimer.current) clearTimeout(scrollEndTimer.current);
       if (resumeTimer.current) clearTimeout(resumeTimer.current);
+      if (wheelLockTimer.current) clearTimeout(wheelLockTimer.current);
       if (scrollFrame.current !== null) {
         window.cancelAnimationFrame(scrollFrame.current);
       }
@@ -224,7 +261,8 @@ export default function Portfolio({ projects }: { projects: Project[] }) {
             onFocusCapture={() => setIsAutoSwipePaused(true)}
             onBlurCapture={() => setIsAutoSwipePaused(false)}
             onPointerDown={pauseAfterInteraction}
-            className="flex snap-x snap-mandatory items-stretch gap-4 overflow-x-auto px-[11vw] py-7 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:gap-6 sm:px-[20vw] lg:gap-8 lg:px-[5%]"
+            onWheel={handleWheel}
+            className="flex touch-pan-x snap-x snap-mandatory items-stretch gap-4 overflow-x-auto overflow-y-hidden overscroll-x-contain scroll-smooth px-[11vw] py-7 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:gap-6 sm:px-[20vw] lg:gap-8 lg:px-[5%]"
           >
             {loopedProjects.map(({ project, projectIndex, loopKey }, physicalIndex) => {
               const isActive = physicalIndex === activePhysicalIndex;
@@ -235,7 +273,7 @@ export default function Portfolio({ projects }: { projects: Project[] }) {
               return (
                 <article
                   key={loopKey}
-                  className={`relative aspect-[590/799] w-[78vw] max-w-[440px] shrink-0 snap-center overflow-hidden rounded-[22px] border border-white/90 shadow-[0_18px_45px_rgba(48,36,81,.14)] transition-transform duration-500 ease-out sm:w-[60vw] lg:w-[35%] lg:max-w-[480px] ${
+                  className={`relative aspect-[590/799] w-[78vw] max-w-[440px] shrink-0 snap-center [scroll-snap-stop:always] overflow-hidden rounded-[22px] border border-white/90 shadow-[0_18px_45px_rgba(48,36,81,.14)] transition-transform duration-500 ease-out sm:w-[60vw] lg:w-[35%] lg:max-w-[480px] ${
                     isActive ? "z-10 scale-100" : "z-0 lg:scale-[.975]"
                   }`}
                 >
