@@ -4,12 +4,13 @@ import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import { getPublishedProjects } from "@/lib/projects";
 import { SITE_NAME, SITE_URL } from "@/lib/constants";
+import { localizedAlternates } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: "Web Development Portfolio",
   description:
     "Explore custom web applications, e-commerce platforms, and digital products designed and developed by 3M tech.",
-  alternates: { canonical: "/projects" },
+  alternates: localizedAlternates("/projects"),
   openGraph: {
     title: "Web Development Portfolio | 3M tech",
     description:

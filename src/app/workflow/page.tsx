@@ -1,11 +1,22 @@
 import Workflow from "@/components/Workflow";
 import Navbar from "@/components/Navbar";
 import Image from "next/image";
+import type { Metadata } from "next";
+import { SITE_DESCRIPTION, SITE_NAME, SITE_URL } from "@/lib/constants";
+import { localizedAlternates } from "@/lib/seo";
 
-export const metadata = {
-  title: "Our Workflow | 3M tech",
+export const metadata: Metadata = {
+  title: "Our Web Design & Development Process",
   description:
     "See how 3M tech combines creativity, strategy, and technology to deliver software solutions that drive measurable results.",
+  alternates: localizedAlternates("/workflow"),
+  openGraph: {
+    title: "Web Design & Development Process | 3M tech",
+    description: SITE_DESCRIPTION,
+    url: `${SITE_URL}/workflow`,
+    siteName: SITE_NAME,
+    type: "website",
+  },
 };
 
 export default function WorkflowPage() {

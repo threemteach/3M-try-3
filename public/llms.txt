@@ -1,15 +1,43 @@
-# 3M - Business Website
+# 3M tech
 
-## About
-3M is a business solutions company delivering innovative strategies, project management,
-digital transformation, and market analysis services. We help businesses of all sizes
-navigate complexity and achieve sustainable growth.
+> 3M tech is a digital product and web development studio in Egypt. We design and build intentional, scalable digital products for startups and established businesses across Egypt and the Middle East.
 
-## Pages
-- Home (/): Overview of 3M services, hero section, and call to action
-- Our Projects (/projects): Portfolio of digital products and web applications
-- About Us (/about): Company mission, values, statistics, and team information
+## Core services
+- Custom web application development
+- E-commerce platform development
+- Shopify store setup and customization
+- MVP design and development
+- UI/UX research, wireframes, prototypes, and design systems
+- Maintenance, technical support, and software optimization
+- Custom digital platforms, management systems, and business automation
+- Educational platforms, e-learning products, and custom LMS development
 
-## Contact
-- Email: contact@3mtechs.com
-- Phone: +201061883470
+## Important pages
+- [Home](https://3mtechs.com/): Services, selected work, process, and project enquiry form
+- [Projects](https://3mtechs.com/projects): Published web and digital product case studies
+- [About](https://3mtechs.com/about): Team, principles, services, and frequently asked questions
+- [Workflow](https://3mtechs.com/workflow): Research, strategy, UI/UX, development, testing, and launch process
+- [Contact](https://3mtechs.com/contact): Start a project by email or WhatsApp
+- [Web development](https://3mtechs.com/services/web-development): Corporate websites, web applications, dashboards, booking systems, and portals
+- [UI/UX design](https://3mtechs.com/services/ui-ux-design): Research-led product, website, and mobile interface design
+- [E-commerce development](https://3mtechs.com/services/ecommerce-development): Custom online stores and Shopify development
+- [Digital platforms](https://3mtechs.com/services/digital-platforms): SaaS, marketplaces, management systems, and automation
+- [Educational platforms](https://3mtechs.com/services/educational-platforms): E-learning, LMS, course, and training platforms
+- [Arabic home](https://3mtechs.com/ar): Arabic overview of 3M tech services and work
+- [Arabic projects](https://3mtechs.com/ar/projects): Arabic portfolio and case studies
+- [خدمات تطوير المواقع](https://3mtechs.com/ar/services/web-development): مواقع وتطبيقات ويب للشركات في مصر ودول الخليج
+- [خدمات تصميم UI/UX](https://3mtechs.com/ar/services/ui-ux-design): تصميم تجربة وواجهة المستخدم المبني على البحث
+- [تطوير المتاجر الإلكترونية](https://3mtechs.com/ar/services/ecommerce-development): متاجر مخصصة وحلول Shopify
+- [تطوير المنصات الرقمية](https://3mtechs.com/ar/services/digital-platforms): منصات وأنظمة وأتمتة أعمال
+- [تطوير المنصات التعليمية](https://3mtechs.com/ar/services/educational-platforms): منصات تعليم إلكتروني وأنظمة LMS
+
+## Business facts
+- Brand: 3M tech
+- Location: Egypt
+- Service area: Egypt, Saudi Arabia, the UAE, Kuwait, Qatar, Bahrain, Oman, and the wider Middle East
+- Languages: English and Arabic
+- Phone and WhatsApp: +20 10 6188 3470
+- Website: https://3mtechs.com/
+
+## Editorial note
+3M tech does not produce random AI-generated design directions. Product decisions are based on research, business goals, product thinking, and human creative judgment.

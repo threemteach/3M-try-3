@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 
 const services = [
   {
@@ -16,6 +17,7 @@ const services = [
     ],
     image: "/services/web-development.png",
     hasCircle: true,
+    href: "/services/web-development",
   },
   {
     title: "UI/UX Design",
@@ -28,6 +30,7 @@ const services = [
     ],
     image: "/services/uiux-design.png",
     hasCircle: true,
+    href: "/services/ui-ux-design",
   },
   {
     title: "Maintenance & Support",
@@ -41,6 +44,7 @@ const services = [
     ],
     image: "/services/maintenance.png",
     hasCircle: true,
+    href: "/services/digital-platforms",
   },
   {
     title: "Software Optimization",
@@ -53,6 +57,7 @@ const services = [
     ],
     image: "/services/software-optimization.png",
     hasCircle: false, // white circle is embedded in the image itself
+    href: "/services/digital-platforms",
   },
 ];
 
@@ -78,6 +83,18 @@ export default function WhatWeDo() {
         >
           Everything you need to bring your ideas to life.
         </p>
+
+        <nav aria-label="Featured digital services" className="mt-5 flex flex-wrap justify-center gap-2">
+          <Link href="/services/ecommerce-development" className="rounded-full border border-[#302451]/15 bg-white/60 px-4 py-2 text-xs font-bold text-[#302451] transition-colors hover:bg-white sm:text-sm">
+            E-Commerce Development
+          </Link>
+          <Link href="/services/digital-platforms" className="rounded-full border border-[#302451]/15 bg-white/60 px-4 py-2 text-xs font-bold text-[#302451] transition-colors hover:bg-white sm:text-sm">
+            Digital Platforms
+          </Link>
+          <Link href="/services/educational-platforms" className="rounded-full border border-[#302451]/15 bg-white/60 px-4 py-2 text-xs font-bold text-[#302451] transition-colors hover:bg-white sm:text-sm">
+            Educational Platforms
+          </Link>
+        </nav>
 
         <div
           dir="ltr"
@@ -181,6 +198,13 @@ export default function WhatWeDo() {
                       </li>
                     ))}
                   </ul>
+
+                  <Link
+                    href={service.href}
+                    className="mt-2 inline-flex w-fit items-center border-b border-white/55 text-[clamp(8px,1.4vw,16px)] font-bold text-white sm:mt-4"
+                  >
+                    Learn more
+                  </Link>
                 </div>
 
                 {/* Image Area - 44% */}

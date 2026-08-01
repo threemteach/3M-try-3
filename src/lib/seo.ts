@@ -1,0 +1,233 @@
+import type { Metadata } from "next";
+import { SITE_URL } from "@/lib/constants";
+
+export const KEYWORD_CLUSTERS = {
+  company: {
+    en: [
+      "software company Egypt",
+      "software development company Egypt",
+      "software house Egypt",
+      "web development company Egypt",
+      "website design company Egypt",
+      "digital solutions company Egypt",
+      "software company Saudi Arabia",
+      "web development company Saudi Arabia",
+      "website design company Riyadh",
+      "software company UAE",
+      "web development company Dubai",
+      "website design company Dubai",
+      "software development company GCC",
+      "web development company Middle East",
+      "digital product studio Middle East",
+      "custom software development Middle East",
+    ],
+    ar: [
+      "شركة برمجة في مصر",
+      "أفضل شركة برمجة في مصر",
+      "شركات سوفت وير في مصر",
+      "شركة سوفت وير في مصر",
+      "شركة تطوير برمجيات في مصر",
+      "شركة حلول رقمية في مصر",
+      "شركة تصميم مواقع في مصر",
+      "شركة برمجة في السعودية",
+      "شركة تصميم مواقع في السعودية",
+      "شركة برمجة مواقع في الرياض",
+      "شركة برمجة في الإمارات",
+      "شركة تصميم مواقع في الإمارات",
+      "شركة تصميم مواقع في دبي",
+      "شركة برمجة في الخليج",
+      "شركة تطوير برمجيات في الخليج",
+      "شركة حلول تقنية في الخليج",
+    ],
+  },
+  webDevelopment: {
+    en: [
+      "professional website design",
+      "custom website development",
+      "business website development",
+      "corporate website design",
+      "responsive web design company",
+      "Next.js development company",
+      "React development company",
+      "web application development company",
+      "custom dashboard development",
+      "booking system development",
+      "customer portal development",
+      "website redesign services",
+      "fast SEO friendly website",
+      "MVP web development",
+    ],
+    ar: [
+      "تصميم مواقع احترافية",
+      "برمجة مواقع للشركات",
+      "تطوير مواقع إلكترونية",
+      "إنشاء موقع إلكتروني احترافي",
+      "تصميم موقع شركة",
+      "تصميم مواقع متجاوبة",
+      "برمجة تطبيقات ويب",
+      "تطوير تطبيقات الويب",
+      "برمجة لوحة تحكم",
+      "برمجة نظام حجز إلكتروني",
+      "تصميم بوابة عملاء",
+      "إعادة تصميم المواقع",
+      "تصميم موقع سريع ومتوافق مع السيو",
+      "تطوير نسخة MVP",
+    ],
+  },
+  uiUx: {
+    en: [
+      "UI UX design agency Egypt",
+      "UI UX design agency Saudi Arabia",
+      "UI UX design agency UAE",
+      "user experience design company",
+      "mobile app UI UX design",
+      "website UI UX design",
+      "Figma UI UX design",
+      "UX research services",
+      "wireframe and prototype design",
+      "design system services",
+      "SaaS product design",
+      "ecommerce UX design",
+    ],
+    ar: [
+      "شركة تصميم UI UX",
+      "تصميم واجهات المستخدم",
+      "تصميم تجربة المستخدم",
+      "تصميم تطبيقات موبايل UI UX",
+      "تصميم واجهات مواقع",
+      "تصميم فيجما",
+      "بحث تجربة المستخدم",
+      "تصميم واير فريم",
+      "تصميم نموذج تفاعلي",
+      "إنشاء نظام تصميم",
+      "تصميم منتجات رقمية",
+      "تحسين تجربة المتجر الإلكتروني",
+    ],
+  },
+  ecommerce: {
+    en: [
+      "ecommerce development company Egypt",
+      "ecommerce development company Saudi Arabia",
+      "ecommerce development company UAE",
+      "online store development",
+      "custom ecommerce website development",
+      "Shopify development company",
+      "Shopify store setup Egypt",
+      "Shopify developer Saudi Arabia",
+      "Shopify developer UAE",
+      "payment gateway integration",
+      "multi vendor marketplace development",
+      "B2B ecommerce development",
+      "Arabic ecommerce website",
+      "ecommerce website redesign",
+    ],
+    ar: [
+      "شركة تصميم متجر إلكتروني",
+      "تصميم متجر إلكتروني في مصر",
+      "تصميم متجر إلكتروني في السعودية",
+      "تصميم متجر إلكتروني في الإمارات",
+      "برمجة متجر إلكتروني",
+      "إنشاء متجر إلكتروني احترافي",
+      "شركة شوبيفاي",
+      "تصميم متجر شوبيفاي",
+      "مطور شوبيفاي في السعودية",
+      "ربط بوابات الدفع الإلكتروني",
+      "برمجة منصة متعددة البائعين",
+      "تصميم متجر B2B",
+      "متجر إلكتروني عربي",
+      "تحسين المتاجر الإلكترونية",
+    ],
+  },
+  digitalPlatforms: {
+    en: [
+      "digital platform development",
+      "custom digital solutions company",
+      "business automation solutions",
+      "custom management system development",
+      "SaaS platform development",
+      "marketplace platform development",
+      "internal tools development",
+      "CRM system development",
+      "ERP system development",
+      "API integration services",
+      "digital transformation company Egypt",
+      "digital transformation Saudi Arabia",
+    ],
+    ar: [
+      "تطوير منصة رقمية",
+      "شركة حلول رقمية",
+      "حلول برمجية للشركات",
+      "أتمتة الأعمال",
+      "برمجة نظام إدارة مخصص",
+      "برمجة منصة SaaS",
+      "برمجة منصة خدمات",
+      "تطوير أدوات داخلية للشركات",
+      "برمجة نظام CRM",
+      "برمجة نظام ERP",
+      "ربط API",
+      "حلول التحول الرقمي",
+    ],
+  },
+  educationalPlatforms: {
+    en: [
+      "educational platform development",
+      "e learning platform development",
+      "LMS development company",
+      "online learning platform development",
+      "custom LMS development",
+      "course platform development",
+      "school management system development",
+      "training platform development",
+      "Arabic learning platform",
+      "educational app UI UX design",
+      "LMS development Saudi Arabia",
+      "e learning platform UAE",
+    ],
+    ar: [
+      "تصميم منصة تعليمية",
+      "برمجة منصة تعليمية",
+      "تطوير منصة تعليم إلكتروني",
+      "تصميم منصة كورسات",
+      "برمجة نظام إدارة تعلم LMS",
+      "تطوير نظام LMS",
+      "برمجة منصة تدريب",
+      "تصميم موقع تعليمي",
+      "برمجة نظام إدارة مدرسة",
+      "منصة تعليمية عربية",
+      "تصميم تطبيق تعليمي",
+      "شركة برمجة منصات تعليمية",
+    ],
+  },
+} as const;
+
+export const ENGLISH_KEYWORDS = Object.values(KEYWORD_CLUSTERS).flatMap(
+  (cluster) => cluster.en
+);
+
+export const ARABIC_KEYWORDS = Object.values(KEYWORD_CLUSTERS).flatMap(
+  (cluster) => cluster.ar
+);
+
+export function localizedAlternates(path = ""): Metadata["alternates"] {
+  const cleanPath = path === "/" ? "" : path;
+  return {
+    canonical: `${SITE_URL}${cleanPath}`,
+    languages: {
+      en: `${SITE_URL}${cleanPath}`,
+      ar: `${SITE_URL}/ar${cleanPath}`,
+      "x-default": `${SITE_URL}${cleanPath}`,
+    },
+  };
+}
+
+export function arabicAlternates(path = ""): Metadata["alternates"] {
+  const cleanPath = path === "/" ? "" : path;
+  return {
+    canonical: `${SITE_URL}/ar${cleanPath}`,
+    languages: {
+      en: `${SITE_URL}${cleanPath}`,
+      ar: `${SITE_URL}/ar${cleanPath}`,
+      "x-default": `${SITE_URL}${cleanPath}`,
+    },
+  };
+}

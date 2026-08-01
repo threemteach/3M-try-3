@@ -9,15 +9,16 @@ import PublicSiteChrome from "@/components/PublicSiteChrome";
 import ScrollReveal from "@/components/ScrollReveal";
 import { LanguageProvider } from "@/components/LanguageProvider";
 import MobileHeader from "@/components/MobileHeader";
+import JsonLd from "@/components/JsonLd";
 import {
   FACEBOOK_URL,
   INSTAGRAM_URL,
   SITE_DESCRIPTION,
-  SITE_EMAIL,
   SITE_NAME,
   SITE_PHONE,
   SITE_URL,
 } from "@/lib/constants";
+import { ENGLISH_KEYWORDS, localizedAlternates } from "@/lib/seo";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -26,7 +27,7 @@ export const metadata: Metadata = {
     apple: "/logo.png",
   },
   title: {
-    default: "3M tech | Digital Product Studio in Egypt",
+    default: "Software, Web Development & UI/UX in Egypt & GCC | 3M tech",
     template: "%s | 3M tech",
   },
   description: SITE_DESCRIPTION,
@@ -35,28 +36,24 @@ export const metadata: Metadata = {
   creator: SITE_NAME,
   publisher: SITE_NAME,
   category: "technology",
-  keywords: [
-    "web development Egypt",
-    "digital product studio Egypt",
-    "custom web applications",
-    "e-commerce development Egypt",
-    "Shopify development Egypt",
-    "MVP development",
-    "UI UX design Egypt",
-    "web development Middle East",
-    "3M tech",
-  ],
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
+  keywords: [...ENGLISH_KEYWORDS, "3M tech"],
+  alternates: localizedAlternates("/"),
   openGraph: {
     type: "website",
     locale: "en_US",
     siteName: SITE_NAME,
-    title: "3M tech | Digital Product Studio in Egypt",
+    title: "Software, Web Development & UI/UX in Egypt & GCC | 3M tech",
     description: SITE_DESCRIPTION,
     url: SITE_URL,
   },
   twitter: {
     card: "summary",
-    title: "3M tech | Digital Product Studio in Egypt",
+    title: "Software, Web Development & UI/UX in Egypt & GCC | 3M tech",
     description: SITE_DESCRIPTION,
   },
   robots: {
@@ -70,6 +67,9 @@ export const metadata: Metadata = {
       "max-video-preview": -1,
     },
   },
+  verification: {
+    google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION,
+  },
 };
 
 const organizationJsonLd = {
@@ -81,8 +81,14 @@ const organizationJsonLd = {
   url: SITE_URL,
   logo: `${SITE_URL}/logo.png`,
   description: SITE_DESCRIPTION,
-  email: SITE_EMAIL,
   telephone: SITE_PHONE,
+  contactPoint: {
+    "@type": "ContactPoint",
+    contactType: "sales and customer support",
+    telephone: SITE_PHONE,
+    availableLanguage: ["English", "Arabic"],
+    areaServed: ["EG", "AE", "SA", "KW", "QA", "BH", "OM"],
+  },
   priceRange: "$$",
   address: {
     "@type": "PostalAddress",
@@ -90,15 +96,26 @@ const organizationJsonLd = {
   },
   areaServed: [
     { "@type": "Country", name: "Egypt" },
-    { "@type": "Place", name: "Middle East" },
+    { "@type": "Country", name: "Saudi Arabia" },
+    { "@type": "Country", name: "United Arab Emirates" },
+    { "@type": "Country", name: "Kuwait" },
+    { "@type": "Country", name: "Qatar" },
+    { "@type": "Country", name: "Bahrain" },
+    { "@type": "Country", name: "Oman" },
   ],
   sameAs: [FACEBOOK_URL, INSTAGRAM_URL],
-  openingHoursSpecification: {
-    "@type": "OpeningHoursSpecification",
-    dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-    opens: "09:00",
-    closes: "18:00",
-  },
+  knowsAbout: [
+    "Web Development",
+    "Custom Web Applications",
+    "E-Commerce Development",
+    "Shopify Development",
+    "MVP Development",
+    "UI/UX Design",
+    "Digital Platform Development",
+    "Educational Platform Development",
+    "Learning Management Systems",
+    "Digital Product Strategy",
+  ],
   hasOfferCatalog: {
     "@type": "OfferCatalog",
     name: "Digital Product Services",
@@ -108,11 +125,26 @@ const organizationJsonLd = {
       "Shopify Store Setup",
       "MVP Development",
       "UI/UX Design",
+      "Custom Digital Platforms",
+      "Business Automation Systems",
+      "Educational Platforms and LMS",
     ].map((name) => ({
       "@type": "Offer",
       itemOffered: { "@type": "Service", name },
     })),
   },
+};
+
+const websiteJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "@id": `${SITE_URL}/#website`,
+  url: SITE_URL,
+  name: SITE_NAME,
+  alternateName: ["3M Tech", "3M tech Egypt"],
+  description: SITE_DESCRIPTION,
+  publisher: { "@id": `${SITE_URL}/#organization` },
+  inLanguage: ["en", "ar"],
 };
 
 export default function RootLayout({
@@ -123,12 +155,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify(organizationJsonLd).replace(/</g, "\\u003c"),
-          }}
-        />
+        <JsonLd data={[organizationJsonLd, websiteJsonLd]} />
       </head>
       <body className="flex min-h-screen flex-col font-[family-name:var(--font-cairo)] antialiased">
         <LanguageProvider>

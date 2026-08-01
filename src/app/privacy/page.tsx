@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
+import { localizedAlternates } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: "Privacy Policy",
   description: "How 3M tech handles information submitted through this website.",
-  alternates: { canonical: "/privacy" },
+  alternates: localizedAlternates("/privacy"),
   robots: { index: true, follow: true },
 };
 

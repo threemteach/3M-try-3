@@ -1,7 +1,7 @@
 "use client";
 
 import { createContext, useContext, useEffect, useMemo, useState } from "react";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { Languages } from "lucide-react";
 
 type Language = "en" | "ar";
@@ -46,6 +46,9 @@ const ARABIC: Record<string, string> = {
   "What We Do": "ماذا نقدّم",
   "Everything you need to bring your ideas to life.":
     "كل ما تحتاجه لتحويل فكرتك إلى منتجٍ ناجح.",
+  "E-Commerce Development": "تطوير المتاجر الإلكترونية",
+  "Educational Platforms": "المنصات التعليمية",
+  "Learn more": "اعرف المزيد",
   "Our approach": "منهجُنا",
   "No random AI design directions—every product decision is intentional, researched, and connected to the client's business.":
     "لا نصنع تصاميم عشوائية بالذكاء الاصطناعي؛ كل قرارٍ مدروس، مبنيّ على بحث، ومرتبط بهدف العميل.",
@@ -293,13 +296,14 @@ function replaceText(root: ParentNode, language: Language) {
 
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
-  const [language, setLanguage] = useState<Language>("en");
+  const router = useRouter();
+  const routeLanguage: Language = pathname === "/ar" || pathname.startsWith("/ar/") ? "ar" : "en";
+  const [language, setLanguage] = useState<Language>(routeLanguage);
   const isPublic = pathname !== "/login" && !pathname.startsWith("/admin");
 
   useEffect(() => {
-    const stored = window.localStorage.getItem("3m-language");
-    if (stored === "ar") setLanguage("ar");
-  }, []);
+    setLanguage(routeLanguage);
+  }, [routeLanguage]);
 
   useEffect(() => {
     if (!isPublic) return;
@@ -322,13 +326,42 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
     };
   }, [language, isPublic, pathname]);
 
+  useEffect(() => {
+    if (!isPublic || language !== "ar") return;
+    const localizeLinks = () => {
+      document.querySelectorAll<HTMLAnchorElement>('a[href^="/"]').forEach((anchor) => {
+        const href = anchor.getAttribute("href");
+        if (
+          !href ||
+          href.startsWith("/ar") ||
+          href.startsWith("/admin") ||
+          href.startsWith("/login") ||
+          href.startsWith("/api") ||
+          href.startsWith("/_next")
+        ) return;
+        anchor.setAttribute("href", href === "/" ? "/ar" : `/ar${href}`);
+      });
+    };
+    localizeLinks();
+    const observer = new MutationObserver(localizeLinks);
+    observer.observe(document.body, { childList: true, subtree: true });
+    return () => observer.disconnect();
+  }, [language, isPublic, pathname]);
+
   const value = useMemo(
     () => ({
       language,
       isArabic: language === "ar",
-      toggleLanguage: () => setLanguage((current) => (current === "ar" ? "en" : "ar")),
+      toggleLanguage: () => {
+        const hash = window.location.hash;
+        const englishPath = pathname === "/ar" ? "/" : pathname.replace(/^\/ar(?=\/|$)/, "") || "/";
+        const target = language === "ar"
+          ? englishPath
+          : englishPath === "/" ? "/ar" : `/ar${englishPath}`;
+        router.push(`${target}${hash}`);
+      },
     }),
-    [language]
+    [language, pathname, router]
   );
 
   return (

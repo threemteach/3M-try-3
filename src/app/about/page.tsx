@@ -4,12 +4,14 @@ import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import { faqItems, teamMembers } from "@/lib/aboutData";
 import { SITE_NAME, SITE_URL } from "@/lib/constants";
+import JsonLd from "@/components/JsonLd";
+import { localizedAlternates } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: "About Us",
   description:
     "Meet the 3M tech team in Egypt. We design and build custom web applications, e-commerce platforms, Shopify stores, MVPs, and UI/UX experiences.",
-  alternates: { canonical: "/about" },
+  alternates: localizedAlternates("/about"),
   openGraph: {
     title: "About 3M tech | Digital Product Team in Egypt",
     description:
@@ -83,9 +85,23 @@ function Flourish({ flip = false }: { flip?: boolean }) {
   );
 }
 
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqItems.map((item) => ({
+    "@type": "Question",
+    name: item.question,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: item.answer,
+    },
+  })),
+};
+
 export default function About() {
   return (
     <>
+      <JsonLd data={faqJsonLd} />
       <section className="relative isolate min-h-[620px] overflow-hidden bg-[#302451] px-4 pb-20 pt-24 text-white sm:min-h-[700px] sm:px-8 sm:pb-24 sm:pt-36 lg:pt-44">
         <Navbar />
         <Image

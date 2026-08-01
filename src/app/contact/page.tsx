@@ -3,12 +3,13 @@ import Image from "next/image";
 import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import { SITE_NAME, SITE_URL } from "@/lib/constants";
+import { localizedAlternates } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: "Contact Us",
   description:
     "Contact 3M tech in Egypt to discuss a custom web application, e-commerce platform, Shopify store, MVP, or UI/UX project.",
-  alternates: { canonical: "/contact" },
+  alternates: localizedAlternates("/contact"),
   openGraph: {
     title: "Contact 3M tech | Start Your Digital Project",
     description:
