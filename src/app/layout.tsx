@@ -23,8 +23,13 @@ import { ENGLISH_KEYWORDS, localizedAlternates } from "@/lib/seo";
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   icons: {
-    icon: "/logo.png",
-    apple: "/logo.png",
+    icon: [
+      { url: "/favicon-48.png", sizes: "48x48", type: "image/png" },
+      { url: "/favicon-192.png", sizes: "192x192", type: "image/png" },
+      { url: "/favicon-512.png", sizes: "512x512", type: "image/png" },
+    ],
+    shortcut: "/favicon-48.png",
+    apple: { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
   },
   title: {
     default: "Software, Web Development & UI/UX in Egypt & GCC | 3M tech",
@@ -79,7 +84,13 @@ const organizationJsonLd = {
   name: SITE_NAME,
   alternateName: "3M Tech",
   url: SITE_URL,
-  logo: `${SITE_URL}/logo.png`,
+  logo: {
+    "@type": "ImageObject",
+    url: `${SITE_URL}/favicon-512.png`,
+    contentUrl: `${SITE_URL}/favicon-512.png`,
+    width: 512,
+    height: 512,
+  },
   description: SITE_DESCRIPTION,
   telephone: SITE_PHONE,
   contactPoint: {
