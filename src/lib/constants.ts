@@ -1,4 +1,4 @@
-export const SITE_URL = "https://3mtechs.com";
+export const SITE_URL = "https://www.3mtechs.com";
 export const SITE_NAME = "3M tech";
 export const SITE_DESCRIPTION =
   "3M tech is a software and digital product studio building websites, UI/UX experiences, e-commerce stores, custom digital solutions, and educational platforms for businesses in Egypt and the Gulf.";
