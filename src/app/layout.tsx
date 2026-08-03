@@ -10,6 +10,7 @@ import ScrollReveal from "@/components/ScrollReveal";
 import { LanguageProvider } from "@/components/LanguageProvider";
 import MobileHeader from "@/components/MobileHeader";
 import JsonLd from "@/components/JsonLd";
+import WhatsAppButton from "@/components/WhatsAppButton";
 import {
   FACEBOOK_URL,
   INSTAGRAM_URL,
@@ -164,11 +165,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <head>
         <JsonLd data={[organizationJsonLd, websiteJsonLd]} />
       </head>
-      <body className="flex min-h-screen flex-col font-[family-name:var(--font-cairo)] antialiased">
+      <body
+        suppressHydrationWarning
+        className="flex min-h-screen flex-col font-[family-name:var(--font-cairo)] antialiased"
+      >
         <LanguageProvider>
           <PublicSiteChrome>
             <LoadingScreen />
@@ -180,6 +184,7 @@ export default function RootLayout({
           <PublicSiteChrome>
             <ContactForm />
             <Footer />
+            <WhatsAppButton />
             <MobileBottomNav />
           </PublicSiteChrome>
         </LanguageProvider>
