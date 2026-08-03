@@ -230,6 +230,14 @@ html[dir="rtl"] .approach-card {
 }
 
 @media (min-width: 640px) {
+  .approach-label {
+    font-size: clamp(14px, 1.5vw, 17px) !important;
+  }
+
+  .approach-copy {
+    font-size: clamp(14px, 1.4vw, 16px) !important;
+  }
+
   html[dir="rtl"] .approach-label,
   html[dir="rtl"] .approach-copy {
     width: calc(100% - 110px);
@@ -237,13 +245,6 @@ html[dir="rtl"] .approach-card {
     margin-left: 30px;
   }
 
-  html[dir="rtl"] .approach-label {
-    font-size: clamp(14px, 1.5vw, 17px) !important;
-  }
-
-  html[dir="rtl"] .approach-copy {
-    font-size: clamp(14px, 1.4vw, 16px) !important;
-  }
 }
 
 html[dir="rtl"] .service-card-copy {
