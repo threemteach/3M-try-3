@@ -215,7 +215,7 @@ export function localizedAlternates(path = ""): Metadata["alternates"] {
     languages: {
       en: `${SITE_URL}${cleanPath}`,
       ar: `${SITE_URL}/ar${cleanPath}`,
-      "x-default": `${SITE_URL}${cleanPath}`,
+      "x-default": `${SITE_URL}/ar${cleanPath}`,
     },
   };
 }
@@ -227,7 +227,7 @@ export function arabicAlternates(path = ""): Metadata["alternates"] {
     languages: {
       en: `${SITE_URL}${cleanPath}`,
       ar: `${SITE_URL}/ar${cleanPath}`,
-      "x-default": `${SITE_URL}${cleanPath}`,
+      "x-default": `${SITE_URL}/ar${cleanPath}`,
     },
   };
 }

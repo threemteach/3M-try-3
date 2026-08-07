@@ -10,12 +10,20 @@ import {
   useState,
 } from "react";
 import type { Project } from "@/lib/projects";
+import { useLanguage } from "@/components/LanguageProvider";
 
 const AUTO_SWIPE_DELAY = 4500;
 const LOOP_SET_COUNT = 5;
 const CENTER_LOOP_SET = 2;
 
-export default function Portfolio({ projects }: { projects: Project[] }) {
+export default function Portfolio({ projects: sourceProjects }: { projects: Project[] }) {
+  const { isArabic } = useLanguage();
+  const projects = useMemo(() => sourceProjects.map((project) => isArabic ? {
+    ...project,
+    description: project.descriptionAr,
+    longDescription: project.longDescriptionAr,
+    features: project.featuresAr,
+  } : project), [isArabic, sourceProjects]);
   const projectCount = projects.length;
   const initialProjectIndex = Math.min(1, Math.max(0, projectCount - 1));
   const initialPhysicalIndex =

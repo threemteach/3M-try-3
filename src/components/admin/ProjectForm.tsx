@@ -12,6 +12,10 @@ const emptyFeature: ProjectFeature = { icon: "star", title: "", description: "" 
 type PendingImage = { id: string; file: File; preview: string };
 type CropRequest = { kind: "cover" | "gallery"; file: File; remaining?: File[] };
 
+function TranslateButton({ loading, onClick }: { loading: boolean; onClick: () => void }) {
+  return <button type="button" disabled={loading} onClick={onClick} className="rounded-full bg-[#302451]/10 px-3 py-1 text-[10px] font-bold text-[#302451] hover:bg-[#302451]/15 disabled:opacity-50">{loading ? "Translating…" : "Auto translate"}</button>;
+}
+
 function slugify(value: string) {
   return value
     .toLowerCase()
@@ -22,6 +26,7 @@ function slugify(value: string) {
 
 export default function ProjectForm({ project }: { project?: Project }) {
   const router = useRouter();
+  const formRef = useRef<HTMLFormElement>(null);
   const [slug, setSlug] = useState(project?.slug ?? "");
   const [slugTouched, setSlugTouched] = useState(Boolean(project));
   const [tags, setTags] = useState<string[]>(project?.tags ?? ["Next.js"]);
@@ -29,6 +34,12 @@ export default function ProjectForm({ project }: { project?: Project }) {
   const [features, setFeatures] = useState<ProjectFeature[]>(
     project?.features.length ? project.features : [{ ...emptyFeature }]
   );
+  const [featuresAr, setFeaturesAr] = useState<ProjectFeature[]>(
+    project?.featuresAr.length ? project.featuresAr : project?.features.length ? project.features : [{ ...emptyFeature }]
+  );
+  const [descriptionAr, setDescriptionAr] = useState(project?.descriptionAr ?? "");
+  const [longDescriptionAr, setLongDescriptionAr] = useState(project?.longDescriptionAr ?? "");
+  const [translating, setTranslating] = useState("");
   const [galleryPaths, setGalleryPaths] = useState(project?.galleryPaths ?? []);
   const [coverPreview, setCoverPreview] = useState(project?.image ?? "");
   const [coverFile, setCoverFile] = useState<File | null>(null);
@@ -89,9 +100,34 @@ export default function ProjectForm({ project }: { project?: Project }) {
     );
   }
 
+  function updateFeatureAr(index: number, field: keyof ProjectFeature, value: string) {
+    setFeaturesAr((current) => current.map((feature, itemIndex) => itemIndex === index ? { ...feature, [field]: value } : feature));
+  }
+
+  async function translateText(key: string, text: string, apply: (value: string) => void) {
+    if (!text.trim()) { setError("Enter the English value before translating it."); return; }
+    setTranslating(key);
+    setError("");
+    try {
+      const response = await fetch("/api/admin/translate", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ text }) });
+      const result = await response.json();
+      if (!response.ok) throw new Error(result.error ?? "Unable to translate this field.");
+      apply(result.translation);
+    } catch (translationError) {
+      setError(translationError instanceof Error ? translationError.message : "Unable to translate this field.");
+    } finally { setTranslating(""); }
+  }
+
+  function englishValue(name: string) {
+    const control = formRef.current?.elements.namedItem(name) as HTMLInputElement | HTMLTextAreaElement | null;
+    return control?.value ?? "";
+  }
+
   function addTag() {
     const value = tagInput.trim();
-    if (value && !tags.includes(value) && tags.length < 12) setTags([...tags, value]);
+    if (value && !tags.includes(value) && tags.length < 12) {
+      setTags([...tags, value]);
+    }
     setTagInput("");
   }
 
@@ -103,6 +139,7 @@ export default function ProjectForm({ project }: { project?: Project }) {
     formData.set("slug", slug);
     formData.set("tags", JSON.stringify(tags));
     formData.set("features", JSON.stringify(features));
+    formData.set("featuresAr", JSON.stringify(featuresAr));
     formData.set("existingGalleryPaths", JSON.stringify(galleryPaths));
     formData.set("existingCoverPath", project?.coverImagePath ?? "");
     formData.set("isPublished", formData.get("isPublished") ? "true" : "false");
@@ -129,7 +166,7 @@ export default function ProjectForm({ project }: { project?: Project }) {
     "mt-2 w-full rounded-2xl border border-[#302451]/15 bg-white/80 px-4 py-3 text-sm text-[#302451] outline-none transition placeholder:text-[#302451]/35 focus:border-[#302451]/50 focus:ring-4 focus:ring-[#302451]/8";
 
   return (
-    <form onSubmit={submit} className="mt-8 grid gap-6 lg:grid-cols-[minmax(0,1fr)_340px]">
+    <form ref={formRef} onSubmit={submit} className="mt-8 grid gap-6 lg:grid-cols-[minmax(0,1fr)_340px]">
       <div className="space-y-6">
         <section className="rounded-[26px] border border-white bg-white/70 p-5 shadow-sm backdrop-blur-xl sm:p-7">
           <h2 className="text-lg font-bold">Project basics</h2>
@@ -166,6 +203,13 @@ export default function ProjectForm({ project }: { project?: Project }) {
           </label>
         </section>
 
+        <section dir="rtl" className="rounded-[26px] border border-[#302451]/10 bg-[#f7f4fb] p-5 text-right shadow-sm sm:p-7">
+          <h2 className="text-lg font-bold">المحتوى العربي</h2>
+          <p className="mt-1 text-xs text-[#625b70]">يُترجم الوصف فقط. يبقى اسم المشروع والتصنيف والعميل والتاريخ والرابط باللغة الإنجليزية في النسختين.</p>
+          <label className="mt-5 block text-xs font-bold"><span className="flex items-center justify-between gap-2">الوصف المختصر <TranslateButton loading={translating === "descriptionAr"} onClick={() => translateText("descriptionAr", englishValue("description"), setDescriptionAr)} /></span><textarea name="descriptionAr" required minLength={10} maxLength={500} rows={3} value={descriptionAr} onChange={(event) => setDescriptionAr(event.target.value)} className={fieldClass} /></label>
+          <label className="mt-5 block text-xs font-bold"><span className="flex items-center justify-between gap-2">الوصف الكامل <TranslateButton loading={translating === "longDescriptionAr"} onClick={() => translateText("longDescriptionAr", englishValue("longDescription"), setLongDescriptionAr)} /></span><textarea name="longDescriptionAr" required minLength={20} maxLength={5000} rows={6} value={longDescriptionAr} onChange={(event) => setLongDescriptionAr(event.target.value)} className={fieldClass} /></label>
+        </section>
+
         <section className="rounded-[26px] border border-white bg-white/70 p-5 shadow-sm backdrop-blur-xl sm:p-7">
           <h2 className="text-lg font-bold">Technology tags</h2>
           <div className="mt-4 flex gap-2">
@@ -184,7 +228,7 @@ export default function ProjectForm({ project }: { project?: Project }) {
         <section className="rounded-[26px] border border-white bg-white/70 p-5 shadow-sm backdrop-blur-xl sm:p-7">
           <div className="flex items-center justify-between">
             <div><h2 className="text-lg font-bold">Project highlights</h2><p className="mt-1 text-xs text-[#625b70]">Add the feature cards used on the project page.</p></div>
-            <button type="button" onClick={() => setFeatures([...features, { ...emptyFeature }])} className="inline-flex items-center gap-1.5 rounded-full bg-[#302451]/8 px-4 py-2 text-xs font-bold"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="M12 5v14"/></svg> Feature</button>
+            <button type="button" onClick={() => { setFeatures([...features, { ...emptyFeature }]); setFeaturesAr([...featuresAr, { ...emptyFeature }]); }} className="inline-flex items-center gap-1.5 rounded-full bg-[#302451]/8 px-4 py-2 text-xs font-bold"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="M12 5v14"/></svg> Feature</button>
           </div>
           <div className="mt-5 space-y-4">
             {features.map((feature, index) => (
@@ -198,7 +242,7 @@ export default function ProjectForm({ project }: { project?: Project }) {
                     <select
                       aria-label="Feature icon"
                       value={feature.icon}
-                      onChange={(event) => updateFeature(index, "icon", event.target.value)}
+                      onChange={(event) => { updateFeature(index, "icon", event.target.value); updateFeatureAr(index, "icon", event.target.value); }}
                       className="min-w-0 flex-1 rounded-xl border border-[#302451]/15 bg-white px-2 py-3 text-xs font-semibold normal-case tracking-normal outline-none"
                     >
                       {featureIconOptions.map((option) => (
@@ -213,7 +257,19 @@ export default function ProjectForm({ project }: { project?: Project }) {
                   <input aria-label="Feature title" required value={feature.title} onChange={(event) => updateFeature(index, "title", event.target.value)} placeholder="Feature title" className={`${fieldClass} mt-0`} />
                   <textarea aria-label="Feature description" required value={feature.description} onChange={(event) => updateFeature(index, "description", event.target.value)} placeholder="What makes this valuable?" rows={2} className={fieldClass} />
                 </div>
-                <button type="button" onClick={() => setFeatures(features.filter((_, itemIndex) => itemIndex !== index))} className="self-start rounded-full bg-red-50 px-3 py-2 text-xs font-bold text-red-700">Remove</button>
+                <button type="button" onClick={() => { setFeatures(features.filter((_, itemIndex) => itemIndex !== index)); setFeaturesAr(featuresAr.filter((_, itemIndex) => itemIndex !== index)); }} className="self-start rounded-full bg-red-50 px-3 py-2 text-xs font-bold text-red-700">Remove</button>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section dir="rtl" className="rounded-[26px] border border-[#302451]/10 bg-[#f7f4fb] p-5 text-right shadow-sm sm:p-7">
+          <h2 className="text-lg font-bold">مميزات المشروع بالعربية</h2>
+          <div className="mt-5 space-y-4">
+            {features.map((feature, index) => (
+              <div key={index} className="rounded-2xl border border-[#302451]/10 bg-white/70 p-4">
+                <label className="block text-xs font-bold"><span className="flex items-center justify-between gap-2">عنوان الميزة <TranslateButton loading={translating === `feature-title-${index}`} onClick={() => translateText(`feature-title-${index}`, feature.title, (value) => updateFeatureAr(index, "title", value))} /></span><input required value={featuresAr[index]?.title ?? ""} onChange={(event) => updateFeatureAr(index, "title", event.target.value)} className={fieldClass} /></label>
+                <label className="mt-3 block text-xs font-bold"><span className="flex items-center justify-between gap-2">وصف الميزة <TranslateButton loading={translating === `feature-description-${index}`} onClick={() => translateText(`feature-description-${index}`, feature.description, (value) => updateFeatureAr(index, "description", value))} /></span><textarea required rows={2} value={featuresAr[index]?.description ?? ""} onChange={(event) => updateFeatureAr(index, "description", event.target.value)} className={fieldClass} /></label>
               </div>
             ))}
           </div>

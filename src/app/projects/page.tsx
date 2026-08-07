@@ -5,6 +5,7 @@ import Navbar from "@/components/Navbar";
 import { getPublishedProjects } from "@/lib/projects";
 import { SITE_NAME, SITE_URL } from "@/lib/constants";
 import { localizedAlternates } from "@/lib/seo";
+import LocalizedProjectText from "@/components/LocalizedProjectText";
 
 export const metadata: Metadata = {
   title: "Web Development Portfolio",
@@ -149,18 +150,12 @@ export default async function ProjectsPage() {
                       style={{ fontFamily: '"Cairo", sans-serif' }}
                       className="line-clamp-2 min-h-[2.9em] text-[10px] font-medium leading-[1.45] text-[#504961] sm:text-[11px] lg:text-[clamp(10px,.78vw,12px)]"
                     >
-                      {project.description}
+                      <LocalizedProjectText project={project} />
                     </p>
 
                     <div className="mt-4 flex items-center justify-center gap-2 overflow-hidden">
                       {project.tags.slice(0, 3).map((tag) => (
-                        <span
-                          key={tag}
-                          style={{ fontFamily: '"Cairo", sans-serif' }}
-                          className="shrink-0 whitespace-nowrap rounded-full bg-[#302451] px-3.5 py-1.5 text-[10px] font-bold leading-none text-white shadow-[0_3px_10px_rgba(48,36,81,.25)] sm:px-4 sm:py-2 sm:text-[11px]"
-                        >
-                          {tag}
-                        </span>
+                        <span key={tag} style={{ fontFamily: '"Cairo", sans-serif' }} className="shrink-0 whitespace-nowrap rounded-full bg-[#302451] px-3.5 py-1.5 text-[10px] font-bold leading-none text-white shadow-[0_3px_10px_rgba(48,36,81,.25)] sm:px-4 sm:py-2 sm:text-[11px]">{tag}</span>
                       ))}
                     </div>
                   </div>

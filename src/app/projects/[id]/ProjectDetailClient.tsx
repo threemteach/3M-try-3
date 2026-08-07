@@ -9,8 +9,10 @@ import FeatureIcon from "@/components/FeatureIcon";
 
 export default function ProjectDetailClient({
   project,
+  locale = "en",
 }: {
   project: Project;
+  locale?: "en" | "ar";
 }) {
   const [activeImage, setActiveImage] = useState(project.image);
 
@@ -35,7 +37,7 @@ export default function ProjectDetailClient({
         {/* Hero Title & Breadcrumb */}
         <div className="project-detail-header relative z-10 max-w-[1100px] mx-auto pt-10 sm:pt-24 text-center sm:text-left text-white">
           <Link
-            href="/projects"
+            href={locale === "ar" ? "/ar/projects" : "/projects"}
             style={{ fontFamily: '"Cairo", sans-serif' }}
             className="inline-flex items-center gap-2 text-xs sm:text-sm font-semibold text-purple-200 hover:text-white transition-colors mb-4"
           >
@@ -194,7 +196,7 @@ export default function ProjectDetailClient({
         {/* Back Link Button */}
         <div className="text-center">
           <Link
-            href="/projects"
+            href={locale === "ar" ? "/ar/projects" : "/projects"}
             style={{ fontFamily: '"Cairo", sans-serif' }}
             className="inline-flex h-12 px-8 items-center justify-center rounded-full bg-white text-[#302451] border border-gray-200 font-bold text-sm shadow-md hover:bg-gray-50 transition-all"
           >

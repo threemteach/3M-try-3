@@ -311,6 +311,7 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
     document.documentElement.dir = language === "ar" ? "rtl" : "ltr";
     document.body.classList.toggle("arabic-site", language === "ar");
     window.localStorage.setItem("3m-language", language);
+    document.cookie = `3m-language=${language}; Path=/; Max-Age=31536000; SameSite=Lax`;
 
     const apply = () => replaceText(document.body, language);
     apply();
@@ -358,6 +359,9 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
         const target = language === "ar"
           ? englishPath
           : englishPath === "/" ? "/ar" : `/ar${englishPath}`;
+        const nextLanguage = language === "ar" ? "en" : "ar";
+        window.localStorage.setItem("3m-language", nextLanguage);
+        document.cookie = `3m-language=${nextLanguage}; Path=/; Max-Age=31536000; SameSite=Lax`;
         router.push(`${target}${hash}`);
       },
     }),

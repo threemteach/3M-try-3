@@ -28,6 +28,9 @@ export type Project = {
   isPublished: boolean;
   createdAt: string;
   updatedAt: string;
+  descriptionAr: string;
+  longDescriptionAr: string;
+  featuresAr: ProjectFeature[];
 };
 
 type ProjectRow = {
@@ -48,6 +51,9 @@ type ProjectRow = {
   is_published: boolean;
   created_at: string;
   updated_at: string;
+  description_ar: string | null;
+  long_description_ar: string | null;
+  features_ar: ProjectFeature[] | null;
 };
 
 const PROJECT_IMAGE_BUCKET = "project-images";
@@ -58,8 +64,8 @@ function getPublicImageUrl(path: string) {
   return `${baseUrl}/storage/v1/object/public/${PROJECT_IMAGE_BUCKET}/${path}`;
 }
 
-export function mapProject(row: ProjectRow): Project {
-  return {
+export function mapProject(row: ProjectRow, locale: "en" | "ar" = "en"): Project {
+  const project: Project = {
     id: row.id,
     slug: row.slug,
     title: row.title,
@@ -79,10 +85,19 @@ export function mapProject(row: ProjectRow): Project {
     isPublished: row.is_published,
     createdAt: row.created_at,
     updatedAt: row.updated_at,
+    descriptionAr: row.description_ar || row.description,
+    longDescriptionAr: row.long_description_ar || row.long_description,
+    featuresAr: row.features_ar?.length ? row.features_ar : row.features ?? [],
   };
+  if (locale === "ar") {
+    project.description = project.descriptionAr;
+    project.longDescription = project.longDescriptionAr;
+    project.features = project.featuresAr;
+  }
+  return project;
 }
 
-export const getPublishedProjects = cache(async (): Promise<Project[]> => {
+export const getPublishedProjects = cache(async (locale: "en" | "ar" = "en"): Promise<Project[]> => {
   if (!isSupabaseConfigured()) return [];
   const supabase = await createClient();
   const { data, error } = await supabase
@@ -93,11 +108,11 @@ export const getPublishedProjects = cache(async (): Promise<Project[]> => {
     .order("created_at", { ascending: false });
 
   if (error) throw new Error(`Unable to load projects: ${error.message}`);
-  return (data as ProjectRow[]).map(mapProject);
+  return (data as ProjectRow[]).map((row) => mapProject(row, locale));
 });
 
 export const getPublishedProjectBySlug = cache(
-  async (slug: string): Promise<Project | null> => {
+  async (slug: string, locale: "en" | "ar" = "en"): Promise<Project | null> => {
     if (!isSupabaseConfigured()) return null;
     const supabase = await createClient();
     const { data, error } = await supabase
@@ -108,7 +123,7 @@ export const getPublishedProjectBySlug = cache(
       .maybeSingle();
 
     if (error) throw new Error(`Unable to load project: ${error.message}`);
-    return data ? mapProject(data as ProjectRow) : null;
+    return data ? mapProject(data as ProjectRow, locale) : null;
   }
 );
 
@@ -121,7 +136,7 @@ export async function getAllProjectsForAdmin(): Promise<Project[]> {
     .order("created_at", { ascending: false });
 
   if (error) throw new Error(`Unable to load admin projects: ${error.message}`);
-  return (data as ProjectRow[]).map(mapProject);
+  return (data as ProjectRow[]).map((row) => mapProject(row));
 }
 
 export async function getProjectForAdmin(id: string): Promise<Project | null> {

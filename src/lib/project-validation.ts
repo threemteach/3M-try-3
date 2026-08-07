@@ -26,6 +26,9 @@ export const projectInputSchema = z.object({
   isPublished: z.boolean(),
   tags: z.array(z.string().trim().min(1).max(50)).min(1).max(12),
   features: z.array(featureSchema).max(12),
+  descriptionAr: z.string().trim().min(10).max(500),
+  longDescriptionAr: z.string().trim().min(20).max(5000),
+  featuresAr: z.array(featureSchema).max(12),
   existingCoverPath: z.string().max(500).nullable(),
   existingGalleryPaths: z.array(z.string().max(500)).max(20),
 });
@@ -57,6 +60,9 @@ export function parseProjectFormData(formData: FormData): ProjectInput {
     isPublished: formData.get("isPublished") === "true",
     tags: parseJsonArray(formData.get("tags"), "Tags"),
     features: parseJsonArray(formData.get("features"), "Features"),
+    descriptionAr: formData.get("descriptionAr"),
+    longDescriptionAr: formData.get("longDescriptionAr"),
+    featuresAr: parseJsonArray(formData.get("featuresAr"), "Arabic features"),
     existingCoverPath: formData.get("existingCoverPath") || null,
     existingGalleryPaths: parseJsonArray(
       formData.get("existingGalleryPaths"),
