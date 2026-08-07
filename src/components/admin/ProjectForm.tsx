@@ -1,12 +1,16 @@
 "use client";
 
 import Image from "next/image";
-import { useMemo, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import type { Project, ProjectFeature } from "@/lib/projects";
 import FeatureIcon, { featureIconOptions } from "@/components/FeatureIcon";
+import ImageCropper from "@/components/admin/ImageCropper";
 
 const emptyFeature: ProjectFeature = { icon: "star", title: "", description: "" };
+
+type PendingImage = { id: string; file: File; preview: string };
+type CropRequest = { kind: "cover" | "gallery"; file: File; remaining?: File[] };
 
 function slugify(value: string) {
   return value
@@ -27,6 +31,11 @@ export default function ProjectForm({ project }: { project?: Project }) {
   );
   const [galleryPaths, setGalleryPaths] = useState(project?.galleryPaths ?? []);
   const [coverPreview, setCoverPreview] = useState(project?.image ?? "");
+  const [coverFile, setCoverFile] = useState<File | null>(null);
+  const [galleryFiles, setGalleryFiles] = useState<PendingImage[]>([]);
+  const [cropRequest, setCropRequest] = useState<CropRequest | null>(null);
+  const coverInputRef = useRef<HTMLInputElement>(null);
+  const galleryInputRef = useRef<HTMLInputElement>(null);
   const [pending, setPending] = useState(false);
   const [error, setError] = useState("");
 
@@ -34,6 +43,43 @@ export default function ProjectForm({ project }: { project?: Project }) {
     () => new Map(project?.galleryPaths.map((path, index) => [path, project.gallery[index]]) ?? []),
     [project]
   );
+
+  function queueGalleryCrop(files: File[]) {
+    if (!files.length) return;
+    const available = Math.max(0, 12 - galleryPaths.length - galleryFiles.length);
+    const accepted = files.slice(0, available);
+    if (!accepted.length) {
+      setError("The gallery can contain up to 12 images.");
+      return;
+    }
+    setCropRequest({ kind: "gallery", file: accepted[0], remaining: accepted.slice(1) });
+  }
+
+  function acceptCrop(file: File) {
+    if (!cropRequest) return;
+    if (cropRequest.kind === "cover") {
+      if (coverPreview.startsWith("blob:")) URL.revokeObjectURL(coverPreview);
+      setCoverFile(file);
+      setCoverPreview(URL.createObjectURL(file));
+      setCropRequest(null);
+      return;
+    }
+
+    setGalleryFiles((current) => [
+      ...current,
+      { id: crypto.randomUUID(), file, preview: URL.createObjectURL(file) },
+    ]);
+    const remaining = cropRequest.remaining ?? [];
+    setCropRequest(remaining.length ? { kind: "gallery", file: remaining[0], remaining: remaining.slice(1) } : null);
+  }
+
+  function removeGalleryFile(id: string) {
+    setGalleryFiles((current) => {
+      const removed = current.find((image) => image.id === id);
+      if (removed) URL.revokeObjectURL(removed.preview);
+      return current.filter((image) => image.id !== id);
+    });
+  }
 
   function updateFeature(index: number, field: keyof ProjectFeature, value: string) {
     setFeatures((current) =>
@@ -60,6 +106,10 @@ export default function ProjectForm({ project }: { project?: Project }) {
     formData.set("existingGalleryPaths", JSON.stringify(galleryPaths));
     formData.set("existingCoverPath", project?.coverImagePath ?? "");
     formData.set("isPublished", formData.get("isPublished") ? "true" : "false");
+    formData.delete("coverImage");
+    formData.delete("galleryImages");
+    if (coverFile) formData.append("coverImage", coverFile);
+    galleryFiles.forEach((image) => formData.append("galleryImages", image.file));
 
     const response = await fetch(
       project ? `/api/admin/projects/${project.id}` : "/api/admin/projects",
@@ -176,9 +226,9 @@ export default function ProjectForm({ project }: { project?: Project }) {
           <div className="relative mt-4 aspect-[16/11] overflow-hidden rounded-2xl bg-[#302451]/8">
             {coverPreview ? <Image src={coverPreview} alt="Cover preview" fill className="object-cover object-top" /> : <div className="flex h-full items-center justify-center text-xs text-[#302451]/45">Image preview</div>}
           </div>
-          <input name="coverImage" type="file" accept="image/jpeg,image/png,image/webp,image/avif" required={!project} className="mt-4 block w-full text-xs file:mr-3 file:rounded-full file:border-0 file:bg-[#302451] file:px-4 file:py-2 file:font-bold file:text-white"
-            onChange={(event) => { const file = event.target.files?.[0]; if (file) setCoverPreview(URL.createObjectURL(file)); }} />
-          <p className="mt-2 text-[10px] leading-4 text-[#625b70]">JPG, PNG, WebP, or AVIF. Maximum 6 MB.</p>
+          <input ref={coverInputRef} type="file" accept="image/jpeg,image/png,image/webp,image/avif" className="sr-only" onChange={(event) => { const file = event.target.files?.[0]; if (file) setCropRequest({ kind: "cover", file }); event.currentTarget.value = ""; }} />
+          <button type="button" onClick={() => coverInputRef.current?.click()} className="mt-4 w-full rounded-full bg-[#302451] px-4 py-2.5 text-xs font-bold text-white">{coverPreview ? "Replace & crop cover" : "Choose & crop cover"}</button>
+          <p className="mt-2 text-[10px] leading-4 text-[#625b70]">JPG, PNG, WebP, or AVIF. Maximum 6 MB. Crop ratio: 16:11.</p>
         </section>
 
         <section className="rounded-[26px] border border-white bg-white/75 p-5 shadow-sm backdrop-blur-xl">
@@ -193,8 +243,21 @@ export default function ProjectForm({ project }: { project?: Project }) {
               ))}
             </div>
           )}
-          <input name="galleryImages" type="file" multiple accept="image/jpeg,image/png,image/webp,image/avif" className="mt-4 block w-full text-xs file:mr-3 file:rounded-full file:border-0 file:bg-[#302451]/10 file:px-4 file:py-2 file:font-bold file:text-[#302451]" />
-          <p className="mt-2 text-[10px] leading-4 text-[#625b70]">Up to 12 images, 6 MB each.</p>
+          {galleryFiles.length > 0 && (
+            <div className="mt-4 grid grid-cols-2 gap-2">
+              {galleryFiles.map((image, index) => (
+                <div key={image.id} className="relative aspect-[16/10] overflow-hidden rounded-xl bg-[#302451]/8">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={image.preview} alt={`New gallery preview ${index + 1}`} className="h-full w-full object-cover" />
+                  <span className="absolute bottom-1 left-1 rounded-full bg-black/65 px-2 py-1 text-[9px] font-bold text-white">New</span>
+                  <button type="button" onClick={() => removeGalleryFile(image.id)} className="absolute right-1 top-1 rounded-full bg-red-600 px-2 py-1 text-[9px] font-bold text-white">Remove</button>
+                </div>
+              ))}
+            </div>
+          )}
+          <input ref={galleryInputRef} type="file" multiple accept="image/jpeg,image/png,image/webp,image/avif" className="sr-only" onChange={(event) => { queueGalleryCrop(Array.from(event.target.files ?? [])); event.currentTarget.value = ""; }} />
+          <button type="button" onClick={() => galleryInputRef.current?.click()} disabled={galleryPaths.length + galleryFiles.length >= 12} className="mt-4 w-full rounded-full bg-[#302451]/10 px-4 py-2.5 text-xs font-bold text-[#302451] disabled:cursor-not-allowed disabled:opacity-45">Add multiple gallery images</button>
+          <p className="mt-2 text-[10px] leading-4 text-[#625b70]">{galleryPaths.length + galleryFiles.length}/12 images selected. You can add more files in several batches; each image opens in the crop tool.</p>
         </section>
 
         <section className="rounded-[26px] border border-white bg-white/75 p-5 shadow-sm backdrop-blur-xl">
@@ -209,6 +272,9 @@ export default function ProjectForm({ project }: { project?: Project }) {
           {pending ? "Saving…" : project ? "Save changes" : "Create project"}
         </button>
       </aside>
+      {cropRequest && (
+        <ImageCropper file={cropRequest.file} aspect={cropRequest.kind === "cover" ? 16 / 11 : 16 / 10} title={cropRequest.kind === "cover" ? "Crop cover image" : "Crop gallery image"} onCancel={() => setCropRequest(null)} onSave={acceptCrop} />
+      )}
     </form>
   );
 }
