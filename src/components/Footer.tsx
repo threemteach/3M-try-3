@@ -13,8 +13,6 @@ const quickLinks = [
   { href: "/about", label: "About" },
   { href: "/#process", label: "Process" },
 ];
-// TEST
-
 const stars = [
   "left-[-18px] top-[165px] h-16 w-16 rotate-12 sm:left-[1%] sm:h-20 sm:w-20",
   "left-[10%] top-[125px] h-8 w-8 -rotate-12 sm:h-11 sm:w-11",
@@ -90,18 +88,22 @@ export default function Footer() {
             aria-label="Instagram"
             className="flex h-10 w-10 items-center justify-center rounded-full bg-white text-[#312354] transition-transform hover:-translate-y-1 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
           >
-            <span className="relative h-[23px] w-[23px] rounded-[7px] border-[2.5px] border-current after:absolute after:right-[3px] after:top-[3px] after:h-[3px] after:w-[3px] after:rounded-full after:bg-current">
-              <span className="absolute left-1/2 top-1/2 h-[9px] w-[9px] -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-current" />
-            </span>
+            <svg aria-hidden="true" viewBox="0 0 24 24" className="h-[22px] w-[22px]" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+              <rect x="3" y="3" width="18" height="18" rx="5" />
+              <circle cx="12" cy="12" r="4" />
+              <circle cx="17.4" cy="6.6" r="1" fill="currentColor" stroke="none" />
+            </svg>
           </a>
           <a
             href={FACEBOOK_URL}
             target="_blank"
             rel="noreferrer"
             aria-label="Facebook"
-            className="flex h-10 w-10 items-end justify-center overflow-hidden rounded-full bg-white text-[34px] font-bold leading-[39px] text-[#312354] transition-transform hover:-translate-y-1 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
+            className="flex h-10 w-10 items-center justify-center rounded-full bg-white text-[#312354] transition-transform hover:-translate-y-1 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
           >
-            f
+            <svg aria-hidden="true" viewBox="0 0 24 24" className="h-[22px] w-[22px]" fill="currentColor">
+              <path d="M13.7 21v-8h2.7l.4-3.1h-3.1V8c0-.9.3-1.5 1.6-1.5H17V3.7c-.7-.1-1.5-.2-2.3-.2-2.3 0-3.9 1.4-3.9 4.1v2.3H8.2V13h2.6v8h2.9Z" />
+            </svg>
           </a>
         </nav>
 
