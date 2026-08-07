@@ -1,7 +1,7 @@
 "use client";
 
 import { createContext, useContext, useEffect, useMemo, useState } from "react";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { Languages } from "lucide-react";
 
 type Language = "en" | "ar";
@@ -245,6 +245,7 @@ const REVERSE = Object.fromEntries(
 type LanguageContextValue = {
   language: Language;
   isArabic: boolean;
+  isSwitching: boolean;
   toggleLanguage: () => void;
 };
 
@@ -254,6 +255,7 @@ const LATIN_RE = /[A-Za-z]/;
 const LanguageContext = createContext<LanguageContextValue>({
   language: "en",
   isArabic: false,
+  isSwitching: false,
   toggleLanguage: () => undefined,
 });
 
@@ -296,9 +298,9 @@ function replaceText(root: ParentNode, language: Language) {
 
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
-  const router = useRouter();
   const routeLanguage: Language = pathname === "/ar" || pathname.startsWith("/ar/") ? "ar" : "en";
   const [language, setLanguage] = useState<Language>(routeLanguage);
+  const [isSwitching, setIsSwitching] = useState(false);
   const isPublic = pathname !== "/login" && !pathname.startsWith("/admin");
 
   useEffect(() => {
@@ -353,7 +355,10 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
     () => ({
       language,
       isArabic: language === "ar",
+      isSwitching,
       toggleLanguage: () => {
+        if (isSwitching) return;
+        setIsSwitching(true);
         const hash = window.location.hash;
         const englishPath = pathname === "/ar" ? "/" : pathname.replace(/^\/ar(?=\/|$)/, "") || "/";
         const target = language === "ar"
@@ -362,10 +367,12 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
         const nextLanguage = language === "ar" ? "en" : "ar";
         window.localStorage.setItem("3m-language", nextLanguage);
         document.cookie = `3m-language=${nextLanguage}; Path=/; Max-Age=31536000; SameSite=Lax`;
-        router.push(`${target}${hash}`);
+        // Force a request with the new cookie. Production client routing can
+        // reuse a prefetched response created with the previous preference.
+        window.location.assign(`${target}${hash}`);
       },
     }),
-    [language, pathname, router]
+    [isSwitching, language, pathname]
   );
 
   return (
@@ -380,11 +387,13 @@ export function useLanguage() {
 }
 
 export function LanguageToggle({ compact = false }: { compact?: boolean }) {
-  const { isArabic, toggleLanguage } = useLanguage();
+  const { isArabic, isSwitching, toggleLanguage } = useLanguage();
   return (
     <button
       type="button"
       onClick={toggleLanguage}
+      disabled={isSwitching}
+      aria-busy={isSwitching}
       className={`language-toggle group relative isolate flex shrink-0 items-center justify-center gap-1.5 overflow-hidden rounded-full border border-white/35 bg-white/10 font-bold text-white shadow-[inset_0_1px_0_rgba(255,255,255,.18)] backdrop-blur-xl transition-all hover:border-white/70 hover:bg-white/20 ${
         compact ? "h-8 w-[64px] px-1.5 text-[10px]" : "h-10 min-w-[76px] px-2.5 text-xs"
       }`}

@@ -9,7 +9,9 @@ export async function middleware(request: NextRequest) {
   const isArabicRoute = pathname === "/ar" || pathname.startsWith("/ar/");
   const preferredLanguage = request.cookies.get("3m-language")?.value;
 
-  if (!isPrivateRoute && !isArabicRoute && preferredLanguage !== "en") {
+  // Redirect only when the visitor explicitly chose Arabic. A missing cookie
+  // should not make first visits or cached navigations leave the English URL.
+  if (!isPrivateRoute && !isArabicRoute && preferredLanguage === "ar") {
     const url = request.nextUrl.clone();
     url.pathname = pathname === "/" ? "/ar" : `/ar${pathname}`;
     return NextResponse.redirect(url);
