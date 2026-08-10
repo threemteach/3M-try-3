@@ -56,11 +56,20 @@ export const metadata: Metadata = {
     title: "Software, Web Development & UI/UX in Egypt & GCC | 3M tech",
     description: SITE_DESCRIPTION,
     url: SITE_URL,
+    images: [
+      {
+        url: "/favicon-512.png",
+        width: 512,
+        height: 512,
+        alt: "3M tech software and digital product studio",
+      },
+    ],
   },
   twitter: {
     card: "summary",
     title: "Software, Web Development & UI/UX in Egypt & GCC | 3M tech",
     description: SITE_DESCRIPTION,
+    images: ["/favicon-512.png"],
   },
   robots: {
     index: true,
@@ -83,7 +92,9 @@ const organizationJsonLd = {
   "@type": ["Organization", "ProfessionalService"],
   "@id": `${SITE_URL}/#organization`,
   name: SITE_NAME,
-  alternateName: "3M Tech",
+  alternateName: ["3M Tech", "3M techs", "3M tech Egypt", "ثري إم تك"],
+  disambiguatingDescription:
+    "Egypt-based software and digital product studio serving businesses in Egypt and the Gulf.",
   url: SITE_URL,
   logo: {
     "@type": "ImageObject",
@@ -153,7 +164,7 @@ const websiteJsonLd = {
   "@id": `${SITE_URL}/#website`,
   url: SITE_URL,
   name: SITE_NAME,
-  alternateName: ["3M Tech", "3M tech Egypt"],
+  alternateName: ["3M Tech", "3M techs", "3M tech Egypt", "ثري إم تك"],
   description: SITE_DESCRIPTION,
   publisher: { "@id": `${SITE_URL}/#organization` },
   inLanguage: ["en", "ar"],

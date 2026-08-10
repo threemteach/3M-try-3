@@ -106,7 +106,6 @@ const ARABIC: Record<string, string> = {
   Email: "البريد الإلكتروني",
   "Phone Number": "رقم الهاتف",
   Details: "تفاصيل المشروع",
-  "Send Via Email": "إرسال بالبريد",
   "Send Via Whatsapp": "إرسال عبر واتساب",
   Sending: "جارٍ الإرسال",
   "Message Sent!": "تم إرسال رسالتك!",
@@ -126,8 +125,8 @@ const ARABIC: Record<string, string> = {
     "حدث خطأ. حاول مرة أخرى أو تواصل معنا مباشرة.",
   "Contact Us": "تواصل معنا",
   "Let's Build Something Great": "لنصنع شيئًا عظيمًا",
-  "Tell us what you want to build. The project form below can open your message in email or WhatsApp with all the details ready to send.":
-    "أخبرنا بما تريد بناءه، وسنجهّز رسالتك بكل التفاصيل لإرسالها عبر البريد أو واتساب.",
+  "Tell us what you want to build. The project form below opens WhatsApp with all the details ready to send.":
+    "أخبرنا بما تريد بناءه، وسنجهّز رسالتك بكل التفاصيل لإرسالها عبر واتساب.",
   "Start Your Project": "ابدأ مشروعك",
   "All Featured Projects": "كل مشاريعنا",
   "Our Projects": "مشاريعنا",
@@ -218,12 +217,13 @@ const ARABIC: Record<string, string> = {
   "Terms of Use": "شروط الاستخدام",
   "Website content": "محتوى الموقع",
   "Project enquiries": "طلبات المشاريع",
-  "3M tech only uses information you submit through the project form to understand your enquiry and contact you about that project. The form opens your email or WhatsApp application; this website does not store the submitted message in a database.":
-    "تستخدم 3M tech البيانات التي ترسلها عبر نموذج المشروع لفهم طلبك والتواصل معك بشأنه فقط. يفتح النموذج تطبيق البريد أو واتساب، ولا يخزّن الموقع الرسالة في قاعدة بيانات.",
-  "This may include your name, email address, phone number, and project details. Your chosen email or messaging provider may process that information under its own privacy terms.":
-    "قد تشمل البيانات اسمك وبريدك ورقم هاتفك وتفاصيل المشروع. وقد يعالج مزوّد البريد أو الرسائل هذه البيانات وفق سياسة الخصوصية الخاصة به.",
-  "Questions about privacy can be sent to contact@3mtechs.com.":
-    "يمكن إرسال استفسارات الخصوصية إلى contact@3mtechs.com.",
+  "3M tech only uses information you submit through the project form to understand your enquiry and contact you about that project. The form opens WhatsApp; this website does not store the submitted message in a database.":
+    "تستخدم 3M tech البيانات التي ترسلها عبر نموذج المشروع لفهم طلبك والتواصل معك بشأنه فقط. يفتح النموذج واتساب، ولا يخزّن الموقع الرسالة في قاعدة بيانات.",
+  "This may include your name, email address, phone number, and project details. Your messaging provider may process that information under its own privacy terms.":
+    "قد تشمل البيانات اسمك وبريدك ورقم هاتفك وتفاصيل المشروع، وقد يعالج مزوّد الرسائل هذه البيانات وفق سياسة الخصوصية الخاصة به.",
+  "Questions about privacy can be sent through WhatsApp using the contact form.":
+    "يمكن إرسال استفسارات الخصوصية عبر واتساب باستخدام نموذج التواصل.",
+  "WhatsApp: +20 10 6188 3470": "واتساب: +20 10 6188 3470",
   "The information on this website describes 3M tech's services and selected work. Project timelines and pricing are estimates until both parties agree to a written scope, schedule, and commercial proposal.":
     "توضح معلومات الموقع خدمات 3M tech ونماذج من أعمالها. تظل المدد والأسعار تقديرية حتى يتفق الطرفان كتابيًا على النطاق والجدول والعرض المالي.",
   "Site content may be updated as services and projects evolve. Client work, names, and third-party marks remain the property of their respective owners.":

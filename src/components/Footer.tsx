@@ -3,7 +3,6 @@ import Link from "next/link";
 import {
   FACEBOOK_URL,
   INSTAGRAM_URL,
-  SITE_EMAIL,
   SITE_PHONE,
 } from "@/lib/constants";
 
@@ -37,6 +36,7 @@ export default function Footer() {
 
   return (
     <footer className="relative isolate overflow-hidden bg-[#312354] pb-7 pt-[158px] text-[#e5e0eb] sm:pb-9 sm:pt-[170px]">
+      <div data-nosnippet className="contents">
       <div aria-hidden="true" className="absolute inset-x-0 top-0 h-[105px] bg-[#f5f2f3]" />
       <a
         href="#"
@@ -128,11 +128,13 @@ export default function Footer() {
               Contact
             </h2>
             <address className="mt-4 space-y-2 text-[15px] not-italic sm:text-base">
-              <a className="block transition-colors hover:text-white" href={`mailto:${SITE_EMAIL}`}>
-                {SITE_EMAIL}
-              </a>
-              <a className="block transition-colors hover:text-white" href={`tel:${SITE_PHONE}`}>
-                +20 10 6188 3470
+              <a
+                className="block transition-colors hover:text-white"
+                href={`https://wa.me/${SITE_PHONE.replace(/\D/g, "")}`}
+                target="_blank"
+                rel="noreferrer"
+              >
+                WhatsApp: +20 10 6188 3470
               </a>
             </address>
           </section>
@@ -149,6 +151,7 @@ export default function Footer() {
           </div>
           <p>© {currentYear} 3M tech · All rights reserved</p>
         </div>
+      </div>
       </div>
     </footer>
   );

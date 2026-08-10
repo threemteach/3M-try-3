@@ -17,7 +17,7 @@
 - [Projects](https://www.3mtechs.com/projects): Published web and digital product case studies
 - [About](https://www.3mtechs.com/about): Team, principles, services, and frequently asked questions
 - [Workflow](https://www.3mtechs.com/workflow): Research, strategy, UI/UX, development, testing, and launch process
-- [Contact](https://www.3mtechs.com/contact): Start a project by email or WhatsApp
+- [Contact](https://www.3mtechs.com/contact): Start a project through WhatsApp
 - [Web development](https://www.3mtechs.com/services/web-development): Corporate websites, web applications, dashboards, booking systems, and portals
 - [UI/UX design](https://www.3mtechs.com/services/ui-ux-design): Research-led product, website, and mobile interface design
 - [E-commerce development](https://www.3mtechs.com/services/ecommerce-development): Custom online stores and Shopify development
