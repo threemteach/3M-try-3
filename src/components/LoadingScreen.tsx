@@ -10,16 +10,10 @@ interface NetworkConnection {
   saveData?: boolean;
 }
 
-type SpeedInfo = {
-  tier: "fast" | "medium" | "slow";
-  labelEn: string;
-  labelAr: string;
-};
+type SpeedTier = "fast" | "medium" | "slow";
 
-function getNetworkSpeedInfo(): SpeedInfo {
-  if (typeof window === "undefined") {
-    return { tier: "fast", labelEn: "⚡ Fast Network (4G)", labelAr: "⚡ اتصال فائق السرعة (4G)" };
-  }
+function getNetworkSpeedTier(): SpeedTier {
+  if (typeof window === "undefined") return "fast";
 
   const nav = navigator as Navigator & {
     connection?: NetworkConnection;
@@ -29,45 +23,32 @@ function getNetworkSpeedInfo(): SpeedInfo {
   const conn = nav.connection || nav.mozConnection || nav.webkitConnection;
 
   if (conn) {
-    if (conn.saveData) {
-      return { tier: "slow", labelEn: "📡 Data Saver Mode", labelAr: "📡 موفّر البيانات مفعّل" };
-    }
+    if (conn.saveData) return "slow";
 
     const type = conn.effectiveType;
     const rtt = conn.rtt ?? 100;
     const downlink = conn.downlink ?? 10;
 
     if (type === "slow-2g" || type === "2g" || rtt > 350 || downlink < 0.8) {
-      return { tier: "slow", labelEn: "📡 Slow Connection - Loading...", labelAr: "📡 اتصال بطيء - جاري التحميل..." };
+      return "slow";
     }
     if (type === "3g" || rtt > 180 || downlink < 2.5) {
-      return { tier: "medium", labelEn: "📶 Moderate Speed (3G)", labelAr: "📶 اتصال متوسط (3G)" };
+      return "medium";
     }
   }
 
-  return { tier: "fast", labelEn: "⚡ Fast Network (4G/WiFi)", labelAr: "⚡ اتصال فائق السرعة (4G)" };
+  return "fast";
 }
 
 export default function LoadingScreen() {
   const [visible, setVisible] = useState(true);
   const [leaving, setLeaving] = useState(false);
   const [progress, setProgress] = useState(0);
-  const [speedInfo, setSpeedInfo] = useState<SpeedInfo>({
-    tier: "fast",
-    labelEn: "⚡ Fast Network",
-    labelAr: "⚡ اتصال فائق السرعة",
-  });
-  const [isArabic, setIsArabic] = useState(false);
   const logoRef = useRef<HTMLImageElement>(null);
 
   useEffect(() => {
-    // Check if Arabic
-    const isAr = document.documentElement.dir === "rtl" || window.location.pathname.startsWith("/ar");
-    setIsArabic(isAr);
-
-    // Detect internet connection quality
-    const speed = getNetworkSpeedInfo();
-    setSpeedInfo(speed);
+    // Detect internet connection quality tier
+    const speedTier = getNetworkSpeedTier();
 
     // Check if splash was already shown in this tab session
     const splashAlreadyShown = typeof window !== "undefined" && sessionStorage.getItem("3m_splash_shown") === "true";
@@ -83,9 +64,9 @@ export default function LoadingScreen() {
     let targetDuration = 360; // Fast 4G / Fiber connection
     if (splashAlreadyShown) {
       targetDuration = 160; // Instant sub-sequent client navigation
-    } else if (speed.tier === "medium") {
+    } else if (speedTier === "medium") {
       targetDuration = 750; // 3G connection
-    } else if (speed.tier === "slow") {
+    } else if (speedTier === "slow") {
       targetDuration = 1400; // 2G / Slow connection
     }
 
@@ -207,24 +188,6 @@ export default function LoadingScreen() {
               </span>
             )}
           </div>
-        </div>
-
-        {/* Real-time Internet Quality / Connection Badge */}
-        <div
-          className={`mt-4 flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-xs font-semibold text-white/90 shadow-lg backdrop-blur-md transition-all duration-300 sm:mt-5 ${
-            leaving ? "opacity-0 translate-y-2" : "opacity-100 translate-y-0"
-          }`}
-        >
-          <span
-            className={`h-2 w-2 rounded-full ${
-              speedInfo.tier === "fast"
-                ? "bg-emerald-400 animate-pulse shadow-[0_0_8px_#34d399]"
-                : speedInfo.tier === "medium"
-                ? "bg-amber-400 animate-pulse shadow-[0_0_8px_#fbbf24]"
-                : "bg-rose-400 animate-ping"
-            }`}
-          />
-          <span>{isArabic ? speedInfo.labelAr : speedInfo.labelEn}</span>
         </div>
 
         <span className="sr-only">Loading</span>
