@@ -1,10 +1,15 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import ProjectPageContent from "@/components/ProjectPageContent";
-import { getPublishedProjectBySlug } from "@/lib/projects";
+import { getPublishedProjectBySlug, getPublishedProjects } from "@/lib/projects";
 import { arabicAlternates } from "@/lib/seo";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 60;
+
+export async function generateStaticParams() {
+  const projects = await getPublishedProjects("ar");
+  return projects.map((project) => ({ id: project.slug }));
+}
 
 export async function generateMetadata({ params }: { params: Promise<{ id: string }> }): Promise<Metadata> {
   const { id } = await params;

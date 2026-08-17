@@ -11,7 +11,7 @@ import { SITE_DESCRIPTION, SITE_NAME, SITE_URL } from "@/lib/constants";
 import { getPublishedProjects } from "@/lib/projects";
 import { localizedAlternates } from "@/lib/seo";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 60;
 
 export const metadata: Metadata = {
   title: { absolute: "Software, Web Development & UI/UX in Egypt & GCC | 3M tech" },

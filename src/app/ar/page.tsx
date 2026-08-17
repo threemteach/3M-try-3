@@ -6,7 +6,7 @@ import { ARABIC_KEYWORDS, arabicAlternates } from "@/lib/seo";
 const description =
   "3M tech شركة برمجة وتصميم منتجات رقمية، نطوّر المواقع وتجارب UI/UX والمتاجر الإلكترونية والحلول الرقمية والمنصات التعليمية للشركات في مصر ودول الخليج.";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 60;
 
 export const metadata: Metadata = {
   title: { absolute: "شركة برمجة وتصميم مواقع في مصر والخليج | 3M tech" },

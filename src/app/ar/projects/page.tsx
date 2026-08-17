@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Projects from "@/app/projects/page";
 import { ARABIC_KEYWORDS, arabicAlternates } from "@/lib/seo";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 60;
 
 export const metadata: Metadata = {
   title: "أعمالنا في تصميم وتطوير المواقع والتطبيقات",

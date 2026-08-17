@@ -318,11 +318,20 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
     const apply = () => replaceText(document.body, language);
     apply();
     let frame = 0;
+    let isApplying = false;
+
     const observer = new MutationObserver(() => {
+      if (isApplying) return;
       window.cancelAnimationFrame(frame);
-      frame = window.requestAnimationFrame(apply);
+      frame = window.requestAnimationFrame(() => {
+        isApplying = true;
+        observer.disconnect();
+        apply();
+        observer.observe(document.body, { childList: true, subtree: true });
+        isApplying = false;
+      });
     });
-    observer.observe(document.body, { childList: true, subtree: true, characterData: true });
+    observer.observe(document.body, { childList: true, subtree: true });
     return () => {
       observer.disconnect();
       window.cancelAnimationFrame(frame);

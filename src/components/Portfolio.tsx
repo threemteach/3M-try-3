@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import {
   useCallback,
   useEffect,
@@ -18,6 +19,7 @@ const CENTER_LOOP_SET = 2;
 
 export default function Portfolio({ projects: sourceProjects }: { projects: Project[] }) {
   const { isArabic } = useLanguage();
+  const router = useRouter();
   const projects = useMemo(() => sourceProjects.map((project) => isArabic ? {
     ...project,
     description: project.descriptionAr,
@@ -245,18 +247,23 @@ export default function Portfolio({ projects: sourceProjects }: { projects: Proj
               const isNearActive =
                 Math.abs(physicalIndex - activePhysicalIndex) <= 1;
 
+              const projectUrl = isArabic ? `/ar/projects/${project.slug}` : `/projects/${project.slug}`;
+
               return (
                 <article
                   key={loopKey}
-                  className={`relative aspect-[590/799] w-[78vw] max-w-[440px] shrink-0 snap-center [scroll-snap-stop:always] overflow-hidden rounded-[22px] border border-white/90 shadow-[0_18px_45px_rgba(48,36,81,.14)] transition-transform duration-500 ease-out sm:w-[60vw] lg:w-[35%] lg:max-w-[480px] ${
+                  onMouseEnter={() => router.prefetch(projectUrl)}
+                  onTouchStart={() => router.prefetch(projectUrl)}
+                  className={`relative aspect-[590/799] w-[78vw] max-w-[440px] shrink-0 snap-center [scroll-snap-stop:always] cursor-pointer overflow-hidden rounded-[22px] border border-white/90 shadow-[0_18px_45px_rgba(48,36,81,.14)] transition-transform duration-500 ease-out sm:w-[60vw] lg:w-[35%] lg:max-w-[480px] ${
                     isActive ? "z-10 scale-100" : "z-0 lg:scale-[.975]"
                   }`}
                 >
                   <Link
-                    href={`/projects/${project.slug}`}
+                    href={projectUrl}
+                    prefetch={true}
                     onClick={() => setActiveIndex(projectIndex)}
                     aria-label={`View ${project.title} project`}
-                    className="group absolute inset-0 block overflow-hidden rounded-[inherit] bg-white/35"
+                    className="group absolute inset-0 z-10 block cursor-pointer overflow-hidden rounded-[inherit] bg-white/35"
                   >
                     <Image
                       src={project.image}

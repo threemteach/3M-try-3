@@ -3,15 +3,21 @@ import { cookies } from "next/headers";
 import { getSupabaseConfig } from "./config";
 
 export async function createClient() {
-  const cookieStore = await cookies();
+  let cookieStore = null;
+  try {
+    cookieStore = await cookies();
+  } catch {
+    // cookies() is unavailable during static pre-rendering / generateStaticParams
+  }
   const { url, publishableKey } = getSupabaseConfig();
 
   return createServerClient(url, publishableKey, {
     cookies: {
       getAll() {
-        return cookieStore.getAll();
+        return cookieStore ? cookieStore.getAll() : [];
       },
       setAll(cookiesToSet) {
+        if (!cookieStore) return;
         try {
           cookiesToSet.forEach(({ name, value, options }) =>
             cookieStore.set(name, value, options)

@@ -419,14 +419,13 @@ html[dir="rtl"] .navbar-glass .language-toggle:hover > span.absolute {
   }
 }
 
-.loader-progress {
-  width: 8%;
-  animation: loaderFill 1.15s 1.4s cubic-bezier(.3, .7, .25, 1) both;
+.loader-track {
+  opacity: 1;
+  animation: loaderBarReveal .24s .15s ease-out forwards;
 }
 
-.loader-track {
-  opacity: 0;
-  animation: loaderBarReveal .24s 1.27s ease-out forwards;
+.loader-progress-dynamic {
+  will-change: width;
 }
 
 .loader-logo {
