@@ -3,95 +3,111 @@
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
-interface NetworkConnection {
-  effectiveType?: "slow-2g" | "2g" | "3g" | "4g";
-  downlink?: number;
-  rtt?: number;
-  saveData?: boolean;
-}
-
-type SpeedTier = "fast" | "medium" | "slow";
-
-function getNetworkSpeedTier(): SpeedTier {
-  if (typeof window === "undefined") return "fast";
-
-  const nav = navigator as Navigator & {
-    connection?: NetworkConnection;
-    mozConnection?: NetworkConnection;
-    webkitConnection?: NetworkConnection;
-  };
-  const conn = nav.connection || nav.mozConnection || nav.webkitConnection;
-
-  if (conn) {
-    if (conn.saveData) return "slow";
-
-    const type = conn.effectiveType;
-    const rtt = conn.rtt ?? 100;
-    const downlink = conn.downlink ?? 10;
-
-    if (type === "slow-2g" || type === "2g" || rtt > 350 || downlink < 0.8) {
-      return "slow";
-    }
-    if (type === "3g" || rtt > 180 || downlink < 2.5) {
-      return "medium";
-    }
-  }
-
-  return "fast";
-}
-
 export default function LoadingScreen() {
   const [visible, setVisible] = useState(true);
   const [leaving, setLeaving] = useState(false);
   const [progress, setProgress] = useState(0);
   const logoRef = useRef<HTMLImageElement>(null);
+  const exitTriggered = useRef(false);
 
   useEffect(() => {
-    // Detect internet connection quality tier
-    const speedTier = getNetworkSpeedTier();
-
-    // Check if splash was already shown in this tab session
-    const splashAlreadyShown = typeof window !== "undefined" && sessionStorage.getItem("3m_splash_shown") === "true";
-    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const splashAlreadyShown =
+      typeof window !== "undefined" &&
+      sessionStorage.getItem("3m_splash_shown") === "true";
+    const reduceMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
 
     const previousOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
 
+    if (splashAlreadyShown || reduceMotion) {
+      setProgress(100);
+      triggerExit();
+      return;
+    }
+
+    // Monitor real DOM and Resource loading progress
+    let targetProgress = 15;
+
+    const updateProgress = (val: number) => {
+      targetProgress = Math.max(targetProgress, val);
+    };
+
+    // 1. DOM Ready state listener
+    if (document.readyState === "loading") {
+      updateProgress(25);
+    } else if (document.readyState === "interactive") {
+      updateProgress(65);
+    } else if (document.readyState === "complete") {
+      updateProgress(95);
+    }
+
+    const handleDomReady = () => updateProgress(70);
+    const handleWindowLoad = () => updateProgress(100);
+
+    document.addEventListener("DOMContentLoaded", handleDomReady);
+    window.addEventListener("load", handleWindowLoad);
+
+    // 2. Track Font Loading
+    if (document.fonts) {
+      document.fonts.ready.then(() => {
+        updateProgress(85);
+      });
+    }
+
+    // 3. Track Image Loading across DOM
+    const images = Array.from(document.querySelectorAll("img"));
+    if (images.length > 0) {
+      let loadedImages = 0;
+      const checkImageLoad = () => {
+        loadedImages++;
+        const imgPct = 30 + Math.round((loadedImages / images.length) * 65);
+        updateProgress(imgPct);
+      };
+
+      images.forEach((img) => {
+        if (img.complete) {
+          checkImageLoad();
+        } else {
+          img.addEventListener("load", checkImageLoad, { once: true });
+          img.addEventListener("error", checkImageLoad, { once: true });
+        }
+      });
+    } else {
+      updateProgress(80);
+    }
+
+    // Smooth progress interpolation matching real download status
+    let currentPct = 0;
     let animFrame: number;
-    let startTime: number | null = null;
 
-    // Determine load duration dynamically based on connection quality
-    let targetDuration = 360; // Fast 4G / Fiber connection
-    if (splashAlreadyShown) {
-      targetDuration = 160; // Instant sub-sequent client navigation
-    } else if (speedTier === "medium") {
-      targetDuration = 750; // 3G connection
-    } else if (speedTier === "slow") {
-      targetDuration = 1400; // 2G / Slow connection
-    }
+    const tick = () => {
+      if (currentPct < targetProgress) {
+        const diff = targetProgress - currentPct;
+        const step = Math.max(1, Math.ceil(diff * 0.18));
+        currentPct = Math.min(100, currentPct + step);
+        setProgress(currentPct);
+      }
 
-    if (reduceMotion) {
-      targetDuration = 180;
-    }
-
-    const animateProgress = (timestamp: number) => {
-      if (!startTime) startTime = timestamp;
-      const elapsed = timestamp - startTime;
-      
-      const currentPct = Math.min(100, Math.round((elapsed / targetDuration) * 100));
-      setProgress(currentPct);
-
-      if (elapsed < targetDuration) {
-        animFrame = requestAnimationFrame(animateProgress);
-      } else {
-        setProgress(100);
+      if (currentPct >= 100) {
         triggerExit();
+      } else {
+        animFrame = requestAnimationFrame(tick);
       }
     };
 
-    animFrame = requestAnimationFrame(animateProgress);
+    animFrame = requestAnimationFrame(tick);
 
-    const triggerExit = () => {
+    // Safety fallback: ensure loading completes when resources finish or within max 1.2s
+    const fallbackTimer = setTimeout(() => {
+      updateProgress(100);
+    }, 1200);
+
+    function triggerExit() {
+      if (exitTriggered.current) return;
+      exitTriggered.current = true;
+
       const source = logoRef.current;
       if (source && !reduceMotion) {
         const sourceRect = source.getBoundingClientRect();
@@ -132,10 +148,13 @@ export default function LoadingScreen() {
         }
         document.body.style.overflow = previousOverflow;
       }, reduceMotion ? 150 : 350);
-    };
+    }
 
     return () => {
       cancelAnimationFrame(animFrame);
+      clearTimeout(fallbackTimer);
+      document.removeEventListener("DOMContentLoaded", handleDomReady);
+      window.removeEventListener("load", handleWindowLoad);
       document.body.style.overflow = previousOverflow;
     };
   }, []);
@@ -172,14 +191,14 @@ export default function LoadingScreen() {
           }`}
         />
 
-        {/* Dynamic Internet-Aware Progress Bar */}
+        {/* Dynamic Real-Time Resource Progress Bar */}
         <div
           className={`loader-track mt-10 h-[26px] w-full max-w-[520px] overflow-hidden rounded-full border-2 border-white/75 bg-[#958da3]/60 p-[2px] shadow-[0_0_28px_rgba(255,255,255,.14)] backdrop-blur-md sm:mt-14 sm:h-[32px] ${
             leaving ? "loader-track-leaving" : ""
           }`}
         >
           <div
-            className="loader-progress-dynamic flex h-full items-center justify-end rounded-full bg-gradient-to-r from-purple-200 via-white to-white transition-all duration-75 ease-out pr-2.5"
+            className="loader-progress-dynamic flex h-full items-center justify-end rounded-full bg-gradient-to-r from-purple-200 via-white to-white transition-all duration-100 ease-out pr-2.5"
             style={{ width: `${Math.max(6, progress)}%` }}
           >
             {progress > 18 && (
