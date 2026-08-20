@@ -468,6 +468,7 @@ html[dir="rtl"] .navbar-glass .language-toggle:hover > span.absolute {
 
 .loader-orb {
   position: absolute;
+  z-index: 20;
   left: 50%;
   top: 50%;
   display: block;

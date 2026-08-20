@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
-const MINIMUM_SPLASH_MS = 2500;
+const MINIMUM_SPLASH_MS = 1500;
 const MAXIMUM_SPLASH_MS = 6000;
 
 export default function LoadingScreen() {
@@ -196,21 +196,9 @@ export default function LoadingScreen() {
           }`}
         >
           <div
-            className="loader-progress-dynamic flex h-full w-full items-center justify-end rounded-full bg-gradient-to-r from-purple-200 via-white to-white pr-2.5 transition-transform duration-100 ease-out"
+            className="loader-progress-dynamic h-full w-full rounded-full bg-gradient-to-r from-purple-200 via-white to-white transition-transform duration-100 ease-out"
             style={{ transform: `scaleX(${Math.max(6, progress) / 100})` }}
-          >
-            {progress > 18 && (
-              <span
-                className="pointer-events-none text-[10px] font-bold text-[#302451] sm:text-[11px]"
-                style={{
-                  transform: `scaleX(${100 / Math.max(6, progress)})`,
-                  transformOrigin: "right center",
-                }}
-              >
-                {progress}%
-              </span>
-            )}
-          </div>
+          />
         </div>
 
         <span className="sr-only">Loading</span>
