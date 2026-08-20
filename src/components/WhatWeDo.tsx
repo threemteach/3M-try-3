@@ -18,6 +18,7 @@ const services = [
     image: "/services/web-development.png",
     hasCircle: true,
     href: "/services/web-development",
+    linkLabel: "Web Development",
   },
   {
     title: "UI/UX Design",
@@ -31,6 +32,7 @@ const services = [
     image: "/services/uiux-design.png",
     hasCircle: true,
     href: "/services/ui-ux-design",
+    linkLabel: "UI/UX Design",
   },
   {
     title: "Maintenance & Support",
@@ -45,6 +47,7 @@ const services = [
     image: "/services/maintenance.png",
     hasCircle: true,
     href: "/services/digital-platforms",
+    linkLabel: "Digital Platforms",
   },
   {
     title: "Software Optimization",
@@ -58,6 +61,7 @@ const services = [
     image: "/services/software-optimization.png",
     hasCircle: false, // white circle is embedded in the image itself
     href: "/services/digital-platforms",
+    linkLabel: "Digital Platforms",
   },
 ];
 
@@ -201,10 +205,10 @@ export default function WhatWeDo() {
 
                   <Link
                     href={service.href}
-                    aria-label={`Learn more about ${service.title}`}
                     className="mt-2 inline-flex w-fit items-center border-b border-white/55 text-[clamp(8px,1.4vw,16px)] font-bold text-white sm:mt-4"
                   >
                     Learn more
+                    <span className="sr-only"> about {service.linkLabel}</span>
                   </Link>
                 </div>
 
