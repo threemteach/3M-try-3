@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect, useRef, useCallback } from "react";
+import { useState, useEffect } from "react";
 
 const ITEMS = [
   "UI / UX Designs",
@@ -49,7 +49,7 @@ export default function RotatingSpinner({ className = "" }: { className?: string
           return (
             <div
               key={text}
-              className={`rotating-item absolute left-0 w-full whitespace-nowrap pointer-events-none transition-all duration-[400ms] ease-[cubic-bezier(0.25,0.46,0.45,0.94)] ${pos}`}
+              className={`rotating-item absolute left-0 top-0 w-full whitespace-nowrap pointer-events-none transition-[transform,opacity] duration-[400ms] ease-[cubic-bezier(0.25,0.46,0.45,0.94)] ${pos}`}
             >
               {text}
             </div>

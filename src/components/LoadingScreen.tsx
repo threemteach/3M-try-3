@@ -193,16 +193,22 @@ export default function LoadingScreen() {
 
         {/* Dynamic Real-Time Resource Progress Bar */}
         <div
-          className={`loader-track mt-10 h-[26px] w-full max-w-[520px] overflow-hidden rounded-full border-2 border-white/75 bg-[#958da3]/60 p-[2px] shadow-[0_0_28px_rgba(255,255,255,.14)] backdrop-blur-md sm:mt-14 sm:h-[32px] ${
+          className={`loader-track relative mt-10 h-[26px] w-full max-w-[520px] overflow-hidden rounded-full border-2 border-white/75 bg-[#958da3]/60 p-[2px] shadow-[0_0_28px_rgba(255,255,255,.14)] backdrop-blur-md sm:mt-14 sm:h-[32px] ${
             leaving ? "loader-track-leaving" : ""
           }`}
         >
           <div
-            className="loader-progress-dynamic flex h-full items-center justify-end rounded-full bg-gradient-to-r from-purple-200 via-white to-white transition-all duration-100 ease-out pr-2.5"
-            style={{ width: `${Math.max(6, progress)}%` }}
+            className="loader-progress-dynamic flex h-full w-full items-center justify-end rounded-full bg-gradient-to-r from-purple-200 via-white to-white pr-2.5 transition-transform duration-100 ease-out"
+            style={{ transform: `scaleX(${Math.max(6, progress) / 100})` }}
           >
             {progress > 18 && (
-              <span className="text-[10px] font-bold text-[#302451] sm:text-[11px]">
+              <span
+                className="pointer-events-none text-[10px] font-bold text-[#302451] sm:text-[11px]"
+                style={{
+                  transform: `scaleX(${100 / Math.max(6, progress)})`,
+                  transformOrigin: "right center",
+                }}
+              >
                 {progress}%
               </span>
             )}

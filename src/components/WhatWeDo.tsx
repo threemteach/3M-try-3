@@ -201,6 +201,7 @@ export default function WhatWeDo() {
 
                   <Link
                     href={service.href}
+                    aria-label={`Learn more about ${service.title}`}
                     className="mt-2 inline-flex w-fit items-center border-b border-white/55 text-[clamp(8px,1.4vw,16px)] font-bold text-white sm:mt-4"
                   >
                     Learn more

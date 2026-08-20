@@ -425,7 +425,8 @@ html[dir="rtl"] .navbar-glass .language-toggle:hover > span.absolute {
 }
 
 .loader-progress-dynamic {
-  will-change: width;
+  transform-origin: left center;
+  will-change: transform;
 }
 
 .loader-logo {
@@ -678,31 +679,28 @@ html[dir="rtl"] .whatsapp-fab {
   text-shadow: 0px 0px 42px rgba(255, 255, 255, 0.68);
   font-size: clamp(28px, 6.5vw, 70px);
   line-height: 42px;
+  will-change: transform, opacity;
 }
 
 /* Mobile (Container height 120px) */
 .rotating-item.pos-top {
-  top: 0px;
   opacity: 0.15;
-  transform: scale(0.85);
+  transform: translate3d(0, 0, 0) scale(0.85);
 }
 
 .rotating-item.pos-mid {
-  top: 40px;
   opacity: 1;
-  transform: scale(1);
+  transform: translate3d(0, 40px, 0) scale(1);
 }
 
 .rotating-item.pos-bot {
-  top: 80px;
   opacity: 0.15;
-  transform: scale(0.85);
+  transform: translate3d(0, 80px, 0) scale(0.85);
 }
 
 .rotating-item.pos-hidden {
-  top: 80px;
   opacity: 0;
-  transform: translateY(20px) scale(0.85);
+  transform: translate3d(0, 100px, 0) scale(0.85);
 }
 
 /* Small Tablet (Container height 160px) */
@@ -711,16 +709,16 @@ html[dir="rtl"] .whatsapp-fab {
     line-height: 53px;
   }
   .rotating-item.pos-top {
-    top: 0px;
+    transform: translate3d(0, 0, 0) scale(0.85);
   }
   .rotating-item.pos-mid {
-    top: 53px;
+    transform: translate3d(0, 53px, 0) scale(1);
   }
   .rotating-item.pos-bot {
-    top: 106px;
+    transform: translate3d(0, 106px, 0) scale(0.85);
   }
   .rotating-item.pos-hidden {
-    top: 106px;
+    transform: translate3d(0, 126px, 0) scale(0.85);
   }
 }
 
@@ -730,16 +728,16 @@ html[dir="rtl"] .whatsapp-fab {
     line-height: 63px;
   }
   .rotating-item.pos-top {
-    top: 0px;
+    transform: translate3d(0, 0, 0) scale(0.85);
   }
   .rotating-item.pos-mid {
-    top: 63px;
+    transform: translate3d(0, 63px, 0) scale(1);
   }
   .rotating-item.pos-bot {
-    top: 126px;
+    transform: translate3d(0, 126px, 0) scale(0.85);
   }
   .rotating-item.pos-hidden {
-    top: 126px;
+    transform: translate3d(0, 146px, 0) scale(0.85);
   }
 }
 
@@ -750,15 +748,22 @@ html[dir="rtl"] .whatsapp-fab {
     line-height: 70px;
   }
   .rotating-item.pos-top {
-    top: 0px;
+    transform: translate3d(0, 0, 0) scale(0.85);
   }
   .rotating-item.pos-mid {
-    top: 70px;
+    transform: translate3d(0, 70px, 0) scale(1);
   }
   .rotating-item.pos-bot {
-    top: 140px;
+    transform: translate3d(0, 140px, 0) scale(0.85);
   }
   .rotating-item.pos-hidden {
-    top: 140px;
+    transform: translate3d(0, 160px, 0) scale(0.85);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rotating-item,
+  .loader-progress-dynamic {
+    transition: none;
   }
 }

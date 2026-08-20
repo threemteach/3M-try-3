@@ -41,10 +41,10 @@ export default async function Home() {
           <Image
             src="/rectangles.png"
             alt=""
-            width={850}
-            height={600}
+            width={919}
+            height={1311}
+            sizes="(max-width: 639px) 250px, (max-width: 767px) 350px, (max-width: 1023px) 480px, (max-width: 1279px) 680px, 820px"
             className="h-auto w-[250px] sm:w-[350px] md:w-[480px] lg:w-[680px] xl:w-[820px] object-contain translate-x-8 sm:translate-x-0"
-            priority
           />
         </div>
 
@@ -92,24 +92,26 @@ export default async function Home() {
           {/* Mockup Image - Desktop (absolute, right side for >= lg) */}
           <div className="hero-mockup-desktop pointer-events-none absolute right-0 top-1/2 z-[1] hidden -translate-y-[45%] lg:right-6 lg:block xl:right-8">
             <Image
-               src="/mockup.png"
+              src="/mockup.png"
               alt="3M Portfolio Showcase"
-              width={1150}
-              height={700}
+              width={1131}
+              height={909}
+              sizes="(max-width: 1279px) 520px, (max-width: 1535px) 650px, 780px"
               className="h-auto w-[310px] md:w-[420px] lg:w-[520px] xl:w-[650px] 2xl:w-[780px] max-w-none object-contain drop-shadow-2xl"
-              priority
             />
           </div>
 
           {/* Mockup Image - Mobile & Tablet (< lg) */}
           <div className="mt-0 flex translate-x-2 justify-center sm:mt-2 md:mt-4 lg:hidden">
             <Image
-               src="/mockup.png"
+              src="/mockup.png"
               alt="3M Portfolio Showcase"
-              width={1150}
-              height={700}
+              width={1131}
+              height={909}
+              sizes="(max-width: 639px) 390px, (max-width: 767px) 620px, 760px"
               className="h-auto w-[390px] max-w-[116%] object-contain drop-shadow-2xl sm:w-[620px] sm:max-w-[112%] md:w-[760px] md:max-w-[110%]"
               priority
+              fetchPriority="high"
             />
           </div>
 

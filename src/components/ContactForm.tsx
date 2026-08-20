@@ -91,7 +91,7 @@ export default function ContactForm() {
   }
 
   const fieldClass = (field: FieldName) =>
-    `w-full rounded-[16px] border bg-[#9d96aa] px-5 py-4 text-[15px] text-white outline-none placeholder:text-white/75 transition-[border-color,box-shadow] focus:ring-2 sm:px-7 sm:py-5 sm:text-base ${
+    `w-full rounded-[16px] border bg-[#756d82] px-5 py-4 text-[15px] text-white outline-none placeholder:text-white transition-[border-color,box-shadow] focus:ring-2 sm:px-7 sm:py-5 sm:text-base ${
       fieldErrors[field]
         ? "border-red-300 ring-2 ring-red-300/35 focus:ring-red-300"
         : "border-transparent focus:ring-white/85"
