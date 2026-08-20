@@ -3,6 +3,9 @@
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
+const MINIMUM_SPLASH_MS = 1500;
+const MAXIMUM_SPLASH_MS = 6000;
+
 export default function LoadingScreen() {
   const [visible, setVisible] = useState(true);
   const [leaving, setLeaving] = useState(false);
@@ -11,9 +14,7 @@ export default function LoadingScreen() {
   const exitTriggered = useRef(false);
 
   useEffect(() => {
-    const splashAlreadyShown =
-      typeof window !== "undefined" &&
-      sessionStorage.getItem("3m_splash_shown") === "true";
+    const startedAt = performance.now();
     const reduceMotion = window.matchMedia(
       "(prefers-reduced-motion: reduce)"
     ).matches;
@@ -21,7 +22,7 @@ export default function LoadingScreen() {
     const previousOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
 
-    if (splashAlreadyShown || reduceMotion) {
+    if (reduceMotion) {
       setProgress(100);
       triggerExit();
       return;
@@ -83,8 +84,13 @@ export default function LoadingScreen() {
     let animFrame: number;
 
     const tick = () => {
-      if (currentPct < targetProgress) {
-        const diff = targetProgress - currentPct;
+      const minimumTimeElapsed =
+        performance.now() - startedAt >= MINIMUM_SPLASH_MS;
+      const displayedTarget =
+        targetProgress >= 100 && !minimumTimeElapsed ? 96 : targetProgress;
+
+      if (currentPct < displayedTarget) {
+        const diff = displayedTarget - currentPct;
         const step = Math.max(1, Math.ceil(diff * 0.18));
         currentPct = Math.min(100, currentPct + step);
         setProgress(currentPct);
@@ -99,10 +105,11 @@ export default function LoadingScreen() {
 
     animFrame = requestAnimationFrame(tick);
 
-    // Safety fallback: ensure loading completes when resources finish or within max 1.2s
+    // Safety fallback for a stalled resource. Fast connections still respect the
+    // minimum presentation time; slow connections remain resource-driven.
     const fallbackTimer = setTimeout(() => {
       updateProgress(100);
-    }, 1200);
+    }, MAXIMUM_SPLASH_MS);
 
     function triggerExit() {
       if (exitTriggered.current) return;
@@ -143,9 +150,6 @@ export default function LoadingScreen() {
 
       window.setTimeout(() => {
         setVisible(false);
-        if (typeof window !== "undefined") {
-          sessionStorage.setItem("3m_splash_shown", "true");
-        }
         document.body.style.overflow = previousOverflow;
       }, reduceMotion ? 150 : 350);
     }
