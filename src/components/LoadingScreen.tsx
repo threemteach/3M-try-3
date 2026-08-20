@@ -22,12 +22,6 @@ export default function LoadingScreen() {
     const previousOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
 
-    if (reduceMotion) {
-      setProgress(100);
-      triggerExit();
-      return;
-    }
-
     // Monitor real DOM and Resource loading progress
     let targetProgress = 15;
 
