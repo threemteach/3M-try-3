@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
-const MINIMUM_SPLASH_MS = 1500;
+const MINIMUM_SPLASH_MS = 2500;
 const MAXIMUM_SPLASH_MS = 6000;
 
 export default function LoadingScreen() {
