@@ -13,10 +13,10 @@ export default function MobileHeader() {
       <div dir="ltr" className="mx-auto flex w-full max-w-[520px] items-center justify-between">
         <Link href="/" aria-label="3M tech home" className="shrink-0">
           <Image
-            src="/logo.png"
+            src="/3m_logo.png"
             alt="3M Logo"
-            width={80}
-            height={50}
+            width={4576}
+            height={2818}
             className="h-[32px] w-auto object-contain"
             priority
           />

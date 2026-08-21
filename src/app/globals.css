@@ -768,3 +768,64 @@ html[dir="rtl"] .whatsapp-fab {
     transition: none;
   }
 }
+
+/* Projects hero: one Figma-based scale keeps every layer locked together. */
+.projects-hero-header {
+  height: min(100svh, 60.57vw);
+}
+
+.projects-page-hero {
+  container-type: inline-size;
+}
+
+.projects-hero-title {
+  top: 17.5cqw;
+  font-size: min(11.5cqw, 220px);
+}
+
+.projects-hero-title-start {
+  transform: scaleX(1.08);
+  transform-origin: left center;
+}
+
+.projects-hero-capsule {
+  width: 29.5cqw;
+  height: 7.5cqw;
+}
+
+.projects-hero-title-end {
+  left: calc(52.1% + 14.9cqw);
+}
+
+.projects-hero-tagline {
+  top: 58%;
+  font-size: min(4.27cqw, 82px);
+}
+
+.projects-hero-character {
+  top: 12.9cqw;
+  width: 27cqw;
+  aspect-ratio: 566 / 918;
+}
+
+.projects-grid-section {
+  margin-top: clamp(-96px, -6vw, -24px);
+}
+
+@media (min-width: 768px) {
+  .projects-hero-title {
+    top: 16.7cqw;
+  }
+
+  .projects-hero-title-start {
+    transform: scaleX(1.28);
+  }
+
+  .projects-hero-tagline {
+    top: 56%;
+  }
+
+  .projects-hero-character {
+    top: 11.8cqw;
+  }
+}
