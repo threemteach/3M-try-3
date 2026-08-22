@@ -5,7 +5,7 @@ import Navbar from "@/components/Navbar";
 import { getPublishedProjects } from "@/lib/projects";
 import { SITE_NAME, SITE_URL } from "@/lib/constants";
 import { localizedAlternates } from "@/lib/seo";
-import ProjectCard from "@/components/ProjectCard";
+import ProjectsGrid from "@/components/ProjectsGrid";
 
 export const metadata: Metadata = {
   title: "Web Development Portfolio",
@@ -61,7 +61,7 @@ export default async function ProjectsPage() {
   const projects = await getPublishedProjects();
   return (
     <div className="min-h-screen overflow-hidden bg-[#f3f0f3]">
-      <header className="projects-hero-header relative isolate overflow-hidden bg-[#302451] px-4 pt-6 text-white sm:pt-10">
+      <header className="projects-hero-header relative overflow-hidden bg-[#302451] px-4 pt-6 text-white sm:pt-10">
         <Navbar />
 
         <div aria-hidden="true" className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
@@ -89,7 +89,7 @@ export default async function ProjectsPage() {
             <span className="sr-only">Our Projects</span>
             <span aria-hidden="true" className="relative block h-full w-full whitespace-nowrap">
               <span className="projects-hero-title-start absolute left-[12.1%] top-0">Our Pr</span>
-              <span className="projects-hero-capsule absolute left-[52.1%] top-[0.05em] inline-block -translate-x-1/2 rounded-full border-[clamp(5px,0.65vw,12px)] border-white" />
+              <span className="projects-hero-capsule absolute left-[52.1%] top-0 inline-block -translate-x-1/2 rounded-full" />
               <span className="projects-hero-title-end absolute top-0">jects</span>
             </span>
           </h1>
@@ -119,16 +119,14 @@ export default async function ProjectsPage() {
 
       <section
         aria-labelledby="projects-grid-title"
-        className="projects-grid-section relative z-20 mx-auto w-full max-w-[1440px] px-4 pb-24 sm:px-7 lg:px-10"
+        className="projects-grid-section relative z-20 mx-auto w-full max-w-[1000px] px-4 pb-24 sm:px-7 lg:px-10"
       >
         <h2 id="projects-grid-title" className="sr-only">
           All featured projects
         </h2>
 
-        <div className="grid grid-cols-1 items-start gap-7 sm:grid-cols-2 sm:gap-8 lg:grid-cols-3">
-          {projects.map((project, index) => (
-            <ProjectCard key={project.id} project={project} index={index} />
-          ))}
+        <div>
+          <ProjectsGrid projects={projects} />
           {projects.length === 0 && (
             <div className="col-span-full rounded-[28px] border border-dashed border-[#302451]/20 bg-white/60 px-6 py-20 text-center">
               <p className="text-lg font-bold text-[#302451]">New projects are coming soon.</p>
