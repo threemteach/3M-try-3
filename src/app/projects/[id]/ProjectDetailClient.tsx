@@ -183,7 +183,14 @@ export default function ProjectDetailClient({
                 key={idx}
                 className="group relative flex min-w-0 items-start gap-[clamp(8px,1vw,18px)]"
               >
-                <span aria-hidden="true" className="absolute inset-y-0 left-[22px] w-[80%] rounded-r-[8px] bg-gradient-to-r from-[#a895ce]/45 via-[#c8bcdf]/35 to-[#e6dfec]/20 sm:left-[26px] lg:left-[clamp(17px,2vw,34px)]" />
+                <span
+                  aria-hidden="true"
+                  className={`absolute inset-y-0 w-[80%] from-[#a895ce]/45 via-[#c8bcdf]/35 to-[#e6dfec]/20 ${
+                    locale === "ar"
+                      ? "right-[22px] rounded-l-[8px] bg-gradient-to-l sm:right-[26px] lg:right-[clamp(17px,2vw,34px)]"
+                      : "left-[22px] rounded-r-[8px] bg-gradient-to-r sm:left-[26px] lg:left-[clamp(17px,2vw,34px)]"
+                  }`}
+                />
                 <span className="relative z-10 flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[#302451] text-white shadow-[0_7px_16px_rgba(48,36,81,.2)] transition-transform duration-300 group-hover:scale-105 sm:h-[52px] sm:w-[52px] lg:h-[clamp(34px,4vw,68px)] lg:w-[clamp(34px,4vw,68px)]">
                   <FeatureIcon name={feat.icon} className="h-[48%] w-[48%]" />
                 </span>

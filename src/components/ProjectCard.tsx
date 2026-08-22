@@ -28,14 +28,14 @@ export default function ProjectCard({
         href={projectUrl}
         prefetch
         aria-label={`View ${project.title} project`}
-        className="relative block aspect-[1440/930] w-full overflow-hidden"
+        className="relative block aspect-[1092/800] w-full overflow-hidden"
       >
         <Image
           src={project.image}
           alt={project.title}
           fill
           priority={index < 3}
-          sizes="(max-width: 639px) calc(100vw - 32px), (max-width: 1535px) calc(100vw - 64px), 1440px"
+          sizes="(max-width: 639px) calc(100vw - 32px), (max-width: 1199px) calc(100vw - 56px), 1092px"
           className="object-cover object-top transition-transform duration-700 ease-out group-hover:scale-[1.02]"
         />
 
@@ -48,7 +48,12 @@ export default function ProjectCard({
           }}
         />
 
-        <div className="absolute inset-x-0 bottom-0 z-[2] px-[6.5%] pb-[4.5%] text-left text-[#302451]">
+        <div
+          dir={isArabic ? "rtl" : "ltr"}
+          className={`absolute inset-x-0 bottom-0 z-[2] px-[6.5%] pb-[4.5%] text-[#302451] ${
+            isArabic ? "text-right" : "text-left"
+          }`}
+        >
           <div className="flex items-end gap-4">
             <h3
               data-preserve-font="true"
@@ -66,7 +71,7 @@ export default function ProjectCard({
 
           <span className="my-2.5 block h-px w-full bg-[#302451]/60 sm:my-4" />
 
-          <p className="line-clamp-2 max-w-[80%] font-[Cairo] text-[11px] font-medium leading-[1.45] text-[#302451]/90 sm:text-sm lg:text-[18px]">
+          <p className={`line-clamp-2 max-w-[80%] font-[Cairo] text-[11px] font-medium leading-[1.45] text-[#302451]/90 sm:text-sm lg:text-[18px] ${isArabic ? "ml-auto" : ""}`}>
             <LocalizedProjectText project={project} />
           </p>
 

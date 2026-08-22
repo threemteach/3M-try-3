@@ -800,8 +800,22 @@ html[dir="rtl"] .whatsapp-fab {
   left: calc(52.1% + 14.9cqw);
 }
 
+.projects-hero-title-ar {
+  font-size: min(8.4cqw, 161px);
+}
+
+.projects-hero-title-ar-word {
+  left: 52.1%;
+  transform: translateX(-50%);
+}
+
 .projects-hero-tagline {
   top: 33.2cqw;
+  font-size: min(4.27cqw, 82px);
+}
+
+.projects-hero-tagline-ar {
+  left: calc(52.1% + 14.1cqw);
   font-size: min(4.27cqw, 82px);
 }
 

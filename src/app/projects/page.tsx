@@ -5,6 +5,7 @@ import { getPublishedProjects } from "@/lib/projects";
 import { SITE_NAME, SITE_URL } from "@/lib/constants";
 import { localizedAlternates } from "@/lib/seo";
 import ProjectsGrid from "@/components/ProjectsGrid";
+import ProjectsHeroContent from "@/components/ProjectsHeroContent";
 
 export const metadata: Metadata = {
   title: "Web Development Portfolio",
@@ -84,41 +85,14 @@ export default async function ProjectsPage() {
         </div>
 
         <div className="projects-page-hero absolute inset-0 z-10 mx-auto w-full max-w-[1920px] text-center">
-          <h1 className="projects-hero-title absolute left-0 z-10 h-[1em] w-full [font-family:MedulaOne] font-normal leading-[0.78] text-white">
-            <span className="sr-only">Our Projects</span>
-            <span aria-hidden="true" className="relative block h-full w-full whitespace-nowrap">
-              <span className="projects-hero-title-start absolute left-[12.1%] top-0">Our Pr</span>
-              <span className="projects-hero-capsule absolute left-[52.1%] top-0 inline-block -translate-x-1/2 rounded-full" />
-              <span className="projects-hero-title-end absolute top-0">jects</span>
-            </span>
-          </h1>
-
-          <div aria-hidden="true" className="projects-hero-tagline absolute left-[12.1%] z-[12] w-auto text-left [font-family:MedulaOne] leading-[0.92]">
-            {[1, 0.72, 0.48, 0.28, 0.14].map((opacity, index) => (
-              <p key={index} className="whitespace-nowrap" style={{ opacity }}>
-                We make your Dream
-              </p>
-            ))}
-          </div>
-
-          <div className="projects-hero-character pointer-events-none absolute left-[52.1%] z-20 -translate-x-1/2">
-            <Image
-              src="/projects-hero-character.png"
-              alt="3M tech character presenting our projects"
-              fill
-              priority
-              fetchPriority="high"
-              sizes="(max-width: 639px) 315px, (max-width: 1023px) 400px, (max-width: 1279px) 468px, 512px"
-              className="object-contain object-bottom drop-shadow-[0_22px_40px_rgba(8,4,22,.2)]"
-            />
-          </div>
+          <ProjectsHeroContent />
         </div>
 
       </header>
 
       <section
         aria-labelledby="projects-grid-title"
-        className="projects-grid-section relative z-20 mx-auto w-full max-w-[1000px] px-4 pb-8 sm:px-7 sm:pb-10 lg:px-10"
+        className="projects-grid-section relative z-20 mx-auto w-full max-w-[1172px] px-4 pb-8 sm:px-7 sm:pb-10 lg:px-10"
       >
         <h2 id="projects-grid-title" className="sr-only">
           All featured projects
