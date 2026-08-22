@@ -114,7 +114,7 @@ export default function ProjectDetailClient({
                   className="flex justify-start gap-x-[.8cqw]"
                 >
                   {row.map((tag) => (
-                    <span key={tag} className="inline-flex min-w-[10.5cqw] items-center justify-center rounded-full border border-white/80 bg-[#2b2049] px-[1.6cqw] py-[.65cqw] font-[Cairo] text-[min(1.45cqw,28px)] font-bold leading-none text-white shadow-[0_.45cqw_.8cqw_rgba(12,7,28,.32)]">
+                    <span key={tag} className="inline-flex min-w-[9.2cqw] items-center justify-center rounded-full border border-white/80 bg-[#2b2049] px-[1.25cqw] py-[.65cqw] font-[Cairo] text-[min(1.45cqw,28px)] font-bold leading-none text-white shadow-[0_.45cqw_.8cqw_rgba(12,7,28,.32)]">
                       {tag}
                     </span>
                   ))}
