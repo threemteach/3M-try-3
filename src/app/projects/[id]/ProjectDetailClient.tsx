@@ -41,9 +41,13 @@ export default function ProjectDetailClient({
     project.image,
     ...project.gallery.filter((image) => image !== project.image),
   ];
+  const technologyRows = Array.from(
+    { length: Math.ceil(project.tags.length / 4) },
+    (_, index) => project.tags.slice(index * 4, index * 4 + 4),
+  );
 
   return (
-    <div className="min-h-screen bg-[#f0edf5] flex flex-col justify-between">
+    <div className="min-h-screen bg-[#EDE9E9] flex flex-col justify-between">
       {/* Project hero — one fixed composition that scales with the viewport. */}
       <header className="project-detail-hero relative overflow-hidden bg-[#302451] px-4 pt-6 text-white sm:pt-10">
         <Navbar />
@@ -103,11 +107,18 @@ export default function ProjectDetailClient({
               {project.description}
             </p>
 
-            <div className="mt-[1.1cqw] flex gap-[.7cqw]">
-              {project.tags.slice(0, 3).map((tag) => (
-                <span key={tag} className="rounded-full border border-white/70 bg-[#2b2049] px-[1.6cqw] py-[.58cqw] font-[Cairo] text-[min(1.25cqw,24px)] font-bold leading-none text-white shadow-[0_.45cqw_.8cqw_rgba(12,7,28,.32)]">
-                  {tag}
-                </span>
+            <div className="mt-[1cqw] flex max-w-full flex-col gap-y-[.6cqw]">
+              {technologyRows.map((row, rowIndex) => (
+                <div
+                  key={rowIndex}
+                  className="flex justify-start gap-x-[.8cqw]"
+                >
+                  {row.map((tag) => (
+                    <span key={tag} className="inline-flex min-w-[10.5cqw] items-center justify-center rounded-full border border-white/80 bg-[#2b2049] px-[1.6cqw] py-[.65cqw] font-[Cairo] text-[min(1.45cqw,28px)] font-bold leading-none text-white shadow-[0_.45cqw_.8cqw_rgba(12,7,28,.32)]">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
               ))}
             </div>
           </div>
@@ -115,7 +126,7 @@ export default function ProjectDetailClient({
       </header>
 
       {/* Main Content Area */}
-      <main className="project-detail-main relative z-20 mx-auto w-full max-w-[1920px] flex-1 px-4 pb-20">
+      <main className="project-detail-main relative z-20 mx-auto w-full max-w-[1920px] flex-1 px-4 pb-4 sm:pb-6">
         {/* Main project preview and overlapping gallery thumbnails. */}
         <div className="relative mx-auto mb-[clamp(70px,8vw,150px)] w-[92%] sm:w-[88%] lg:w-[60%]">
           <div className="relative aspect-[1444/1057] w-full overflow-hidden rounded-[22px] border border-[#302451]/50 bg-[#dfeaf0] shadow-[0_22px_55px_rgba(48,36,81,.18)] sm:rounded-[38px] lg:rounded-[50px]">
@@ -202,18 +213,6 @@ export default function ProjectDetailClient({
           </Link>
         </section>
 
-        <section className="mx-auto w-[92%] max-w-[1100px] text-center text-[#302451] sm:w-[88%] lg:w-[60%]">
-          <div className="flex items-center gap-[2%]">
-            <span className="h-px flex-1 bg-[#302451]/70" />
-            <h2 data-preserve-font="true" className="shrink-0 [font-family:MedulaOne] text-[clamp(30px,3.2vw,62px)] font-normal leading-none">
-              Let&apos;s Build Something Great Together
-            </h2>
-            <span className="h-px flex-1 bg-[#302451]/70" />
-          </div>
-          <p className="mt-[clamp(10px,1vw,20px)] font-[Cairo] text-[clamp(10px,.9vw,17px)] font-semibold leading-[1.45]">
-            Have a project in mind?<br />We&apos;d love to hear your ideas and help bring them to life.
-          </p>
-        </section>
       </main>
     </div>
   );

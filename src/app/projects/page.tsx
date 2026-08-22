@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import { getPublishedProjects } from "@/lib/projects";
 import { SITE_NAME, SITE_URL } from "@/lib/constants";
@@ -60,7 +59,7 @@ const heroStars = [
 export default async function ProjectsPage() {
   const projects = await getPublishedProjects();
   return (
-    <div className="min-h-screen overflow-hidden bg-[#f3f0f3]">
+    <div className="min-h-screen overflow-hidden bg-[#EDE9E9]">
       <header className="projects-hero-header relative overflow-hidden bg-[#302451] px-4 pt-6 text-white sm:pt-10">
         <Navbar />
 
@@ -119,7 +118,7 @@ export default async function ProjectsPage() {
 
       <section
         aria-labelledby="projects-grid-title"
-        className="projects-grid-section relative z-20 mx-auto w-full max-w-[1000px] px-4 pb-24 sm:px-7 lg:px-10"
+        className="projects-grid-section relative z-20 mx-auto w-full max-w-[1000px] px-4 pb-8 sm:px-7 sm:pb-10 lg:px-10"
       >
         <h2 id="projects-grid-title" className="sr-only">
           All featured projects
@@ -134,16 +133,6 @@ export default async function ProjectsPage() {
           )}
         </div>
 
-        <div className="mt-14 flex justify-center sm:mt-16">
-          <Link
-            href="/#portfolio"
-            style={{ fontFamily: '"Cairo", sans-serif' }}
-            className="group inline-flex h-13 items-center justify-center gap-3 rounded-full border border-white/30 bg-[#302451] px-8 text-sm font-bold text-white shadow-[0_12px_30px_rgba(48,36,81,.22)] transition-all hover:-translate-y-0.5 hover:bg-[#43346d] sm:h-14 sm:text-base"
-          >
-            <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg></span>
-            <span>Back to Home</span>
-          </Link>
-        </div>
       </section>
     </div>
   );

@@ -1,6 +1,7 @@
 "use client";
 
 import { FormEvent, useState } from "react";
+import { usePathname } from "next/navigation";
 import { SITE_PHONE } from "@/lib/constants";
 
 type FieldName = "name" | "email" | "phone" | "details";
@@ -18,6 +19,12 @@ function Flourish({ flip = false }: { flip?: boolean }) {
 
 export default function ContactForm() {
   const [fieldErrors, setFieldErrors] = useState<FieldErrors>({});
+  const pathname = usePathname();
+  const isProjectsArea =
+    pathname === "/projects" ||
+    pathname.startsWith("/projects/") ||
+    pathname === "/ar/projects" ||
+    pathname.startsWith("/ar/projects/");
 
   function validate(values: Record<FieldName, string>) {
     const nextErrors: FieldErrors = {};
@@ -109,7 +116,14 @@ export default function ContactForm() {
     ) : null;
 
   return (
-    <section id="contact-form" className="bg-[#f5f2f3] px-4 py-20 sm:px-8 sm:py-24">
+    <section
+      id="contact-form"
+      className={`bg-[#EDE9E9] px-4 sm:px-8 ${
+        isProjectsArea
+          ? "pb-20 pt-4 sm:pb-24 sm:pt-4"
+          : "py-20 sm:py-24"
+      }`}
+    >
       <div className="mx-auto max-w-[940px]">
         <header className="text-center text-[#312354]">
           <div className="flex items-center justify-center gap-4">

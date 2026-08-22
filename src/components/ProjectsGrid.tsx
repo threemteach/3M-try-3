@@ -24,7 +24,7 @@ export default function ProjectsGrid({ projects }: { projects: Project[] }) {
 
   return (
     <>
-      <div ref={gridRef} className="grid scroll-mt-6 grid-cols-1 gap-6 sm:gap-9 lg:gap-12">
+      <div ref={gridRef} className="grid scroll-mt-6 grid-cols-1 gap-4 sm:gap-5 lg:gap-8">
         {visibleProjects.map((project, index) => (
           <ProjectCard
             key={project.id}
