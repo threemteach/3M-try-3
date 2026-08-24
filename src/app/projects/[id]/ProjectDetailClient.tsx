@@ -190,7 +190,7 @@ export default function ProjectDetailClient({
               >
                 <span
                   aria-hidden="true"
-                  className={`absolute inset-y-0 w-[80%] from-[#a895ce]/45 via-[#c8bcdf]/35 to-[#e6dfec]/20 ${
+                  className={`absolute top-0 h-11 w-[80%] from-[#a895ce]/45 via-[#c8bcdf]/35 to-[#e6dfec]/20 sm:h-[52px] lg:h-[clamp(34px,4vw,68px)] ${
                     locale === "ar"
                       ? "right-[22px] rounded-l-[8px] bg-gradient-to-l sm:right-[26px] lg:right-[clamp(17px,2vw,34px)]"
                       : "left-[22px] rounded-r-[8px] bg-gradient-to-r sm:left-[26px] lg:left-[clamp(17px,2vw,34px)]"
