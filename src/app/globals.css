@@ -770,6 +770,154 @@ html[dir="rtl"] .whatsapp-fab {
 }
 
 /* Projects hero: one Figma-based scale keeps every layer locked together. */
+@media (max-width: 1023px) {
+  .home-scaled-hero {
+    min-height: 0;
+    height: calc(80.08vw + max(16px, env(safe-area-inset-top)));
+    padding: 0;
+  }
+
+  .home-scaled-stage {
+    position: absolute;
+    inset: max(16px, env(safe-area-inset-top)) 0 auto;
+    container-type: inline-size;
+    width: 100%;
+    height: 80.08vw;
+    max-width: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .home-scaled-pattern {
+    top: max(16px, env(safe-area-inset-top));
+    width: 64vw;
+    opacity: 1;
+  }
+
+  .home-scaled-pattern-image {
+    width: 100%;
+    transform: none;
+  }
+
+  .home-scaled-copy {
+    position: absolute;
+    left: 5%;
+    top: 20.5%;
+    width: 55%;
+    max-width: none;
+    margin: 0;
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  .home-scaled-title {
+    font-size: 11.52cqw;
+    line-height: .9;
+  }
+
+  .home-scaled-spinner {
+    margin-top: 1.2cqw;
+    justify-content: flex-start;
+  }
+
+  .home-scaled-spinner .hero-rotator {
+    gap: 1.75cqw;
+    justify-content: flex-start;
+  }
+
+  .home-scaled-spinner .hero-build-label {
+    font-size: 7.32cqw !important;
+  }
+
+  .home-scaled-spinner .hero-rotator > div {
+    width: 35cqw;
+    min-width: 0;
+    height: 20.5cqw;
+  }
+
+  .home-scaled-spinner .rtl-arrow {
+    border-top-width: .98cqw !important;
+    border-bottom-width: .98cqw !important;
+    border-left-width: 1.56cqw !important;
+  }
+
+  .home-scaled-spinner .rotating-item {
+    font-size: 6.64cqw !important;
+    line-height: 6.84cqw !important;
+  }
+
+  .home-scaled-spinner .rotating-item.pos-top {
+    transform: translate3d(0, 0, 0) scale(.85);
+  }
+
+  .home-scaled-spinner .rotating-item.pos-mid {
+    transform: translate3d(0, 6.84cqw, 0) scale(1);
+  }
+
+  .home-scaled-spinner .rotating-item.pos-bot {
+    transform: translate3d(0, 13.67cqw, 0) scale(.85);
+  }
+
+  .home-scaled-spinner .rotating-item.pos-hidden {
+    transform: translate3d(0, 15.63cqw, 0) scale(.85);
+  }
+
+  .home-scaled-actions {
+    display: flex;
+    margin-top: 2.4cqw;
+  }
+
+  .home-scaled-action {
+    width: 18.07cqw;
+    min-width: 72px;
+    height: max(26px, 5.47cqw);
+    border-width: max(1px, .2cqw);
+    font-size: max(9px, 1.66cqw);
+  }
+
+  .home-scaled-mockup {
+    display: block;
+    right: 0;
+    top: 20.5%;
+    width: 50.78cqw;
+    transform: none !important;
+    translate: none !important;
+  }
+
+  .home-scaled-mockup-image {
+    width: 100%;
+  }
+
+  .home-scaled-mobile-mockup {
+    display: none;
+  }
+
+  html[dir="rtl"] .home-scaled-copy {
+    left: auto;
+    right: 5%;
+    width: 55% !important;
+    max-width: none !important;
+  }
+
+  html[dir="rtl"] .home-scaled-copy h1 {
+    font-size: 11.52cqw !important;
+    line-height: .9 !important;
+  }
+
+  html[dir="rtl"] .home-scaled-mockup {
+    left: 0 !important;
+    right: auto !important;
+  }
+
+  html[dir="rtl"] .home-scaled-spinner .hero-build-label {
+    font-size: 7.32cqw !important;
+  }
+
+  html[dir="rtl"] .home-scaled-spinner .rotating-item {
+    font-size: 6.64cqw !important;
+  }
+}
+
 .projects-hero-header {
   height: min(90svh, 60.57vw, 1163px);
 }
