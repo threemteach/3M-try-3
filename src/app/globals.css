@@ -918,6 +918,12 @@ html[dir="rtl"] .whatsapp-fab {
   }
 }
 
+@media (min-width: 1024px) {
+  .home-scaled-mockup {
+    transform: translateY(-45%);
+  }
+}
+
 .projects-hero-header {
   height: min(90svh, 60.57vw, 1163px);
 }

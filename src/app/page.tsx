@@ -90,7 +90,7 @@ export default async function Home() {
           </div>
 
           {/* Mockup Image - Desktop (absolute, right side for >= lg) */}
-          <div className="home-scaled-mockup hero-mockup-desktop pointer-events-none absolute right-0 top-1/2 z-[1] hidden -translate-y-[45%] lg:right-6 lg:block xl:right-8">
+          <div className="home-scaled-mockup hero-mockup-desktop pointer-events-none absolute right-0 top-1/2 z-[1] hidden lg:right-6 lg:block xl:right-8">
             <Image
               src="/mockup.png"
               alt="3M Portfolio Showcase"
