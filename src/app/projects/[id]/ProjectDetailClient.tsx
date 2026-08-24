@@ -202,7 +202,7 @@ export default function ProjectDetailClient({
                 <div className="relative z-10 min-w-0 pt-[.15em]">
                   <h3
                     style={{ fontFamily: '"Cairo", sans-serif' }}
-                    className="truncate text-[15px] font-extrabold leading-none text-[#302451] sm:text-lg lg:text-[clamp(11px,1.45vw,28px)]"
+                    className="text-[15px] font-extrabold leading-[1.45] text-[#302451] sm:text-lg lg:text-[clamp(11px,1.45vw,28px)]"
                   >
                     {feat.title}
                   </h3>
