@@ -14,6 +14,7 @@ import WhatsAppButton from "@/components/WhatsAppButton";
 import {
   FACEBOOK_URL,
   INSTAGRAM_URL,
+  TIKTOK_URL,
   SITE_DESCRIPTION,
   SITE_NAME,
   SITE_PHONE,
@@ -126,7 +127,7 @@ const organizationJsonLd = {
     { "@type": "Country", name: "Bahrain" },
     { "@type": "Country", name: "Oman" },
   ],
-  sameAs: [FACEBOOK_URL, INSTAGRAM_URL],
+  sameAs: [FACEBOOK_URL, INSTAGRAM_URL, TIKTOK_URL],
   knowsAbout: [
     "Web Development",
     "Custom Web Applications",

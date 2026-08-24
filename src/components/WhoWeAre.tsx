@@ -71,7 +71,7 @@ export default function WhoWeAre() {
           </div>
         </div>
 
-        <p className="mt-4 flex max-w-[860px] items-start gap-3 text-left text-[12px] leading-6 text-white sm:mt-5 sm:text-[15px] sm:leading-7 lg:text-base">
+        <p className="who-we-are-description mt-4 flex max-w-[860px] items-start gap-3 text-left text-[12px] leading-6 text-white sm:mt-5 sm:text-[15px] sm:leading-7 lg:text-base">
           <span className="mt-[5px] shrink-0 text-white" aria-hidden="true">
             <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><polygon points="6 3 20 12 6 21 6 3"/></svg>
           </span>

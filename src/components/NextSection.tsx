@@ -81,7 +81,7 @@ export default function NextSection() {
       <div className="flex flex-col items-center justify-center my-auto w-full">
         <h2
           style={{ fontFamily: '"MedulaOne", serif' }}
-          className="text-[36px] sm:text-[60px] md:text-[84px] lg:text-[110px] xl:text-[130px] font-normal leading-[1.0] text-[#302451] text-center px-4"
+          className="home-dream-title text-[36px] sm:text-[60px] md:text-[84px] lg:text-[110px] xl:text-[130px] font-normal leading-[1.0] text-[#302451] text-center px-4"
         >
           Dream it and we build it
         </h2>

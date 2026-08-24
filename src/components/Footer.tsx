@@ -4,6 +4,7 @@ import {
   FACEBOOK_URL,
   INSTAGRAM_URL,
   SITE_PHONE,
+  TIKTOK_URL,
 } from "@/lib/constants";
 
 const quickLinks = [
@@ -35,7 +36,7 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="relative isolate overflow-hidden bg-[#312354] pb-7 pt-[158px] text-[#e5e0eb] sm:pb-9 sm:pt-[170px]">
+    <footer className="relative isolate overflow-hidden bg-[#312354] pb-[calc(7rem+env(safe-area-inset-bottom))] pt-[158px] text-[#e5e0eb] sm:pb-9 sm:pt-[170px]">
       <div data-nosnippet className="contents">
       <div aria-hidden="true" className="absolute inset-x-0 top-0 h-[105px] bg-[#f5f2f3]" />
       <a
@@ -103,6 +104,17 @@ export default function Footer() {
           >
             <svg aria-hidden="true" viewBox="0 0 24 24" className="h-[22px] w-[22px]" fill="currentColor">
               <path d="M13.7 21v-8h2.7l.4-3.1h-3.1V8c0-.9.3-1.5 1.6-1.5H17V3.7c-.7-.1-1.5-.2-2.3-.2-2.3 0-3.9 1.4-3.9 4.1v2.3H8.2V13h2.6v8h2.9Z" />
+            </svg>
+          </a>
+          <a
+            href={TIKTOK_URL}
+            target="_blank"
+            rel="noreferrer"
+            aria-label="TikTok"
+            className="flex h-10 w-10 items-center justify-center rounded-full bg-white text-[#312354] transition-transform hover:-translate-y-1 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
+          >
+            <svg aria-hidden="true" viewBox="0 0 24 24" className="h-[21px] w-[21px]" fill="currentColor">
+              <path d="M14.1 3h3.1c.3 1.8 1.4 3.4 3 4.3v3.1a8.3 8.3 0 0 1-3-1v5.9A5.7 5.7 0 1 1 12.3 9v3.1a2.7 2.7 0 1 0 1.8 2.6V3Z" />
             </svg>
           </a>
         </nav>

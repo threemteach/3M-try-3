@@ -19,7 +19,7 @@ export default function Navbar() {
   return (
     <header
       dir="ltr"
-      className={`navbar-shell pointer-events-none fixed left-0 right-0 top-0 z-[100] hidden justify-center px-4 transition-[padding] duration-300 sm:flex ${
+      className={`navbar-shell pointer-events-none fixed left-0 right-0 top-0 z-[5000] hidden justify-center px-4 transition-[padding] duration-300 sm:flex ${
         scrolled ? "pt-2 md:pt-3" : "pt-4 md:pt-6 lg:pt-8"
       }`}
     >

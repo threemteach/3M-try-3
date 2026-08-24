@@ -59,8 +59,8 @@ export default function ServiceLandingPage({
   return (
     <div dir={isArabic ? "rtl" : "ltr"} className="bg-[#f0edf5] text-[#302451]">
       <JsonLd data={jsonLd} />
+      <Navbar />
       <section className="relative isolate overflow-hidden bg-[#302451] px-4 pb-20 pt-36 text-white sm:px-8 sm:pb-28 sm:pt-44 lg:px-12 lg:pb-32">
-        <Navbar />
         <div className="pointer-events-none absolute -right-24 top-16 h-80 w-80 rounded-full bg-[#9d7de7]/20 blur-3xl sm:h-[430px] sm:w-[430px]" />
         <div className="pointer-events-none absolute -bottom-40 -left-24 h-80 w-80 rounded-full bg-white/10 blur-3xl sm:h-[420px] sm:w-[420px]" />
         <div className="relative mx-auto max-w-[1180px]">

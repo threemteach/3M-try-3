@@ -171,8 +171,13 @@ export default function ProjectDetailClient({
         {/* Project highlights — compact two-column layout from the project design. */}
         <section className="mx-auto mb-[clamp(28px,3vw,58px)] w-[92%] max-w-[1100px] text-[#302451] sm:w-[88%] lg:w-[60%]">
           <h2
-            data-preserve-font="true"
-            className="project-section-title mb-[clamp(18px,2.2vw,42px)] text-center [font-family:MedulaOne] text-[clamp(34px,3.5vw,68px)] font-normal leading-none"
+            data-preserve-font={locale === "en" ? "true" : undefined}
+            dir={locale === "ar" ? "rtl" : "ltr"}
+            style={{
+              fontFamily: locale === "ar" ? '"Sahlab", "Cairo", sans-serif' : '"MedulaOne", serif',
+              textAlign: "center",
+            }}
+            className="project-section-title mx-auto block w-full mb-[clamp(18px,2.2vw,42px)] text-center [font-family:MedulaOne] text-[clamp(34px,3.5vw,68px)] font-normal leading-none"
           >
             Project Highlights & Specifications
           </h2>

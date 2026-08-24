@@ -7,6 +7,7 @@ export const SITE_SHORT_DESCRIPTION =
 export const SITE_PHONE = "+201061883470";
 export const FACEBOOK_URL = "https://www.facebook.com/profile.php?id=61590725834401";
 export const INSTAGRAM_URL = "https://www.instagram.com/3m_.tech/";
+export const TIKTOK_URL = "https://www.tiktok.com/@3mtechs";
 
 export const navLinks = [
   { href: "/", label: "Home" },

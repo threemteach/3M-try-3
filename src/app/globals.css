@@ -297,10 +297,16 @@ html[dir="rtl"] .rtl-arrow {
 
 html[dir="rtl"] .project-card-copy,
 html[dir="rtl"] .project-detail-header,
-html[dir="rtl"] .project-section-title,
 html[dir="rtl"] .project-feature-grid,
 html[dir="rtl"] .project-tech-stack {
   text-align: right !important;
+}
+
+html[dir="rtl"] .project-section-title {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center !important;
 }
 
 html[dir="rtl"] .project-card-category {
@@ -916,6 +922,15 @@ html[dir="rtl"] .whatsapp-fab {
   html[dir="rtl"] .home-scaled-spinner .rotating-item {
     font-size: 6.64cqw !important;
   }
+}
+
+html[dir="rtl"] .home-dream-title {
+  font-family: "Sahlab", "Cairo", sans-serif !important;
+}
+
+html[dir="rtl"] .who-we-are-description {
+  direction: rtl;
+  text-align: right !important;
 }
 
 @media (min-width: 1024px) {
