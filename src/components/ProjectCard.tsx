@@ -41,7 +41,7 @@ export default function ProjectCard({
 
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute inset-x-0 bottom-0 h-[55%] bg-[linear-gradient(to_bottom,rgba(255,255,255,0)_0%,rgba(255,255,255,.52)_38%,rgba(255,255,255,.85)_72%,rgba(255,255,255,.85)_100%)] backdrop-blur-[1px]"
+          className="pointer-events-none absolute inset-x-0 bottom-0 h-[62%] bg-[linear-gradient(to_bottom,rgba(255,255,255,0)_0%,rgba(255,255,255,.92)_30%,rgba(255,255,255,.97)_72%,rgba(255,255,255,.97)_100%)] backdrop-blur-[1px]"
           style={{
             WebkitMaskImage: "linear-gradient(to bottom, transparent, black 38%)",
             maskImage: "linear-gradient(to bottom, transparent, black 38%)",
@@ -54,10 +54,10 @@ export default function ProjectCard({
             isArabic ? "text-right" : "text-left"
           }`}
         >
-          <div className="flex items-end gap-4">
+          <div className="flex items-center gap-3">
             <h3
               data-preserve-font="true"
-              className="min-w-0 flex-1 [font-family:MedulaOne] text-[clamp(38px,9vw,78px)] font-normal leading-[.9]"
+              className="min-w-0 flex-1 break-words [font-family:MedulaOne] text-[28px] font-normal leading-[1.1] min-[400px]:text-[32px] sm:text-[44px] lg:text-[60px]"
             >
               {project.title}
             </h3>
