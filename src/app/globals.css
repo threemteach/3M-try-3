@@ -126,14 +126,18 @@ body {
 }
 
 html[dir="rtl"] body {
-  font-family: "Cairo", sans-serif;
+  font-family: "Kufam", sans-serif;
   letter-spacing: 0;
+}
+
+html[dir="rtl"] body * {
+  font-family: "Kufam", sans-serif !important;
 }
 
 html[dir="rtl"] [class*="MedulaOne"],
 html[dir="rtl"] [style*="MedulaOne"],
 html[dir="rtl"] .rotating-item {
-  font-family: "Sahlab", "Cairo", sans-serif !important;
+  font-family: "Kufam", sans-serif !important;
   letter-spacing: 0 !important;
 }
 
@@ -925,7 +929,7 @@ html[dir="rtl"] .whatsapp-fab {
 }
 
 html[dir="rtl"] .home-dream-title {
-  font-family: "Sahlab", "Cairo", sans-serif !important;
+  font-family: "Kufam", sans-serif !important;
 }
 
 html[dir="rtl"] .who-we-are-description {
