@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState, useEffect, useMemo } from "react";
+import { Ellipsis } from "lucide-react";
 
 const navItems = [
   {
@@ -54,7 +55,7 @@ const navItems = [
 const W = 340;
 const H = 76;
 const R = 24;
-const ITEMS = 4;
+const ITEMS = 5;
 const BUBBLE = 44;
 const PAD_X = 12;
 
@@ -64,7 +65,7 @@ const getContainerPath = (index: number) => {
   const gap = usable / ITEMS;
   const cx = PAD_X + gap * index + gap / 2;
 
-  const nw = 40;
+  const nw = 30;
 
   return [
     `M ${R},${topY}`,
@@ -89,6 +90,7 @@ export default function MobileBottomNav() {
   const prefix = pathname === "/ar" || pathname.startsWith("/ar/") ? "/ar" : "";
   const pathWithoutLocale = prefix ? pathname.replace(/^\/ar(?=\/|$)/, "") || "/" : pathname;
   const [activeIndex, setActiveIndex] = useState(0);
+  const [moreOpen, setMoreOpen] = useState(false);
 
   useEffect(() => {
     const idx = navItems.findIndex((item) => {
@@ -96,7 +98,8 @@ export default function MobileBottomNav() {
       if (item.href.startsWith("/#")) return false;
       return pathWithoutLocale.startsWith(item.href);
     });
-    if (idx !== -1) setActiveIndex(idx);
+    setActiveIndex(idx !== -1 ? idx : 4);
+    setMoreOpen(false);
   }, [pathWithoutLocale]);
 
   const pathD = useMemo(() => getContainerPath(activeIndex), [activeIndex]);
@@ -115,6 +118,15 @@ export default function MobileBottomNav() {
         className="relative mx-auto overflow-visible"
         style={{ maxWidth: W, height: H }}
       >
+        {moreOpen && (
+          <>
+            <button type="button" aria-label="Close more navigation" className="fixed inset-0 z-[3] cursor-default" onClick={() => setMoreOpen(false)} />
+            <div id="mobile-more-links" dir={prefix ? "rtl" : "ltr"} className="absolute bottom-[88px] right-0 z-[4] w-56 rounded-lg border border-[#ddd5e7] bg-white p-2 text-sm text-[#302451] shadow-xl" onKeyDown={e => { if(e.key === 'Escape') setMoreOpen(false); }}>
+              <Link href={`${prefix}/plans`} onClick={() => setMoreOpen(false)} className="block rounded-md px-4 py-3 hover:bg-[#f0edf5]">{prefix ? "الخطط" : "Plans"}</Link>
+              <Link href={`${prefix}/templates`} onClick={() => setMoreOpen(false)} className="block rounded-md px-4 py-3 hover:bg-[#f0edf5]">{prefix ? "القوالب" : "Templates"}</Link>
+            </div>
+          </>
+        )}
         <svg
           className="absolute top-0 left-0 h-full w-full"
           viewBox={`0 0 ${W} ${H}`}
@@ -151,7 +163,7 @@ export default function MobileBottomNav() {
           }}
         >
           <div className="flex h-[18px] w-[18px] items-center justify-center text-white">
-            {navItems[activeIndex].icon}
+            {navItems[activeIndex]?.icon ?? <Ellipsis size={18} />}
           </div>
         </div>
 
@@ -203,6 +215,10 @@ export default function MobileBottomNav() {
             </Link>
           );
         })}
+        <button type="button" aria-expanded={moreOpen} aria-controls={moreOpen ? "mobile-more-links" : undefined} onClick={() => setMoreOpen(current => !current)} className="absolute bottom-0 z-[4] flex flex-col items-center justify-end gap-[3px] pb-2 text-[#302451]" style={{left:`calc(${PAD_X}px + ((100% - ${PAD_X * 2}px) / ${ITEMS}) * 4)`,width:`calc((100% - ${PAD_X * 2}px) / ${ITEMS})`,height:H}}>
+          <Ellipsis size={18} className={activeIndex === 4 ? 'opacity-0' : 'opacity-50'} />
+          <span className="text-[10px] leading-none">{prefix ? "المزيد" : "More"}</span>
+        </button>
       </div>
     </nav>
   );

@@ -4,7 +4,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { LanguageToggle } from "@/components/LanguageProvider";
-import { Menu } from "lucide-react";
 
 export default function MobileHeader() {
   const pathname = usePathname();
@@ -28,15 +27,6 @@ export default function MobileHeader() {
         </Link>
 
         <div dir="ltr" className="flex shrink-0 items-center gap-2">
-          <details key={pathname} className="relative">
-            <summary aria-label="Plans and templates" className="flex h-8 w-8 cursor-pointer list-none items-center justify-center rounded-full border border-white/35 text-white marker:hidden [&::-webkit-details-marker]:hidden">
-              <Menu className="h-4 w-4" aria-hidden="true" />
-            </summary>
-            <nav dir={prefix ? "rtl" : "ltr"} aria-label="Plans and templates" className="absolute right-0 top-11 z-50 w-56 rounded-lg border border-white/20 bg-[#302451] p-2 text-sm text-white shadow-xl">
-              <Link href={`${prefix}/plans`} className="block rounded-md px-3 py-3 hover:bg-white/10">{prefix ? "الخطط" : "Plans"}</Link>
-              <Link href={`${prefix}/templates`} className="block rounded-md px-3 py-3 hover:bg-white/10">{prefix ? "القوالب" : "Templates"}</Link>
-            </nav>
-          </details>
           <LanguageToggle compact />
           <Link
             href={`${prefix}/contact`}

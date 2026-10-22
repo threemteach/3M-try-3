@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { logoutAction } from "@/app/login/actions";
+import AdminNavigation from "./AdminNavigation";
 
 export default function AdminShell({
   email,
@@ -12,20 +13,18 @@ export default function AdminShell({
   return (
     <div className="min-h-screen bg-[#f3f0f3] text-[#302451]">
       <header className="sticky top-0 z-40 border-b border-white/50 bg-[#302451]/95 px-4 py-3 text-white shadow-lg backdrop-blur-xl sm:px-7">
-        <div className="mx-auto flex max-w-[1440px] items-center justify-between gap-4">
+        <div className="mx-auto flex max-w-[1440px] flex-wrap items-center justify-between gap-4">
           <div className="flex items-center gap-5">
             <Link href="/admin" aria-label="Admin dashboard">
               <Image src="/logo.png" alt="3M tech" width={72} height={44} className="h-9 w-auto" />
             </Link>
             <span className="hidden h-7 w-px bg-white/20 sm:block" />
             <div className="hidden sm:block">
-              <p className="text-sm font-bold">Project Dashboard</p>
+              <p className="text-sm font-bold">Content Dashboard</p>
               <p className="text-[10px] text-white/60">{email}</p>
             </div>
           </div>
           <nav className="flex items-center gap-2">
-            <Link href="/admin" className="px-2 py-2 text-xs">Projects</Link>
-            <Link href="/admin/catalog" className="px-2 py-2 text-xs">Plans & templates</Link>
             <Link href="/" target="_blank" className="rounded-full border border-white/20 px-4 py-2 text-xs font-bold transition hover:bg-white/10">
               View website
             </Link>
@@ -37,6 +36,7 @@ export default function AdminShell({
           </nav>
         </div>
       </header>
+      <AdminNavigation />
       <main className="mx-auto w-full max-w-[1440px] px-4 py-8 sm:px-7 sm:py-10">
         {children}
       </main>

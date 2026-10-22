@@ -2,14 +2,23 @@ import Image from "next/image";
 import Link from "next/link";
 import { getAllProjectsForAdmin } from "@/lib/projects";
 import DeleteProjectButton from "@/components/admin/DeleteProjectButton";
+import { requireAdmin } from "@/lib/auth";
 
 export default async function AdminDashboard() {
   const projects = await getAllProjectsForAdmin();
   const published = projects.filter((project) => project.isPublished).length;
   const drafts = projects.length - published;
+  const { supabase } = await requireAdmin();
+  const { data: catalog, error: catalogError } = await supabase.from("catalog_items").select("kind,is_published");
 
   return (
     <>
+      <div className="mb-8 grid gap-4 sm:grid-cols-2">
+        {([['plans','Subscription plans'],['templates','Ready-made templates']] as const).map(([kind,label])=>{
+          const rows=(catalog??[]).filter(item=>item.kind===kind);
+          return <Link key={kind} href={`/admin/catalog?type=${kind}`} className="rounded-lg border border-[#ddd5e7] bg-white p-5 hover:border-[#876dca]"><h2 className="font-bold">{label}</h2><p className="mt-2 text-sm text-[#70677d]">{catalogError?'Catalog unavailable — open to view setup status':`${rows.length} total · ${rows.filter(item=>item.is_published).length} published · ${rows.filter(item=>!item.is_published).length} drafts`}</p><span className="mt-4 inline-block text-sm font-semibold">Manage →</span></Link>;
+        })}
+      </div>
       <div className="flex flex-col justify-between gap-5 sm:flex-row sm:items-end">
         <div>
           <p className="text-xs font-bold uppercase tracking-[.16em] text-[#302451]/50">
