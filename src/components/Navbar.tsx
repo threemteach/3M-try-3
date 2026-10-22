@@ -6,9 +6,11 @@ import { useCallback, useEffect, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { navLinks } from "@/lib/constants";
 import { LanguageToggle } from "@/components/LanguageProvider";
+import { usePageVisibility } from './PageVisibilityProvider';
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
+  const visibility=usePageVisibility();
   const pathname = usePathname();
   const router = useRouter();
   const prefix = pathname === "/ar" || pathname.startsWith("/ar/") ? "/ar" : "";
@@ -71,7 +73,7 @@ export default function Navbar() {
         </Link>
 
         <ul className="mx-4 flex min-w-0 items-center gap-4 overflow-x-auto whitespace-nowrap py-3 [scrollbar-width:none] lg:gap-5 xl:gap-7">
-          {navLinks.map((link) => (
+          {navLinks.filter(link=>link.href==='/plans'?visibility.plans:link.href==='/templates'?visibility.templates:true).map((link) => (
             <li key={link.href} className="shrink-0">
               <Link
                 href={localizedHref(link.href)}

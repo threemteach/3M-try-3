@@ -10,6 +10,7 @@ import ScrollReveal from "@/components/ScrollReveal";
 import { LanguageProvider } from "@/components/LanguageProvider";
 import MobileHeader from "@/components/MobileHeader";
 import { getPageVisibility } from "@/lib/page-visibility";
+import PageVisibilityProvider from "@/components/PageVisibilityProvider";
 import JsonLd from "@/components/JsonLd";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import {
@@ -203,7 +204,7 @@ export default async function RootLayout({
         suppressHydrationWarning
         className="flex min-h-screen flex-col font-[family-name:var(--font-cairo)] antialiased"
       >
-        <LanguageProvider>
+        <PageVisibilityProvider value={visibility}><LanguageProvider>
           <PublicSiteChrome>
             <LoadingScreen />
             <ScrollToTop />
@@ -217,7 +218,7 @@ export default async function RootLayout({
             <WhatsAppButton />
             <MobileBottomNav />
           </PublicSiteChrome>
-        </LanguageProvider>
+        </LanguageProvider></PageVisibilityProvider>
       </body>
     </html>
   );

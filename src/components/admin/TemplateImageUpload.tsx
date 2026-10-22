@@ -7,6 +7,7 @@ export default function TemplateImageUpload({value,onChange,onBusy}:{value:strin
   const [error,setError]=useState('');
   async function upload(file:File){
     setError('');
+    if(!['image/jpeg','image/png','image/webp','image/avif'].includes(file.type)){setError('Choose a JPG, PNG, WebP or AVIF image.');return;}
     if(file.size>6*1024*1024){setError('Image must be 6 MB or smaller.');return;}
     setBusy(true);onBusy(true);
     try{
