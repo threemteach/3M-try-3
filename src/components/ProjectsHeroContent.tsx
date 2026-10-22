@@ -18,11 +18,15 @@ export default function ProjectsHeroContent() {
       ) : (
         <h1 className="projects-hero-title absolute left-0 z-10 h-[1em] w-full [font-family:MedulaOne] font-normal leading-[0.78] text-white">
           <span className="sr-only">Our Projects</span>
-          <span aria-hidden="true" className="relative block h-full w-full whitespace-nowrap">
-            <span className="projects-hero-title-start absolute left-[12.1%] top-0">Our Pr</span>
-            <span className="projects-hero-capsule absolute left-[52.1%] top-0 inline-block -translate-x-1/2 rounded-full" />
-            <span className="projects-hero-title-end absolute top-0">jects</span>
-          </span>
+          <Image
+            src="/projects-title.svg"
+            alt=""
+            aria-hidden="true"
+            width={150.21}
+            height={30.66}
+            className="absolute left-[12.1%] top-[-0.16em] h-auto w-[76%]"
+            priority
+          />
         </h1>
       )}
 

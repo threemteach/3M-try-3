@@ -65,7 +65,7 @@ export default async function ProjectsPage() {
         <Navbar />
 
         <div aria-hidden="true" className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
-          {heroStars.map((star, index) => (
+          {heroStars.filter((_, index) => index % 3 === 0).map((star, index) => (
             <Image
               key={index}
               src="/star-34.svg"
