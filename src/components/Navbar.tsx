@@ -70,7 +70,7 @@ export default function Navbar() {
           />
         </Link>
 
-        <ul className="flex shrink-0 items-center gap-3 whitespace-nowrap sm:gap-4 md:gap-6 lg:gap-10 xl:gap-12">
+        <ul className="mx-4 flex min-w-0 items-center gap-4 overflow-x-auto whitespace-nowrap py-3 [scrollbar-width:none] lg:gap-5 xl:gap-7">
           {navLinks.map((link) => (
             <li key={link.href} className="shrink-0">
               <Link

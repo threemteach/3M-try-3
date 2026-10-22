@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { useLanguage } from "@/components/LanguageProvider";
 
 const services = [
   {
@@ -66,6 +67,9 @@ const services = [
 ];
 
 export default function WhatWeDo() {
+  const { isArabic } = useLanguage();
+  const prefix = isArabic ? "/ar" : "";
+
   return (
     <section className="relative w-full overflow-hidden bg-[#f0edf5] px-4 py-16 sm:py-20 lg:py-24">
       <div className="max-w-[1100px] mx-auto">
@@ -89,13 +93,13 @@ export default function WhatWeDo() {
         </p>
 
         <nav aria-label="Featured digital services" className="mt-5 flex flex-wrap justify-center gap-2">
-          <Link href="/services/ecommerce-development" className="rounded-full border border-[#302451]/15 bg-white/60 px-4 py-2 text-xs font-bold text-[#302451] transition-colors hover:bg-white sm:text-sm">
+          <Link href={`${prefix}/services/ecommerce-development`} className="rounded-full border border-[#302451]/15 bg-white/60 px-4 py-2 text-xs font-bold text-[#302451] transition-colors hover:bg-white sm:text-sm">
             E-Commerce Development
           </Link>
-          <Link href="/services/digital-platforms" className="rounded-full border border-[#302451]/15 bg-white/60 px-4 py-2 text-xs font-bold text-[#302451] transition-colors hover:bg-white sm:text-sm">
+          <Link href={`${prefix}/services/digital-platforms`} className="rounded-full border border-[#302451]/15 bg-white/60 px-4 py-2 text-xs font-bold text-[#302451] transition-colors hover:bg-white sm:text-sm">
             Digital Platforms
           </Link>
-          <Link href="/services/educational-platforms" className="rounded-full border border-[#302451]/15 bg-white/60 px-4 py-2 text-xs font-bold text-[#302451] transition-colors hover:bg-white sm:text-sm">
+          <Link href={`${prefix}/services/educational-platforms`} className="rounded-full border border-[#302451]/15 bg-white/60 px-4 py-2 text-xs font-bold text-[#302451] transition-colors hover:bg-white sm:text-sm">
             Educational Platforms
           </Link>
         </nav>
@@ -204,7 +208,7 @@ export default function WhatWeDo() {
                   </ul>
 
                   <Link
-                    href={service.href}
+                    href={`${prefix}${service.href}`}
                     className="mt-2 inline-flex w-fit items-center border-b border-white/55 text-[clamp(8px,1.4vw,16px)] font-bold text-white sm:mt-4"
                   >
                     Learn more

@@ -11,6 +11,8 @@ const quickLinks = [
   { href: "/", label: "Home" },
   { href: "/projects", label: "Our Work" },
   { href: "/about", label: "About" },
+  { href: "/plans", label: "Subscription Plans" },
+  { href: "/templates", label: "Ready-made Templates" },
   { href: "/#process", label: "Process" },
 ];
 const stars = [
@@ -60,14 +62,14 @@ export default function Footer() {
       </a>
 
       <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-0">
-        {stars.map((position) => (
+        {stars.map((position, index) => (
           <Image
             key={position}
             src="/star-34.svg"
             alt=""
             width={185}
             height={185}
-            className={`absolute object-contain opacity-40 ${position}`}
+            className={`absolute object-contain opacity-40 ${position} ${[0, 4, 6, 10].includes(index) ? "" : "hidden sm:block"}`}
           />
         ))}
       </div>

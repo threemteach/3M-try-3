@@ -1,6 +1,36 @@
 @import "tailwindcss";
 @import "./fonts.css";
 
+.service-page > section { padding-block: 56px; }
+.service-page > section:first-of-type { padding-top: 100px; padding-bottom: 36px; }
+.service-page h1 { font-size: 36px; line-height: 1.25; text-wrap: balance; }
+.service-page h2 { font-size: 26px; line-height: 1.5; text-wrap: balance; }
+.service-page h3 { font-size: 18px; line-height: 1.6; }
+.service-page p { text-wrap: pretty; }
+.service-page [class*="tracking-"] { letter-spacing: 0; }
+.service-page > section:nth-of-type(2) .backdrop-blur-xl {
+  border-radius: 8px; background: white; box-shadow: none; backdrop-filter: none;
+  border: 1px solid #ddd5e8;
+}
+.service-page article {
+  border-radius: 0; box-shadow: none; background: transparent;
+  border: 0; border-top: 1px solid #d2c8df; padding: 24px 0;
+}
+.service-page > section:nth-of-type(4) .grid > a {
+  border-radius: 8px; box-shadow: none; min-height: 144px;
+}
+.service-page > section:last-of-type > div { border-radius: 8px; box-shadow: none; }
+html[dir="rtl"] .service-page h1 { font-size: 30px; line-height: 1.7; }
+html[dir="rtl"] .service-page h2 { font-size: 24px; line-height: 1.8; }
+@media (min-width: 640px) {
+  .service-page > section { padding-block: 72px; }
+  .service-page > section:first-of-type { padding-top: 144px; padding-bottom: 56px; }
+  .service-page h1 { font-size: 50px; }
+  .service-page h2 { font-size: 34px; }
+  html[dir="rtl"] .service-page h1 { font-size: 38px; }
+  html[dir="rtl"] .service-page h2 { font-size: 30px; }
+}
+
 .project-title-row[dir="ltr"] { direction: ltr !important; }
 .project-title-row[dir="rtl"] { direction: rtl !important; }
 .project-title-row[dir="ltr"] > :is(h1, h3) { text-align: left !important; direction: ltr !important; }
@@ -988,6 +1018,26 @@ html[dir="rtl"] .whatsapp-fab {
 
   html[dir="rtl"] .home-scaled-spinner .rotating-item {
     font-size: 6.64cqw !important;
+  }
+}
+
+@media (max-width: 639px) {
+  .home-scaled-title {
+    font-size: 10cqw;
+    line-height: 1.05;
+  }
+
+  html[dir="rtl"] .home-scaled-copy h1 {
+    font-size: 9.2cqw !important;
+    line-height: 1.22 !important;
+  }
+
+  html[dir="rtl"] .home-scaled-spinner .hero-build-label {
+    font-size: 5.8cqw !important;
+  }
+
+  html[dir="rtl"] .home-scaled-spinner .rotating-item {
+    font-size: 5.3cqw !important;
   }
 }
 

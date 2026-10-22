@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import { SITE_NAME, SITE_URL } from "@/lib/constants";
@@ -38,17 +37,18 @@ export default function ContactPage() {
   return (
     <section className="relative isolate flex min-h-[500px] items-center overflow-hidden bg-[#302451] px-4 pb-20 pt-28 text-center text-white sm:px-8 sm:pt-40">
       <Navbar />
-      <div data-nosnippet className="contents">
-        <Image
-          src="/rectangles.png"
-          alt=""
-          width={850}
-          height={600}
-          className="pointer-events-none absolute right-[-90px] top-0 -z-10 h-auto w-[560px] opacity-40"
-          priority
-        />
-      </div>
-      <div className="mx-auto max-w-[800px]">
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 -z-10 opacity-[0.12]"
+        style={{
+          backgroundImage: 'url("/project-logo-outline.svg")',
+          backgroundRepeat: "repeat",
+          backgroundSize: "260px 165px",
+          backgroundPosition: "center",
+          transform: "rotate(-15deg) scale(1.3)",
+        }}
+      />
+      <div className="relative mx-auto max-w-[800px]">
         <h1 className="text-[58px] leading-[.92] [font-family:MedulaOne] sm:text-[84px]">
           Let&apos;s Build Something Great
         </h1>

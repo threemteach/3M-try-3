@@ -35,9 +35,12 @@ export default function WorkflowPage() {
           />
         </div>
         <Navbar />
-        <div className="relative z-10 mx-auto flex max-w-[1120px] flex-col items-center gap-8 sm:flex-row sm:justify-between">
-          <h1 className="text-center text-[48px] leading-tight [font-family:MedulaOne] sm:text-[72px]">Our Process</h1>
-          <Image src="/projects-hero-character.png" alt="3M tech character" width={566} height={918} sizes="(max-width: 639px) 200px, 280px" className="h-[280px] w-auto object-contain object-bottom sm:h-[370px]" priority />
+        <div className="relative z-10 mx-auto flex max-w-[1120px] justify-center">
+          <h1 className="absolute inset-x-[14%] top-[25%] z-10 sm:inset-x-[12%]">
+            <span className="sr-only">Our Process</span>
+            <Image src="/process-title.svg" alt="" aria-hidden="true" width={138.47} height={20.3} sizes="(max-width: 639px) 72vw, 76vw" className="h-auto w-full" priority />
+          </h1>
+          <Image src="/projects-hero-character.png" alt="3M tech character" width={566} height={918} sizes="(max-width: 639px) 200px, 280px" className="relative z-20 h-[280px] w-auto object-contain object-bottom sm:h-[370px]" priority />
         </div>
       </section>
       <Workflow />

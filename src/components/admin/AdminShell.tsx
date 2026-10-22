@@ -24,6 +24,8 @@ export default function AdminShell({
             </div>
           </div>
           <nav className="flex items-center gap-2">
+            <Link href="/admin" className="px-2 py-2 text-xs">Projects</Link>
+            <Link href="/admin/catalog" className="px-2 py-2 text-xs">Plans & templates</Link>
             <Link href="/" target="_blank" className="rounded-full border border-white/20 px-4 py-2 text-xs font-bold transition hover:bg-white/10">
               View website
             </Link>

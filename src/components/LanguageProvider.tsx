@@ -158,6 +158,10 @@ const ARABIC: Record<string, string> = {
   "Weeks for a focused MVP": "أسبوعان لنسخة أولية مركّزة",
   "Core digital services": "خدمات رقمية أساسية",
   "Primary markets served": "أسواقنا الرئيسية",
+  "Subscription Plans": "خطط الاشتراك",
+  "Plans": "الخطط",
+  "Templates": "القوالب",
+  "Ready-made Templates": "القوالب الجاهزة",
   "Egypt & United Arab Emirates": "مصر والإمارات العربية المتحدة",
   "Product strategy, design, development, and launch support in one focused team.":
     "استراتيجية وتصميم وتطوير ودعم للإطلاق، مع فريق واحد متكامل.",
