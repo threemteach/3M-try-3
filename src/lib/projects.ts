@@ -1,6 +1,7 @@
 import { cache } from "react";
+import { createClient as createSupabaseClient } from "@supabase/supabase-js";
 import { createClient } from "@/lib/supabase/server";
-import { isSupabaseConfigured } from "@/lib/supabase/config";
+import { getSupabaseConfig, isSupabaseConfigured } from "@/lib/supabase/config";
 
 export type ProjectFeature = {
   icon: string;
@@ -58,6 +59,13 @@ type ProjectRow = {
 
 const PROJECT_IMAGE_BUCKET = "project-images";
 
+function createPublicClient() {
+  const { url, publishableKey } = getSupabaseConfig();
+  return createSupabaseClient(url, publishableKey, {
+    auth: { persistSession: false, autoRefreshToken: false },
+  });
+}
+
 function getPublicImageUrl(path: string) {
   const baseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
   if (!baseUrl || !path) return "";
@@ -99,7 +107,7 @@ export function mapProject(row: ProjectRow, locale: "en" | "ar" = "en"): Project
 
 export const getPublishedProjects = cache(async (locale: "en" | "ar" = "en"): Promise<Project[]> => {
   if (!isSupabaseConfigured()) return [];
-  const supabase = await createClient();
+  const supabase = createPublicClient();
   const { data, error } = await supabase
     .from("projects")
     .select("*")
@@ -114,7 +122,7 @@ export const getPublishedProjects = cache(async (locale: "en" | "ar" = "en"): Pr
 export const getPublishedProjectBySlug = cache(
   async (slug: string, locale: "en" | "ar" = "en"): Promise<Project | null> => {
     if (!isSupabaseConfigured()) return null;
-    const supabase = await createClient();
+    const supabase = createPublicClient();
     const { data, error } = await supabase
       .from("projects")
       .select("*")

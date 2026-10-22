@@ -86,16 +86,18 @@ const getContainerPath = (index: number) => {
 
 export default function MobileBottomNav() {
   const pathname = usePathname();
+  const prefix = pathname === "/ar" || pathname.startsWith("/ar/") ? "/ar" : "";
+  const pathWithoutLocale = prefix ? pathname.replace(/^\/ar(?=\/|$)/, "") || "/" : pathname;
   const [activeIndex, setActiveIndex] = useState(0);
 
   useEffect(() => {
     const idx = navItems.findIndex((item) => {
-      if (item.href === "/") return pathname === "/";
+      if (item.href === "/") return pathWithoutLocale === "/";
       if (item.href.startsWith("/#")) return false;
-      return pathname.startsWith(item.href);
+      return pathWithoutLocale.startsWith(item.href);
     });
     if (idx !== -1) setActiveIndex(idx);
-  }, [pathname]);
+  }, [pathWithoutLocale]);
 
   const pathD = useMemo(() => getContainerPath(activeIndex), [activeIndex]);
 
@@ -158,7 +160,8 @@ export default function MobileBottomNav() {
           return (
             <Link
               key={item.href}
-              href={item.href}
+              href={item.href === "/" ? prefix || "/" : `${prefix}${item.href}`}
+              prefetch
               onClick={() => setActiveIndex(index)}
               className="absolute bottom-0 z-[2] flex flex-col items-center no-underline"
               style={{

@@ -3,8 +3,8 @@
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
-const MINIMUM_SPLASH_MS = 1500;
-const MAXIMUM_SPLASH_MS = 6000;
+const MINIMUM_SPLASH_MS = 450;
+const MAXIMUM_SPLASH_MS = 1800;
 
 export default function LoadingScreen() {
   const [visible, setVisible] = useState(true);
@@ -145,7 +145,7 @@ export default function LoadingScreen() {
       window.setTimeout(() => {
         setVisible(false);
         document.body.style.overflow = previousOverflow;
-      }, reduceMotion ? 150 : 350);
+      }, reduceMotion ? 80 : 220);
     }
 
     return () => {

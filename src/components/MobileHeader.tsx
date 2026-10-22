@@ -2,16 +2,20 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { LanguageToggle } from "@/components/LanguageProvider";
 
 export default function MobileHeader() {
+  const pathname = usePathname();
+  const prefix = pathname === "/ar" || pathname.startsWith("/ar/") ? "/ar" : "";
+
   return (
     <header
       dir="ltr"
       className="absolute inset-x-0 top-0 z-[1100] flex h-[58px] items-center px-5 sm:hidden"
     >
       <div dir="ltr" className="mx-auto flex w-full max-w-[520px] items-center justify-between">
-        <Link href="/" aria-label="3M tech home" className="shrink-0">
+        <Link href={prefix || "/"} prefetch aria-label="3M tech home" className="shrink-0">
           <Image
             src="/3m_logo.png"
             alt="3M Logo"
@@ -25,7 +29,8 @@ export default function MobileHeader() {
         <div dir="ltr" className="flex shrink-0 items-center gap-2">
           <LanguageToggle compact />
           <Link
-            href="/contact"
+            href={`${prefix}/contact`}
+            prefetch
             className="flex h-[32px] w-[94px] shrink-0 items-center justify-center whitespace-nowrap rounded-full bg-white px-2 text-[11px] font-bold text-[#302451] shadow-md"
           >
             Contact

@@ -2,12 +2,20 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
+import { usePathname, useRouter } from "next/navigation";
 import { navLinks } from "@/lib/constants";
 import { LanguageToggle } from "@/components/LanguageProvider";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
+  const pathname = usePathname();
+  const router = useRouter();
+  const prefix = pathname === "/ar" || pathname.startsWith("/ar/") ? "/ar" : "";
+  const localizedHref = useCallback(
+    (href: string) => href === "/" ? prefix || "/" : `${prefix}${href}`,
+    [prefix]
+  );
 
   useEffect(() => {
     const updateNavbar = () => setScrolled(window.scrollY > 36);
@@ -15,6 +23,12 @@ export default function Navbar() {
     window.addEventListener("scroll", updateNavbar, { passive: true });
     return () => window.removeEventListener("scroll", updateNavbar);
   }, []);
+
+  useEffect(() => {
+    [...navLinks.map((link) => link.href), "/workflow", "/contact"].forEach((href) => {
+      router.prefetch(localizedHref(href));
+    });
+  }, [localizedHref, router]);
 
   return (
     <header
@@ -41,7 +55,7 @@ export default function Navbar() {
             : "-13px 43px 18px rgba(0,0,0,0.01), -7px 24px 15px rgba(0,0,0,0.04), -3px 11px 11px rgba(0,0,0,0.07), -1px 3px 6px rgba(0,0,0,0.08)",
         }}
       >
-        <Link href="/" className="shrink-0">
+        <Link href={localizedHref("/")} prefetch className="shrink-0">
           <Image
             src="/3m_logo.png"
             alt="3M Logo"
@@ -60,7 +74,8 @@ export default function Navbar() {
           {navLinks.map((link) => (
             <li key={link.href} className="shrink-0">
               <Link
-                href={link.href}
+                href={localizedHref(link.href)}
+                prefetch
                 className="block whitespace-nowrap text-[13px] font-semibold leading-none text-white transition-opacity hover:opacity-80 sm:text-[14px] md:text-[15px] lg:text-[17px] xl:text-[19px]"
               >
                 {link.label}
@@ -69,7 +84,8 @@ export default function Navbar() {
           ))}
           <li className="shrink-0">
             <Link
-              href="/workflow"
+              href={localizedHref("/workflow")}
+              prefetch
               className="block whitespace-nowrap text-[13px] font-semibold leading-none text-white transition-opacity hover:opacity-80 sm:text-[14px] md:text-[15px] lg:text-[17px] xl:text-[19px]"
             >
               Process
@@ -80,7 +96,8 @@ export default function Navbar() {
         <div className="flex shrink-0 items-center gap-2 lg:gap-3">
           <LanguageToggle compact />
           <Link
-            href="/contact"
+            href={localizedHref("/contact")}
+            prefetch
             className="flex h-[30px] w-[85px] shrink-0 items-center justify-center whitespace-nowrap rounded-[150px] bg-white text-[12px] font-bold leading-none text-[#302451] transition-opacity hover:opacity-90 sm:h-[32px] sm:w-[95px] sm:text-[13px] md:h-[36px] md:w-[105px] md:text-[14px] lg:h-[40px] lg:w-[120px] lg:text-[16px]"
           >
             Contact
