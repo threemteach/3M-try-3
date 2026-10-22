@@ -1,6 +1,16 @@
 @import "tailwindcss";
 @import "./fonts.css";
 
+.admin-workspace main h1 { font-family: "Cairo", sans-serif !important; font-size: 26px; line-height: 1.4; font-weight: 700; }
+.admin-workspace main article { border-radius: 8px; box-shadow: none; background: white; border-color: #e3e5e9; backdrop-filter: none; }
+.admin-workspace main [class*="rounded-2xl"],
+.admin-workspace main [class*="rounded-[28px]"] { border-radius: 8px; box-shadow: none; }
+.admin-workspace main a[class*="rounded-full"],
+.admin-workspace main button[class*="rounded-full"] { border-radius: 6px; box-shadow: none; }
+.admin-workspace :is(input,textarea,select,button,a):focus-visible { outline: 2px solid #876dca; outline-offset: 3px; }
+.admin-workspace main input:not([type="checkbox"]):not([type="file"]),
+.admin-workspace main textarea,.admin-workspace main select { border-radius: 6px; }
+
 .service-page > section { padding-block: 56px; }
 .service-page > section:first-of-type { padding-top: 100px; padding-bottom: 36px; }
 .service-page h1 { font-size: 36px; line-height: 1.25; text-wrap: balance; }
