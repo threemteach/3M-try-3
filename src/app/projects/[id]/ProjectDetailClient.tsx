@@ -53,23 +53,14 @@ export default function ProjectDetailClient({
         <Navbar />
 
         <div aria-hidden="true" className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
-          {detailHeroStars.map((star, index) => (
-            <Image
-              key={index}
-              src="/star-34.svg"
-              alt=""
-              width={star.size}
-              height={star.size}
-              className="absolute h-auto"
-              style={{
-                left: star.left,
-                top: star.top,
-                width: `${star.size}px`,
-                opacity: star.opacity,
-                transform: `rotate(${star.rotate}deg)`,
-              }}
-            />
-          ))}
+          <Image
+            src="/project-logo-outline.svg"
+            alt=""
+            width={814.62}
+            height={515.65}
+            sizes="100vw"
+            className="absolute left-1/2 top-[29%] h-auto w-[98%] max-w-[1920px] -translate-x-1/2 opacity-25"
+          />
         </div>
 
         <div className="project-detail-stage absolute inset-0 z-10 mx-auto max-w-[1920px]">
@@ -86,8 +77,8 @@ export default function ProjectDetailClient({
           </div>
 
           <div className="project-detail-copy absolute z-30 text-left text-white">
-            <div className="flex items-center justify-between gap-[2cqw] border-b border-white/60 pb-[.7cqw]">
-              <h1 data-preserve-font="true" className="min-w-0 [font-family:MedulaOne] text-[min(6.1cqw,118px)] font-normal leading-none">
+            <div dir={/[\u0600-\u06ff]/.test(project.title) ? "rtl" : "ltr"} className="project-title-row flex items-center justify-between gap-[2cqw] border-b border-white/60 pb-[.7cqw]">
+              <h1 dir={/[\u0600-\u06ff]/.test(project.title) ? "rtl" : "ltr"} data-preserve-font={/[\u0600-\u06ff]/.test(project.title) ? undefined : "true"} className="min-w-0 flex-1 [font-family:MedulaOne] text-[min(6.1cqw,118px)] font-normal leading-none">
                 {project.title}
               </h1>
               {project.liveUrl && (

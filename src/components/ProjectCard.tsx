@@ -54,9 +54,11 @@ export default function ProjectCard({
             isArabic ? "text-right" : "text-left"
           }`}
         >
-          <div className="flex items-center gap-3">
+          <div dir={/[\u0600-\u06ff]/.test(project.title) ? "rtl" : "ltr"} className="project-title-row flex items-center gap-3">
             <h3
-              data-preserve-font="true"
+              dir={/[\u0600-\u06ff]/.test(project.title) ? "rtl" : "ltr"}
+              style={{ textAlign: /[\u0600-\u06ff]/.test(project.title) ? "right" : "left" }}
+              data-preserve-font={/[\u0600-\u06ff]/.test(project.title) ? undefined : "true"}
               className="min-w-0 flex-1 break-words [font-family:MedulaOne] text-[28px] font-normal leading-[1.1] min-[400px]:text-[32px] sm:text-[44px] lg:text-[60px]"
             >
               {project.title}

@@ -6,6 +6,7 @@ import { SITE_NAME, SITE_URL } from "@/lib/constants";
 import { localizedAlternates } from "@/lib/seo";
 import ProjectsGrid from "@/components/ProjectsGrid";
 import ProjectsHeroContent from "@/components/ProjectsHeroContent";
+import HeroLogoBackground from "@/components/HeroLogoBackground";
 
 export const metadata: Metadata = {
   title: "Web Development Portfolio",
@@ -64,25 +65,7 @@ export default async function ProjectsPage() {
       <header className="projects-hero-header relative overflow-hidden bg-[#302451] px-4 pt-6 text-white sm:pt-10">
         <Navbar />
 
-        <div aria-hidden="true" className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
-          {heroStars.filter((_, index) => index % 3 === 0).map((star, index) => (
-            <Image
-              key={index}
-              src="/star-34.svg"
-              alt=""
-              width={star.size}
-              height={star.size}
-              className="absolute h-auto"
-              style={{
-                left: star.left,
-                top: star.top,
-                width: `${star.size}px`,
-                opacity: star.opacity,
-                transform: `rotate(${star.rotate}deg)`,
-              }}
-            />
-          ))}
-        </div>
+        <HeroLogoBackground />
 
         <div className="projects-page-hero absolute inset-0 z-10 mx-auto w-full max-w-[1920px] text-center">
           <ProjectsHeroContent />

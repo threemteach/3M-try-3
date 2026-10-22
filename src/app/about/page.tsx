@@ -6,6 +6,8 @@ import { faqItems, teamMembers } from "@/lib/aboutData";
 import { SITE_NAME, SITE_URL } from "@/lib/constants";
 import JsonLd from "@/components/JsonLd";
 import { localizedAlternates } from "@/lib/seo";
+import { Plus } from "lucide-react";
+import HeroLogoBackground from "@/components/HeroLogoBackground";
 
 export const metadata: Metadata = {
   title: "About Us",
@@ -100,20 +102,21 @@ const faqJsonLd = {
 
 export default function About() {
   return (
-    <>
+    <div className="about-page">
       <JsonLd data={faqJsonLd} />
       <section className="relative isolate min-h-[620px] overflow-hidden bg-[#302451] px-4 pb-20 pt-24 text-white sm:min-h-[700px] sm:px-8 sm:pb-24 sm:pt-36 lg:pt-44">
         <Navbar />
+        <HeroLogoBackground />
         <Image
           src="/rectangles.png"
           alt=""
           width={850}
           height={600}
           priority
-          className="pointer-events-none absolute right-[-100px] top-0 -z-10 h-auto w-[430px] opacity-45 sm:right-[-40px] sm:w-[620px] lg:w-[760px]"
+          className="hidden"
         />
 
-        <div className="mx-auto grid min-h-[500px] max-w-[1180px] items-center gap-12 lg:grid-cols-[1.15fr_.85fr]">
+        <div className="relative z-10 mx-auto grid min-h-[500px] max-w-[1180px] items-center gap-12 lg:grid-cols-[1.15fr_.85fr]">
           <div className="text-center lg:text-left">
             <p className="mb-4 text-sm font-bold uppercase tracking-[.25em] text-[#b8a1ed]">
               Egypt-based · Middle East focused
@@ -152,7 +155,7 @@ export default function About() {
           <div className="relative mx-auto flex h-[320px] w-full max-w-[430px] items-center justify-center sm:h-[390px]">
             <div className="absolute h-[280px] w-[280px] rounded-full bg-white/8 sm:h-[350px] sm:w-[350px]" />
             <Image
-              src="/who-we-are.png"
+              src="/projects-hero-character.png"
               alt="Who we are at 3M tech"
               width={420}
               height={430}
@@ -188,10 +191,10 @@ export default function About() {
                 ["1–4", "Weeks for most projects"],
                 ["2", "Weeks for a focused MVP"],
                 ["5", "Core digital services"],
-                ["EG + ME", "Primary markets served"],
+                ["Egypt & United Arab Emirates", "Primary markets served"],
               ].map(([value, label]) => (
                 <div key={label} className="rounded-[24px] bg-white p-5 shadow-[0_9px_0_#a78be3] sm:p-7">
-                  <dt className="text-[42px] leading-none [font-family:MedulaOne] sm:text-[54px]">{value}</dt>
+                  <dt className={`${label === "Primary markets served" ? "text-[24px] leading-snug sm:text-[30px]" : "text-[42px] leading-none sm:text-[54px]"} [font-family:MedulaOne]`}>{value}</dt>
                   <dd className="mt-2 text-xs font-semibold leading-5 text-[#6c6479] sm:text-sm">{label}</dd>
                 </div>
               ))}
@@ -233,7 +236,7 @@ export default function About() {
             <p className="text-sm font-bold uppercase tracking-[.25em] text-[#b8a1ed]">The people behind the work</p>
             <h2 className="mt-3 text-[48px] leading-none [font-family:MedulaOne] sm:text-[64px]">Meet the Founders</h2>
           </header>
-          <div className="mt-12 grid grid-cols-3 gap-2 sm:gap-4 md:gap-6">
+          <div className="about-team mt-10 grid grid-cols-1 gap-4 sm:grid-cols-3 md:gap-6">
             {teamMembers.map((member) => {
               const initials = member.name.split(" ").map((part) => part[0]).slice(0, 2).join("");
               const content = (
@@ -290,8 +293,9 @@ export default function About() {
           <div className="mt-10 space-y-4">
             {faqItems.map((item) => (
               <details key={item.question} className="group rounded-[20px] border border-[#ddd6e7] bg-[#f8f6f8] p-5 open:bg-white">
-                <summary className="cursor-pointer list-none pr-8 font-bold marker:hidden">
-                  {item.question}
+                <summary className="flex cursor-pointer list-none items-center justify-between gap-5 font-bold marker:hidden">
+                  <span>{item.question}</span>
+                  <Plus aria-hidden="true" className="h-5 w-5 shrink-0 transition-transform duration-200 group-open:rotate-45" />
                 </summary>
                 <p className="mt-4 text-sm leading-7 text-[#696175]">{item.answer}</p>
               </details>
@@ -299,6 +303,6 @@ export default function About() {
           </div>
         </div>
       </section>
-    </>
+    </div>
   );
 }

@@ -4,6 +4,7 @@ import Image from "next/image";
 import type { Metadata } from "next";
 import { SITE_DESCRIPTION, SITE_NAME, SITE_URL } from "@/lib/constants";
 import { localizedAlternates } from "@/lib/seo";
+import HeroLogoBackground from "@/components/HeroLogoBackground";
 
 export const metadata: Metadata = {
   title: "Our Web Design & Development Process",
@@ -22,8 +23,9 @@ export const metadata: Metadata = {
 export default function WorkflowPage() {
   return (
     <>
-      <section className="relative min-h-[120px] w-full bg-[#302451]">
-        <div className="absolute right-0 top-0 z-0 pointer-events-none overflow-hidden opacity-40 md:opacity-70 lg:opacity-100">
+      <section className="relative isolate w-full overflow-hidden bg-[#302451] px-5 pb-0 pt-24 text-white sm:pt-36">
+        <HeroLogoBackground />
+        <div className="hidden">
           <Image
             src="/rectangles.png"
             alt=""
@@ -33,6 +35,10 @@ export default function WorkflowPage() {
           />
         </div>
         <Navbar />
+        <div className="relative z-10 mx-auto flex max-w-[1120px] flex-col items-center gap-8 sm:flex-row sm:justify-between">
+          <h1 className="text-center text-[48px] leading-tight [font-family:MedulaOne] sm:text-[72px]">Our Process</h1>
+          <Image src="/projects-hero-character.png" alt="3M tech character" width={566} height={918} sizes="(max-width: 639px) 200px, 280px" className="h-[280px] w-auto object-contain object-bottom sm:h-[370px]" priority />
+        </div>
       </section>
       <Workflow />
     </>

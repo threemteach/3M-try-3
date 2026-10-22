@@ -306,10 +306,11 @@ export default function Portfolio({ projects: sourceProjects }: { projects: Proj
                       />
 
                       <div className="relative">
-                        <div className="flex items-end gap-3">
+                        <div dir={/[\u0600-\u06ff]/.test(project.title) ? "rtl" : "ltr"} className="project-title-row flex items-end gap-3">
                           <h3
-                            style={{ fontFamily: '"MedulaOne", serif' }}
-                            data-preserve-font="true"
+                            dir={/[\u0600-\u06ff]/.test(project.title) ? "rtl" : "ltr"}
+                            style={{ fontFamily: /[\u0600-\u06ff]/.test(project.title) ? '"Kufam", sans-serif' : '"MedulaOne", serif', textAlign: /[\u0600-\u06ff]/.test(project.title) ? "right" : "left" }}
+                            data-preserve-font={/[\u0600-\u06ff]/.test(project.title) ? undefined : "true"}
                             className="min-w-0 flex-1 text-[38px] font-normal leading-[.95] text-[#302451] sm:text-[46px] lg:text-[clamp(34px,3vw,52px)]"
                           >
                             {project.title}

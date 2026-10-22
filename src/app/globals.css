@@ -1,6 +1,48 @@
 @import "tailwindcss";
 @import "./fonts.css";
 
+.project-title-row[dir="ltr"] { direction: ltr !important; }
+.project-title-row[dir="rtl"] { direction: rtl !important; }
+.project-title-row[dir="ltr"] > :is(h1, h3) { text-align: left !important; direction: ltr !important; }
+.project-title-row[dir="rtl"] > :is(h1, h3) { text-align: right !important; direction: rtl !important; font-family: "Kufam", sans-serif !important; }
+
+/* About: readable type and quieter section rhythm across both languages. */
+.about-page > section { padding-block: 64px; }
+.about-page > section:first-of-type { padding-top: 110px; padding-bottom: 56px; min-height: auto; }
+.about-page > section:first-of-type > .grid { min-height: auto; gap: 32px; }
+.about-page h1 { font-size: 48px; line-height: 1.08; }
+.about-page h2 { font-size: 38px; line-height: 1.15; }
+.about-page p { text-wrap: pretty; }
+.about-page [class*="tracking-"] { letter-spacing: 0; }
+.about-page dl > div { border-radius: 8px; box-shadow: none; border-bottom: 3px solid #a78be3; }
+.about-page > section:nth-of-type(3) { padding-top: 12px; }
+.about-page > section:nth-of-type(3) article,
+.about-page > section:nth-of-type(5) article {
+  border-radius: 0; box-shadow: none; background: transparent;
+  border-top: 1px solid #d8d0e3; padding: 24px 0;
+}
+.about-team > a, .about-team > article { border-radius: 8px; padding: 24px; text-align: start; }
+.about-team > * > span { margin-inline: 0; width: 56px; height: 56px; font-size: 26px; }
+.about-team h3 { margin-top: 18px; font-size: 18px; line-height: 1.5; }
+.about-team p { margin-top: 6px; font-size: 13px; line-height: 1.7; color: #e0d8ec; }
+.about-page details { border-radius: 8px; }
+html[dir="rtl"] .about-page h1 { font-size: 32px; line-height: 1.65; }
+html[dir="rtl"] .about-page h2 { font-size: 25px; line-height: 1.7; }
+html[dir="rtl"] .about-page h3 { line-height: 1.7; }
+html[dir="rtl"] .about-page > section:first-of-type .text-center { text-align: start; }
+@media (min-width: 640px) {
+  .about-page > section { padding-block: 80px; }
+  .about-page h1 { font-size: 72px; }
+  .about-page h2 { font-size: 52px; }
+  html[dir="rtl"] .about-page h1 { font-size: 42px; }
+  html[dir="rtl"] .about-page h2 { font-size: 32px; }
+}
+@media (min-width: 1024px) {
+  .about-page > section:first-of-type { padding-top: 160px; padding-bottom: 80px; }
+  .about-page h1 { font-size: 88px; }
+  html[dir="rtl"] .about-page h1 { font-size: 48px; }
+}
+
 @theme {
   --font-cairo: "Cairo", sans-serif;
   --animate-fade-in: fadeIn 1.5s ease-out forwards;
@@ -127,11 +169,32 @@ body {
 
 html[dir="rtl"] body {
   font-family: "Kufam", sans-serif;
+  font-weight: 400;
   letter-spacing: 0;
 }
 
 html[dir="rtl"] body * {
   font-family: "Kufam", sans-serif !important;
+}
+
+html[dir="rtl"] :is(h1, h2) {
+  font-weight: 700;
+}
+
+html[dir="rtl"] :is(h3, h4, h5, h6, summary) {
+  font-weight: 600;
+}
+
+html[dir="rtl"] :is(p, dd, li) {
+  font-weight: 400;
+}
+
+html[dir="rtl"] :is(button, nav a, label) {
+  font-weight: 600;
+}
+
+html[dir="rtl"] :is(strong, b) {
+  font-weight: 700;
 }
 
 html[dir="rtl"] [class*="MedulaOne"],
