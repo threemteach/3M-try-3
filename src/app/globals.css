@@ -1,6 +1,245 @@
 @import "tailwindcss";
 @import "./fonts.css";
 
+/* Template actions share the attached bottom badge used by plan cards. */
+body .catalog-page.catalog-templates article div.catalog-card-body {
+  padding-bottom: 0;
+}
+body .catalog-page.catalog-templates article .catalog-card-actions {
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+body .catalog-page.catalog-templates article .catalog-card-actions a.catalog-subscribe {
+  order: 2;
+  flex: none;
+  position: relative;
+  width: 72%;
+  min-height: 56px;
+  padding: 12px 16px;
+  border: 0;
+  border-radius: 30px 30px 0 0;
+  background: white;
+  color: #302451;
+  font-family: 'MedulaOne', serif;
+  font-size: 32px;
+  line-height: 1.2;
+}
+body .catalog-page.catalog-templates article .catalog-card-actions a.catalog-subscribe::before,
+body .catalog-page.catalog-templates article .catalog-card-actions a.catalog-subscribe::after {
+  display: block;
+  content: '';
+  position: absolute;
+  bottom: 0;
+  width: 24px;
+  height: 24px;
+  pointer-events: none;
+}
+body .catalog-page.catalog-templates article .catalog-card-actions a.catalog-subscribe::before {
+  left: -24px;
+  background: radial-gradient(circle at top left, transparent 23px, white 24px);
+}
+body .catalog-page.catalog-templates article .catalog-card-actions a.catalog-subscribe::after {
+  right: -24px;
+  background: radial-gradient(circle at top right, transparent 23px, white 24px);
+}
+body .catalog-page.catalog-templates article .catalog-card-actions a.catalog-subscribe + a {
+  order: 1;
+  flex: none;
+  min-width: 140px;
+  min-height: 44px;
+  justify-content: center;
+  border-radius: 999px;
+}
+html[dir='rtl'] body .catalog-page.catalog-templates article .catalog-card-actions a.catalog-subscribe {
+  font-size: 18px;
+  line-height: 1.7;
+}
+
+/* Catalog composition from the supplied pricing reference. */
+body .catalog-page.pricing-future { background: #342755; }
+body .catalog-page.pricing-future > section:first-child {
+  padding-top: 180px; padding-bottom: 90px; overflow: visible;
+  background: #302451;
+}
+body .catalog-page.pricing-future > section:first-child::after { display: none; }
+body .catalog-page.pricing-future > section:first-child > .catalog-logo-background {
+  opacity: 1; height: 1100px; z-index: -1;
+}
+body .catalog-page.pricing-future > section:first-child > .catalog-logo-background img {
+  top: 140px; opacity: .4; max-width: 1920px;
+}
+body .catalog-page.pricing-future h1.catalog-reference-title {
+  font-family: "MedulaOne", serif; font-size: 168px; font-weight: 400;
+  max-width: none; line-height: 1.1; text-align: center;
+  background: linear-gradient(180deg,#fff 5%,#d7cde4 40%,#77678f 80%,#302451 100%);
+  background-clip: text; -webkit-background-clip: text; color: transparent;
+}
+body .catalog-page.pricing-future > section:last-child {
+  max-width: 1600px; margin-top: 0; padding-top: 36px; padding-bottom: 100px;
+}
+body .catalog-page .billing-filter > div:first-child { margin-bottom: 48px; }
+body .catalog-page.pricing-future article {
+  overflow: hidden; border-radius: 44px; border: 1px solid #ffffff0d;
+  background: #ffffff12; box-shadow: none; backdrop-filter: none;
+}
+body .catalog-page.pricing-future article[data-featured="true"] {
+  background: #ffffff12; border-color: #ffffff25; box-shadow: none;
+}
+body .catalog-page.pricing-future article > div:last-child { padding: 0 32px; }
+body .catalog-page.pricing-future .catalog-card-name {
+  align-self: center; min-width: 65%; max-width: 100%; margin: 0 0 24px;
+  border-radius: 0 0 26px 26px; padding: 8px 20px 12px;
+  background: white; color: #302451; text-align: center;
+  font-family: "MedulaOne", serif; font-size: 44px; line-height: 1.1;
+}
+body .catalog-page.pricing-future .catalog-card-price { justify-content: center; gap: 6px; }
+body .catalog-page.pricing-future .catalog-card-price > span:first-child {
+  flex-basis: 100%; text-align: center; font-family: "MedulaOne", serif;
+  font-size: 96px; font-weight: 400; line-height: 1;
+}
+body .catalog-page.pricing-future article ul { border: 0; padding-top: 8px; }
+body .catalog-page.pricing-future article li svg { border-radius: 50%; background: white; color: #342755; padding: 2px; }
+body .catalog-page.pricing-future article > div:last-child > div:last-child { justify-content: center; }
+body .catalog-page.pricing-future article a {
+  flex: 0 1 auto; min-width: 65%; border-radius: 26px 26px 0 0;
+  font-size: 16px; padding: 14px 20px; text-align: center;
+}
+html[dir="rtl"] body .catalog-page.pricing-future h1.catalog-reference-title { font-size: 90px; line-height: 1.7; }
+html[dir="rtl"] body .catalog-page.pricing-future .catalog-card-name { font-size: 25px; line-height: 1.6; }
+html[dir="rtl"] body .catalog-page.pricing-future .catalog-card-price > span:first-child { font-size: 58px; line-height: 1.4; }
+@media (max-width: 1023px) {
+  body .catalog-page.pricing-future h1.catalog-reference-title { font-size: 96px; }
+  html[dir="rtl"] body .catalog-page.pricing-future h1.catalog-reference-title { font-size: 56px; }
+}
+@media (max-width: 639px) {
+  body .catalog-page.pricing-future > section:first-child { padding-top: 110px; padding-bottom: 36px; }
+  body .catalog-page.pricing-future h1.catalog-reference-title { font-size: 56px; }
+  html[dir="rtl"] body .catalog-page.pricing-future h1.catalog-reference-title { font-size: 34px; }
+  body .catalog-page.pricing-future article { border-radius: 32px; }
+  body .catalog-page.pricing-future article > div:last-child { padding-inline: 24px; }
+  body .catalog-page.pricing-future > section:first-child > .catalog-logo-background img { top: 100px; }
+}
+
+.billing-filter[data-billing="monthly"] article:not([data-period="monthly"]),
+.billing-filter[data-billing="yearly"] article:not([data-period="yearly"]),
+.billing-filter[data-billing="once"] article:not([data-period="once"]) {
+  display: none;
+}
+
+:root {
+  --brand-primary: #302451;
+  --brand-accent: #876dca;
+  --brand-text: #302451;
+  --brand-muted: #70677d;
+  --surface-light: #f5f2f3;
+  --radius-card: 24px;
+  --radius-control: 12px;
+  --shadow-card: 0 12px 32px rgba(48,36,81,.09);
+}
+
+body main:not(.admin-workspace main) article {
+  border-radius: var(--radius-card);
+}
+.catalog-page.pricing-future article {
+  border-radius: var(--radius-card);
+  box-shadow: inset 0 1px 0 #ffffff12, 0 16px 36px #170e2926;
+}
+.catalog-page.pricing-future article[data-featured="true"] {
+  box-shadow: inset 0 0 22px #b8a1ed25, 0 12px 36px #170e2940;
+}
+.catalog-page.pricing-future article a {
+  border-radius: 999px;
+  min-height: 46px;
+}
+.catalog-templates.pricing-future article > div:first-child {
+  border-color: #ffffff20;
+  background: #e6e2eb;
+}
+.catalog-templates.pricing-future article a + a {
+  background: transparent;
+  color: white;
+  border-color: #ffffff55;
+}
+.catalog-templates.pricing-future article a + a:hover { background: #ffffff12; }
+.about-page .about-team > a,
+.about-page .about-team > article,
+.about-page dl > div,
+.about-page details,
+.service-page > section:nth-of-type(2) .backdrop-blur-xl,
+.service-page > section:nth-of-type(4) .grid > a {
+  border-radius: var(--radius-card);
+}
+.about-page > section:nth-of-type(3) article,
+.about-page > section:nth-of-type(5) article,
+body .service-page article {
+  padding: 24px;
+  border: 1px solid #e2dce9;
+  border-radius: var(--radius-card);
+  background: #fff;
+  box-shadow: var(--shadow-card);
+}
+body .service-page > section:last-of-type > div {
+  border-radius: var(--radius-card);
+}
+body input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="file"]),
+body textarea, body select {
+  border-radius: var(--radius-control);
+}
+body :is(a,button,input,textarea,select,summary):focus-visible {
+  outline: 2px solid var(--brand-accent);
+  outline-offset: 4px;
+}
+@media (max-width: 639px) {
+  :root { --radius-card: 20px; }
+}
+
+.pricing-future {
+  position: relative;
+  isolation: isolate;
+  background: #302451;
+  color: #f5f2f3;
+}
+.pricing-future > section:first-child {
+  background: transparent;
+  text-align: center;
+  padding-bottom: 80px;
+}
+.pricing-future > section:first-child > div:last-child { margin-inline: auto; }
+.pricing-future h1 { margin-inline: auto; font-size: 64px; line-height: 1.15; color: #ffffff; }
+.pricing-future > section:first-child p { margin-inline: auto; color: #ded5ed; }
+.pricing-future > section:first-child > .catalog-logo-background { opacity: .12; }
+.pricing-future > section:first-child::after {
+  content: ""; position: absolute; inset: 0; z-index: -1;
+  background: linear-gradient(155deg, #302451, #49346680);
+}
+.pricing-future > section:last-child { position: relative; padding-top: 0; margin-top: -35px; }
+.pricing-future article {
+  position: relative; border: 1px solid #ffffff35; border-radius: 8px;
+  background: linear-gradient(155deg, #48375fe8, #261b42f5 60%);
+  box-shadow: inset 0 1px 0 #ffffff12;
+  backdrop-filter: blur(14px);
+}
+.pricing-future article[data-featured="true"] {
+  border-color: #b8a1ed;
+  background: linear-gradient(155deg, #8065ba80, #44315f 35%, #302451 75%);
+  box-shadow: inset 0 0 22px #b8a1ed25, 0 0 30px #876dca20;
+}
+.pricing-future article h2 { font-size: 20px; font-weight: 600; color: #ffffff; }
+.pricing-future article p { color: #ded5ed; }
+.pricing-future article p > span:first-child { color: white; font-size: 42px; font-weight: 600; }
+.pricing-future article ul { border-color: #ffffff20; color: #e5e0eb; }
+.pricing-future article li svg { color: #c9b7ef; }
+.pricing-future article a { background: #ffffff; color: #302451; border: 1px solid #ffffff; transition: background .2s, transform .2s; }
+.pricing-future article a:hover { background: #e5dcf5; transform: translateY(-2px); }
+.pricing-future article[data-featured="true"] > div > p:first-child { color: #c9b7ef; }
+.pricing-future > section:last-child > a { color: #ded5ed; border-color: #ffffff40; }
+@media (max-width: 639px) {
+  .pricing-future h1 { font-size: 38px; line-height: 1.5; }
+  .pricing-future > section:first-child { padding-bottom: 60px; }
+  .pricing-future article p > span:first-child { font-size: 36px; }
+}
+
 .admin-workspace main h1 { font-family: "Cairo", sans-serif !important; font-size: 26px; line-height: 1.4; font-weight: 700; }
 .admin-workspace main article { border-radius: 8px; box-shadow: none; background: white; border-color: #e3e5e9; backdrop-filter: none; }
 .admin-workspace main [class*="rounded-2xl"],
@@ -1170,3 +1409,231 @@ html[dir="rtl"] .who-we-are-description {
     width: 29.48cqw;
   }
 }
+
+/* Reference geometry: 1920px canvas, 1600px content, 3 equal cards. */
+body .catalog-page.pricing-future { isolation: isolate; overflow: clip; }
+.catalog-reference-pattern {
+  position: absolute; inset: 0; z-index: -1; pointer-events: none;
+  background-image: url('/project-logo-outline.svg');
+  background-repeat: no-repeat; background-position: center 315px;
+  background-size: min(98%, 1880px) auto; opacity: .16;
+}
+body .catalog-page.pricing-future > section:first-of-type {
+  background: transparent; padding: 310px 20px 0; height: 760px;
+}
+body .catalog-page.pricing-future > section:first-of-type > div:last-child { max-width: 1800px; }
+body .catalog-page.pricing-future h1.catalog-reference-title {
+  font-size: 320px; line-height: 1; white-space: nowrap;
+  background-image: linear-gradient(180deg,#f3eff7 0%,#c5bad6 42%,#74638e 75%,#30245100 100%);
+}
+body .catalog-page.pricing-future > section:last-of-type {
+  max-width: 1640px; padding: 56px 20px 140px; margin-top: 0;
+}
+body .catalog-page .billing-filter > div:first-child { margin-bottom: 56px; }
+body .catalog-page .catalog-reference-grid { gap: 16px; }
+body .catalog-page.pricing-future article { border-radius: 64px; background: #ffffff12; border: 1px solid #ffffff0d; }
+body .catalog-page.pricing-future article .catalog-card-body { padding: 0 44px; min-height: 780px; }
+body .catalog-page.pricing-future .catalog-card-name {
+  position: relative; min-width: 65%; margin-bottom: 54px;
+  border-radius: 0 0 44px 44px; font-size: 64px; padding: 10px 24px 16px;
+}
+body .catalog-page.pricing-future .catalog-card-name::before,
+body .catalog-page.pricing-future .catalog-card-name::after {
+  content: ''; position: absolute; top: 0; width: 24px; height: 24px;
+  background: transparent;
+}
+body .catalog-page.pricing-future .catalog-card-name::before { left: -24px; background: radial-gradient(circle at bottom left, transparent 23px, white 24px); }
+body .catalog-page.pricing-future .catalog-card-name::after { right: -24px; background: radial-gradient(circle at bottom right, transparent 23px, white 24px); }
+body .catalog-page.pricing-future .catalog-card-price { margin-top: 20px; }
+body .catalog-page.pricing-future .catalog-card-price > span:first-child { font-size: 160px; }
+body .catalog-page.pricing-future article ul { margin-top: 24px; margin-bottom: 48px; }
+body .catalog-page.pricing-future article li { font-size: 17px; line-height: 1.8; }
+body .catalog-page.pricing-future article .catalog-subscribe { position: relative; border: 0; border-radius: 44px 44px 0 0; font-family: 'MedulaOne',serif; font-size: 54px; line-height: 1; padding: 16px 24px; }
+body .catalog-page.pricing-future article .catalog-subscribe::before,
+body .catalog-page.pricing-future article .catalog-subscribe::after {
+  content: ''; position: absolute; bottom: 0; width: 24px; height: 24px; pointer-events: none;
+}
+body .catalog-page.pricing-future article .catalog-subscribe::before { left: -24px; background: radial-gradient(circle at top left, transparent 23px, white 24px); }
+body .catalog-page.pricing-future article .catalog-subscribe::after { right: -24px; background: radial-gradient(circle at top right, transparent 23px, white 24px); }
+body .catalog-page.pricing-future article .catalog-subscribe:hover { background: white; transform: none; color: #765cad; }
+body .catalog-templates.pricing-future article .catalog-card-body { min-height: 560px; }
+@media (max-width: 1599px) and (min-width: 1024px) {
+  body .catalog-page.pricing-future > section:first-of-type { padding-top: 230px; height: 560px; }
+  body .catalog-page.pricing-future h1.catalog-reference-title { font-size: 220px; }
+  .catalog-reference-pattern { background-position-y: 230px; }
+  body .catalog-page.pricing-future article .catalog-card-body { padding-inline: 28px; min-height: 650px; }
+  body .catalog-page.pricing-future .catalog-card-name { font-size: 48px; }
+  body .catalog-page.pricing-future .catalog-card-price > span:first-child { font-size: 120px; }
+}
+@media (max-width: 1023px) {
+  body .catalog-page.pricing-future > section:first-of-type { height: auto; padding-top: 160px; padding-bottom: 48px; }
+  .catalog-reference-pattern { background-position-y: 160px; background-size: 1200px auto; }
+  body .catalog-page.pricing-future h1.catalog-reference-title { font-size: 120px; white-space: normal; }
+  body .catalog-page.pricing-future article .catalog-card-body { min-height: 560px; padding-inline: 28px; }
+  body .catalog-page.pricing-future .catalog-card-name { font-size: 44px; margin-bottom: 24px; }
+  body .catalog-page.pricing-future .catalog-card-price > span:first-child { font-size: 100px; }
+  body .catalog-page.pricing-future article { border-radius: 40px; }
+}
+@media (max-width: 639px) {
+  body .catalog-page.pricing-future > section:first-of-type { padding-top: 110px; padding-bottom: 20px; }
+  body .catalog-page.pricing-future h1.catalog-reference-title { font-size: 68px; }
+  body .catalog-page.pricing-future > section:last-of-type { padding-top: 32px; }
+  body .catalog-page.pricing-future article .catalog-subscribe { font-size: 40px; }
+}
+
+body .catalog-page.pricing-future article .catalog-card-body {
+  min-height: 560px;
+  padding-inline: 32px;
+  align-items: stretch;
+}
+body .catalog-page.pricing-future .catalog-card-name {
+  margin-bottom: 28px;
+  min-width: 72%;
+  font-size: 44px;
+  text-align: center;
+}
+body .catalog-page.pricing-future .catalog-card-description {
+  margin: 0 0 16px;
+  text-align: center;
+  color: #e5deed;
+}
+body .catalog-page.pricing-future .catalog-card-price {
+  margin: 8px 0 0;
+  align-items: baseline;
+  justify-content: center;
+  row-gap: 8px;
+}
+body .catalog-page.pricing-future .catalog-card-price > span:first-child {
+  font-size: 112px;
+}
+body .catalog-page.pricing-future .catalog-card-price > span:not(:first-child) {
+  font-size: 16px;
+  color: #f0eaf7;
+}
+body .catalog-page.pricing-future article ul {
+  width: 100%; margin: 28px 0 36px; padding: 0;
+  text-align: start;
+}
+body .catalog-page.pricing-future article li { gap: 12px; align-items: flex-start; font-size: 15px; }
+body .catalog-page.pricing-future article li svg { margin-top: 5px; width: 18px; height: 18px; }
+body .catalog-page.pricing-future article .catalog-card-body > div:last-child { padding-top: 20px; }
+body .catalog-page.pricing-future article .catalog-subscribe {
+  min-width: 72%; font-size: 40px;
+}
+@media (max-width: 639px) {
+  body .catalog-page.pricing-future article .catalog-card-body { min-height: 490px; padding-inline: 24px; }
+  body .catalog-page.pricing-future .catalog-card-price > span:first-child { font-size: 88px; }
+  body .catalog-page.pricing-future .catalog-card-name { font-size: 38px; }
+}
+
+/* Shared catalog rhythm: title, billing control, then aligned cards. */
+body .catalog-page.pricing-future > section:first-of-type {
+  height: auto;
+  padding: 210px 24px 68px;
+}
+body .catalog-page.pricing-future > section:first-of-type > div:last-child {
+  width: 100%; max-width: 1760px;
+}
+body .catalog-page.pricing-future h1.catalog-reference-title {
+  font-size: 240px;
+  line-height: 1.05;
+}
+body .catalog-page.pricing-future > section:last-of-type {
+  width: 84%; max-width: 1600px;
+  margin-inline: auto; padding: 0 0 72px;
+}
+body .catalog-page .billing-filter > div:first-child { margin: 0 0 32px; }
+body .catalog-page .catalog-reference-grid {
+  gap: 20px; align-items: stretch;
+}
+body .catalog-page.pricing-future article { border-radius: 44px; }
+body .catalog-page.pricing-future article .catalog-card-body {
+  min-height: 560px; padding-inline: 32px;
+}
+body .catalog-page.pricing-future .catalog-card-name { margin-bottom: 24px; }
+body .catalog-page.pricing-future article ul { margin-top: 24px; margin-bottom: 28px; }
+body .catalog-page.pricing-future > section:last-of-type > a { margin-top: 36px; }
+body .catalog-templates.pricing-future article .catalog-card-body { min-height: 460px; }
+@media (min-width: 1024px) and (max-width: 1599px) {
+  body .catalog-page.pricing-future > section:first-of-type { padding-top: 165px; padding-bottom: 54px; }
+  body .catalog-page.pricing-future h1.catalog-reference-title { font-size: 180px; }
+  body .catalog-page.pricing-future article .catalog-card-body { min-height: 500px; padding-inline: 26px; }
+}
+@media (min-width: 640px) and (max-width: 1023px) {
+  body .catalog-page.pricing-future > section:first-of-type { padding-top: 145px; padding-bottom: 44px; }
+  body .catalog-page.pricing-future h1.catalog-reference-title { font-size: 112px; }
+  body .catalog-page.pricing-future > section:last-of-type { width: 92%; }
+}
+@media (max-width: 639px) {
+  body .catalog-page.pricing-future > section:first-of-type { padding: 104px 16px 32px; }
+  body .catalog-page.pricing-future h1.catalog-reference-title { font-size: 60px; line-height: 1.1; }
+  body .catalog-page.pricing-future > section:last-of-type { width: 100%; padding: 0 20px 48px; }
+  body .catalog-page .billing-filter > div:first-child { margin-bottom: 24px; }
+  body .catalog-page .catalog-reference-grid { gap: 24px; }
+  body .catalog-page.pricing-future article { border-radius: 32px; }
+  body .catalog-page.pricing-future article .catalog-card-body { min-height: 460px; padding-inline: 24px; }
+}
+
+body .catalog-page.catalog-templates .catalog-reference-grid { gap: 24px; }
+body .catalog-page.catalog-templates article {
+  border-radius: 24px; border: 1px solid #ffffff24;
+  background: #44365f; overflow: hidden;
+  box-shadow: 0 12px 28px #1c123426;
+}
+body .catalog-page.catalog-templates article > div:first-child {
+  aspect-ratio: 16 / 10; border-bottom: 1px solid #ffffff20;
+  background: #e9e5ef;
+}
+body .catalog-page.catalog-templates article > div:first-child img {
+  transition: transform .25s ease;
+}
+@media (hover: hover) {
+  body .catalog-page.catalog-templates article:hover > div:first-child img { transform: scale(1.025); }
+}
+body .catalog-page.catalog-templates article .catalog-card-body {
+  min-height: 0; padding: 24px; gap: 0;
+}
+body .catalog-page.catalog-templates .template-category {
+  align-self: flex-start; margin: 0 0 12px;
+  border: 1px solid #ffffff26; border-radius: 999px;
+  padding: 4px 12px; color: #e7ddf6; font-size: 11px;
+}
+body .catalog-page.catalog-templates .catalog-card-name {
+  align-self: stretch; min-width: 0; margin: 0;
+  padding: 0; border-radius: 0; background: transparent; color: white;
+  font-family: 'Cairo', sans-serif; font-size: 20px; font-weight: 700;
+  line-height: 1.6; text-align: start;
+}
+body .catalog-page.catalog-templates .catalog-card-name::before,
+body .catalog-page.catalog-templates .catalog-card-name::after,
+body .catalog-page.catalog-templates .catalog-subscribe::before,
+body .catalog-page.catalog-templates .catalog-subscribe::after { display: none; }
+body .catalog-page.catalog-templates .catalog-card-description {
+  margin: 10px 0 0; text-align: start; line-height: 1.8;
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+}
+body .catalog-page.catalog-templates .catalog-card-price {
+  justify-content: flex-start; align-items: baseline; margin: 20px 0 0; gap: 8px;
+}
+body .catalog-page.catalog-templates .catalog-card-price > span:first-child {
+  flex-basis: auto; font-family: 'Cairo', sans-serif;
+  font-size: 28px; font-weight: 700; line-height: 1.5;
+}
+body .catalog-page.catalog-templates .catalog-card-price > span:not(:first-child) { font-size: 12px; }
+body .catalog-page.catalog-templates article ul { margin: 16px 0 20px; }
+body .catalog-page.catalog-templates article li { font-size: 12px; }
+body .catalog-page.catalog-templates article .catalog-card-body > div:last-child {
+  justify-content: stretch; gap: 10px; padding-top: 24px;
+}
+body .catalog-page.catalog-templates article a.catalog-subscribe,
+body .catalog-page.catalog-templates article a.catalog-subscribe + a {
+  flex: 1 1 120px; min-width: 0; border-radius: 12px;
+  padding: 12px 16px; min-height: 46px;
+  font-family: 'Cairo', sans-serif; font-size: 13px; font-weight: 600; line-height: 1.6;
+}
+html[dir="rtl"] body .catalog-page.catalog-templates .catalog-card-name { font-size: 20px; }
+html[dir="rtl"] body .catalog-page.catalog-templates .catalog-card-price > span:first-child { font-size: 28px; }
+@media (prefers-reduced-motion: reduce) {
+  body .catalog-page.catalog-templates article > div:first-child img { transition: none; }
+}
+

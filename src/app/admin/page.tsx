@@ -5,11 +5,14 @@ import DeleteProjectButton from "@/components/admin/DeleteProjectButton";
 import { requireAdmin } from "@/lib/auth";
 
 export default async function AdminDashboard() {
-  const projects = await getAllProjectsForAdmin();
+  const projectsPromise = getAllProjectsForAdmin();
+  const { supabase } = await requireAdmin();
+  const [projects, { data: catalog, error: catalogError }] = await Promise.all([
+    projectsPromise,
+    supabase.from("catalog_items").select("kind,is_published"),
+  ]);
   const published = projects.filter((project) => project.isPublished).length;
   const drafts = projects.length - published;
-  const { supabase } = await requireAdmin();
-  const { data: catalog, error: catalogError } = await supabase.from("catalog_items").select("kind,is_published");
 
   return (
     <>

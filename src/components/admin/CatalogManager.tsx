@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { Pencil, Plus, Trash2, Save, X } from 'lucide-react';
 import type { CatalogItem } from '@/lib/catalog';
+import TemplateImageUpload from './TemplateImageUpload';
 
 const empty = {kind:'plans' as 'plans'|'templates',title:'',title_ar:'',description:'',description_ar:'',price:0,currency:'EGP',period:'monthly',features:[] as string[],features_ar:[] as string[],image_url:'',preview_url:'',category:'',is_published:false,is_featured:false,display_order:0};
 export default function CatalogManager({items,initialKind='plans'}:{items:CatalogItem[];initialKind?:'plans'|'templates'}) {
@@ -13,8 +14,10 @@ export default function CatalogManager({items,initialKind='plans'}:{items:Catalo
   const [notice,setNotice]=useState('');
   const [draft,setDraft]=useState<(typeof empty & {id?:string})|null>(null);
   const [busy,setBusy]=useState(false);
+  const [uploading,setUploading]=useState(false);
   const [error,setError]=useState('');
   async function send(body:object){
+    if(uploading) return;
     setBusy(true);setError('');setNotice('');
     try{
       const response=await fetch('/api/admin/catalog',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});
@@ -34,6 +37,8 @@ export default function CatalogManager({items,initialKind='plans'}:{items:Catalo
     <div className="mb-6 flex flex-wrap gap-3"><input type="search" aria-label="Search catalog" placeholder="Search name or category" value={query} onChange={e=>setQuery(e.target.value)} className="min-w-0 flex-1 rounded-md border bg-white px-4 py-3 text-sm"/><select aria-label="Publication status" value={status} onChange={e=>setStatus(e.target.value)} className="rounded-md border bg-white px-4 py-3 text-sm"><option value="all">All statuses</option><option value="published">Published</option><option value="draft">Drafts</option></select></div>
     {draft&&<form onSubmit={e=>{e.preventDefault();void send(draft);}} className="mb-8 rounded-lg border border-[#ddd5e7] bg-white p-5 sm:p-8">
       <div className="mb-6 flex justify-between"><h2 className="font-bold">{draft.id?'Edit':'New'} {draft.kind==='plans'?'plan':'template'}</h2><button type="button" title="Close editor" onClick={()=>setDraft(null)}><X size={20}/></button></div>
+      {draft.kind==='templates'&&<TemplateImageUpload value={draft.image_url} onBusy={setUploading} onChange={url=>setDraft(current=>current?{...current,image_url:url}:current)}/>}
+      <fieldset disabled={busy||uploading}>
       <div className="grid gap-5 sm:grid-cols-2">
         {(['title','title_ar','description','description_ar','category','image_url','preview_url'] as const).map(field=><label key={field} className="text-sm font-semibold">{{title:'English name',title_ar:'Arabic name',description:'English description',description_ar:'Arabic description',category:'Category',image_url:'Preview image URL (HTTPS)',preview_url:'Live preview URL (HTTPS)'}[field]}{field.includes('description')?<textarea maxLength={1500} dir={field.endsWith('_ar')?'rtl':'ltr'} value={draft[field]} onChange={e=>setDraft({...draft,[field]:e.target.value})} className={inputClass} rows={3}/>:<input required={field==='title'||(field==='image_url'&&draft.kind==='templates')} type={field.endsWith('_url')?'url':'text'} dir={field.endsWith('_ar')?'rtl':'ltr'} value={draft[field]} onChange={e=>setDraft({...draft,[field]:e.target.value})} className={inputClass}/>}</label>)}
         <label className="text-sm font-semibold">Price<input type="number" min="0" step="0.01" required value={draft.price} onChange={e=>setDraft({...draft,price:Number(e.target.value)})} className={inputClass}/></label>
@@ -44,6 +49,7 @@ export default function CatalogManager({items,initialKind='plans'}:{items:Catalo
       </div>
       <div className="my-6 flex flex-wrap gap-6">{(['is_published','is_featured'] as const).map(field=><label key={field} className="flex items-center gap-2 text-sm"><input type="checkbox" checked={draft[field]} onChange={e=>setDraft({...draft,[field]:e.target.checked})}/>{field==='is_published'?'Published':'Featured'}</label>)}</div>
       <button disabled={busy} className="inline-flex items-center gap-2 rounded-md bg-[#302451] px-5 py-3 text-sm text-white disabled:opacity-50"><Save size={16}/>{busy?'Saving…':'Save'}</button>
+      </fieldset>
     </form>}
     <div className="divide-y divide-[#ded7e6] rounded-lg border border-[#ded7e6] bg-white">{filtered.map(item=><div key={item.id} className="flex flex-wrap items-center justify-between gap-4 p-5"><div><h2 className="font-bold">{item.title}</h2><p className="mt-1 text-xs text-[#70677d]">{item.price} {item.currency} · {item.is_published?'Published':'Draft'} · Order {item.display_order}</p></div><div className="flex gap-3"><button disabled={busy} title={`Edit ${item.title}`} onClick={()=>setDraft(item)} className="p-2"><Pencil size={18}/></button><button disabled={busy} title={`Delete ${item.title}`} onClick={()=>{if(window.confirm(`Delete ${item.title}?`))void send({id:item.id,action:'delete'});}} className="p-2 text-red-700"><Trash2 size={18}/></button></div></div>)}{!filtered.length&&<p className="p-8 text-sm text-[#70677d]">{kindItems.length ? 'No matching results. Change your search or filter.' : 'No items yet. Add your first item above.'}</p>}</div>
   </div>;
