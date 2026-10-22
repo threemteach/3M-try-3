@@ -7,6 +7,7 @@ const links = [
   {href:"/admin",label:"Projects",icon:FolderKanban},
   {href:"/admin/catalog?type=plans",label:"Plans",icon:CreditCard},
   {href:"/admin/catalog?type=templates",label:"Templates",icon:LayoutTemplate},
+  {href:"/admin/visibility",label:"Page visibility",icon:LayoutTemplate},
 ];
 export default function AdminNavigation(){
   const pathname=usePathname();

@@ -3,8 +3,12 @@ import Navbar from './Navbar';
 import { getCatalog } from '@/lib/catalog';
 import { SITE_PHONE } from '@/lib/constants';
 import PlanBillingFilter from './PlanBillingFilter';
+import { getPageVisibility } from '@/lib/page-visibility';
+import { notFound } from 'next/navigation';
 
 export default async function CatalogPage({kind,arabic=false}:{kind:'plans'|'templates';arabic?:boolean}) {
+  const visibility=await getPageVisibility();
+  if(!visibility[kind])notFound();
   const {items,unavailable} = await getCatalog(kind);
   const plans = kind === 'plans';
   const title = plans ? (arabic?'خطط الاشتراك':'Subscription Plan') : (arabic?'القوالب الجاهزة':'Templates');

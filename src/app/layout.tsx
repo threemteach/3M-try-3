@@ -9,6 +9,7 @@ import PublicSiteChrome from "@/components/PublicSiteChrome";
 import ScrollReveal from "@/components/ScrollReveal";
 import { LanguageProvider } from "@/components/LanguageProvider";
 import MobileHeader from "@/components/MobileHeader";
+import { getPageVisibility } from "@/lib/page-visibility";
 import JsonLd from "@/components/JsonLd";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import {
@@ -171,14 +172,17 @@ const websiteJsonLd = {
   inLanguage: ["en", "ar"],
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const visibility=await getPageVisibility();
+  const hiddenLinks=(['plans','templates'] as const).filter(page=>!visibility[page]).map(page=>`a[href="/${page}"],a[href="/ar/${page}"]{display:none!important;}`).join('');
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
+        {hiddenLinks&&<style>{hiddenLinks}</style>}
         <link
           rel="preload"
           href="/fonts/Cairo-Regular.woff2"
