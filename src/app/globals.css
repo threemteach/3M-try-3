@@ -1610,7 +1610,7 @@ body .catalog-page.catalog-templates .catalog-subscribe::before,
 body .catalog-page.catalog-templates .catalog-subscribe::after { display: none; }
 body .catalog-page.catalog-templates .catalog-card-description {
   margin: 10px 0 0; text-align: start; line-height: 1.8;
-  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+  display: -webkit-box; -webkit-line-clamp: 2; line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
 }
 body .catalog-page.catalog-templates .catalog-card-price {
   justify-content: flex-start; align-items: baseline; margin: 20px 0 0; gap: 8px;
