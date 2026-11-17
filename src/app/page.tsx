@@ -127,8 +127,6 @@ export default async function Home() {
 
       {/* What We Do / Services Section */}
       <WhatWeDo />
-
-      {/* Who We Are Section */}
       <WhoWeAre />
 
       <Workflow />

@@ -25,6 +25,7 @@ export default function ScrollReveal() {
     const elements = candidates.filter((element) => {
       if (element.closest(".navbar-shell, .mobile-language-toggle, nav, footer")) return false;
       if (element.closest(".loading-screen")) return false;
+      if (element.closest(".service-stack-panel")) return false;
       if (element.dataset.scrollRevealBound === "true") return false;
       return true;
     });

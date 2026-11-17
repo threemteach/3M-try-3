@@ -345,8 +345,72 @@ html[dir="rtl"] .about-page > section:first-of-type .text-center { text-align: s
 
 html,
 body {
-  overflow-x: hidden;
+  overflow-x: clip;
   width: 100%;
+}
+
+/* Keep the deck in view while the incoming sheet gently pushes the previous one back. */
+.services-stack-intro { padding-bottom: 0; }
+.service-card-stack {
+  isolation: isolate;
+  gap: 64px;
+  padding-bottom: 40svh;
+}
+
+.service-card-stack > article {
+  position: sticky;
+  top: calc(var(--stack-top, 112px) + var(--card-index) * 12px);
+  z-index: calc(1 + var(--card-index));
+  transform-origin: center top;
+  transform: translateY(calc(var(--stack-progress, 0) * -8px)) scale(calc(1 - var(--stack-progress, 0) * .035));
+  box-shadow: 0 -8px 24px rgb(48 36 81 / 10%);
+}
+
+@media (max-width: 639px) {
+  .service-cards-region { padding-bottom: 0; }
+  .service-stack-track {
+    position: relative;
+    --mobile-card-height: clamp(180px, 45vw, 430px);
+    height: auto;
+  }
+  .service-stack-panel {
+    position: relative;
+  }
+  .service-card-stack {
+    position: relative;
+    top: auto;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: var(--mobile-card-height);
+    height: calc(var(--mobile-card-height) + 84px);
+    gap: 0;
+    padding-top: 36px;
+    padding-bottom: 48px;
+    overflow: clip;
+    clip-path: inset(0);
+  }
+  .service-card-stack > article {
+    position: relative;
+    top: auto;
+    grid-area: 1 / 1;
+    --sheet-past: clamp(0, calc(var(--mobile-progress, 0) - var(--card-index)), 3);
+    --sheet-ahead: clamp(0, calc(var(--card-index) - var(--mobile-progress, 0)), 1);
+    visibility: visible;
+    pointer-events: none;
+    opacity: clamp(0, calc((var(--mobile-progress, 0) - var(--card-index) + 1) * 100), 1);
+    transform: translate3d(0, calc(var(--sheet-ahead) * (var(--mobile-card-height) + 48px) - var(--sheet-past) * 10px), 0) scale(calc(1 - var(--sheet-past) * .02));
+    will-change: transform;
+    transition: none;
+    box-shadow: none;
+  }
+  .service-card-stack > article[data-mobile-active='true'] { pointer-events: auto; }
+}
+
+@media (prefers-reduced-motion: reduce), (orientation: landscape) and (max-height: 500px) {
+  .service-stack-track { height: auto; }
+  .service-stack-panel { position: relative; top: auto; }
+  .service-card-stack { position: relative; top: auto; display: flex; height: auto; gap: 24px; padding-block: 0; overflow: visible; clip-path: none; }
+  .service-card-stack > article { position: relative; top: auto; transform: none; opacity: 1; visibility: visible; pointer-events: auto; will-change: auto; }
 }
 
 * {
@@ -674,6 +738,42 @@ html[dir="rtl"] .hero-actions {
 
 html[dir="rtl"] .hero-actions > a {
   direction: rtl;
+}
+
+/* Keep the two hero actions balanced, including the longer Arabic labels. */
+body .home-scaled-actions {
+  width: 420px;
+  max-width: 100%;
+  gap: 12px;
+  align-items: stretch;
+}
+body .home-scaled-actions > a {
+  flex: 1 1 0;
+  min-width: 0;
+  width: auto;
+  height: 52px;
+  padding: 10px 16px;
+  border: 1.5px solid white;
+  border-radius: 999px;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.6;
+  white-space: nowrap;
+  text-align: center;
+  letter-spacing: 0;
+  transition: background-color .18s ease, color .18s ease, transform .18s ease;
+}
+body .home-scaled-actions > a:active { transform: scale(.98); }
+html[dir='rtl'] body .home-scaled-actions > a { font-size: 14px; }
+@media (max-width: 1023px) {
+  body .home-scaled-actions { width: min(90vw, 380px); max-width: none; gap: 8px; }
+  body .home-scaled-actions > a { height: 44px; padding: 8px 12px; font-size: 12px; }
+  html[dir='rtl'] body .home-scaled-actions > a { font-size: 12px; }
+}
+@media (max-width: 639px) {
+  body .home-scaled-hero {
+    height: calc(80.08vw + max(16px, env(safe-area-inset-top)) + 64px);
+  }
 }
 
 html[dir="rtl"] .projects-page-hero {
