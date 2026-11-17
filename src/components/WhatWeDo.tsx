@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useRef, useState, type CSSProperties } from "react";
+import ServiceCarousel from "@/components/ServiceCarousel";
 import { useLanguage } from "@/components/LanguageProvider";
 
 const services = [
@@ -68,111 +68,8 @@ const services = [
 ];
 
 export default function WhatWeDo() {
-  const stackRef = useRef<HTMLDivElement>(null);
-  const trackRef = useRef<HTMLDivElement>(null);
-  const [mobileCard, setMobileCard] = useState(0);
   const { isArabic } = useLanguage();
   const prefix = isArabic ? "/ar" : "";
-
-  useEffect(() => {
-    const track = trackRef.current;
-    const stack = stackRef.current;
-    if (!track || !stack) return;
-    const mobile = window.matchMedia("(max-width: 639px)");
-    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)");
-    let start = 0;
-    let step = 1;
-    let frame = 0;
-    const update = () => {
-      frame = 0;
-      if (!mobile.matches) return;
-      if (reduced.matches || (window.innerWidth > window.innerHeight && window.innerHeight <= 500)) {
-        return;
-      }
-      const raw = Math.max(0, Math.min(services.length - 1, (window.scrollY - start) / step));
-      const index = Math.floor(raw);
-      const progress = index + Math.max(0, (raw - index - .3) / .7);
-      stack.style.setProperty("--mobile-progress", String(progress));
-      setMobileCard(current => current === index ? current : index);
-    };
-    const measure = () => {
-      if (!mobile.matches) return;
-      const rect = track.getBoundingClientRect();
-      const cardHeight = stack.firstElementChild instanceof HTMLElement ? stack.firstElementChild.offsetHeight : 180;
-      const topInset = parseFloat(getComputedStyle(stack).paddingTop) || 0;
-      const centeredTop = window.innerHeight / 2 - topInset - cardHeight / 2;
-      // Keep the first card untouched until its center reaches the screen's center.
-      start = rect.top + window.scrollY - centeredTop;
-      step = Math.max(60, (centeredTop - 16) / (services.length - 1));
-      update();
-    };
-    const schedule = () => {
-      if (mobile.matches && !frame) frame = window.requestAnimationFrame(update);
-    };
-    const observer = new ResizeObserver(measure);
-    observer.observe(track);
-    observer.observe(document.body);
-    window.addEventListener("scroll", schedule, { passive: true });
-    window.addEventListener("resize", measure);
-    measure();
-    return () => {
-      window.cancelAnimationFrame(frame);
-      observer.disconnect();
-      window.removeEventListener("scroll", schedule);
-      window.removeEventListener("resize", measure);
-    };
-  }, []);
-
-  useEffect(() => {
-    const stack = stackRef.current;
-    if (!stack) return;
-    const cards = Array.from(stack.querySelectorAll<HTMLElement>(":scope > article"));
-    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const mobileViewport = window.matchMedia("(max-width: 639px)");
-    let frame = 0;
-
-    const update = () => {
-      frame = 0;
-      if (mobileViewport.matches || reducedMotion.matches || window.innerHeight <= 500) {
-        cards.forEach(card => card.style.removeProperty("--stack-progress"));
-        return;
-      }
-
-      const height = Math.max(...cards.map(card => card.offsetHeight));
-      const top = Math.max(112, (window.innerHeight - height - 88) / 2);
-      stack.style.setProperty("--stack-top", `${top}px`);
-      const gap = parseFloat(getComputedStyle(stack).rowGap) || 0;
-      let nextTop = stack.getBoundingClientRect().top + window.scrollY;
-
-      // Use untransformed layout heights so scaling cannot feed back into scroll progress.
-      cards.forEach((card, index) => {
-        nextTop += card.offsetHeight + gap;
-        const distance = nextTop - window.scrollY - top - (index + 1) * 12;
-        const progress = index === cards.length - 1 ? 0 : Math.max(0, Math.min(1, 1 - distance / height));
-        card.style.setProperty("--stack-progress", String(progress));
-      });
-    };
-
-    const schedule = () => {
-      // Mobile uses native sticky scrolling without per-frame layout reads or style writes.
-      if (mobileViewport.matches || reducedMotion.matches) return;
-      if (!frame) frame = window.requestAnimationFrame(update);
-    };
-    const resizeObserver = new ResizeObserver(schedule);
-    cards.forEach(card => resizeObserver.observe(card));
-    window.addEventListener("scroll", schedule, { passive: true });
-    window.addEventListener("resize", schedule);
-    reducedMotion.addEventListener("change", schedule);
-    schedule();
-
-    return () => {
-      window.cancelAnimationFrame(frame);
-      resizeObserver.disconnect();
-      window.removeEventListener("scroll", schedule);
-      window.removeEventListener("resize", schedule);
-      reducedMotion.removeEventListener("change", schedule);
-    };
-  }, []);
 
   return (
     <>
@@ -238,22 +135,21 @@ export default function WhatWeDo() {
         {/* Service Cards */}
       </div>
     </section>
-        <div ref={trackRef} className="service-stack-track">
+        <div>
         <div className="service-stack-panel">
         <section className="service-cards-region bg-[#f0edf5] px-4 pb-16 sm:pb-20 lg:pb-24">
         <div className="mx-auto max-w-[1100px]">
-        <div ref={stackRef} className="service-card-stack flex flex-col gap-4 sm:gap-6">
+        <ServiceCarousel arabic={isArabic}>
           {services.map((service, idx) => {
             const isReversed = idx % 2 !== 0;
             return (
               <article
                 key={idx}
-                data-mobile-active={mobileCard === idx}
                 dir="ltr"
                 className={`relative w-full rounded-[24px] sm:rounded-[32px] border-[3px] border-white bg-[#302451] overflow-hidden flex ${
                   isReversed ? "flex-row-reverse" : "flex-row"
                 }`}
-                style={{ height: "clamp(180px, 45vw, 430px)", "--card-index": idx } as CSSProperties}
+                style={{ height: "clamp(180px, 45vw, 430px)" }}
               >
                 {/* Text Content - 56% */}
                 <div
@@ -387,7 +283,7 @@ export default function WhatWeDo() {
               </article>
             );
           })}
-        </div>
+        </ServiceCarousel>
         </div>
         </section>
         </div>
