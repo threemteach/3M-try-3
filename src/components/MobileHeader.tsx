@@ -19,8 +19,8 @@ export default function MobileHeader() {
           <Image
             src="/3m_logo.png"
             alt="3M Logo"
-            width={4576}
-            height={2818}
+            width={413}
+            height={219}
             className="h-[32px] w-auto object-contain"
             priority
           />

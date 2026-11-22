@@ -78,8 +78,8 @@ export default function Footer() {
         <Image
           src="/logo.png"
           alt="3M"
-          width={616}
-          height={388}
+          width={413}
+          height={337}
           className="h-auto w-[170px] object-contain sm:w-[215px] md:w-[240px]"
         />
 

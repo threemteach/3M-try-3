@@ -26,7 +26,7 @@ export default function LoginPage() {
       <div className="relative w-full max-w-[470px] rounded-[32px] border border-white/65 bg-white/85 p-6 shadow-[0_32px_90px_rgba(12,6,31,.4)] backdrop-blur-2xl sm:p-9">
         <div className="flex items-center justify-between">
           <Link href="/" aria-label="Back to home">
-            <Image src="/logo.png" alt="3M tech" width={84} height={52} className="h-10 w-auto brightness-0" />
+            <Image src="/logo-wordmark-dark.svg" alt="3M tech" width={413} height={337} className="h-10 w-auto" />
           </Link>
           <span className="rounded-full border border-[#302451]/10 bg-[#302451]/5 px-3 py-1 text-[10px] font-bold uppercase tracking-[.12em] text-[#302451]/70">
             Secure admin

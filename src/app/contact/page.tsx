@@ -43,7 +43,7 @@ export default function ContactPage() {
         style={{
           backgroundImage: 'url("/project-logo-outline.svg")',
           backgroundRepeat: "repeat",
-          backgroundSize: "260px 165px",
+          backgroundSize: "260px 140px",
           backgroundPosition: "center",
           transform: "rotate(-15deg) scale(1.3)",
         }}

@@ -56,8 +56,8 @@ export default function ProjectDetailClient({
           <Image
             src="/project-logo-outline.svg"
             alt=""
-            width={814.62}
-            height={515.65}
+            width={419}
+            height={225}
             sizes="100vw"
             className="absolute left-1/2 top-[29%] h-auto w-[98%] max-w-[1920px] -translate-x-1/2 opacity-25"
           />

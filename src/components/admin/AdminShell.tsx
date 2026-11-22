@@ -14,7 +14,7 @@ export default function AdminShell({
   return (
     <div dir="ltr" className="admin-workspace min-h-screen bg-[#f6f7f9] text-[#24232a] lg:pl-[232px]">
       <aside className="fixed inset-y-0 left-0 z-50 hidden w-[232px] flex-col border-r border-[#e3e5e9] bg-white lg:flex">
-        <Link href="/admin" className="flex h-[72px] items-center gap-3 border-b border-[#e3e5e9] px-6"><Image src="/logo.png" alt="3M tech" width={52} height={34} className="h-8 w-auto rounded bg-[#302451] p-1"/><span className="text-sm font-bold">Workspace</span></Link>
+        <Link href="/admin" className="flex h-[72px] items-center gap-3 border-b border-[#e3e5e9] px-6"><Image src="/logo-mark-dark.svg" alt="3M tech" width={413} height={219} className="h-8 w-auto"/><span className="text-sm font-bold">Workspace</span></Link>
         <p className="px-6 pb-3 pt-7 text-[11px] font-semibold uppercase text-[#85848e]">Manage content</p>
         <AdminNavigation />
         <div className="mt-auto border-t border-[#e3e5e9] p-5"><p className="text-xs font-semibold">Administrator</p><p className="mt-1 break-all text-xs leading-5 text-[#777580]">{email}</p></div>
@@ -23,7 +23,7 @@ export default function AdminShell({
         <div className="mx-auto flex max-w-[1440px] flex-wrap items-center justify-between gap-4">
           <div className="flex min-w-0 items-center gap-5">
             <Link href="/admin" aria-label="Admin dashboard">
-              <Image src="/logo.png" alt="3M tech" width={72} height={44} className="h-9 w-auto rounded bg-[#302451] p-1 lg:hidden" />
+              <Image src="/logo-mark-dark.svg" alt="3M tech" width={413} height={219} className="h-9 w-auto lg:hidden" />
             </Link>
             <div className="hidden sm:block">
               <p className="text-sm font-semibold">Content management</p>

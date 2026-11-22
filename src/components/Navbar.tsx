@@ -61,8 +61,8 @@ export default function Navbar() {
           <Image
             src="/3m_logo.png"
             alt="3M Logo"
-            width={4576}
-            height={2818}
+            width={413}
+            height={219}
             className={`w-auto object-contain transition-[height] duration-300 ${
               scrolled
                 ? "h-[30px] sm:h-[32px] md:h-[35px] lg:h-[38px]"

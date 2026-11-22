@@ -181,8 +181,8 @@ export default function LoadingScreen() {
           ref={logoRef}
           src="/logo.png"
           alt="3M tech"
-          width={620}
-          height={390}
+          width={413}
+          height={337}
           priority
           className={`loader-logo h-auto w-[210px] object-contain sm:w-[330px] lg:w-[430px] ${
             leaving ? "loader-logo-to-nav" : ""
