@@ -125,8 +125,8 @@ export default function MobileBottomNav() {
           <>
             <button type="button" aria-label="Close more navigation" className="fixed inset-0 z-[3] cursor-default" onClick={() => setMoreOpen(false)} />
             <div id="mobile-more-links" dir={prefix ? "rtl" : "ltr"} className="absolute bottom-[88px] right-0 z-[4] w-56 rounded-lg border border-[#ddd5e7] bg-white p-2 text-sm text-[#302451] shadow-xl" onKeyDown={e => { if(e.key === 'Escape') setMoreOpen(false); }}>
-              <Link href={`${prefix}/plans`} onClick={() => setMoreOpen(false)} className="block rounded-md px-4 py-3 hover:bg-[#f0edf5]">{prefix ? "الخطط" : "Plans"}</Link>
-              <Link href={`${prefix}/templates`} onClick={() => setMoreOpen(false)} className="block rounded-md px-4 py-3 hover:bg-[#f0edf5]">{prefix ? "القوالب" : "Templates"}</Link>
+              {visibility.plans && <Link href={`${prefix}/plans`} onClick={() => setMoreOpen(false)} className="block rounded-md px-4 py-3 hover:bg-[#f0edf5]">{prefix ? "الخطط" : "Plans"}</Link>}
+              {visibility.templates && <Link href={`${prefix}/templates`} onClick={() => setMoreOpen(false)} className="block rounded-md px-4 py-3 hover:bg-[#f0edf5]">{prefix ? "القوالب" : "Templates"}</Link>}
             </div>
           </>
         )}

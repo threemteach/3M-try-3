@@ -179,11 +179,9 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   const visibility=await getPageVisibility();
-  const hiddenLinks=(['plans','templates'] as const).filter(page=>!visibility[page]).map(page=>`a[href="/${page}"],a[href="/ar/${page}"]{display:none!important;}`).join('');
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        {hiddenLinks&&<style>{hiddenLinks}</style>}
         <link
           rel="preload"
           href="/fonts/Kufam-VariableFont_wght.woff2"
