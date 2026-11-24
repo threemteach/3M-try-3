@@ -43,10 +43,10 @@ export default function ProjectsGrid({ projects }: { projects: Project[] }) {
               aria-label={`Show projects page ${pageNumber}`}
               aria-current={page === pageNumber ? "page" : undefined}
               onClick={() => selectPage(pageNumber)}
-              className={`flex h-7 min-w-7 items-center justify-center rounded-[5px] px-1 font-[Cairo] text-sm font-bold transition-colors ${
+              className={`flex h-7 min-w-7 items-center justify-center rounded-[5px] px-1 font-sans text-sm font-bold transition-colors ${
                 page === pageNumber
                   ? "border border-[#302451]/35 bg-white text-[#302451] shadow-sm"
-                  : "text-[#302451]/75 hover:bg-white/60 hover:text-[#302451]"
+                  : "text-white/85 hover:bg-white/15"
               }`}
             >
               {pageNumber}

@@ -88,7 +88,7 @@ export default function WhatWeDo() {
         </div>
 
         <p
-          style={{ fontFamily: '"Cairo", sans-serif' }}
+          style={{ fontFamily: 'var(--font-sans)' }}
           className="mx-auto max-w-[500px] text-center text-[13px] font-semibold text-[#302451]/80 sm:text-[16px]"
         >
           Everything you need to bring your ideas to life.
@@ -174,7 +174,7 @@ export default function WhatWeDo() {
                   </h3>
 
                   <p
-                    style={{ fontFamily: '"Cairo", sans-serif' }}
+                    style={{ fontFamily: 'var(--font-sans)' }}
                     className="text-[clamp(9px,1.9vw,24px)] text-white/90 mb-1.5 sm:mb-3 leading-snug"
                   >
                     {service.description}
@@ -188,7 +188,7 @@ export default function WhatWeDo() {
                       <li
                         key={fIdx}
                         style={{
-                          fontFamily: '"Cairo", sans-serif',
+                          fontFamily: 'var(--font-sans)',
                           fontSize: "clamp(9px, 1.7vw, 22px)",
                         }}
                         className="flex items-center gap-1.5 sm:gap-2.5 text-white font-semibold"

@@ -9,7 +9,7 @@ export default function ProjectsHeroContent() {
   return (
     <>
       {isArabic ? (
-        <h1 className="projects-hero-title projects-hero-title-ar absolute left-0 z-10 h-[1em] w-full [font-family:Sahlab] font-normal leading-[0.78] text-white" dir="rtl">
+        <h1 className="projects-hero-title projects-hero-title-ar absolute left-0 z-10 h-[1em] w-full font-arabic font-normal leading-[0.78] text-white" dir="rtl">
           <span className="sr-only">مشاريعنا</span>
           <span aria-hidden="true" className="relative block h-full w-full whitespace-nowrap">
             <span className="projects-hero-title-ar-word absolute top-0">مشاريــــــــــــــــــــــــــــــــعنا</span>
@@ -35,7 +35,7 @@ export default function ProjectsHeroContent() {
         dir={isArabic ? "rtl" : "ltr"}
         className={`projects-hero-tagline absolute z-[12] w-auto leading-[0.92] ${
           isArabic
-            ? "projects-hero-tagline-ar text-right [font-family:Sahlab]"
+            ? "projects-hero-tagline-ar text-right font-arabic"
             : "left-[12.1%] text-left [font-family:MedulaOne]"
         }`}
       >

@@ -203,7 +203,7 @@ export default function MobileBottomNav() {
               </div>
               <span
                 style={{
-                  fontFamily: '"Cairo", sans-serif',
+                  fontFamily: 'var(--font-sans)',
                   fontSize: 10,
                   fontWeight: isActive ? 700 : 600,
                   color: "#302451",

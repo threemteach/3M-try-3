@@ -186,7 +186,7 @@ export default async function RootLayout({
         {hiddenLinks&&<style>{hiddenLinks}</style>}
         <link
           rel="preload"
-          href="/fonts/Cairo-Regular.woff2"
+          href="/fonts/Kufam-VariableFont_wght.woff2"
           as="font"
           type="font/woff2"
           crossOrigin="anonymous"
@@ -202,7 +202,7 @@ export default async function RootLayout({
       </head>
       <body
         suppressHydrationWarning
-        className="flex min-h-screen flex-col font-[family-name:var(--font-cairo)] antialiased"
+        className="flex min-h-screen flex-col font-sans antialiased"
       >
         <PageVisibilityProvider value={visibility}><LanguageProvider>
           <PublicSiteChrome>

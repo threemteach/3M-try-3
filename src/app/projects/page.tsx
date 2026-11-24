@@ -61,7 +61,7 @@ const heroStars = [
 export default async function ProjectsPage() {
   const projects = await getPublishedProjects();
   return (
-    <div className="min-h-screen overflow-hidden bg-[#EDE9E9]">
+    <div className="min-h-screen overflow-hidden bg-[#302451]">
       <header className="projects-hero-header relative overflow-hidden bg-[#302451] px-4 pt-6 text-white sm:pt-10">
         <Navbar />
 

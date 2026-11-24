@@ -86,7 +86,7 @@ export default function ProjectDetailClient({
                   href={project.liveUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex shrink-0 items-center justify-center gap-[.55cqw] rounded-full bg-white px-[1.8cqw] py-[.8cqw] font-[Cairo] text-[min(1.45cqw,28px)] font-bold leading-none text-[#302451]"
+                  className="flex shrink-0 items-center justify-center gap-[.55cqw] rounded-full bg-white px-[1.8cqw] py-[.8cqw] font-sans text-[min(1.45cqw,28px)] font-bold leading-none text-[#302451]"
                 >
                   <span>Visit Live Project</span>
                   <svg className="h-[1.2em] w-[1.2em]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>
@@ -94,7 +94,7 @@ export default function ProjectDetailClient({
               )}
             </div>
 
-            <p className="mt-[.8cqw] max-w-[92%] font-[Cairo] text-[min(2.05cqw,39px)] font-medium leading-[1.08] text-white">
+            <p className="mt-[.8cqw] max-w-[92%] font-sans text-[min(2.05cqw,39px)] font-medium leading-[1.08] text-white">
               {project.description}
             </p>
 
@@ -105,7 +105,7 @@ export default function ProjectDetailClient({
                   className="flex justify-start gap-x-[.8cqw]"
                 >
                   {row.map((tag) => (
-                    <span key={tag} className="inline-flex min-w-[9.2cqw] items-center justify-center rounded-full border border-white/80 bg-[#2b2049] px-[1.25cqw] py-[.65cqw] font-[Cairo] text-[min(1.45cqw,28px)] font-bold leading-none text-white shadow-[0_.45cqw_.8cqw_rgba(12,7,28,.32)]">
+                    <span key={tag} className="inline-flex min-w-[9.2cqw] items-center justify-center rounded-full border border-white/80 bg-[#2b2049] px-[1.25cqw] py-[.65cqw] font-sans text-[min(1.45cqw,28px)] font-bold leading-none text-white shadow-[0_.45cqw_.8cqw_rgba(12,7,28,.32)]">
                       {tag}
                     </span>
                   ))}
@@ -165,7 +165,7 @@ export default function ProjectDetailClient({
             data-preserve-font={locale === "en" ? "true" : undefined}
             dir={locale === "ar" ? "rtl" : "ltr"}
             style={{
-              fontFamily: locale === "ar" ? '"Sahlab", "Cairo", sans-serif' : '"MedulaOne", serif',
+              fontFamily: locale === "ar" ? 'var(--font-arabic)' : '"MedulaOne", serif',
               textAlign: "center",
             }}
             className="project-section-title mx-auto block w-full mb-[clamp(18px,2.2vw,42px)] text-center [font-family:MedulaOne] text-[clamp(34px,3.5vw,68px)] font-normal leading-none"
@@ -192,13 +192,13 @@ export default function ProjectDetailClient({
                 </span>
                 <div className="relative z-10 min-w-0 pt-[.15em]">
                   <h3
-                    style={{ fontFamily: '"Cairo", sans-serif' }}
+                    style={{ fontFamily: 'var(--font-sans)' }}
                     className="text-[15px] font-extrabold leading-[1.45] text-[#302451] sm:text-lg lg:text-[clamp(11px,1.45vw,28px)]"
                   >
                     {feat.title}
                   </h3>
                   <p
-                    style={{ fontFamily: '"Cairo", sans-serif' }}
+                    style={{ fontFamily: 'var(--font-sans)' }}
                     className="mt-[.35em] line-clamp-2 text-[10px] font-medium leading-[1.2] text-[#302451]/85 sm:text-xs lg:text-[clamp(8px,.72vw,14px)]"
                   >
                     {feat.description}
@@ -210,7 +210,7 @@ export default function ProjectDetailClient({
 
           <Link
             href={locale === "ar" ? "/ar/projects" : "/projects"}
-            className="mt-[clamp(24px,3vw,58px)] flex h-[clamp(38px,4.8vw,74px)] w-full items-center justify-center rounded-full bg-[#302451] px-6 font-[Cairo] text-[clamp(10px,.9vw,17px)] font-bold text-white shadow-[0_10px_24px_rgba(48,36,81,.15)] transition-colors hover:bg-[#43346d]"
+            className="mt-[clamp(24px,3vw,58px)] flex h-[clamp(38px,4.8vw,74px)] w-full items-center justify-center rounded-full bg-[#302451] px-6 font-sans text-[clamp(10px,.9vw,17px)] font-bold text-white shadow-[0_10px_24px_rgba(48,36,81,.15)] transition-colors hover:bg-[#43346d]"
           >
             Back to previous page
           </Link>

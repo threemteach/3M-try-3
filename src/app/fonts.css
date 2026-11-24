@@ -4,30 +4,48 @@
   font-weight: 400 900;
   font-display: swap;
   src: url("/fonts/Kufam-VariableFont_wght.woff2") format("woff2");
+  /* In mixed-language text, leave Arabic glyphs to the next family. */
+  unicode-range: U+0000-024F, U+0300-036F, U+1E00-1EFF, U+2000-206F, U+20A0-20CF, U+2122, U+2190-21FF, U+2212;
 }
 
 @font-face {
-  font-family: "Cairo";
+  font-family: "Elgharib Tajarib Taweel";
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url("/fonts/Elgharib-Tajarib-Taweel-Light.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Elgharib Tajarib Taweel";
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: url("/fonts/Cairo-Regular.woff2") format("woff2");
+  src: url("/fonts/Elgharib-Tajarib-Taweel-Regular.woff2") format("woff2");
 }
 
 @font-face {
-  font-family: "Sahlab";
+  font-family: "Elgharib Tajarib Taweel";
   font-style: normal;
-  font-weight: 400 900;
+  font-weight: 500 600;
   font-display: swap;
-  src: url("/fonts/ALLEXP03SAHLAB.woff2") format("woff2");
+  src: url("/fonts/Elgharib-Tajarib-Taweel-Medium.woff2") format("woff2");
 }
 
 @font-face {
-  font-family: "Cairo";
+  font-family: "Elgharib Tajarib Taweel";
   font-style: normal;
-  font-weight: 600 900;
+  font-weight: 700 800;
   font-display: swap;
-  src: url("/fonts/Cairo-Bold.woff2") format("woff2");
+  src: url("/fonts/Elgharib-Tajarib-Taweel.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Elgharib Tajarib Taweel";
+  font-style: normal;
+  font-weight: 900;
+  font-display: swap;
+  src: url("/fonts/Elgharib-Tajarib-Taweel-Black.woff2") format("woff2");
 }
 
 @font-face {
