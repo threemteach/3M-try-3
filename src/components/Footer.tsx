@@ -34,8 +34,11 @@ const stars = [
   "hidden sm:block sm:right-[27%] sm:top-[285px] sm:h-7 sm:w-7 sm:rotate-12",
 ];
 
-export default function Footer() {
+export default function Footer({ visibility }: { visibility: { plans: boolean; templates: boolean } }) {
   const currentYear = new Date().getFullYear();
+  const visibleLinks = quickLinks.filter(({ href }) =>
+    (href !== "/plans" || visibility.plans) && (href !== "/templates" || visibility.templates)
+  );
 
   return (
     <footer className="relative isolate overflow-hidden bg-[#312354] pb-[calc(7rem+env(safe-area-inset-bottom))] pt-[158px] text-[#e5e0eb] sm:pb-9 sm:pt-[170px]">
@@ -127,7 +130,7 @@ export default function Footer() {
               Quick Links
             </h2>
             <ul className="mt-4 flex flex-wrap justify-center gap-x-7 gap-y-3 text-[15px] sm:text-base">
-              {quickLinks.map((link) => (
+              {visibleLinks.map((link) => (
                 <li key={link.label}>
                   <Link className="transition-colors hover:text-white" href={link.href}>
                     {link.label}

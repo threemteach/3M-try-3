@@ -214,7 +214,7 @@ export default async function RootLayout({
           <main className="flex-1">{children}</main>
           <PublicSiteChrome>
             <ContactForm />
-            <Footer />
+            <Footer visibility={visibility} />
             <WhatsAppButton />
             <MobileBottomNav />
           </PublicSiteChrome>

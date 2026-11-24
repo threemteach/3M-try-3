@@ -3,7 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useCallback, useEffect, useState } from "react";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { navLinks } from "@/lib/constants";
 import { LanguageToggle } from "@/components/LanguageProvider";
 import { usePageVisibility } from './PageVisibilityProvider';
@@ -12,7 +12,6 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const visibility=usePageVisibility();
   const pathname = usePathname();
-  const router = useRouter();
   const prefix = pathname === "/ar" || pathname.startsWith("/ar/") ? "/ar" : "";
   const localizedHref = useCallback(
     (href: string) => href === "/" ? prefix || "/" : `${prefix}${href}`,
@@ -25,12 +24,6 @@ export default function Navbar() {
     window.addEventListener("scroll", updateNavbar, { passive: true });
     return () => window.removeEventListener("scroll", updateNavbar);
   }, []);
-
-  useEffect(() => {
-    [...navLinks.map((link) => link.href), "/workflow", "/contact"].forEach((href) => {
-      router.prefetch(localizedHref(href));
-    });
-  }, [localizedHref, router]);
 
   return (
     <header
