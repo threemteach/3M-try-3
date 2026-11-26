@@ -10,7 +10,7 @@ export default function ProjectCard({ project }: { project: Project; index: numb
   const { isArabic } = useLanguage();
   const href = `${isArabic ? "/ar" : ""}/projects/${project.slug}`;
   return <article className="showcase-project">
-    <Link href={href} aria-label={project.title}><ProjectPreview project={project} /></Link>
+    <ProjectPreview project={project} />
     <div className="showcase-info">
       <div className="showcase-name" dir={/[\u0600-\u06ff]/.test(project.title) ? "rtl" : "ltr"}>
         <h3><Link href={href}>{project.title}</Link></h3>

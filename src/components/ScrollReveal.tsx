@@ -26,7 +26,7 @@ export default function ScrollReveal() {
       if (element.closest(".navbar-shell, .mobile-language-toggle, nav, footer")) return false;
       if (element.closest(".loading-screen")) return false;
       if (element.closest(".service-stack-panel, .service-carousel")) return false;
-      if (element.closest(".logo-work-reveal")) return false;
+      if (element.closest(".project-runway")) return false;
       if (element.dataset.scrollRevealBound === "true") return false;
       return true;
     });

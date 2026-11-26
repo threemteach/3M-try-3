@@ -1,61 +1,64 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState, type PointerEvent } from "react";
 import type { Project } from "@/lib/projects";
 import { useLanguage } from "@/components/LanguageProvider";
 import ProjectCard from "@/components/ProjectCard";
 
 export default function Portfolio({ projects }: { projects: Project[] }) {
   const { isArabic } = useLanguage();
-  const runway = useRef<HTMLElement>(null);
   const rail = useRef<HTMLDivElement>(null);
-  const stride = useRef(1);
+  const drag = useRef<{ x: number; left: number } | null>(null);
+  const dragged = useRef(false);
   const [active, setActive] = useState(0);
   const labels = [isArabic ? "أعمالنا" : "Our Work", ...projects.map(p => p.title), isArabic ? "كل المشاريع" : "All projects"];
-  const count = labels.length;
+  function centerOffset(row: HTMLElement, item: Element) {
+    const bounds = item.getBoundingClientRect();
+    return bounds.left + bounds.width / 2 - row.getBoundingClientRect().left - row.clientWidth / 2;
+  }
 
-  useEffect(() => {
-    const section = runway.current, row = rail.current;
-    if (!section || !row) return;
-    const motion = matchMedia("(prefers-reduced-motion: reduce)");
-    let frame = 0;
-    const update = () => {
-      frame = 0;
-      if (motion.matches || count < 2) return;
-      const fraction = Math.max(0, Math.min(1, -section.getBoundingClientRect().top / (stride.current * (count - 1))));
-      const shift = fraction * (row.scrollWidth - row.clientWidth);
-      row.scrollLeft = isArabic ? -shift : shift;
-      setActive(Math.round(fraction * (count - 1)));
-    };
-    const schedule = () => { if (!frame) frame = requestAnimationFrame(update); };
-    const measure = () => {
-      stride.current = Math.max(360, row.clientWidth * .55);
-      section.style.setProperty("--project-travel", motion.matches ? "0px" : `${stride.current * Math.max(0, count - 1)}px`);
-      schedule();
-    };
-    const observer = new ResizeObserver(measure);
-    observer.observe(row);
-    motion.addEventListener("change", measure);
-    window.addEventListener("scroll", schedule, { passive: true });
-    measure();
-    return () => { observer.disconnect(); cancelAnimationFrame(frame); window.removeEventListener("scroll", schedule); motion.removeEventListener("change", measure); };
-  }, [count, isArabic]);
+  function syncActive() {
+    const row = rail.current;
+    if (!row) return;
+    const distances = Array.from(row.children, item => Math.abs(centerOffset(row, item)));
+    setActive(distances.indexOf(Math.min(...distances)));
+  }
 
   function select(index: number) {
-    if (!runway.current || !rail.current) return;
-    if (matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      rail.current.children[index]?.scrollIntoView({ inline: "center", block: "nearest", behavior: "instant" });
-      setActive(index);
-    } else {
-      window.scrollTo({ top: window.scrollY + runway.current.getBoundingClientRect().top + stride.current * index, behavior: "smooth" });
+    const row = rail.current;
+    if (row) row.scrollBy({ left: centerOffset(row, row.children[index]), behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "instant" : "smooth" });
+  }
+
+  function move(event: PointerEvent<HTMLDivElement>) {
+    if (!drag.current || event.pointerType !== "mouse" || event.buttons !== 1) return;
+    const delta = event.clientX - drag.current.x;
+    if (!dragged.current && Math.abs(delta) < 6) return;
+    const row = event.currentTarget;
+    if (!dragged.current) {
+      row.setPointerCapture(event.pointerId);
+      row.dataset.dragging = "true";
+      dragged.current = true;
     }
+    row.scrollLeft = drag.current.left - delta;
+  }
+
+  function endDrag(event: PointerEvent<HTMLDivElement>) {
+    drag.current = null;
+    delete event.currentTarget.dataset.dragging;
   }
 
   return (
-    <section ref={runway} dir={isArabic ? "rtl" : "ltr"} id="portfolio" className="project-runway" aria-labelledby="home-work-title">
+    <section dir={isArabic ? "rtl" : "ltr"} id="portfolio" className="project-runway" aria-labelledby="home-work-title">
       <div className="project-runway-stage">
-        <div ref={rail} className="project-runway-rail">
+        <div ref={rail} className="project-runway-rail" onScroll={syncActive}
+          onPointerDown={event => {
+            dragged.current = false;
+            drag.current = event.pointerType === "mouse" && event.button === 0 ? { x: event.clientX, left: event.currentTarget.scrollLeft } : null;
+          }}
+          onPointerMove={move} onPointerUp={endDrag} onPointerCancel={endDrag} onLostPointerCapture={endDrag}
+          onDragStart={event => event.preventDefault()}
+          onClickCapture={event => { if (dragged.current && event.detail) { event.preventDefault(); event.stopPropagation(); } }}>
         <header className="runway-intro">
           <h2 id="home-work-title" className="text-[48px] sm:text-[60px] leading-tight [font-family:MedulaOne]">{isArabic ? "أعمالنا" : "Our Work"}</h2>
           <p>{isArabic ? "اكتشف نماذج من المنتجات التي صنعناها لعملائنا." : "Explore some of the products we've built for our clients."}</p>

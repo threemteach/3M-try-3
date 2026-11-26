@@ -7,6 +7,15 @@ export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
   const isPrivateRoute = pathname === "/login" || pathname.startsWith("/admin");
 
+  if (pathname === "/" && request.cookies.get("3m-language")?.value !== "en") {
+    const target = request.nextUrl.clone();
+    target.pathname = "/ar";
+    const response = NextResponse.redirect(target);
+    response.headers.set("Cache-Control", "private, no-store");
+    response.headers.set("Vary", "Cookie");
+    return response;
+  }
+
   if (isPrivateRoute && isSupabaseConfigured()) return updateSession(request);
   return NextResponse.next();
 }

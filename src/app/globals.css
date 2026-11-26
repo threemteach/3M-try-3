@@ -465,9 +465,9 @@ html[dir='rtl'] .presence-copy h1 { font: 700 58px/1.45 var(--font-arabic); }
   html[dir='rtl'] .presence-copy h1 { font-size: 34px; }
 }
 .project-runway, .project-runway-stage { position: relative; background: #302451; color: white; }
-.project-runway-stage { position: sticky; top: 0; display: flex; flex-direction: column; justify-content: center; gap: 18px; min-height: 100svh; padding: 86px 0 28px; }
-.project-runway::after { content: ''; display: block; height: var(--project-travel, 0px); }
-.project-runway-rail { --card-width: min(81vw, 78svh, 660px); display: flex; align-items: stretch; gap: 24px; padding: 10px 5%; overflow: hidden; }
+.project-runway-stage { display: flex; flex-direction: column; justify-content: center; gap: 18px; padding: 86px 0 28px; }
+.project-runway-rail { --card-width: min(81vw, 78svh, 660px); display: flex; align-items: stretch; gap: 24px; padding: 10px calc((100% - var(--card-width)) / 2); overflow-x: auto; overscroll-behavior-x: contain; cursor: grab; user-select: none; }
+.project-runway-rail[data-dragging] { cursor: grabbing; }
 .project-runway-rail > * { flex: 0 0 var(--card-width); min-width: 0; }
 .runway-intro,.runway-outro { align-self: center; padding: 28px; text-align: start; }
 .runway-intro h2,.runway-outro h3 { font: 400 76px/1.1 MedulaOne,serif; margin-bottom: 18px; }
@@ -482,6 +482,8 @@ html[dir='rtl'] .runway-intro h2,html[dir='rtl'] .runway-outro h3 { font: 700 40
 .browser-chrome { display: flex; align-items: center; gap: 3px; height: 12px; padding-left: 8px; background: #f5f3f7; }
 .browser-chrome i { height: 3px; width: 3px; border-radius: 50%; background: #bdb6c6; }
 .device-screen { position: relative; overflow: hidden; background: white; }
+.preview-poster { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: top center; }
+.preview-toggle { position: absolute; bottom: 6%; left: 5%; display: inline-flex; align-items: center; gap: 6px; padding: 8px 12px; border-radius: 99px; background: #302451; color: white; pointer-events: auto; cursor: pointer; }
 .preview-placeholder { position: absolute; inset: 0; display: grid; place-items: center; color: #554a68; font-size: 13px; }
 .desktop-screen { aspect-ratio: 1440/760; }
 .device-screen iframe { position: absolute; top: 0; left: 0; max-width: none; border: 0; transform-origin: top left; pointer-events: none; }
@@ -505,11 +507,6 @@ html[dir='rtl'] .runway-intro h2,html[dir='rtl'] .runway-outro h3 { font: 700 40
   html[dir='rtl'] .runway-intro h2,html[dir='rtl'] .runway-outro h3 { font-size: 28px; }
   .showcase-info { padding: 13px 15px; }
   .showcase-name h3 { font-size: 30px; }
-}
-@media (prefers-reduced-motion: reduce) {
-  .project-runway-stage { position: relative; }
-  .project-runway-rail { overflow-x: auto; scroll-snap-type: x mandatory; }
-  .project-runway-rail > * { scroll-snap-align: center; }
 }
 .logo-work-reveal {
   position: relative;
