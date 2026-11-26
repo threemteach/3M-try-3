@@ -464,7 +464,14 @@ html[dir='rtl'] .presence-copy h1 { font: 700 58px/1.45 var(--font-arabic); }
   .presence-dream h2 { font-size: 44px; }
   html[dir='rtl'] .presence-copy h1 { font-size: 34px; }
 }
-.project-runway, .project-runway-stage { position: relative; background: #302451; color: white; }
+.project-runway, .project-runway-stage { position: relative; color: white; }
+.presence-hero, .project-runway, .workflow-section {
+  background-color: #302451;
+  background-image: radial-gradient(ellipse 88% 135% at var(--light-origin, 56% 42%),
+    #493963 0%, #40315e 26%, #302451 56%, #241b3b 83%, #1e172f 100%);
+}
+.project-runway { --light-origin: 49% 45%; }
+.workflow-section { --light-origin: 57% 38%; }
 .project-runway-stage { display: flex; flex-direction: column; justify-content: center; gap: 18px; padding: 86px 0 28px; }
 .project-runway-rail { --card-width: min(81vw, 78svh, 660px); display: flex; align-items: stretch; gap: 24px; padding: 10px calc((100% - var(--card-width)) / 2); overflow-x: auto; overscroll-behavior-x: contain; cursor: grab; user-select: none; }
 .project-runway-rail[data-dragging] { cursor: grabbing; }

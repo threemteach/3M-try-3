@@ -15,78 +15,23 @@ const quickLinks = [
   { href: "/templates", label: "Ready-made Templates" },
   { href: "/#process", label: "Process" },
 ];
-const stars = [
-  "left-[-18px] top-[165px] h-16 w-16 rotate-12 sm:left-[1%] sm:h-20 sm:w-20",
-  "left-[10%] top-[125px] h-8 w-8 -rotate-12 sm:h-11 sm:w-11",
-  "left-[22%] top-[205px] h-14 w-14 rotate-[18deg] sm:left-[17%] sm:h-20 sm:w-20",
-  "left-[28%] top-[140px] h-9 w-9 rotate-45 sm:h-12 sm:w-12",
-  "left-[4%] top-[265px] h-9 w-9 rotate-[8deg] sm:h-12 sm:w-12",
-  "left-[15%] top-[305px] h-7 w-7 rotate-45 sm:h-9 sm:w-9",
-  "right-[-18px] top-[165px] h-16 w-16 -rotate-12 sm:right-[1%] sm:h-20 sm:w-20",
-  "right-[10%] top-[125px] h-8 w-8 rotate-[18deg] sm:h-11 sm:w-11",
-  "right-[22%] top-[205px] h-14 w-14 -rotate-[18deg] sm:right-[17%] sm:h-20 sm:w-20",
-  "right-[28%] top-[140px] h-9 w-9 -rotate-45 sm:h-12 sm:w-12",
-  "right-[4%] top-[265px] h-9 w-9 -rotate-[8deg] sm:h-12 sm:w-12",
-  "right-[15%] top-[305px] h-7 w-7 -rotate-45 sm:h-9 sm:w-9",
-  "hidden sm:block sm:left-[7%] sm:top-[225px] sm:h-8 sm:w-8 sm:rotate-[20deg]",
-  "hidden sm:block sm:left-[27%] sm:top-[285px] sm:h-7 sm:w-7 sm:-rotate-12",
-  "hidden sm:block sm:right-[7%] sm:top-[225px] sm:h-8 sm:w-8 sm:-rotate-[20deg]",
-  "hidden sm:block sm:right-[27%] sm:top-[285px] sm:h-7 sm:w-7 sm:rotate-12",
-];
-
 export default function Footer({ visibility }: { visibility: { plans: boolean; templates: boolean } }) {
   const currentYear = new Date().getFullYear();
   const visibleLinks = quickLinks.filter(({ href }) =>
     (href !== "/plans" || visibility.plans) && (href !== "/templates" || visibility.templates)
   );
 
+  const heading = "mb-3 w-fit border-b border-white/50 pb-1 text-base font-semibold text-white";
   return (
-    <footer className="relative isolate overflow-hidden bg-[#312354] pb-[calc(7rem+env(safe-area-inset-bottom))] pt-[158px] text-[#e5e0eb] sm:pb-9 sm:pt-[170px]">
-      <div data-nosnippet className="contents">
-      <div aria-hidden="true" className="absolute inset-x-0 top-0 h-[105px] bg-[#f5f2f3]" />
-      <a
-        href="#"
-        aria-label="Scroll back to the top"
-        className="group absolute left-1/2 top-[38px] z-[5] h-[110px] w-[300px] -translate-x-1/2 bg-[#312354] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#312354] sm:top-[35px]"
-        style={{
-          clipPath:
-            'path("M0 86 C45 85 66 69 88 42 C109 16 127 1 150 1 C173 1 191 16 212 42 C234 69 255 85 300 86 L300 110 L0 110 Z")',
-        }}
-      >
-        <span className="absolute left-1/2 top-[30px] flex -translate-x-1/2 flex-col items-center sm:top-[33px]">
-          {[0, 1, 2, 3, 4].map((line) => (
-            <span
-              key={line}
-              aria-hidden="true"
-              className="-mt-[13px] block h-[27px] w-[27px] rotate-45 border-l border-t border-white/75 transition-transform first:mt-0 group-hover:-translate-y-0.5 sm:-mt-[14px] sm:h-[29px] sm:w-[29px]"
-            />
-          ))}
-        </span>
-      </a>
-
-      <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-0">
-        {stars.map((position, index) => (
-          <Image
-            key={position}
-            src="/star-34.svg"
-            alt=""
-            width={185}
-            height={185}
-            className={`absolute object-contain opacity-40 ${position} ${[0, 4, 6, 10].includes(index) ? "" : "hidden sm:block"}`}
-          />
-        ))}
-      </div>
-
-      <div className="relative z-10 mx-auto flex w-full max-w-[1120px] flex-col items-center px-4 sm:px-8">
-        <Image
-          src="/logo.png"
-          alt="3M"
-          width={413}
-          height={337}
-          className="h-auto w-[170px] object-contain sm:w-[215px] md:w-[240px]"
-        />
-
-        <nav aria-label="Social media" className="mt-3 flex items-center gap-5 sm:mt-4">
+    <footer className="overflow-hidden bg-[#302451] pt-12 text-[#e4deec] sm:pt-20">
+      <div className="mx-auto w-[90%] max-w-[1180px]">
+        <a href="#" aria-label="Scroll back to the top" className="mx-auto mb-12 block w-32 sm:w-48">
+          <Image src="/logo-wordmark-white.svg" width={413} height={337} alt="3M Techs" className="h-auto w-full" />
+        </a>
+        <div className="grid grid-cols-2 gap-x-4 gap-y-7 text-start sm:grid-cols-[1.5fr_.8fr_1fr] sm:gap-8">
+          <div>
+            <h2 className={heading}>Follow on</h2>
+            <nav aria-label="Social media" className="mt-3 flex items-center gap-5 sm:mt-4">
           <a
             href={INSTAGRAM_URL}
             target="_blank"
@@ -123,53 +68,26 @@ export default function Footer({ visibility }: { visibility: { plans: boolean; t
             </svg>
           </a>
         </nav>
-
-        <div className="mt-12 grid w-full max-w-[940px] grid-cols-1 gap-9 text-center sm:mt-14 sm:grid-cols-2 sm:gap-10">
-          <section>
-            <h2 className="mx-auto w-fit border-b border-white/70 pb-2 text-lg text-white">
-              Quick Links
-            </h2>
-            <ul className="mt-4 flex flex-wrap justify-center gap-x-7 gap-y-3 text-[15px] sm:text-base">
-              {visibleLinks.map((link) => (
-                <li key={link.label}>
-                  <Link className="transition-colors hover:text-white" href={link.href}>
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </section>
-
-          <section>
-            <h2 className="mx-auto w-fit border-b border-white/70 pb-2 text-lg text-white">
-              Contact
-            </h2>
-            <address className="mt-4 space-y-2 text-[15px] not-italic sm:text-base">
-              <a
-                className="block transition-colors hover:text-white"
-                href={`https://wa.me/${SITE_PHONE.replace(/\D/g, "")}`}
-                target="_blank"
-                rel="noreferrer"
-              >
-                WhatsApp: +20 10 6188 3470
-              </a>
-            </address>
-          </section>
-        </div>
-
-        <div className="mt-12 flex w-full max-w-[940px] flex-col items-center justify-between gap-4 text-sm sm:mt-14 sm:flex-row sm:text-[15px]">
-          <div className="flex gap-9">
-            <Link href="/privacy" className="transition-colors hover:text-white">
-              Privacy
-            </Link>
-            <Link href="/terms" className="transition-colors hover:text-white">
-              Terms
-            </Link>
           </div>
+          <div>
+            <h2 className={heading}>Quick Links</h2>
+            <ul className="space-y-1.5">{visibleLinks.map(link => <li key={link.href}><Link href={link.href} className="hover:underline">{link.label}</Link></li>)}</ul>
+          </div>
+          <div className="col-span-2 sm:col-span-1">
+            <h2 className={heading}>Contact</h2>
+            <address className="flex flex-col items-start gap-2 not-italic">
+              <a href="mailto:info.3mtechs@gmail.com" dir="ltr" className="break-all hover:underline">info.3mtechs@gmail.com</a>
+              <a href={`https://wa.me/${SITE_PHONE.replace(/\D/g, "")}`} dir="ltr" className="hover:underline">+20 10 6188 43 70</a>
+            </address>
+          </div>
+        </div>
+        <div className="mt-9 flex flex-wrap items-baseline justify-between gap-3 pb-5 text-sm">
           <p>© {currentYear} 3M tech · All rights reserved</p>
+          <div className="flex gap-6"><Link href="/privacy">Privacy</Link><Link href="/terms">Terms</Link></div>
         </div>
       </div>
-      </div>
+      <Image src="/footer-signature.svg" width={794} height={139} alt="" className="block h-auto w-full opacity-60" />
+      <div aria-hidden="true" className="h-[calc(5rem+env(safe-area-inset-bottom))] sm:hidden" />
     </footer>
   );
 }

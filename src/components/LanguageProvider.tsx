@@ -15,6 +15,7 @@ const ARABIC: Record<string, string> = {
   Process: "مراحل العمل",
   Contact: "تواصل معنا",
   "Quick Links": "روابط سريعة",
+  "Follow on": "تابعنا على",
   Privacy: "الخصوصية",
   Terms: "الشروط",
   "All rights reserved": "جميع الحقوق محفوظة",
