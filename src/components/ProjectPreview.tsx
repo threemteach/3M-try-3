@@ -30,13 +30,18 @@ export default function ProjectPreview({ project }: { project: Project }) {
   const [hasEntered, setHasEntered] = useState(false);
   useEffect(() => {
     if (!ref.current) return;
+    let timer: ReturnType<typeof setTimeout>;
     const observer = new IntersectionObserver(([entry]) => {
-      if (!entry.isIntersecting) return;
-      setHasEntered(true);
-      observer.disconnect();
-    });
+      clearTimeout(timer);
+      if (entry.intersectionRatio < 0.15) return;
+      // Don't start two external sites for a card the user only flicks past.
+      timer = setTimeout(() => {
+        setHasEntered(true);
+        observer.disconnect();
+      }, 220);
+    }, { threshold: 0.15 });
     observer.observe(ref.current);
-    return () => observer.disconnect();
+    return () => { clearTimeout(timer); observer.disconnect(); };
   }, []);
   let url = "";
   if (hasEntered && project.liveUrl) {

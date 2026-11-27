@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useRef, useState, type PointerEvent } from "react";
+import { useEffect, useRef, useState, type PointerEvent } from "react";
 import type { Project } from "@/lib/projects";
 import { useLanguage } from "@/components/LanguageProvider";
 import ProjectCard from "@/components/ProjectCard";
@@ -18,12 +18,27 @@ export default function Portfolio({ projects }: { projects: Project[] }) {
     return bounds.left + bounds.width / 2 - row.getBoundingClientRect().left - row.clientWidth / 2;
   }
 
-  function syncActive() {
+  useEffect(() => {
     const row = rail.current;
     if (!row) return;
-    const distances = Array.from(row.children, item => Math.abs(centerOffset(row, item)));
-    setActive(distances.indexOf(Math.min(...distances)));
-  }
+    let stride = 0;
+    let previous = -1;
+    const sync = () => {
+      if (!stride) return;
+      const index = Math.min(row.children.length - 1, Math.round(Math.abs(row.scrollLeft) / stride));
+      if (index !== previous) { previous = index; setActive(index); }
+    };
+    const measure = () => {
+      stride = row.children[0].getBoundingClientRect().width + parseFloat(getComputedStyle(row).columnGap);
+      sync();
+    };
+    const observer = new ResizeObserver(measure);
+    observer.observe(row);
+    observer.observe(row.children[0]);
+    measure();
+    row.addEventListener("scroll", sync, { passive: true });
+    return () => { observer.disconnect(); row.removeEventListener("scroll", sync); };
+  }, [projects.length, isArabic]);
 
   function select(index: number) {
     const row = rail.current;
@@ -51,7 +66,7 @@ export default function Portfolio({ projects }: { projects: Project[] }) {
   return (
     <section dir={isArabic ? "rtl" : "ltr"} id="portfolio" className="project-runway" aria-labelledby="home-work-title">
       <div className="project-runway-stage">
-        <div ref={rail} className="project-runway-rail" onScroll={syncActive}
+        <div ref={rail} className="project-runway-rail"
           onPointerDown={event => {
             dragged.current = false;
             drag.current = event.pointerType === "mouse" && event.button === 0 ? { x: event.clientX, left: event.currentTarget.scrollLeft } : null;

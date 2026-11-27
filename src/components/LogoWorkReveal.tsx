@@ -35,13 +35,15 @@ export default function LogoWorkReveal({ children }: { children: ReactNode }) {
       const height = (track.current?.firstElementChild as HTMLElement | undefined)?.offsetHeight || innerHeight;
       element.dataset.entered = String(progress >= 1);
       element.style.setProperty("--logo-zoom", String(progress));
-      if (content.current) content.current.inert = !media.matches && progress < 1;
       if (!scene) {
         element.style.setProperty("--portal-x", `${innerWidth / 2}px`);
         element.style.setProperty("--portal-y", `${height / 2}px`);
         element.style.setProperty("--portal-radius", `${clamp((progress - .55) / .4) * Math.hypot(innerWidth, height)}px`);
       }
       scene?.setProgress(progress);
+      // clip-path already limits hits to the opening; don't block the exposed cards.
+      if (content.current) content.current.inert = !media.matches &&
+        parseFloat(element.style.getPropertyValue("--portal-radius") || "0") <= 0;
     };
     const measure = () => {
       top = element.getBoundingClientRect().top + window.scrollY;
