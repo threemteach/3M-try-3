@@ -528,7 +528,7 @@ html[dir='rtl'] .runway-intro h2,html[dir='rtl'] .runway-outro h3 { font: 700 40
   --portal-x: 50vw;
   --portal-y: 50svh;
   --portal-radius: 0px;
-  --logo-track-height: 260svh;
+  --logo-track-height: 175svh;
   --logo-zoom: 0;
 }
 .logo-work-track { position: relative; z-index: 2; height: var(--logo-track-height); pointer-events: none; }
@@ -545,15 +545,12 @@ html[dir='rtl'] .runway-intro h2,html[dir='rtl'] .runway-outro h3 { font: 700 40
 .logo-work-fallback { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; opacity: calc(1 - var(--logo-zoom)); }
 .logo-work-fallback img { width: min(78%, 600px); height: auto; transform: scale(calc(1 + var(--logo-zoom) * 18)); transform-origin: 90% 86%; }
 .logo-work-fallback.is-ready { opacity: 0; }
-.logo-work-content { position: sticky; top: 0; z-index: 1; margin-top: calc(0px - var(--logo-track-height)); clip-path: circle(var(--portal-radius) at var(--portal-x) var(--portal-y)); }
-/* Give both sticky layers the same release point without moving the carousel on each frame. */
-.logo-work-reveal::after { content: ''; display: block; height: calc(var(--logo-track-height) - 100svh); }
+.logo-work-content { position: relative; z-index: 1; margin-top: -100svh; clip-path: circle(var(--portal-radius) at var(--portal-x) calc(var(--portal-y) - var(--portal-offset, 0px))); }
 .logo-work-reveal[data-entered='true'] .logo-work-content { clip-path: none; }
 @media (prefers-reduced-motion: reduce) {
   .logo-work-track { height: 220px; }
   .logo-work-stage { position: relative; height: 220px; }
   .logo-work-content { position: relative; margin-top: 0; clip-path: none; }
-  .logo-work-reveal::after { display: none; }
   .logo-work-canvas { display: none; }
   .logo-work-fallback, .logo-work-fallback.is-ready { opacity: 1; }
   .logo-work-fallback img { width: 160px; transform: none; }

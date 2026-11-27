@@ -35,6 +35,8 @@ export default function LogoWorkReveal({ children }: { children: ReactNode }) {
       const height = (track.current?.firstElementChild as HTMLElement | undefined)?.offsetHeight || innerHeight;
       element.dataset.entered = String(progress >= 1);
       element.style.setProperty("--logo-zoom", String(progress));
+      // The projects now scroll normally behind the viewport-aligned portal.
+      element.style.setProperty("--portal-offset", `${(1 - next) * distance}px`);
       if (!scene) {
         element.style.setProperty("--portal-x", `${innerWidth / 2}px`);
         element.style.setProperty("--portal-y", `${height / 2}px`);
